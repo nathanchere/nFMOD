@@ -8,6 +8,16 @@ namespace FmodTest
 		{
 			Console.WriteLine ("Fmod Sound Test");
 			
+#if DEBUG
+			
+#else
+			FmodSharp.Debug.Level = FmodSharp.DebugLevel.Error;
+#endif
+			
+			Console.WriteLine ("Level: {0}", FmodSharp.Debug.Level);
+			Console.WriteLine ("Type: {0}", FmodSharp.Debug.Type);
+			Console.WriteLine ("Display: {0}", FmodSharp.Debug.Display);
+			
 			FmodSharp.SoundSystem.SoundSystem  SoundSystem = new FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output Type: {0}", SoundSystem.Output);

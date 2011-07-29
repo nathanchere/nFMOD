@@ -12,29 +12,43 @@ namespace FmodSharp
 	/// PlayStation Portable, PlayStation 3, Wii, Android
 	/// </platforms>
 	[Flags]
-	public enum DebugLevel
+	public enum DebugLevel : byte
 	{
-		Level_None = 0x00000000,
-        Level_Log = 0x00000001,
-        Level_Error = 0x00000002,
-        Level_Warning = 0x00000004,
-        Level_Hint = 0x00000008,
-        Level_All = 0x000000FF,
-        
-		Type_Memory = 0x00000100,
-        Type_Thread = 0x00000200,
-        Type_File = 0x00000400,
-        Type_Net = 0x00000800,
-        Type_Event = 0x00001000,
-        Type_All = 0x0000FF00,
-        
-		Display_Timestamps = 0x01000000,
-        Display_LineNumbers = 0x02000000,
-        Display_Compress = 0x04000000,
-        Display_Thread = 0x08000000,
-        Display_All = 0x0F000000,
-        
-		All = Level_All | Type_All | Display_All,
+		None = 0x00,
+		
+		Log = 0x01,
+		Error = 0x02,
+		Warning = 0x04,
+		Hint = 0x08,
+		
+		All = 0xFF,
+	}
+	
+	[Flags]
+	public enum DebugType : byte
+	{
+		None = 0x00,
+		
+		Memory = 0x01,
+        Thread = 0x02,
+        File = 0x04,
+        Net = 0x08,
+        Event = 0x10,
+		
+        All = 0xFF,
+	}
+	
+	[Flags]
+	public enum DebugDisplay : byte
+	{
+		None = 0x00,
+		
+		Timestamps = 0x01,
+        LineNumbers = 0x02,
+        Compress = 0x04,
+        Thread = 0x08,
+		
+        All = 0x0F,
 	}
 	
 	/// <platforms>
@@ -43,11 +57,24 @@ namespace FmodSharp
 	/// </platforms>
 	public static class Debug
 	{
-		public static DebugLevel Level
-		{
+		public static DebugLevel Level {
+			get { return (DebugLevel)(DebugValue & 0xFF); }
+			set { DebugValue = (int)value | (int)(DebugValue & 0xFFFFFF00); }
+		}
+		
+		public static DebugType Type {
+			get { return (DebugType)((DebugValue >> 8) & 0xFF); }
+			set { DebugValue = ((int)value << 8) | (int)(DebugValue & 0xFFFF00FF); }
+		}
+		
+		public static DebugDisplay Display {
+			get { return (DebugDisplay)((DebugValue >> 24) & 0x0F); }
+			set { DebugValue = (((int)value & 0x0F) << 24) | (int)(DebugValue & 0xF0FFFFFF); }
+		}
+		
+		private static int DebugValue {
 			get {
-				DebugLevel Val = (DebugLevel)0;
-				
+				int Val = 0;
 				Error.Code ReturnCode = GetLevel(ref Val);
 				if(ReturnCode != Error.Code.OK)
 					Error.Errors.ThrowError(ReturnCode);
@@ -63,9 +90,9 @@ namespace FmodSharp
 		}
 	
 		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel")]
-		private static extern Error.Code SetLevel (DebugLevel Level);
+		private static extern Error.Code SetLevel (int Level);
 		
 		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel")]
-		private static extern Error.Code GetLevel (ref DebugLevel Level);
+		private static extern Error.Code GetLevel (ref int Level);
 	}
 }

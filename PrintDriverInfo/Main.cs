@@ -8,6 +8,12 @@ namespace PrintDriverInfo
 		{
 			Console.WriteLine ("Fmod Driver Info Test");
 			
+#if DEBUG
+			
+#else
+			FmodSharp.Debug.Level = FmodSharp.DebugLevel.Error;
+#endif
+			
 			FmodSharp.SoundSystem.SoundSystem  SoundSystem = new FmodSharp.SoundSystem.SoundSystem();
 			Guid DriverGuid = new Guid();
 			string Name;
