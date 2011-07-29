@@ -8,6 +8,7 @@ namespace FmodSharp.Channel
 		{
 		}
 
+		//TODO Implement extern funcitons
 		/*
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_Release (IntPtr channelgroup);

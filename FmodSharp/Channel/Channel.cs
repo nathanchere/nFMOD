@@ -144,7 +144,8 @@ namespace FmodSharp.Channel
 
 		
 			
-
+		
+		//TODO Implement extern funcitons
 		
 		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetDelay")]
 		//private static extern Error.Code SetDelay (IntPtr channel, DELAYTYPE delaytype, uint delayhi, uint delaylo);

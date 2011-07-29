@@ -5,6 +5,12 @@ namespace FmodSharp.Sound
 {
 	public class Sound : Handle
 	{
+		
+		#region Create/Release
+		
+		private Sound()
+		{
+		}
 		internal Sound (IntPtr hnd) : base()
 		{
 			this.SetHandle (hnd);
@@ -24,8 +30,12 @@ namespace FmodSharp.Sound
 		[DllImport("fmodex", EntryPoint = "FMOD_Sound_Release")]
 		private static extern Error.Code Release (IntPtr sound);
 		
+		#endregion
 		
-
+		
+		
+		//TODO Implement extern funcitons
+		
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_GetSystemObject (IntPtr sound, ref IntPtr system);
 

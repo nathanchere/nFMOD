@@ -169,10 +169,10 @@ namespace FmodSharp.SoundSystem
 					Error.Errors.ThrowError (ReturnCode);
 			}
 		}
-
+		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetOutput")]
 		private static extern Error.Code SetOutput (IntPtr system, OutputType output);
-
+		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutput")]
 		private static extern Error.Code GetOutput (IntPtr system, ref OutputType output);
 		
@@ -544,6 +544,8 @@ namespace FmodSharp.SoundSystem
 
 		#endregion
 
+		
+		//TODO Implement extern funcitons
 		/*
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetHardwareChannels")]

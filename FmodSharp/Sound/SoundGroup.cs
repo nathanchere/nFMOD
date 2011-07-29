@@ -8,6 +8,7 @@ namespace FmodSharp.Sound
 		{
 		}
 
+		//TODO Implement extern funcitons
 		/*
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_SoundGroup_Release (IntPtr soundgroup);

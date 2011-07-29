@@ -8,6 +8,7 @@ namespace FmodSharp.Reverb
 		{
 		}
 
+		//TODO Implement extern funcitons
 		/*
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_Reverb_Release (IntPtr reverb);
