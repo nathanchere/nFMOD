@@ -16,14 +16,29 @@ namespace FmodSharp.Dsp
 				return true;
 			
 			Release (this.handle);
+			Remove (this.handle);
 			this.SetHandleAsInvalid ();
 			
 			return true;
 		}
 		
+		public void Reset()
+		{
+			Error.Code ReturnCode = Reset_External(this.DangerousGetHandle());
+			if (ReturnCode != Error.Code.OK)
+				Error.Errors.ThrowError (ReturnCode);
+		}
+		
 		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Release")]
 		private static extern Error.Code Release (IntPtr dsp);
 		
+		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Remove")]
+        private static extern Error.Code Remove (IntPtr dsp);
+		
+		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Reset")]
+        private static extern Error.Code Reset_External (IntPtr dsp);
+		
+		//TODO Implement extern funcitons
 		/*
 
 		[DllImport (VERSION.dll)]
@@ -38,10 +53,7 @@ namespace FmodSharp.Dsp
 		[DllImport (VERSION.dll)]
         private static extern RESULT FMOD_DSP_DisconnectAll             (IntPtr dsp, int inputs, int outputs);
         
-		[DllImport (VERSION.dll)]
-        private static extern RESULT FMOD_DSP_Remove                    (IntPtr dsp);
-        
-		[DllImport (VERSION.dll)]
+      	[DllImport (VERSION.dll)]
         private static extern RESULT FMOD_DSP_GetNumInputs              (IntPtr dsp, ref int numinputs);
         
 		[DllImport (VERSION.dll)]
@@ -70,9 +82,6 @@ namespace FmodSharp.Dsp
         
 		[DllImport (VERSION.dll)]
         private static extern RESULT FMOD_DSP_GetSpeakerActive          (IntPtr dsp, SPEAKER speaker, ref int active);
-        
-		[DllImport (VERSION.dll)]
-        private static extern RESULT FMOD_DSP_Reset                     (IntPtr dsp);
         
 		[DllImport (VERSION.dll)]
         private static extern RESULT FMOD_DSP_SetParameter              (IntPtr dsp, int index, float value);
