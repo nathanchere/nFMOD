@@ -1,25 +1,54 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace FmodSharp.Dsp
 {
-	public class Connection
+	public class Connection : Handle
 	{
-		public Connection ()
+		#region Create/Release
+		
+		private Connection ()
 		{
 		}
+		
+		internal Connection (IntPtr ConnPtr)
+		{
+			this.SetHandle(ConnPtr);
+		}
+		
+		public float Mix {
+			get {
+				float Val = 0;
+				Error.Code ReturnCode = GetMix(ref Val);
+				if(ReturnCode != Error.Code.OK)
+					Error.Errors.ThrowError(ReturnCode);
+				
+				return Val;
+			}
+			
+			set {
+				Error.Code ReturnCode = SetMix(value);
+				if(ReturnCode != Error.Code.OK)
+					Error.Errors.ThrowError(ReturnCode);
+			}
+		}
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_SetMix")]
+		private static extern Error.Code SetMix (IntPtr dspconnection, float volume);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_GetMix")]
+		private static extern Error.Code GetMix (IntPtr dspconnection, ref float volume);
 
-/*
+		#endregion
+		
+		//TODO Implement extern funcitons
+		
+		/*
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_DSPConnection_GetInput (IntPtr dspconnection, ref IntPtr input);
 
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_DSPConnection_GetOutput (IntPtr dspconnection, ref IntPtr output);
-
-		[DllImport(VERSION.dll)]
-		private static extern RESULT FMOD_DSPConnection_SetMix (IntPtr dspconnection, float volume);
-
-		[DllImport(VERSION.dll)]
-		private static extern RESULT FMOD_DSPConnection_GetMix (IntPtr dspconnection, ref float volume);
 
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_DSPConnection_SetLevels (IntPtr dspconnection, SPEAKER speaker, float[] levels, int numlevels);
