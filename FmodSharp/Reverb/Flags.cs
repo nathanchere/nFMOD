@@ -66,6 +66,12 @@ namespace FmodSharp.Reverb
 		/// </summary>
 		ModulationTimeScale = 0x00000080,
         
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <remarks>
+		/// Is equal to 0x3F
+		/// </remarks>
 		Default = DecayTimeScale | ReflectionsScale | 
 		ReflectionsDelayScale | ReverbScale | 
 		ReverbDelayScale | DecayHFLimit

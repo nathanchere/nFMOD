@@ -141,50 +141,42 @@ namespace FmodSharp.Reverb
 		public Flags Flags;
 		/* [in/out] REVERB_FLAGS - modifies the behavior of above properties (win32/ps2) */
 
-		public Properties(int instance, int environment, float envSize, float envDiffusion, int room, int roomHF, int roomLF,
-            float decayTime, float decayHFRatio, float decayLFRatio, int reflections, float reflectionsDelay,
-            float reflectionsPanx, float reflectionsPany, float reflectionsPanz, int reverb, float reverbDelay,
-            float reverbPanx, float reverbPany, float reverbPanz, float echoTime, float echoDepth, float modulationTime,
-            float modulationDepth, float airAbsorptionHF, float hfReference, float lfReference, float roomRolloffFactor,
-            float diffusion, float density, uint flags)
-        {
-            ReflectionsPan      = new float[3];
-            ReverbPan           = new float[3];
-
-            Instance            = instance;
-            Environment         = environment;
-            EnvSize             = envSize;
-            EnvDiffusion        = envDiffusion;
-            Room                = room;
-            RoomHF              = roomHF;
-            RoomLF              = roomLF;
-            DecayTime           = decayTime;
-            DecayHFRatio        = decayHFRatio;
-            DecayLFRatio        = decayLFRatio;
-            Reflections         = reflections;
-            ReflectionsDelay    = reflectionsDelay;
-            ReflectionsPan[0]   = reflectionsPanx;
-            ReflectionsPan[1]   = reflectionsPany;
-            ReflectionsPan[2]   = reflectionsPanz;
-            Reverb              = reverb;
-            ReverbDelay          = reverbDelay;
-            ReverbPan[0]        = reverbPanx;
-            ReverbPan[1]        = reverbPany;
-            ReverbPan[2]        = reverbPanz;
-            EchoTime            = echoTime;
-            EchoDepth           = echoDepth;
-            ModulationTime      = modulationTime;
-            ModulationDepth     = modulationDepth;
-            AirAbsorptionHF     = airAbsorptionHF;
-            HFReference         = hfReference;
-            LFReference         = lfReference;
-            RoomRolloffFactor   = roomRolloffFactor;
-            Diffusion           = diffusion;
-            Density             = density;
-            Flags               = (Flags)flags;
-        }
-		
 		//TODO end subbmary
+		
+
+		#region Default Preset
+		
+		public static readonly Properties Generic = new Properties {
+			Instance = 0,
+			Environment = -1,
+			EnvSize = 7.5,
+			EnvDiffusion = 1.0,
+			Room = -1000,
+			RoomHF = -100,
+			RoomLF = 0,
+			DecayTime = 1.49,
+			DecayHFRatio = 0.83,
+			DecayLFRatio = 1.0,
+			Reflections = -2602,
+			ReflectionsDelay = 0.007,
+			ReflectionsPan = new float[] { 0.0f, 0.0f, 0.0f },
+			Reverb = 200,
+			ReverbDelay = 0.011,
+			ReverbPan = new float[] { 0.0f, 0.0f, 0.0f },
+			EchoTime = 0.25,
+			EchoDepth = 0.0,
+			ModulationTime = 0.25,
+			ModulationDepth = 0.0,
+			AirAbsorptionHF = -5.0,
+			HFReference = 5000.0,
+			LFReference = 250.0,
+			RoomRolloffFactor = 0.0,
+			Diffusion = 100.0,
+			Density = 100.0,
+			Flags Flags.Default
+		};
+		
+		#endregion
 		
     }
 }
