@@ -8,6 +8,12 @@ namespace PlayFile
 		{
 			Console.WriteLine ("Fmod Play File Test");
 			
+#if DEBUG
+			
+#else
+			FmodSharp.Debug.Level = FmodSharp.DebugLevel.Error;
+#endif
+			
 			FmodSharp.SoundSystem.SoundSystem  SoundSystem = new FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output: {0}", SoundSystem.Output);

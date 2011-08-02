@@ -8,7 +8,7 @@ namespace FmodSharp.SoundSystem
 		/// <summary>
 		/// Used to check against <see cref="FmodSharp.System.Version"/> FMOD::System::getVersion.
 		/// </summary>
-		public const int Fmod_Version = 0x43202;
+		public const uint Fmod_Version = 0x43202;
 
 		#region Event
 		
@@ -527,9 +527,9 @@ namespace FmodSharp.SoundSystem
 
 		#region Others
 
-		public int Version {
+		public uint Version {
 			get {
-				int Ver = 0;
+				uint Ver = 0;
 				
 				Error.Code ReturnCode = GetVersion (this.DangerousGetHandle (), ref Ver);
 				if (ReturnCode != Error.Code.OK)
@@ -540,8 +540,8 @@ namespace FmodSharp.SoundSystem
 		}
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetVersion")]
-		private static extern Error.Code GetVersion (IntPtr system, ref int version);
-
+		private static extern Error.Code GetVersion (IntPtr system, ref uint version);
+		
 		#endregion
 
 		
@@ -659,9 +659,6 @@ namespace FmodSharp.SoundSystem
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetStreamBufferSize")]
 		private static extern Error.Code GetStreamBufferSize (IntPtr system, ref uint filebuffersize, ref TimeUnit filebuffersizetype);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetVersion")]
-		private static extern Error.Code GetVersion (IntPtr system, ref uint version);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutputHandle")]
 		private static extern Error.Code GetOutputHandle (IntPtr system, ref IntPtr handle);
