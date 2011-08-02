@@ -83,8 +83,6 @@
     <None Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Src\fmodsharp.cs" />
-    <None Include="Src\fmodex.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Src\" />
