@@ -15,11 +15,21 @@ namespace FmodSharp.Dsp
 			if (this.IsInvalid)
 				return true;
 			
+			this.Remove ();
 			Release (this.handle);
-			Remove (this.handle);
 			this.SetHandleAsInvalid ();
 			
 			return true;
+		}
+		
+		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Release")]
+		private static extern Error.Code Release (IntPtr dsp);
+		
+		public void Remove()
+		{
+			Error.Code ReturnCode = Remove_External(this.DangerousGetHandle());
+			if (ReturnCode != Error.Code.OK)
+				Error.Errors.ThrowError (ReturnCode);
 		}
 		
 		public void Reset()
@@ -29,11 +39,8 @@ namespace FmodSharp.Dsp
 				Error.Errors.ThrowError (ReturnCode);
 		}
 		
-		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Release")]
-		private static extern Error.Code Release (IntPtr dsp);
-		
 		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Remove")]
-        private static extern Error.Code Remove (IntPtr dsp);
+        private static extern Error.Code Remove_External (IntPtr dsp);
 		
 		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Reset")]
         private static extern Error.Code Reset_External (IntPtr dsp);

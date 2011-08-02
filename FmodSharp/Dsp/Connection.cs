@@ -16,10 +16,22 @@ namespace FmodSharp.Dsp
 			this.SetHandle(ConnPtr);
 		}
 		
+		protected override bool ReleaseHandle ()
+		{
+			if (this.IsInvalid)
+				return true;
+			
+			//TODO find if Connection need to be released before closing.
+			//Release (this.handle);
+			this.SetHandleAsInvalid ();
+			
+			return true;
+		}
+		
 		public float Mix {
 			get {
 				float Val = 0;
-				Error.Code ReturnCode = GetMix(ref Val);
+				Error.Code ReturnCode = GetMix(this.DangerousGetHandle(), ref Val);
 				if(ReturnCode != Error.Code.OK)
 					Error.Errors.ThrowError(ReturnCode);
 				
@@ -27,7 +39,7 @@ namespace FmodSharp.Dsp
 			}
 			
 			set {
-				Error.Code ReturnCode = SetMix(value);
+				Error.Code ReturnCode = SetMix(this.DangerousGetHandle(), value);
 				if(ReturnCode != Error.Code.OK)
 					Error.Errors.ThrowError(ReturnCode);
 			}

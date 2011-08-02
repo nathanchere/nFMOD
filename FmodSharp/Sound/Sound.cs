@@ -36,6 +36,8 @@ namespace FmodSharp.Sound
 		
 		//TODO Implement extern funcitons
 		
+		/*
+		
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_GetSystemObject (IntPtr sound, ref IntPtr system);
 
@@ -84,8 +86,8 @@ namespace FmodSharp.Sound
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_SetSubSoundSentence (IntPtr sound, int[] subsoundlist, int numsubsounds);
 
-		//[DllImport("fmodex")]
-		//private static extern Error.Code FMOD_Sound_GetName (IntPtr sound, StringBuilder name, int namelen);
+		[DllImport("fmodex")]
+		private static extern Error.Code FMOD_Sound_GetName (IntPtr sound, StringBuilder name, int namelen);
 
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_GetLength (IntPtr sound, ref uint length, TimeUnit lengthtype);
@@ -99,11 +101,11 @@ namespace FmodSharp.Sound
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_GetNumTags (IntPtr sound, ref int numtags, ref int numtagsupdated);
 
-		//[DllImport("fmodex")]
-		//private static extern Error.Code FMOD_Sound_GetTag (IntPtr sound, string name, int index, ref TAG tag);
+		[DllImport("fmodex")]
+		private static extern Error.Code FMOD_Sound_GetTag (IntPtr sound, string name, int index, ref TAG tag);
 
-		//[DllImport("fmodex")]
-		//private static extern Error.Code FMOD_Sound_GetOpenState (IntPtr sound, ref OPENSTATE openstate, ref uint percentbuffered, ref int starving);
+		[DllImport("fmodex")]
+		private static extern Error.Code FMOD_Sound_GetOpenState (IntPtr sound, ref OPENSTATE openstate, ref uint percentbuffered, ref int starving);
 
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_ReadData (IntPtr sound, IntPtr buffer, uint lenbytes, ref uint read);
@@ -123,8 +125,8 @@ namespace FmodSharp.Sound
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_GetSyncPoint (IntPtr sound, int index, ref IntPtr point);
 
-		//[DllImport("fmodex")]
-		//private static extern Error.Code FMOD_Sound_GetSyncPointInfo (IntPtr sound, IntPtr point, StringBuilder name, int namelen, ref uint offset, TIMEUNIT offsettype);
+		[DllImport("fmodex")]
+		private static extern Error.Code FMOD_Sound_GetSyncPointInfo (IntPtr sound, IntPtr point, StringBuilder name, int namelen, ref uint offset, TIMEUNIT offsettype);
 
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_AddSyncPoint (IntPtr sound, uint offset, TimeUnit offsettype, string name, ref IntPtr point);
@@ -171,8 +173,12 @@ namespace FmodSharp.Sound
 		[DllImport("fmodex")]
 		private static extern Error.Code FMOD_Sound_GetUserData (IntPtr sound, ref IntPtr userdata);
 
-		//[DllImport("fmodex")]
-		//private static extern Error.Code FMOD_Sound_GetMemoryInfo (IntPtr sound, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
+		[DllImport("fmodex")]
+		private static extern Error.Code FMOD_Sound_GetMemoryInfo (IntPtr sound, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
+		
+		*/
+
+	
 	}
 }
 
