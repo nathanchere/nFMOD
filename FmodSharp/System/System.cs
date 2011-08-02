@@ -520,8 +520,65 @@ namespace FmodSharp.SoundSystem
 		
 		#region Reverb
 		
+		public Reverb.Reverb CreateReverb ()
+		{
+			IntPtr ReverbHandle = IntPtr.Zero;
+			
+			Error.Code ReturnCode = CreateReverb (this.DangerousGetHandle (), ref ReverbHandle);
+			if (ReturnCode != Error.Code.OK)
+				Error.Errors.ThrowError (ReturnCode);
+			
+			return new Reverb.Reverb (ReverbHandle);
+		}
+		
+		public Reverb.Properties ReverbProperties {
+			get {
+				Reverb.Properties Val = Reverb.Properties.Generic;
+				Error.Code ReturnCode = GetReverbProperties(this.DangerousGetHandle(), ref Val);
+				if(ReturnCode != Error.Code.OK)
+					Error.Errors.ThrowError(ReturnCode);
+				
+				return Val;
+			}
+			
+			set {
+				Error.Code ReturnCode = SetReverbProperties(this.DangerousGetHandle(), ref value);
+				if(ReturnCode != Error.Code.OK)
+					Error.Errors.ThrowError(ReturnCode);
+			}
+		}
+		
+		public Reverb.Properties ReverbAmbientProperties {
+			get {
+				Reverb.Properties Val = Reverb.Properties.Generic;
+				Error.Code ReturnCode = GetReverbAmbientProperties(this.DangerousGetHandle(), ref Val);
+				if(ReturnCode != Error.Code.OK)
+					Error.Errors.ThrowError(ReturnCode);
+				
+				return Val;
+			}
+			
+			set {
+				Error.Code ReturnCode = SetReverbAmbientProperties(this.DangerousGetHandle(), ref value);
+				if(ReturnCode != Error.Code.OK)
+					Error.Errors.ThrowError(ReturnCode);
+			}
+		}
+		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateReverb")]
 		private static extern Error.Code CreateReverb (IntPtr system, ref IntPtr reverb);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetReverbProperties")]
+		private static extern Error.Code SetReverbProperties (IntPtr system, ref Reverb.Properties prop);
+
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetReverbProperties")]
+		private static extern Error.Code GetReverbProperties (IntPtr system, ref Reverb.Properties prop);
+
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetReverbAmbientProperties")]
+		private static extern Error.Code SetReverbAmbientProperties (IntPtr system, ref Reverb.Properties prop);
+
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetReverbAmbientProperties")]
+		private static extern Error.Code GetReverbAmbientProperties (IntPtr system, ref Reverb.Properties prop);
 		
 		#endregion
 
@@ -623,7 +680,6 @@ namespace FmodSharp.SoundSystem
 		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DRolloffCallback")]
 		private static extern Error.Code Set3DRolloffCallback (IntPtr system, CB_3D_RollOffDelegate callback);
 
-
 		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DSpeakerPosition")]
 		private static extern Error.Code Set3DSpeakerPosition (IntPtr system, Speaker speaker, float x, float y, int active);
 
@@ -694,18 +750,6 @@ namespace FmodSharp.SoundSystem
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetMasterSoundGroup")]
 		private static extern Error.Code GetMasterSoundGroup (IntPtr system, ref IntPtr soundgroup);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetReverbProperties")]
-		private static extern Error.Code SetReverbProperties (IntPtr system, ref Reverb.Properties prop);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetReverbProperties")]
-		private static extern Error.Code GetReverbProperties (IntPtr system, ref Reverb.Properties prop);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetReverbAmbientProperties")]
-		private static extern Error.Code SetReverbAmbientProperties (IntPtr system, ref Reverb.Properties prop);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetReverbAmbientProperties")]
-		private static extern Error.Code GetReverbAmbientProperties (IntPtr system, ref Reverb.Properties prop);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPHead")]
 		private static extern Error.Code GetDSPHead (IntPtr system, ref IntPtr dsp);

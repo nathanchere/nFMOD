@@ -3,6 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace FmodSharp.Reverb
 {
+	
+	//TODO end subbmary
+			
 	//TODO end convertion
 	
 	/*
@@ -49,131 +52,373 @@ namespace FmodSharp.Reverb
     [StructLayout(LayoutKind.Sequential)]
     public struct Properties
     {
-		/*          MIN     MAX    DEFAULT   DESCRIPTION */
+		private int instance;
+		private int environment;
+		private float envSize;
+		private float envDiffusion;
+		private int room;
+		private int roomHF;
+		private int roomLF;
+		private float decayTime;
+		private float decayHFRatio;
+		private float decayLFRatio;
+		private int reflections;
+		private float reflectionsDelay;
+		
+		//TODO replace by Vector3
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst=3)]
+        private float[] reflectionsPan;
+		
+		private int reverb;
+		private float reverbDelay;
         
-		public int   Instance;
-		/* [in]     0     , 3     , 0      , EAX4 only. Environment Instance. 3 seperate reverbs simultaneously are possible. This specifies which one to set. (win32 only) */
+		//TODO replace by Vector3
+		[MarshalAs(UnmanagedType.ByValArray,SizeConst=3)]
+        private float[] reverbPan;
+		
+		private float echoTime;
+		private float echoDepth;
+		private float modulationTime;
+		private float modulationDepth;
+		private float airAbsorptionHF;
+		private float hFReference;
+		private float lFReference;
+		private float roomRolloffFactor;
+		private float diffusion;
+		private float density;
+		private Flags flags;
+		
+		/// <summary>
+		/// EAX4 only. Environment Instance.
+		/// 3 seperate reverbs simultaneously are possible.
+		/// This specifies which one to set. (win32 only) 
+		/// </summary>
+		public int Instance {
+			get { return this.instance; }
+			set {
+				this.CheckRange(value, 0, 3, "Instance");
+				this.instance = value;
+			}
+		}
+		
+		/// <summary>
+		/// sets all listener properties (win32/ps2)
+		/// </summary>
+		public int Environment {
+			get { return this.environment; }
+			set {
+				this.CheckRange(value, -1, 25, "Environment");
+				this.environment = value;
+			}
+		}
         
-		public int   Environment;
-		/* [in/out] -1    , 25    , -1     , sets all listener properties (win32/ps2) */
+		/// <summary>
+		/// environment size in meters (win32 only)
+		/// </summary>
+		public float EnvironmentSize {
+			get { return this.envSize;}
+			set {
+				this.CheckRange(value, 1.0, 100.0, "EnvironmentSize");
+				this.envSize = value;
+			}
+		}
         
-		public float EnvSize;
-		/* [in/out] 1.0   , 100.0 , 7.5    , environment size in meters (win32 only) */
+		/// <summary>
+		/// environment diffusion (win32/xbox)
+		/// </summary>
+		public float EnvironmentDiffusion {
+			get { return this.envDiffusion; }
+			set {
+				this.CheckRange(value, 0.0, 1.0, "EnvironmentDiffusion");
+				this.envDiffusion = value;
+			}
+		}
         
-		public float EnvDiffusion;
-		/* [in/out] 0.0   , 1.0   , 1.0    , environment diffusion (win32/xbox) */
+		/// <summary>
+		/// room effect level (at mid frequencies) (win32/xbox)
+		/// </summary>
+		public int Room {
+			get { return this.room; }
+			set {
+				this.CheckRange(value, -10000, 0, "Room");
+				this.room = value;
+			}
+		}
         
-		public int   Room;
-		/* [in/out] -10000, 0     , -1000  , room effect level (at mid frequencies) (win32/xbox) */
+		/// <summary>
+		/// relative room effect level at high frequencies (win32/xbox)
+		/// </summary>
+		public int RoomHighFrequencies {
+			get { return this.roomHF; }
+			set {
+				this.CheckRange(value, -10000, 0, "RoomHighFrequencies");
+				this.roomHF = value;
+			}
+		}
         
-		public int   RoomHF;
-		/* [in/out] -10000, 0     , -100   , relative room effect level at high frequencies (win32/xbox) */
+		/// <summary>
+		/// relative room effect level at low frequencies (win32 only)
+		/// </summary>
+		public int RoomLowFrequencies {
+			get { return this.roomLF; }
+			set {
+				this.CheckRange(value, -10000, 0, "RoomLowFrequencies");
+				this.roomLF = value;
+			}
+		}
         
-		public int   RoomLF;
-		/* [in/out] -10000, 0     , 0      , relative room effect level at low frequencies (win32 only) */
+		/// <summary>
+		/// reverberation decay time at mid frequencies (win32/xbox)
+		/// </summary>
+		public float DecayTime {
+			get { return this.decayTime; }
+			set {
+				this.CheckRange(value, 0.1, 20.0, "DecayTime");
+				this.decayTime = value;
+			}
+		}
+		
+		/// <summary>
+		/// high-frequency to mid-frequency decay time ratio (win32/xbox)
+		/// </summary>
+		public float DecayHighFrequencyRatio {
+			get { return this.decayHFRatio; }
+			set {
+				this.CheckRange(value, 0.1, 2.0, "DecayHighFrequencyRatio");
+				this.decayHFRatio = value;
+			}
+		}
+		
+		/// <summary>
+		/// low-frequency to mid-frequency decay time ratio (win32 only)
+		/// </summary>
+		public float DecayLowFrequencyRatio {
+			get { return this.decayLFRatio; }
+			set {
+				this.CheckRange(value, 0.1, 2.0, "DecayLowFrequencyRatio");
+				this.decayLFRatio = value;
+			}
+		}
         
-		public float DecayTime;
-		/* [in/out] 0.1   , 20.0  , 1.49   , reverberation decay time at mid frequencies (win32/xbox) */
+		/// <summary>
+		/// early reflections level relative to room effect (win32/xbox)
+		/// </summary>
+		public int Reflections {
+			get { return this.reflections; }
+			set {
+				this.CheckRange(value, -10000, 1000, "Reflections");
+				this.reflections = value;
+			}
+		}
         
-		public float DecayHFRatio;
-		/* [in/out] 0.1   , 2.0   , 0.83   , high-frequency to mid-frequency decay time ratio (win32/xbox) */
-        
-		public float DecayLFRatio;
-		/* [in/out] 0.1   , 2.0   , 1.0    , low-frequency to mid-frequency decay time ratio (win32 only) */
-        
-		public int   Reflections;
-		/* [in/out] -10000, 1000  , -2602  , early reflections level relative to room effect (win32/xbox) */
-        
-		public float ReflectionsDelay;
-		/* [in/out] 0.0   , 0.3   , 0.007  , initial reflection delay time (win32/xbox) */
+		/// <summary>
+		/// initial reflection delay time (win32/xbox)
+		/// </summary>
+		public float ReflectionsDelay {
+			get { return this.reflectionsDelay; }
+			set {
+				this.CheckRange(value, 0.0, 0.3, "ReflectionsDelay");
+				this.reflectionsDelay = value;
+			}
+		}
         
 		//TODO replace by Vector3
 		
 		/// <summary>
-		/// 
+		/// early reflections panning vector (win32 only)
 		/// </summary>
-		[MarshalAs(UnmanagedType.ByValArray, SizeConst=3)]
-        public float[] ReflectionsPan;
-		/* [in/out]       ,       , [0,0,0], early reflections panning vector (win32 only) */
+		public float[] ReflectionsPan {
+			get { return this.reflectionsPan; }
+			set { this.reflectionsPan = value; }
+		}
         
-		public int   Reverb;
-		/* [in/out] -10000, 2000  , 200    , late reverberation level relative to room effect (win32/xbox) */
+		/// <summary>
+		/// late reverberation level relative to room effect (win32/xbox)
+		/// </summary>
+		public int Reverb {
+			get { return this.reverb; }
+			set {
+				this.CheckRange(value, -10000, 2000, "Reverb");
+				this.reverb = value;
+			}
+		}
         
-		public float ReverbDelay;
-		/* [in/out] 0.0   , 0.1   , 0.011  , late reverberation delay time relative to initial reflection (win32/xbox) */
+		/// <summary>
+		/// late reverberation delay time relative to initial reflection (win32/xbox)
+		/// </summary>
+		public float ReverbDelay {
+			get { return this.reverbDelay; }
+			set {
+				this.CheckRange(value, 0.0, 0.1, "ReverbDelay");
+				this.reverbDelay = value;
+			}
+		}
         
 		//TODO replace by Vector3
 		
-		[MarshalAs(UnmanagedType.ByValArray,SizeConst=3)]
-        public float[] ReverbPan;
-		/* [in/out]       ,       , [0,0,0], late reverberation panning vector (win32 only) */
+		/// <summary>
+		/// late reverberation panning vector (win32 only)
+		/// </summary>
+		public float[] ReverbPan {
+			get { return this.reverbPan; }
+			set { this.reverbPan = value; }
+		}
         
-		public float EchoTime;
-		/* [in/out] .075  , 0.25  , 0.25   , echo time (win32 only) */
+		/// <summary>
+		/// echo time (win32 only)
+		/// </summary>
+		public float EchoTime {
+			get { return this.echoTime; }
+			set {
+				this.CheckRange(value, 0.075, 0.25, "EchoTime");
+				this.echoTime = value;
+			}
+		}
         
-		public float EchoDepth;
-		/* [in/out] 0.0   , 1.0   , 0.0    , echo depth (win32 only) */
+		/// <summary>
+		/// echo depth (win32 only)
+		/// </summary>
+		public float EchoDepth {
+			get { return this.echoDepth; }
+			set {
+				this.CheckRange(value, 0.0, 1.0, "EchoDepth");
+				this.echoDepth = value;
+			}
+		}
         
-		public float ModulationTime;
-		/* [in/out] 0.04  , 4.0   , 0.25   , modulation time (win32 only) */
+		/// <summary>
+		/// modulation time (win32 only)
+		/// </summary>
+		public float ModulationTime {
+			get { return this.modulationTime; }
+			set {
+				this.CheckRange(value, 0.04, 4.0, "ModulationTime");
+				this.modulationTime = value;
+			}
+		}
         
-		public float ModulationDepth;
-		/* [in/out] 0.0   , 1.0   , 0.0    , modulation depth (win32 only) */
+		/// <summary>
+		/// modulation depth (win32 only)
+		/// </summary>
+		public float ModulationDepth {
+			get { return this.modulationDepth; }
+			set {
+				this.CheckRange(value, 0.0, 1.0, "ModulationDepth");
+				this.modulationDepth = value;
+			}
+		}
         
-		public float AirAbsorptionHF;
-		/* [in/out] -100  , 0.0   , -5.0   , change in level per meter at high frequencies (win32 only) */
+		/// <summary>
+		/// change in level per meter at high frequencies (win32 only)
+		/// </summary>
+		public float AirAbsorptionHighFrequencies {
+			get { return this.airAbsorptionHF; }
+			set {
+				this.CheckRange(value, -100.0, 0.0, "AirAbsorptionHighFrequencies");
+				this.airAbsorptionHF = value;
+			}
+		}
         
-		public float HFReference;
-		/* [in/out] 1000.0, 20000 , 5000.0 , reference high frequency (hz) (win32/xbox) */
+		/// <summary>
+		/// reference high frequency (hz) (win32/xbox)
+		/// </summary>
+		public float HighFrequencyReference {
+			get { return this.hFReference; }
+			set {
+				this.CheckRange(value, 1000.0, 20000.0, "HighFrequencyReference");
+				this.hFReference = value;
+			}
+		}
         
-		public float LFReference;
-		/* [in/out] 20.0  , 1000.0, 250.0  , reference low frequency (hz) (win32 only) */
+		/// <summary>
+		/// reference low frequency (hz) (win32 only)
+		/// </summary>
+		public float LowFrequencyReference {
+			get { return this.lFReference; }
+			set {
+				this.CheckRange(value, 20.0, 1000.0, "LowFrequencyReference");
+				this.lFReference = value;
+			}
+		}
         
-		public float RoomRolloffFactor;
-		/* [in/out] 0.0   , 10.0  , 0.0    , like rolloffscale in System::set3DSettings but for reverb room size effect (win32) */
+		/// <summary>
+		/// like rolloffscale in System::set3DSettings but for reverb room size effect (win32)
+		/// </summary>
+		public float RoomRolloffFactor {
+			get { return this.roomRolloffFactor; }
+			set {
+				this.CheckRange(value, 0.0, 10.0, "RoomRolloffFactor");
+				this.roomRolloffFactor = value;
+			}
+		}
         
-		public float Diffusion;
-		/* [in/out] 0.0   , 100.0 , 100.0  , Value that controls the echo density in the late reverberation decay. (xbox only) */
+		/// <summary>
+		/// Value that controls the echo density in the late reverberation decay. (xbox only)
+		/// </summary>
+		public float Diffusion {
+			get { return this.diffusion; }
+			set {
+				this.CheckRange(value, 0.0, 100.0, "Diffusion");
+				this.diffusion = value;
+			}
+		}
         
-		public float Density;
-		/* [in/out] 0.0   , 100.0 , 100.0  , Value that controls the modal density in the late reverberation decay (xbox only) */
+		/// <summary>
+		/// Value that controls the modal density in the late reverberation decay (xbox only)
+		/// </summary>
+		public float Density {
+			get { return this.density; }
+			set {
+				this.CheckRange(value, 0.0, 100.0, "Environment");
+				this.density = value;
+			}
+		}
         
-		public Flags Flags;
-		/* [in/out] REVERB_FLAGS - modifies the behavior of above properties (win32/ps2) */
-
-		//TODO end subbmary
+		/// <summary>
+		/// Modifies the behavior of above properties.
+		/// (win32/ps2)
+		/// </summary>
+		public Flags Flags {
+			get { return this.flags; }
+			set { this.flags = value; }
+		}
 		
-
+		private void CheckRange(double Value, double Min, double Max, string Param)
+		{
+			if(Value < Min || Value > Max)
+				throw new ArgumentOutOfRangeException(Param, Value, string.Format("{0}: Tried to set the value [{1}], but only accept [{2} to {3}].", Param, Value, Min, Max));
+		}
+		
 		#region Default Preset
 		
 		public static readonly Properties Generic = new Properties {
 			Instance = 0,
 			Environment = -1,
-			EnvSize = 7.5,
-			EnvDiffusion = 1.0,
+			EnvironmentSize = 7.5f,
+			EnvironmentDiffusion  = 1.0f,
 			Room = -1000,
-			RoomHF = -100,
-			RoomLF = 0,
-			DecayTime = 1.49,
-			DecayHFRatio = 0.83,
-			DecayLFRatio = 1.0,
+			RoomHighFrequencies = -100,
+			RoomLowFrequencies = 0,
+			DecayTime = 1.49f,
+			DecayHighFrequencyRatio = 0.83f,
+			DecayLowFrequencyRatio = 1.0f,
 			Reflections = -2602,
-			ReflectionsDelay = 0.007,
+			ReflectionsDelay = 0.007f,
 			ReflectionsPan = new float[] { 0.0f, 0.0f, 0.0f },
 			Reverb = 200,
-			ReverbDelay = 0.011,
+			ReverbDelay = 0.011f,
 			ReverbPan = new float[] { 0.0f, 0.0f, 0.0f },
-			EchoTime = 0.25,
-			EchoDepth = 0.0,
-			ModulationTime = 0.25,
-			ModulationDepth = 0.0,
-			AirAbsorptionHF = -5.0,
-			HFReference = 5000.0,
-			LFReference = 250.0,
-			RoomRolloffFactor = 0.0,
-			Diffusion = 100.0,
-			Density = 100.0,
-			Flags Flags.Default
+			EchoTime = 0.25f,
+			EchoDepth = 0.0f,
+			ModulationTime = 0.25f,
+			ModulationDepth = 0.0f,
+			AirAbsorptionHighFrequencies = -5.0f,
+			HighFrequencyReference = 5000.0f,
+			LowFrequencyReference = 250.0f,
+			RoomRolloffFactor = 0.0f,
+			Diffusion = 100.0f,
+			Density = 100.0f,
+			Flags = Flags.Default
 		};
 		
 		#endregion
