@@ -5,8 +5,6 @@ namespace FmodSharp.Reverb
 {
 	
 	//TODO end subbmary
-			
-	//TODO end convertion
 	
 	/*
     [STRUCTURE] 
