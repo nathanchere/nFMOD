@@ -2,6 +2,7 @@ using System;
 
 namespace FmodSharp.Memory
 {
+	//TODO complete submmary
 	
 	    /*
     [DEFINE] 
@@ -27,12 +28,35 @@ namespace FmodSharp.Memory
     */
     public enum Type
     {
-        NORMAL           = 0x00000000,       /* Standard memory. */
-        STREAM_FILE      = 0x00000001,       /* Stream file buffer, size controllable with System::setStreamBufferSize. */
-        STREAM_DECODE    = 0x00000002,       /* Stream decode buffer, size controllable with FMOD_CREATESOUNDEXINFO::decodebuffersize. */
-        XBOX360_PHYSICAL = 0x00100000,       /* Requires XPhysicalAlloc / XPhysicalFree. */
-        PERSISTENT       = 0x00200000,       /* Persistent memory. Memory will be freed when System::release is called. */
-        SECONDARY        = 0x00400000        /* Secondary memory. Allocation should be in secondary memory. For example RSX on the PS3. */
-    }
+        /// <summary>
+		/// Standard memory.
+		/// </summary>
+		Normal = 0x00000000,
+		
+		/// <summary>
+		/// Stream file buffer, size controllable with System::setStreamBufferSize.
+		/// </summary>
+		StreamFile = 0x00000001,
+		
+		/// <summary>
+		/// Stream decode buffer, size controllable with FMOD_CREATESOUNDEXINFO::decodebuffersize.
+		/// </summary>
+		StreamDecode = 0x00000002,
+		
+		/// <summary>
+		/// Requires XPhysicalAlloc / XPhysicalFree.
+		/// </summary>
+		Xbox360_Physical = 0x00100000,
+		
+		/// <summary>
+		/// Persistent memory. Memory will be freed when System::release is called.
+		/// </summary>
+		Persistent = 0x00200000,
+		
+		/// <summary>
+		/// Secondary memory. Allocation should be in secondary memory. For example RSX on the PS3.
+		/// </summary>
+		Secondary = 0x00400000
+	}
 }
 
