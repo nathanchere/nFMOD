@@ -1,18 +1,41 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace FmodSharp.Channel
 {
-	public class ChannelGroup
+	public class ChannelGroup : Handle
 	{
-		public ChannelGroup ()
+		
+		#region Create/Release
+		
+		private ChannelGroup ()
 		{
 		}
-
+		internal ChannelGroup (IntPtr hnd) : base()
+		{
+			this.SetHandle(hnd);
+		}
+		
+		protected override bool ReleaseHandle ()
+		{
+			if (this.IsInvalid)
+				return true;
+			
+			Release (this.handle);
+			this.SetHandleAsInvalid ();
+			
+			return true;
+		}
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_ChannelGroup_Release")]
+		private static extern Error.Code Release (IntPtr channelgroup);
+		
+		#endregion
+		
+		
 		//TODO Implement extern funcitons
 		/*
-		[DllImport(VERSION.dll)]
-		private static extern RESULT FMOD_ChannelGroup_Release (IntPtr channelgroup);
-
+	
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetSystemObject (IntPtr channelgroup, ref IntPtr system);
 

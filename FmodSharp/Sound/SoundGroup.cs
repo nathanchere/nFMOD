@@ -1,18 +1,40 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace FmodSharp.Sound
 {
-	public class SoundGroup
+	public class SoundGroup : Handle
 	{
-		public SoundGroup ()
+		
+		#region Create/Release
+		
+		private SoundGroup ()
 		{
 		}
+		internal SoundGroup (IntPtr hnd) : base()
+		{
+			this.SetHandle(hnd);
+		}
+		
+		protected override bool ReleaseHandle ()
+		{
+			if (this.IsInvalid)
+				return true;
+			
+			Release (this.handle);
+			this.SetHandleAsInvalid ();
+			
+			return true;
+		}
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_SoundGroup_Release")]
+		private static extern Error.Code Release (IntPtr soundgroup);
 
+		#endregion
+		
 		//TODO Implement extern funcitons
 		/*
-		[DllImport(VERSION.dll)]
-		private static extern RESULT FMOD_SoundGroup_Release (IntPtr soundgroup);
-
+	
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_SoundGroup_GetSystemObject (IntPtr soundgroup, ref IntPtr system);
 

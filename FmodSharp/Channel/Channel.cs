@@ -5,6 +5,12 @@ namespace FmodSharp.Channel
 {
 	public class Channel : Handle
 	{
+		
+		#region Create/Release
+		
+		private Channel ()
+		{
+		}
 		internal Channel (IntPtr hnd) : base()
 		{
 			this.SetHandle(hnd);
@@ -24,15 +30,7 @@ namespace FmodSharp.Channel
 			return true;
 		}
 		
-		public void Stop()
-		{
-			Error.Code ReturnCode = Stop(this.DangerousGetHandle());
-			if(ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError(ReturnCode);
-		}
-		
-		[DllImport("fmodex", EntryPoint = "FMOD_Channel_Stop")]
-		private static extern Error.Code Stop (IntPtr channel);
+		#endregion
 		
 		#region Properties
 		
@@ -104,8 +102,6 @@ namespace FmodSharp.Channel
 			}
 		}
 		
-		
-		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetPaused")]
 		private static extern Error.Code SetPaused (IntPtr channel, bool paused);
 		
@@ -130,28 +126,50 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetPan")]
 		private static extern Error.Code GetPan (IntPtr channel, ref float pan);
 		
-		
-		
 		#endregion
 		
+		#region PlayPauseStop	
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSystemObject")]
-		private static extern Error.Code GetSystemObject (IntPtr channel, ref IntPtr system);
+		public bool IsPlaying {
+			get {
+				bool playing = false;
+				
+				Error.Code ReturnCode = IsPlaying_extern(this.DangerousGetHandle(), ref playing);
+				if(ReturnCode != Error.Code.OK)
+					Error.Errors.ThrowError(ReturnCode);
+				
+				return playing;
+			}
+		}
 		
+		public void Stop()
+		{
+			Error.Code ReturnCode = Stop(this.DangerousGetHandle());
+			if(ReturnCode != Error.Code.OK)
+				Error.Errors.ThrowError(ReturnCode);
+		}
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_Stop")]
+		private static extern Error.Code Stop (IntPtr channel);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_IsPlaying")]
+		private static extern Error.Code IsPlaying_extern (IntPtr channel, ref bool isplaying);
 
-		
-		
-
-		
+		#endregion
 			
 		
 		//TODO Implement extern funcitons
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetDelay")]
-		//private static extern Error.Code SetDelay (IntPtr channel, DELAYTYPE delaytype, uint delayhi, uint delaylo);
+		/*
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetDelay")]
-		//private static extern Error.Code GetDelay (IntPtr channel, DELAYTYPE delaytype, ref uint delayhi, ref uint delaylo);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSystemObject")]
+		private static extern Error.Code GetSystemObject (IntPtr channel, ref IntPtr system);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetDelay")]
+		private static extern Error.Code SetDelay (IntPtr channel, DELAYTYPE delaytype, uint delayhi, uint delaylo);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetDelay")]
+		private static extern Error.Code GetDelay (IntPtr channel, DELAYTYPE delaytype, ref uint delayhi, ref uint delaylo);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetSpeakerMix")]
 		private static extern Error.Code SetSpeakerMix (IntPtr channel, float frontleft, float frontright, float center, float lfe, float backleft, float backright, float sideleft, float sideright);
@@ -159,11 +177,11 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpeakerMix")]
 		private static extern Error.Code GetSpeakerMix (IntPtr channel, ref float frontleft, ref float frontright, ref float center, ref float lfe, ref float backleft, ref float backright, ref float sideleft, ref float sideright);
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetSpeakerLevels")]
-		//private static extern Error.Code SetSpeakerLevels (IntPtr channel, SPEAKER speaker, float[] levels, int numlevels);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetSpeakerLevels")]
+		private static extern Error.Code SetSpeakerLevels (IntPtr channel, SPEAKER speaker, float[] levels, int numlevels);
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpeakerLevels")]
-		//private static extern Error.Code GetSpeakerLevels (IntPtr channel, SPEAKER speaker, [MarshalAs(UnmanagedType.LPArray)] float[] levels, int numlevels);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpeakerLevels")]
+		private static extern Error.Code GetSpeakerLevels (IntPtr channel, SPEAKER speaker, [MarshalAs(UnmanagedType.LPArray)] float[] levels, int numlevels);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetInputChannelMix")]
 		private static extern Error.Code SetInputChannelMix (IntPtr channel, float[] levels, int numlevels);
@@ -243,11 +261,11 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_Get3DDopplerLevel")]
 		private static extern Error.Code Get3DDopplerLevel (IntPtr channel, ref float level);
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetReverbProperties")]
-		//private static extern Error.Code SetReverbProperties (IntPtr channel, ref REVERB_CHANNELPROPERTIES prop);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetReverbProperties")]
+		private static extern Error.Code SetReverbProperties (IntPtr channel, ref REVERB_CHANNELPROPERTIES prop);
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetReverbProperties")]
-		//private static extern Error.Code GetReverbProperties (IntPtr channel, ref REVERB_CHANNELPROPERTIES prop);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetReverbProperties")]
+		private static extern Error.Code GetReverbProperties (IntPtr channel, ref REVERB_CHANNELPROPERTIES prop);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetLowPassGain")]
 		private static extern Error.Code SetLowPassGain (IntPtr channel, float gain);
@@ -261,21 +279,6 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetChannelGroup")]
 		private static extern Error.Code GetChannelGroup (IntPtr channel, ref IntPtr channelgroup);
 		
-		public bool IsPlaying {
-			get {
-				bool playing = false;
-				
-				Error.Code ReturnCode = IsPlaying_extern(this.DangerousGetHandle(), ref playing);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
-				
-				return playing;
-			}
-		}
-		
-		[DllImport("fmodex", EntryPoint = "FMOD_Channel_IsPlaying")]
-		private static extern Error.Code IsPlaying_extern (IntPtr channel, ref bool isplaying);
-		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_IsVirtual")]
 		private static extern Error.Code IsVirtual (IntPtr channel, ref int isvirtual);
 		
@@ -285,8 +288,8 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetCurrentSound")]
 		private static extern Error.Code GetCurrentSound (IntPtr channel, ref IntPtr sound);
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpectrum")]
-		//private static extern Error.Code GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpectrum")]
+		private static extern Error.Code GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetWaveData")]
 		private static extern Error.Code GetWaveData (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
@@ -294,8 +297,8 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetIndex")]
 		private static extern Error.Code GetIndex (IntPtr channel, ref int index);
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetCallback")]
-		//private static extern Error.Code SetCallback (IntPtr channel, CHANNEL_CALLBACK callback);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetCallback")]
+		private static extern Error.Code SetCallback (IntPtr channel, CHANNEL_CALLBACK callback);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetPosition")]
 		private static extern Error.Code SetPosition (IntPtr channel, uint position, TimeUnit postype);
@@ -333,8 +336,9 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetUserData")]
 		private static extern Error.Code GetUserData (IntPtr channel, ref IntPtr userdata);
 		
-		//[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetMemoryInfo")]
-		//private static extern Error.Code GetMemoryInfo (IntPtr channel, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetMemoryInfo")]
+		private static extern Error.Code GetMemoryInfo (IntPtr channel, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
 		
+		*/
 	}
 }
