@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayFile", "PlayFile\PlayFi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintDriverInfo", "PrintDriverInfo\PrintDriverInfo.csproj", "{ED3F571B-410F-44B7-B3B4-DE256216E92E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodGtk", "FmodGtk\FmodGtk.csproj", "{C296700D-7DD3-4E01-9FE2-E67A35B5762C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,6 +21,10 @@ Global
 		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.Build.0 = Debug|x86
 		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.ActiveCfg = Release|x86
 		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.Build.0 = Release|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Debug|x86.ActiveCfg = Debug|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Debug|x86.Build.0 = Debug|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Release|x86.ActiveCfg = Release|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Release|x86.Build.0 = Release|x86
 		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.Build.0 = Debug|Any CPU
 		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.ActiveCfg = Release|Any CPU

@@ -551,6 +551,38 @@ namespace FmodSharp.SoundSystem
 		private static extern Error.Code GetReverbAmbientProperties (IntPtr system, ref Reverb.Properties prop);
 		
 		#endregion
+		
+		#region Network
+		
+		public string NetworkProxy
+		{
+			get {
+				System.Text.StringBuilder str = new System.Text.StringBuilder(255);
+				
+				Error.Code ReturnCode = GetNetworkProxy (this.DangerousGetHandle (), str, str.Capacity);
+				Error.Errors.ThrowError (ReturnCode);
+				
+				return str.ToString();
+			}
+			set {
+				Error.Code ReturnCode = SetNetworkProxy (this.DangerousGetHandle (), value);
+				Error.Errors.ThrowError (ReturnCode);
+			}
+		}
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkProxy")]
+		private static extern Error.Code SetNetworkProxy (IntPtr system, string proxy);
+
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkProxy")]
+		private static extern Error.Code GetNetworkProxy (IntPtr system, System.Text.StringBuilder proxy, int proxylen);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkTimeout")]
+		private static extern Error.Code SetNetworkTimeout (IntPtr system, int timeout);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkTimeout")]
+		private static extern Error.Code GetNetworkTimeout (IntPtr system, ref int timeout);
+		
+		#endregion
 
 		#region Others
 
@@ -559,8 +591,7 @@ namespace FmodSharp.SoundSystem
 				uint Ver = 0;
 				
 				Error.Code ReturnCode = GetVersion (this.DangerousGetHandle (), ref Ver);
-				if (ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError (ReturnCode);
+				Error.Errors.ThrowError (ReturnCode);
 				
 				return Ver;
 			}
@@ -573,6 +604,7 @@ namespace FmodSharp.SoundSystem
 
 		
 		//TODO Implement extern funcitons
+		
 		/*
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetHardwareChannels")]
@@ -620,8 +652,8 @@ namespace FmodSharp.SoundSystem
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetPluginHandle")]
 		private static extern Error.Code GetPluginHandle (IntPtr system, Plugin.Type plugintype, int index, ref uint handle);
 
-		//[DllImport("fmodex", EntryPoint = "FMOD_System_GetPluginInfo")]
-		//private static extern Error.Code GetPluginInfo (IntPtr system, uint handle, ref PLUGINTYPE plugintype, StringBuilder name, int namelen, ref uint version);
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetPluginInfo")]
+		private static extern Error.Code GetPluginInfo (IntPtr system, uint handle, ref PLUGINTYPE plugintype, StringBuilder name, int namelen, ref uint version);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateDSPByPlugin")]
 		private static extern Error.Code CreateDSPByPlugin (IntPtr system, uint handle, ref IntPtr dsp);
@@ -635,11 +667,11 @@ namespace FmodSharp.SoundSystem
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutputByPlugin")]
 		private static extern Error.Code GetOutputByPlugin (IntPtr system, ref uint handle);
 
-		//[DllImport("fmodex", EntryPoint = "FMOD_System_SetAdvancedSettings")]
-		//private static extern Error.Code SetAdvancedSettings (IntPtr system, ref ADVANCEDSETTINGS settings);
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetAdvancedSettings")]
+		private static extern Error.Code SetAdvancedSettings (IntPtr system, ref ADVANCEDSETTINGS settings);
 
-		//[DllImport("fmodex", EntryPoint = "FMOD_System_GetAdvancedSettings")]
-		//private static extern Error.Code GetAdvancedSettings (IntPtr system, ref ADVANCEDSETTINGS settings);
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetAdvancedSettings")]
+		private static extern Error.Code GetAdvancedSettings (IntPtr system, ref ADVANCEDSETTINGS settings);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetSpeakerMode")]
 		private static extern Error.Code SetSpeakerMode (IntPtr system, SpeakerMode speakermode);
@@ -701,17 +733,15 @@ namespace FmodSharp.SoundSystem
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumCDROMDrives")]
 		private static extern Error.Code GetNumCDROMDrives (IntPtr system, ref int numdrives);
 
-		//[DllImport("fmodex", EntryPoint = "FMOD_System_GetCDROMDriveName")]
-		//private static extern Error.Code GetCDROMDriveName (IntPtr system, int drive, StringBuilder drivename, int drivenamelen, StringBuilder scsiname, int scsinamelen, StringBuilder devicename, int devicenamelen);
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetCDROMDriveName")]
+		private static extern Error.Code GetCDROMDriveName (IntPtr system, int drive, StringBuilder drivename, int drivenamelen, StringBuilder scsiname, int scsinamelen, StringBuilder devicename, int devicenamelen);
 
-		//[DllImport("fmodex", EntryPoint = "FMOD_System_GetSpectrum")]
-		//private static extern Error.Code GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype);
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSpectrum")]
+		private static extern Error.Code GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetWaveData")]
 		private static extern Error.Code GetWaveData (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 
-
-	
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetChannel")]
 		private static extern Error.Code GetChannel (IntPtr system, int channelid, ref IntPtr channel);
 
@@ -735,7 +765,6 @@ namespace FmodSharp.SoundSystem
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPClock")]
 		private static extern Error.Code GetDSPClock (IntPtr system, ref uint hi, ref uint lo);
-
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordPosition")]
 		private static extern Error.Code GetRecordPosition (IntPtr system, int id, ref uint position);
@@ -763,18 +792,6 @@ namespace FmodSharp.SoundSystem
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetGeometryOcclusion")]
 		private static extern Error.Code GetGeometryOcclusion (IntPtr system, ref Vector3 listener, ref Vector3 source, ref float direct, ref float reverb);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkProxy")]
-		private static extern Error.Code SetNetworkProxy (IntPtr system, string proxy);
-
-		//[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkProxy")]
-		//private static extern Error.Code GetNetworkProxy (IntPtr system, StringBuilder proxy, int proxylen);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkTimeout")]
-		private static extern Error.Code SetNetworkTimeout (IntPtr system, int timeout);
-
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkTimeout")]
-		private static extern Error.Code GetNetworkTimeout (IntPtr system, ref int timeout);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetUserData")]
 		private static extern Error.Code SetUserData (IntPtr system, IntPtr userdata);

@@ -78,6 +78,7 @@
     <Compile Include="Dsp\Callbacks.cs" />
     <Compile Include="Dsp\State.cs" />
     <Compile Include="Dsp\ParameterDescription.cs" />
+    <Compile Include="Dsp\FFTWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -85,8 +86,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Src\" />
-    <Folder Include="Src\" />
     <Folder Include="Enums\" />
     <Folder Include="Sound\" />
     <Folder Include="Error\" />

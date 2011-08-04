@@ -146,6 +146,43 @@ namespace FmodSharp.Channel
 		private static extern Error.Code IsPlaying_extern (IntPtr channel, ref bool isplaying);
 
 		#endregion
+		
+		public bool Mute {
+			get {
+				bool Val = false;
+				Error.Code ReturnCode = GetMute(this.DangerousGetHandle(), ref Val);
+				Error.Errors.ThrowError(ReturnCode);
+				
+				return Val;
+			}
+			
+			set {
+				Error.Code ReturnCode = SetMute(this.DangerousGetHandle(), value);
+				Error.Errors.ThrowError(ReturnCode);
+			}
+		}
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetMute")]
+		private static extern Error.Code SetMute (IntPtr channel, bool mute);
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetMute")]
+		private static extern Error.Code GetMute (IntPtr channel, ref bool mute);
+		
+		public float[] Spectrum (int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		{
+			float[] SpectrumArray = new float[numvalues];
+			this.Spectrum (SpectrumArray, numvalues, channeloffset, windowtype);
+			return SpectrumArray;
+		}
+		
+		public void Spectrum (float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		{
+			GetSpectrum(this.DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
+		}
+		
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpectrum")]
+		private static extern Error.Code GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
+
 			
 		
 		//TODO Implement extern funcitons
@@ -178,12 +215,6 @@ namespace FmodSharp.Channel
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetInputChannelMix")]
 		private static extern Error.Code GetInputChannelMix (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] levels, int numlevels);
-		
-		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetMute")]
-		private static extern Error.Code SetMute (IntPtr channel, int mute);
-		
-		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetMute")]
-		private static extern Error.Code GetMute (IntPtr channel, ref int mute);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetPriority")]
 		private static extern Error.Code SetPriority (IntPtr channel, int priority);
@@ -277,9 +308,6 @@ namespace FmodSharp.Channel
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetCurrentSound")]
 		private static extern Error.Code GetCurrentSound (IntPtr channel, ref IntPtr sound);
-		
-		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpectrum")]
-		private static extern Error.Code GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetWaveData")]
 		private static extern Error.Code GetWaveData (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
