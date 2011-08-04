@@ -50,7 +50,7 @@ namespace FmodSharp.SoundSystem
 		/// </summary>
 		public event SystemDelegate BadDspLevel;
 		
-		public Error.Code HandleCallback (IntPtr systemraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2)
+		private Error.Code HandleCallback (IntPtr systemraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2)
 		{
 			return Error.Code.OK;
 		}
@@ -67,8 +67,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundSystemHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = Create (ref SoundSystemHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			this.SetHandle (SoundSystemHandle);
 			
@@ -114,8 +113,7 @@ namespace FmodSharp.SoundSystem
 		public void Init (int Maxchannels, InitFlags Flags, IntPtr Extradriverdata)
 		{
 			Error.Code ReturnCode = Init (this.handle, Maxchannels, Flags, Extradriverdata);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 		}
 
 		public void CloseSystem ()
@@ -158,15 +156,13 @@ namespace FmodSharp.SoundSystem
 				OutputType output = OutputType.Unknown;
 				
 				Error.Code ReturnCode = GetOutput (this.DangerousGetHandle (), ref output);
-				if (ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError (ReturnCode);
+				Error.Errors.ThrowError (ReturnCode);
 				
 				return output;
 			}
 			set {
 				Error.Code ReturnCode = SetOutput (this.DangerousGetHandle (), value);
-				if (ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError (ReturnCode);
+				Error.Errors.ThrowError (ReturnCode);
 			}
 		}
 		
@@ -185,8 +181,7 @@ namespace FmodSharp.SoundSystem
 				int numdrivers = 0;
 				
 				Error.Code ReturnCode = GetNumDrivers (this.DangerousGetHandle (), ref numdrivers);
-				if (ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError (ReturnCode);
+				Error.Errors.ThrowError (ReturnCode);
 				
 				return numdrivers;
 			}
@@ -197,8 +192,7 @@ namespace FmodSharp.SoundSystem
 			System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 			
 			Error.Code ReturnCode = GetDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, ref DriverGuid);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			Name = str.ToString();
 		}
@@ -206,8 +200,7 @@ namespace FmodSharp.SoundSystem
 		public void GetOutputDriverCapabilities (int id, ref Capabilities caps, ref int minfrequency, ref int maxfrequency, ref SpeakerMode controlpanelspeakermode)
 		{
 			Error.Code ReturnCode = GetDriverCaps (this.DangerousGetHandle (), id, ref caps, ref minfrequency, ref maxfrequency, ref controlpanelspeakermode);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 		}
 		
 		public int OutputDriver {
@@ -215,15 +208,13 @@ namespace FmodSharp.SoundSystem
 				int driver = 0;
 				
 				Error.Code ReturnCode = GetDriver (this.DangerousGetHandle (), ref driver);
-				if (ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError (ReturnCode);
+				Error.Errors.ThrowError (ReturnCode);
 				
 				return driver;
 			}
 			set {
 				Error.Code ReturnCode = SetDriver (this.DangerousGetHandle (), value);
-				if (ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError (ReturnCode);
+				Error.Errors.ThrowError (ReturnCode);
 			}
 		}
 		
@@ -232,8 +223,7 @@ namespace FmodSharp.SoundSystem
 				int numdrivers = 0;
 				
 				Error.Code ReturnCode = GetRecordNumDrivers (this.DangerousGetHandle (), ref numdrivers);
-				if (ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError (ReturnCode);
+				Error.Errors.ThrowError (ReturnCode);
 				
 				return numdrivers;
 			}
@@ -244,8 +234,7 @@ namespace FmodSharp.SoundSystem
 			System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 			
 			Error.Code ReturnCode = GetRecordDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, ref DriverGuid);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			Name = str.ToString();
 		}
@@ -253,8 +242,7 @@ namespace FmodSharp.SoundSystem
 		public void GetRecordDriverCapabilities (int id, ref Capabilities caps, ref int minfrequency, ref int maxfrequency)
 		{
 			Error.Code ReturnCode = GetRecordDriverCaps (this.DangerousGetHandle (), id, ref caps, ref minfrequency, ref maxfrequency);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumDrivers")]
@@ -297,8 +285,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -308,8 +295,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -319,8 +305,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -330,8 +315,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -346,19 +330,17 @@ namespace FmodSharp.SoundSystem
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Channel.Channel (ChannelHandle);
 		}
 
 		public void PlaySound (Sound.Sound snd, bool paused, Channel.Channel chn)
 		{
-			Error.Code ReturnCode = Error.Code.OK;
 			IntPtr channel = chn.DangerousGetHandle ();
-			ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Reuse, snd.DangerousGetHandle (), paused, ref channel);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			
+			Error.Code ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Reuse, snd.DangerousGetHandle (), paused, ref channel);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			//This can't really happend.
 			//Check just in case...
@@ -390,8 +372,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -401,8 +382,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -412,8 +392,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -423,8 +402,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
 		}
@@ -460,8 +438,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr DspHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateDSP (this.DangerousGetHandle (), ref description, ref DspHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Dsp.Dsp (DspHandle);
 		}
@@ -471,8 +448,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr DspHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateDspByType (this.DangerousGetHandle (), type, ref DspHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Dsp.Dsp (DspHandle);
 		}
@@ -487,23 +463,21 @@ namespace FmodSharp.SoundSystem
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Free, dsp.DangerousGetHandle (), paused, ref ChannelHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Channel.Channel (ChannelHandle);
 		}
 
 		public void PlayDsp (Dsp.Dsp dsp, bool paused, Channel.Channel chn)
 		{
-			Error.Code ReturnCode = Error.Code.OK;
 			IntPtr channel = chn.DangerousGetHandle ();
-			ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Reuse, dsp.DangerousGetHandle (), paused, ref channel);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			
+			Error.Code ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Reuse, dsp.DangerousGetHandle (), paused, ref channel);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			//This can't really happend.
 			//Check just in case...
-			if(chn.DangerousGetHandle () == channel)
+			if(chn.DangerousGetHandle () != channel)
 				throw new Exception("Channel handle got changed by Fmod.");
 		}
 
@@ -525,8 +499,7 @@ namespace FmodSharp.SoundSystem
 			IntPtr ReverbHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = CreateReverb (this.DangerousGetHandle (), ref ReverbHandle);
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Reverb.Reverb (ReverbHandle);
 		}
@@ -535,33 +508,30 @@ namespace FmodSharp.SoundSystem
 			get {
 				Reverb.Properties Val = Reverb.Properties.Generic;
 				Error.Code ReturnCode = GetReverbProperties(this.DangerousGetHandle(), ref Val);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				Error.Code ReturnCode = SetReverbProperties(this.DangerousGetHandle(), ref value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		
 		public Reverb.Properties ReverbAmbientProperties {
 			get {
 				Reverb.Properties Val = Reverb.Properties.Generic;
+				
 				Error.Code ReturnCode = GetReverbAmbientProperties(this.DangerousGetHandle(), ref Val);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				Error.Code ReturnCode = SetReverbAmbientProperties(this.DangerousGetHandle(), ref value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		

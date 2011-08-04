@@ -36,16 +36,14 @@ namespace FmodSharp.Reverb
 			get {
 				Properties Val = Properties.Generic;
 				Error.Code ReturnCode = GetProperties(this.DangerousGetHandle(), ref Val);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				Error.Code ReturnCode = SetProperties(this.DangerousGetHandle(), ref value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		

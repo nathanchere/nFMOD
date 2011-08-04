@@ -76,16 +76,14 @@ namespace FmodSharp
 			get {
 				int Val = 0;
 				Error.Code ReturnCode = GetLevel(ref Val);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				Error.Code ReturnCode = SetLevel(value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 	

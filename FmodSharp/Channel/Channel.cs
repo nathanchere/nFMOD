@@ -39,15 +39,13 @@ namespace FmodSharp.Channel
 				bool pause = false;
 				
 				Error.Code ReturnCode = GetPaused(this.DangerousGetHandle(), ref pause);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return pause;
 			}
 			set {
 				Error.Code ReturnCode = SetPaused(this.DangerousGetHandle(), value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		
@@ -56,15 +54,13 @@ namespace FmodSharp.Channel
 				float Vol = 0.0f;
 				
 				Error.Code ReturnCode = GetVolume(this.DangerousGetHandle(), ref Vol);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return Vol;
 			}
 			set {
 				Error.Code ReturnCode = SetVolume(this.DangerousGetHandle(), value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		
@@ -73,15 +69,13 @@ namespace FmodSharp.Channel
 				float Freq = 0.0f;
 				
 				Error.Code ReturnCode = GetFrequency(this.DangerousGetHandle(), ref Freq);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return Freq;
 			}
 			set {
 				Error.Code ReturnCode = SetFrequency(this.DangerousGetHandle(), value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		
@@ -90,15 +84,13 @@ namespace FmodSharp.Channel
 				float pan = 0.0f;
 				
 				Error.Code ReturnCode = GetPan(this.DangerousGetHandle(), ref pan);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return pan;
 			}
 			set {
 				Error.Code ReturnCode = SetPan(this.DangerousGetHandle(), value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		
@@ -135,8 +127,7 @@ namespace FmodSharp.Channel
 				bool playing = false;
 				
 				Error.Code ReturnCode = IsPlaying_extern(this.DangerousGetHandle(), ref playing);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return playing;
 			}
@@ -145,8 +136,7 @@ namespace FmodSharp.Channel
 		public void Stop()
 		{
 			Error.Code ReturnCode = Stop(this.DangerousGetHandle());
-			if(ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError(ReturnCode);
+			Error.Errors.ThrowError(ReturnCode);
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_Stop")]

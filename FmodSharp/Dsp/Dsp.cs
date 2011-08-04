@@ -28,15 +28,13 @@ namespace FmodSharp.Dsp
 		public void Remove()
 		{
 			Error.Code ReturnCode = Remove_External(this.DangerousGetHandle());
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 		}
 		
 		public void Reset()
 		{
 			Error.Code ReturnCode = Reset_External(this.DangerousGetHandle());
-			if (ReturnCode != Error.Code.OK)
-				Error.Errors.ThrowError (ReturnCode);
+			Error.Errors.ThrowError (ReturnCode);
 		}
 		
 		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Remove")]

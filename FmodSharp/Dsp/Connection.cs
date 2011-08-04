@@ -32,16 +32,14 @@ namespace FmodSharp.Dsp
 			get {
 				float Val = 0;
 				Error.Code ReturnCode = GetMix(this.DangerousGetHandle(), ref Val);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				Error.Code ReturnCode = SetMix(this.DangerousGetHandle(), value);
-				if(ReturnCode != Error.Code.OK)
-					Error.Errors.ThrowError(ReturnCode);
+				Error.Errors.ThrowError(ReturnCode);
 			}
 		}
 		

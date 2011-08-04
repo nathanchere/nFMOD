@@ -211,6 +211,9 @@ namespace FmodSharp.Error
 		
 		public static void ThrowError(Code errcode)
 		{
+			if(errcode == Code.OK)
+				return;
+			
 			switch (errcode) {
 				//TODO Translate error to Exception
 			default:
