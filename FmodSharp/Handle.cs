@@ -5,11 +5,15 @@ namespace FmodSharp
 {
 	public abstract class Handle : SafeHandle
 	{
-		public Handle () : this(true)
+		public Handle () : this(IntPtr.Zero)
 		{
 		}
-		public Handle (bool OwnsHandle) : base(IntPtr.Zero, OwnsHandle)
+		public Handle (IntPtr Handle) : this(IntPtr.Zero, true)
 		{
+		}
+		public Handle (IntPtr Handle, bool OwnsHandle) : base(IntPtr.Zero, OwnsHandle)
+		{
+			this.SetHandle(Handle);
 		}
 		
 		public override bool IsInvalid {

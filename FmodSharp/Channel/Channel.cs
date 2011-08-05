@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace FmodSharp.Channel
 {
-	public class Channel : Handle
+	public class Channel : Handle, iSpectrum, iWaveData
 	{
 		
 		#region Create/Release
@@ -168,22 +168,39 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetMute")]
 		private static extern Error.Code GetMute (IntPtr channel, ref bool mute);
 		
-		public float[] Spectrum (int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		#region Spectrum/Wave
+		
+		public float[] GetSpectrum (int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
 		{
 			float[] SpectrumArray = new float[numvalues];
-			this.Spectrum (SpectrumArray, numvalues, channeloffset, windowtype);
+			this.GetSpectrum (SpectrumArray, numvalues, channeloffset, windowtype);
 			return SpectrumArray;
 		}
 		
-		public void Spectrum (float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		public void GetSpectrum (float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
 		{
 			GetSpectrum(this.DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
+		}
+		
+		public float[] GetWaveData (int numvalues, int channeloffset)
+		{
+			float[] WaveArray = new float[numvalues];
+			this.GetWaveData (WaveArray, numvalues, channeloffset);
+			return WaveArray;
+		}
+		
+		public void GetWaveData (float[] wavearray, int numvalues, int channeloffset)
+		{
+			GetWaveData(this.DangerousGetHandle(), wavearray, numvalues, channeloffset);
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpectrum")]
 		private static extern Error.Code GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
 
-			
+		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetWaveData")]
+		private static extern Error.Code GetWaveData (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
+		
+		#endregion
 		
 		//TODO Implement extern funcitons
 		
@@ -309,8 +326,6 @@ namespace FmodSharp.Channel
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetCurrentSound")]
 		private static extern Error.Code GetCurrentSound (IntPtr channel, ref IntPtr sound);
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetWaveData")]
-		private static extern Error.Code GetWaveData (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetIndex")]
 		private static extern Error.Code GetIndex (IntPtr channel, ref int index);

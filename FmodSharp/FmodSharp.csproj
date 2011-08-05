@@ -79,6 +79,8 @@
     <Compile Include="Dsp\State.cs" />
     <Compile Include="Dsp\ParameterDescription.cs" />
     <Compile Include="Dsp\FFTWindow.cs" />
+    <Compile Include="iSpectrum.cs" />
+    <Compile Include="iWaveData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
