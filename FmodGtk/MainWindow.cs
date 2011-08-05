@@ -3,7 +3,7 @@ using Gtk;
 
 public partial class MainWindow : Gtk.Window
 {
-	FmodGtk.FFTDraw fft_Draw;
+	FmodSharp.Gtk.FFTDraw fft_Draw;
 	FmodSharp.SoundSystem.SoundSystem SoundSystem;
 	FmodSharp.Channel.Channel Channel;
 	FmodSharp.Sound.Sound SoundFile;
@@ -22,7 +22,7 @@ public partial class MainWindow : Gtk.Window
 			this.SoundSystem.PlaySound(SoundFile, false, this.Channel);
 		
 		
-		this.fft_Draw = new FmodGtk.FFTDraw();
+		this.fft_Draw = new FmodSharp.Gtk.FFTDraw();
 		this.fft_Draw.Channel = this.Channel;
 		this.fft_Draw.Show();
 		this.Add(this.fft_Draw);

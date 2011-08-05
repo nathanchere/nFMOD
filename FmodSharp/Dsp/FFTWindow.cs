@@ -16,26 +16,6 @@ namespace FmodSharp.Dsp
         I.e. If the sine wave repeats every 1024, 512, 256 etc samples and the FMOD fft window is 1024, then the signal would not need windowing.
         Not windowing is the same as FMOD_DSP_FFT_WINDOW_RECT, which is the default.
         If the cycle of the signal (ie the sine wave) is not a multiple of the window size, it will cause frequency abnormalities, so a different windowing method is needed.
-        <exclude>
-        
-        FMOD_DSP_FFT_WINDOW_RECT.
-        <img src = "rectangle.gif"></img>
-        
-        FMOD_DSP_FFT_WINDOW_TRIANGLE.
-        <img src = "triangle.gif"></img>
-        
-        FMOD_DSP_FFT_WINDOW_HAMMING.
-        <img src = "hamming.gif"></img>
-        
-        FMOD_DSP_FFT_WINDOW_HANNING.
-        <img src = "hanning.gif"></img>
-        
-        FMOD_DSP_FFT_WINDOW_BLACKMAN.
-        <img src = "blackman.gif"></img>
-        
-        FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS.
-        <img src = "blackmanharris.gif"></img>
-        </exclude>
 
         [PLATFORMS]
         Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation 2, PlayStation Portable, PlayStation 3, Wii

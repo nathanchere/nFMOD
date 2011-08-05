@@ -44,11 +44,11 @@ namespace FmodTest
 				
 					//Change note
 				case ConsoleKey.LeftArrow :
-					//dsp.setParameter((int)FMOD.DSP_OSCILLATOR.RATE, 440.0f);
+					//Oscillator.setParameter((int)FMOD.DSP_OSCILLATOR.RATE, 440.0f);
 					break;
 					
 				case ConsoleKey.RightArrow:
-					//dsp.setParameter((int)FMOD.DSP_OSCILLATOR.RATE, 440.0f);
+					//Oscillator.setParameter((int)FMOD.DSP_OSCILLATOR.RATE, 440.0f);
 					break;
 					
 					//Change Volume
@@ -72,7 +72,6 @@ namespace FmodTest
 				
 				System.Threading.Thread.Sleep(10);
 			}
-			
 			Chan.Dispose();
 			SoundSystem.CloseSystem();
 			SoundSystem.Dispose();

@@ -42,9 +42,13 @@ namespace FmodSharp.Reverb
         REVERB_CHANNELFLAGS
     ]
     */
+	
+	
     [StructLayout(LayoutKind.Sequential)]
     public struct ChannelProperties  
-	{                                      /*          MIN     MAX    DEFAULT  DESCRIPTION */
+	{
+		/*          MIN     MAX    DEFAULT  DESCRIPTION */
+		
 		public int       Direct;
 		/* [in/out] -10000, 1000,  0,       direct path level (at low and mid frequencies) (win32/xbox) */
 		
@@ -101,6 +105,7 @@ namespace FmodSharp.Reverb
 		
 		public IntPtr    ConnectionPoint;
 		/* [in/out] See remarks.            DSP network location to connect reverb for this channel.    (SUPPORTED:SFX only).*/
+		
 	}
 }
 

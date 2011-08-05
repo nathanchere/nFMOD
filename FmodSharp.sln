@@ -11,12 +11,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintDriverInfo", "PrintDri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodGtk", "FmodGtk\FmodGtk.csproj", "{C296700D-7DD3-4E01-9FE2-E67A35B5762C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodSharp.Gtk", "FmodSharp.Gtk\FmodSharp.Gtk.csproj", "{7204FF25-5885-4260-8138-57E1CB4E7EC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Debug|x86.Build.0 = Debug|Any CPU
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Release|x86.ActiveCfg = Release|Any CPU
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Release|x86.Build.0 = Release|Any CPU
 		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.ActiveCfg = Debug|x86
 		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.Build.0 = Debug|x86
 		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.ActiveCfg = Release|x86
