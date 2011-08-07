@@ -81,6 +81,7 @@
     <Compile Include="Dsp\FFTWindow.cs" />
     <Compile Include="iSpectrum.cs" />
     <Compile Include="iWaveData.cs" />
+    <Compile Include="Reverb\ChannelFlags.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

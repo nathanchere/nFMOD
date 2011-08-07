@@ -100,7 +100,7 @@ namespace FmodSharp.Reverb
 		public float     AirAbsorptionFactor;
 		/* [in/out] 0.0,    10.0,  1.0,     multiplies AirAbsorptionHF member of REVERB_PROPERTIES (win32) */
 		
-		public uint      Flags;
+		public ChannelFlags      Flags;
 		/* [in/out] REVERB_CHANNELFLAGS - modifies the behavior of properties (win32) */
 		
 		public IntPtr    ConnectionPoint;
