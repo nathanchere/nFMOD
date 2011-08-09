@@ -50,7 +50,6 @@ namespace FmodSharp
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Geometry_Release")]
 		private static extern Error.Code Release (IntPtr geometry);
-    
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Geometry_Flush")]
         private static extern Error.Code Flush_External (IntPtr geometry);

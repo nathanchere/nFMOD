@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 
 namespace FmodSharp.Channel
 {
-	public class Channel : Handle, iSpectrum, iWaveData
+	public class Channel : Handle, iSpectrumWave
 	{
 		
 		#region Create/Release
@@ -149,7 +149,7 @@ namespace FmodSharp.Channel
 			get {
 				bool playing = false;
 				
-				Error.Code ReturnCode = IsPlaying_extern(this.DangerousGetHandle(), ref playing);
+				Error.Code ReturnCode = IsPlaying_External(this.DangerousGetHandle(), ref playing);
 				Error.Errors.ThrowError(ReturnCode);
 				
 				return playing;
@@ -166,7 +166,7 @@ namespace FmodSharp.Channel
 		private static extern Error.Code Stop (IntPtr channel);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_IsPlaying")]
-		private static extern Error.Code IsPlaying_extern (IntPtr channel, ref bool isplaying);
+		private static extern Error.Code IsPlaying_External (IntPtr channel, ref bool isplaying);
 
 		#endregion
 		

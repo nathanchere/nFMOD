@@ -38,21 +38,25 @@ namespace PrintDriverInfo
 #endif
 			
 			FmodSharp.SoundSystem.SoundSystem  SoundSystem = new FmodSharp.SoundSystem.SoundSystem();
-			Guid DriverGuid = new Guid();
-			string Name;
 			
-			int numbDriver = SoundSystem.NumberOutputDrivers;
-			Console.WriteLine("Found {0} output drivers.", numbDriver);
-			for (int i = 0; i < numbDriver; i++) {
-				SoundSystem.GetOutputDriverInfo(i, out Name, ref DriverGuid);
-				Console.WriteLine("{0}: {1}", Name, DriverGuid);
+			Console.WriteLine("OutputDrivers");
+			foreach (FmodSharp.SoundSystem.OutputDriver DriverItem in SoundSystem.OutputDrivers) {
+				Console.WriteLine("  {0}", DriverItem.Name);
+				Console.WriteLine("    Guid: {0}", DriverItem.Guid);
+				Console.WriteLine("    Capabilities: {0}", DriverItem.Capabilities);
+				Console.WriteLine("    Minimum Frequency: {0}", DriverItem.MinimumFrequency);
+				Console.WriteLine("    Maximum Frequency: {0}", DriverItem.MaximumFrequency);
+				Console.WriteLine("    Speaker Mode: {0}", DriverItem.SpeakerMode);
 			}
+			Console.WriteLine("");
 			
-			int numbRecordDriver = SoundSystem.NumberRecordDrivers;
-			Console.WriteLine("Found {0} record drivers.", numbRecordDriver);
-			for (int i = 0; i < numbRecordDriver; i++) {
-				SoundSystem.GetRecordDriverInfo(i, out Name, ref DriverGuid);
-				Console.WriteLine("{0}: {1}", Name, DriverGuid);
+			Console.WriteLine("RecordDrivers");
+			foreach (FmodSharp.SoundSystem.RecordDriver DriverItem in SoundSystem.RecordDrivers) {
+				Console.WriteLine("  {0}", DriverItem.Name);
+				Console.WriteLine("    Guid: {0}", DriverItem.Guid);
+				Console.WriteLine("    Capabilities: {0}", DriverItem.Capabilities);
+				Console.WriteLine("    Minimum Frequency: {0}", DriverItem.MinimumFrequency);
+				Console.WriteLine("    Maximum Frequency: {0}", DriverItem.MaximumFrequency);
 			}
 			
 			SoundSystem.Dispose();

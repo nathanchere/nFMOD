@@ -46,7 +46,7 @@ public partial class MainWindow : Gtk.Window
 		
 		
 		this.fft_Draw = new FmodSharp.Gtk.FFTDraw();
-		this.fft_Draw.Channel = this.Channel;
+		this.fft_Draw.Source = this.Channel;
 		this.fft_Draw.Show();
 		this.Add(this.fft_Draw);
 	}

@@ -30,8 +30,8 @@ namespace FmodSharp.Gtk
 	public class FFTDraw : DrawingArea
 	{
 		private System.Threading.Timer updater;
-		private float[] spectrum;
-		public FmodSharp.Channel.Channel Channel;
+		private float[] data;
+		public FmodSharp.iSpectrumWave Source;
 		Cairo.Rectangle graphRect;
 		Cairo.Rectangle scaleRectX;
 		Cairo.Rectangle scaleRectY;
@@ -39,7 +39,7 @@ namespace FmodSharp.Gtk
 		public FFTDraw ()
 		{
 			// Insert initialization code here.
-			this.spectrum = new float[512];
+			this.data = new float[512];
 			this.updater = new System.Threading.Timer(this.DoFFT);
 			this.updater.Change(0, 50);
 		}
@@ -65,13 +65,13 @@ namespace FmodSharp.Gtk
 				CairoContext.SetSourceRGB(1, 1, 1);
 				CairoContext.Fill();
 				
-				if(this.spectrum.Length <= 0)
+				if(this.data.Length <= 0)
 					return true;
 				
 				double Min = double.MaxValue;
 				double Max = double.MinValue;
 				
-				foreach (float FloatItem in this.spectrum) {
+				foreach (float FloatItem in this.data) {
 					if(FloatItem > Max)
 						Max = FloatItem;
 					if(FloatItem < Min)
@@ -87,7 +87,7 @@ namespace FmodSharp.Gtk
 				}
 				
 				//YScale
-				int YStep = 100 - (this.spectrum.Length / 100);
+				int YStep = 100 - (this.data.Length / 100);
 				YStep = Math.Max(YStep, 1);
 				for (int Y = 0; Y < this.scaleRectY.Height; Y += YStep) {
 					CairoContext.MoveTo(this.scaleRectY.X, this.scaleRectY.Y + Y);
@@ -98,10 +98,10 @@ namespace FmodSharp.Gtk
 				CairoContext.LineWidth = 2;
 				Cairo.Point LastValue = new Cairo.Point(0, 0);
 				CairoContext.SetSourceRGB(0.5, 0.5, 0.5);
-				for (int i = 0; i < this.spectrum.Length; i ++) {
+				for (int i = 0; i < this.data.Length; i ++) {
 					
-					double X = this.graphRect.X + Scale(i, 0, (double)this.spectrum.Length, 4d, (double)this.graphRect.Width - 8d);
-					double Y = this.graphRect.Y + Scale(this.spectrum[i], Min, Max, (double)this.graphRect.Height - 8d, 4d);
+					double X = this.graphRect.X + Scale(i, 0, (double)this.data.Length, 4d, (double)this.graphRect.Width - 8d);
+					double Y = this.graphRect.Y + Scale(this.data[i], Min, Max, (double)this.graphRect.Height - 8d, 4d);
 					
 					if(LastValue.X != 0 && LastValue.Y != 0) {
 						CairoContext.MoveTo(X, Y);
@@ -141,11 +141,11 @@ namespace FmodSharp.Gtk
 		
 		private void DoFFT(object state)
 		{
-			if(this.Channel == null || !this.Channel.IsPlaying)
+			if(this.Source == null || !this.Source.IsPlaying)
 				return;
 			
-			//this.Channel.GetSpectrum(this.spectrum, this.spectrum.Length, 0, FmodSharp.Dsp.FFTWindow.BlackmanHarris);
-			this.Channel.GetWaveData (this.spectrum, this.spectrum.Length, 0);
+			this.Source.GetSpectrum(this.data, this.data.Length, 0, FmodSharp.Dsp.FFTWindow.BlackmanHarris);
+			//this.Channel.GetWaveData (this.spectrum, this.spectrum.Length, 0);
 			this.QueueDraw();
 		}
 		
