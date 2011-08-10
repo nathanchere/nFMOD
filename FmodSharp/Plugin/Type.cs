@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Plugin
+namespace TheWarrentTeam.FmodSharp.Plugin
 {
 	//TODO write Summary
 	

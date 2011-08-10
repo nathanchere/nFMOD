@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp.Memory
+namespace TheWarrentTeam.FmodSharp.Memory
 {
 	//TODO end subbmary
 	

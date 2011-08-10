@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Dsp
+namespace TheWarrentTeam.FmodSharp.Dsp
 {
 	
 	    /*

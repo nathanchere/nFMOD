@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp.Dsp
+namespace TheWarrentTeam.FmodSharp.Dsp
 {
 	public class Dsp : Handle
 	{

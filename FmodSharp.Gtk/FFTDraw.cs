@@ -24,14 +24,14 @@
 using System;
 using Gtk;
 
-namespace FmodSharp.Gtk
+namespace TheWarrentTeam.FmodSharp.Gtk
 {
 	[System.ComponentModel.ToolboxItem(true)]
 	public class FFTDraw : DrawingArea
 	{
 		private System.Threading.Timer updater;
 		private float[] data;
-		public FmodSharp.iSpectrumWave Source;
+		public TheWarrentTeam.FmodSharp.iSpectrumWave Source;
 		Cairo.Rectangle graphRect;
 		Cairo.Rectangle scaleRectX;
 		Cairo.Rectangle scaleRectY;
@@ -144,7 +144,7 @@ namespace FmodSharp.Gtk
 			if(this.Source == null || !this.Source.IsPlaying)
 				return;
 			
-			this.Source.GetSpectrum(this.data, this.data.Length, 0, FmodSharp.Dsp.FFTWindow.BlackmanHarris);
+			this.Source.GetSpectrum(this.data, this.data.Length, 0, TheWarrentTeam.FmodSharp.Dsp.FFTWindow.BlackmanHarris);
 			//this.Channel.GetWaveData (this.spectrum, this.spectrum.Length, 0);
 			this.QueueDraw();
 		}

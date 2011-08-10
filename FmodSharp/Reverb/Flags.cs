@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Reverb
+namespace TheWarrentTeam.FmodSharp.Reverb
 {
 	
 	/*

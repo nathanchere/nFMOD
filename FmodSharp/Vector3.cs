@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp
+namespace TheWarrentTeam.FmodSharp
 {
 	/// <summary>
 	/// Structure describing a point in 3D space.

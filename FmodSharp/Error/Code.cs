@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Error
+namespace TheWarrentTeam.FmodSharp.Error
 {
 	public enum Code
 	{

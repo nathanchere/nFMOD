@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 using System;
-namespace FmodSharp
+namespace TheWarrentTeam.FmodSharp
 {
 	public interface iSpectrumWave
 	{

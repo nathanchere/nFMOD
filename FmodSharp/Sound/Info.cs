@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp.Sound
+namespace TheWarrentTeam.FmodSharp.Sound
 {
 	/// <summary>
 	/// Use this structure with System::createSound when more control is needed over loading.

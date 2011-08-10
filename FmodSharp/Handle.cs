@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp
+namespace TheWarrentTeam.FmodSharp
 {
 	public abstract class Handle : SafeHandle
 	{

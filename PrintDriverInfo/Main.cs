@@ -34,13 +34,13 @@ namespace PrintDriverInfo
 #if DEBUG
 			
 #else
-			FmodSharp.Debug.Level = FmodSharp.DebugLevel.Error;
+			TheWarrentTeam.FmodSharp.Debug.Level = TheWarrentTeam.FmodSharp.DebugLevel.Error;
 #endif
 			
-			FmodSharp.SoundSystem.SoundSystem  SoundSystem = new FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new TheWarrentTeam.FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine("OutputDrivers");
-			foreach (FmodSharp.SoundSystem.OutputDriver DriverItem in SoundSystem.OutputDrivers) {
+			foreach (TheWarrentTeam.FmodSharp.SoundSystem.OutputDriver DriverItem in SoundSystem.OutputDrivers) {
 				Console.WriteLine("  {0}", DriverItem.Name);
 				Console.WriteLine("    Guid: {0}", DriverItem.Guid);
 				Console.WriteLine("    Capabilities: {0}", DriverItem.Capabilities);
@@ -51,7 +51,7 @@ namespace PrintDriverInfo
 			Console.WriteLine("");
 			
 			Console.WriteLine("RecordDrivers");
-			foreach (FmodSharp.SoundSystem.RecordDriver DriverItem in SoundSystem.RecordDrivers) {
+			foreach (TheWarrentTeam.FmodSharp.SoundSystem.RecordDriver DriverItem in SoundSystem.RecordDrivers) {
 				Console.WriteLine("  {0}", DriverItem.Name);
 				Console.WriteLine("    Guid: {0}", DriverItem.Guid);
 				Console.WriteLine("    Capabilities: {0}", DriverItem.Capabilities);

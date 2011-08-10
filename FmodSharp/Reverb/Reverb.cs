@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp.Reverb
+namespace TheWarrentTeam.FmodSharp.Reverb
 {
 	public class Reverb : Handle
 	{

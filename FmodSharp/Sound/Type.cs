@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Sound
+namespace TheWarrentTeam.FmodSharp.Sound
 {
 	/// <summary>
 	/// These definitions describe the type of song being played.

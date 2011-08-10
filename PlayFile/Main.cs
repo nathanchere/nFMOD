@@ -34,21 +34,22 @@ namespace PlayFile
 #if DEBUG
 			
 #else
-			FmodSharp.Debug.Level = FmodSharp.DebugLevel.Error;
+			TheWarrentTeam.FmodSharp.Debug.Level = TheWarrentTeam.FmodSharp.DebugLevel.Error;
 #endif
 			
-			FmodSharp.SoundSystem.SoundSystem  SoundSystem = new FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new TheWarrentTeam.FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output: {0}", SoundSystem.Output);
 			
 			SoundSystem.Init();
 			
-			FmodSharp.Channel.Channel Chan = null;
+			TheWarrentTeam.FmodSharp.Channel.Channel Chan = null;
 			
 			bool first = true;
 			if (args.Length > 0) {
 				foreach (string StringItem in args) {
-					FmodSharp.Sound.Sound SoundFile = SoundSystem.CreateSound (StringItem, FmodSharp.Mode.Default);
+					TheWarrentTeam.FmodSharp.Sound.Sound SoundFile;
+					SoundFile = SoundSystem.CreateSound (StringItem, TheWarrentTeam.FmodSharp.Mode.Default);
 					
 					if(first) Chan = SoundSystem.PlaySound(SoundFile);
 					else SoundSystem.PlaySound(SoundFile, false, Chan);

@@ -25,7 +25,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 
-namespace FmodSharp.SoundSystem
+namespace TheWarrentTeam.FmodSharp.SoundSystem
 {
 	public partial class SoundSystem
 	{

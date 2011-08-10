@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp
+namespace TheWarrentTeam.FmodSharp
 {
 	
 	/// <summary>

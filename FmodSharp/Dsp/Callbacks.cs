@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Dsp
+namespace TheWarrentTeam.FmodSharp.Dsp
 {
 	
 	public delegate Error.Code DspDelegate (ref State dsp_state);

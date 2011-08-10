@@ -34,25 +34,25 @@ namespace FmodTest
 #if DEBUG
 			
 #else
-			FmodSharp.Debug.Level = FmodSharp.DebugLevel.Error;
+			TheWarrentTeam.FmodSharp.Debug.Level = TheWarrentTeam.FmodSharp.DebugLevel.Error;
 #endif
 			
-			Console.WriteLine ("Level: {0}", FmodSharp.Debug.Level);
-			Console.WriteLine ("Type: {0}", FmodSharp.Debug.Type);
-			Console.WriteLine ("Display: {0}", FmodSharp.Debug.Display);
+			Console.WriteLine ("Level: {0}", TheWarrentTeam.FmodSharp.Debug.Level);
+			Console.WriteLine ("Type: {0}", TheWarrentTeam.FmodSharp.Debug.Type);
+			Console.WriteLine ("Display: {0}", TheWarrentTeam.FmodSharp.Debug.Display);
 			
-			FmodSharp.SoundSystem.SoundSystem  SoundSystem = new FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new TheWarrentTeam.FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output Type: {0}", SoundSystem.Output);
 			
 			SoundSystem.Init();
 			
-			FmodSharp.Channel.Channel Chan = null;
+			TheWarrentTeam.FmodSharp.Channel.Channel Chan = null;
 			
 			//Create an oscillator DSP unit for the tone.
-			FmodSharp.Dsp.Dsp Oscillator;
+			TheWarrentTeam.FmodSharp.Dsp.Dsp Oscillator;
 			
-			Oscillator = SoundSystem.CreateDspByType(FmodSharp.Dsp.Type.Oscillator);
+			Oscillator = SoundSystem.CreateDspByType(TheWarrentTeam.FmodSharp.Dsp.Type.Oscillator);
 			Chan = SoundSystem.PlayDsp(Oscillator);
 			
 			Console.WriteLine("\nPress Enter to stop.\n");

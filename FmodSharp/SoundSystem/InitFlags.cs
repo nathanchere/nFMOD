@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.SoundSystem
+namespace TheWarrentTeam.FmodSharp.SoundSystem
 {
 	/// <summary>
 	/// //Initialization flags.

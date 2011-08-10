@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp
+namespace TheWarrentTeam.FmodSharp
 {
 	/// <summary>
 	/// Bit fields to use with <see cref="FmodSharp.Debug.Level"/> to

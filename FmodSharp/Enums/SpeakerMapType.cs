@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp
+namespace TheWarrentTeam.FmodSharp
 {
 	/// <summary>
 	/// When creating a multichannel sound,

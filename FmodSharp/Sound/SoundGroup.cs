@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp.Sound
+namespace TheWarrentTeam.FmodSharp.Sound
 {
 	public class SoundGroup : Handle
 	{

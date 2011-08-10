@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Sound
+namespace TheWarrentTeam.FmodSharp.Sound
 {
 	/// <summary>
 	/// These definitions describe the native format of the hardware or software buffer that will be used.

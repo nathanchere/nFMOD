@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp.Channel
+namespace TheWarrentTeam.FmodSharp.Channel
 {
 	public class Channel : Handle, iSpectrumWave
 	{

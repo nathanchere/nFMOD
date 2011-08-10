@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace FmodSharp.SoundSystem
+namespace TheWarrentTeam.FmodSharp.SoundSystem
 {
 	public partial class SoundSystem : Handle, iSpectrumWave
 	{

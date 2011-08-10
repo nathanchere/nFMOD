@@ -23,7 +23,7 @@
 
 using System;
 
-namespace FmodSharp.Memory
+namespace TheWarrentTeam.FmodSharp.Memory
 {
 	//TODO complete submmary
 	
