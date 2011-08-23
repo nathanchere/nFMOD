@@ -66,7 +66,7 @@ namespace Xpod.FmodSharp.Error
 		/// <summary>
 		/// No CD/DVD devices were found.
 		/// </summary>
-		CDDA_NpDevices,
+		CDDA_NoDevices,
 		
 		/// <summary>
 		/// No disc present in the specified drive.
@@ -217,6 +217,11 @@ namespace Xpod.FmodSharp.Error
 		/// An invalid parameter was passed to this function.
 		/// </summary>
 		InvalidParam,
+		
+		/// <summary>
+		/// An invalid seek position was passed to this function.
+		/// </summary>
+		InvalidPosition,
 		
 		/// <summary>
 		/// An invalid speaker was passed to this function based on the current speaker mode.
@@ -374,6 +379,18 @@ namespace Xpod.FmodSharp.Error
 		Plugin_Resource,
 		
 		/// <summary>
+		/// The specified sound is still in use by the event system,
+		/// call EventSystem::unloadFSB before trying to release it.
+		/// </summary>
+		Preloaded,
+		
+		/// <summary>
+		/// The specified sound is still in use by the event system,
+		/// wait for the event which is using it finish with it.
+		/// </summary>
+		ProgrammerSound,
+        
+		/// <summary>
 		/// An error occured trying to initialize the recording device.
 		/// </summary>
 		Record,
@@ -427,7 +444,8 @@ namespace Xpod.FmodSharp.Error
 		Uninitialized,
 		
 		/// <summary>
-		/// A command issued was not supported by this object.  Possibly a plugin without certain callbacks specified.
+		/// A command issued was not supported by this object.
+		/// Possibly a plugin without certain callbacks specified.
 		/// </summary>
 		Unsupported,
 		
@@ -440,6 +458,9 @@ namespace Xpod.FmodSharp.Error
 		/// The version number of this file format is not supported.
 		/// </summary>
 		Version,
+		
+		
+		
 		
 		/// <summary>
 		/// An Event failed to be retrieved, most likely due to 'just fail' being specified as the max playbacks behavior.
@@ -487,6 +508,15 @@ namespace Xpod.FmodSharp.Error
 		Event_GuidConflict,
 		
 		/// <summary>
+		/// The specified project has already been loaded.
+		/// Having multiple copies of the same project loaded simultaneously is forbidden.
+		/// </summary>
+		Event_AlreadyLoaded,
+		
+		
+		
+		
+		/// <summary>
 		/// Music system is not initialized probably because no music data is loaded.
 		/// </summary>
 		Music_Uninitialized,
@@ -500,5 +530,6 @@ namespace Xpod.FmodSharp.Error
 		/// The music callback is required, but it has not been set.
 		/// </summary>
 		Music_NoCallback,
+		
 	}
 }

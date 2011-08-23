@@ -56,7 +56,7 @@ namespace Xpod.FmodSharp.Error
 				return "Couldn't find the specified device. ";
 			case Code.CDDA_NoAudio:
 				return "No audio tracks on the specified disc. ";
-			case Code.CDDA_NpDevices:
+			case Code.CDDA_NoDevices:
 				return "No CD/DVD devices were found. ";
 			case Code.CDDA_NoDisc:
 				return "No disc present in the specified drive. ";

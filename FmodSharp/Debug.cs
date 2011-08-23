@@ -26,6 +26,7 @@ using System.Runtime.InteropServices;
 
 namespace Xpod.FmodSharp
 {
+	
 	/// <summary>
 	/// Bit fields to use with <see cref="FmodSharp.Debug.Level"/> to
 	/// control the level of tty debug output with logging versions of FMOD (fmodL).
@@ -99,7 +100,7 @@ namespace Xpod.FmodSharp
 			get {
 				int Val = 0;
 				Error.Code ReturnCode = GetLevel(ref Val);
-				if(ReturnCode == Xpod.FmodSharp.Error.Code.Event_Failed) {
+				if(ReturnCode == Error.Code.Unsupported) {
 					//For now just ignore this error until more information is known
 					//TODO find more information about Error.Code.Event_Failed [82]
 				} else {
@@ -111,7 +112,7 @@ namespace Xpod.FmodSharp
 			
 			set {
 				Error.Code ReturnCode = SetLevel(value);
-				if(ReturnCode == Xpod.FmodSharp.Error.Code.Event_Failed) {
+				if(ReturnCode == Error.Code.Unsupported) {
 					//For now just ignore this error until more information is known
 					//TODO find more information about Error.Code.Event_Failed [82]
 				} else {
@@ -120,10 +121,10 @@ namespace Xpod.FmodSharp
 			}
 		}
 	
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel")]
+		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel")]
 		private static extern Error.Code SetLevel (int Level);
 		
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel")]
+		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel")]
 		private static extern Error.Code GetLevel (ref int Level);
 	}
 }
