@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp.Memory
+namespace Xpod.FmodSharp.Memory
 {
 	public class Memory
 	{

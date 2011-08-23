@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Memory
+namespace Xpod.FmodSharp.Memory
 {
 	//TODO complete submmary
 	

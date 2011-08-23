@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp
+namespace Xpod.FmodSharp
 {
 	/// <summary>
 	/// Bit fields to use with <see cref="FmodSharp.Debug.Level"/> to
@@ -99,14 +99,24 @@ namespace TheWarrentTeam.FmodSharp
 			get {
 				int Val = 0;
 				Error.Code ReturnCode = GetLevel(ref Val);
-				Error.Errors.ThrowError(ReturnCode);
+				if(ReturnCode == Xpod.FmodSharp.Error.Code.Event_Failed) {
+					//For now just ignore this error until more information is known
+					//TODO find more information about Error.Code.Event_Failed [82]
+				} else {
+					Error.Errors.ThrowError(ReturnCode);
+				}
 				
 				return Val;
 			}
 			
 			set {
 				Error.Code ReturnCode = SetLevel(value);
-				Error.Errors.ThrowError(ReturnCode);
+				if(ReturnCode == Xpod.FmodSharp.Error.Code.Event_Failed) {
+					//For now just ignore this error until more information is known
+					//TODO find more information about Error.Code.Event_Failed [82]
+				} else {
+					Error.Errors.ThrowError(ReturnCode);
+				}
 			}
 		}
 	

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.SoundSystem
+namespace Xpod.FmodSharp.SoundSystem
 {
 	/*
     [ENUM]

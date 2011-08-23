@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp.Channel
+namespace Xpod.FmodSharp.Channel
 {
 	public class ChannelGroup : Handle
 	{

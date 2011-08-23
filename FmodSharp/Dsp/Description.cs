@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp.Dsp
+namespace Xpod.FmodSharp.Dsp
 {
 	/*
         <br>

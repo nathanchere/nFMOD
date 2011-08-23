@@ -34,26 +34,28 @@ namespace PlayFile
 #if DEBUG
 			
 #else
-			TheWarrentTeam.FmodSharp.Debug.Level = TheWarrentTeam.FmodSharp.DebugLevel.Error;
+			Xpod.FmodSharp.Debug.Level = Xpod.FmodSharp.DebugLevel.Error;
 #endif
 			
-			var SoundSystem = new TheWarrentTeam.FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new Xpod.FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output: {0}", SoundSystem.Output);
 			
 			SoundSystem.Init();
 			
-			TheWarrentTeam.FmodSharp.Channel.Channel Chan = null;
+			Xpod.FmodSharp.Channel.Channel Chan = null;
 			
-			bool first = true;
+			SoundSystem.ReverbProperties = Xpod.FmodSharp.Reverb.Presets.Room;
+			
 			if (args.Length > 0) {
 				foreach (string StringItem in args) {
-					TheWarrentTeam.FmodSharp.Sound.Sound SoundFile;
-					SoundFile = SoundSystem.CreateSound (StringItem, TheWarrentTeam.FmodSharp.Mode.Default);
+					Xpod.FmodSharp.Sound.Sound SoundFile;
+					SoundFile = SoundSystem.CreateSound (StringItem, Xpod.FmodSharp.Mode.Default);
 					
-					if(first) Chan = SoundSystem.PlaySound(SoundFile);
-					else SoundSystem.PlaySound(SoundFile, false, Chan);
-					first = false;
+					if(Chan != null)
+						Chan.Dispose();
+					
+					Chan = SoundSystem.PlaySound(SoundFile);
 					
 					while(Chan.IsPlaying) {
 						System.Threading.Thread.Sleep(10);

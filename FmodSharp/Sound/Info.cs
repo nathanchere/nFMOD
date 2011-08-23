@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp.Sound
+namespace Xpod.FmodSharp.Sound
 {
 	/// <summary>
 	/// Use this structure with System::createSound when more control is needed over loading.
@@ -53,34 +53,34 @@ namespace TheWarrentTeam.FmodSharp.Sound
 		/// Required if loading from memory.
 		/// If 0 is specified, then it will use the size of the file (unless loading from memory then an error will be returned).
 		/// </summary>
-		public uint length;
+		public uint Length;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Offset from start of the file to start loading from.
 		/// This is useful for loading files from inside big data files.
 		/// </summary>
-		public uint fileoffset;
+		public uint FileOffset;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Number of channels in a sound specified only if OPENUSER is used.
 		/// </summary>
-		public int numchannels;
+		public int NumberChannels;
 
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Default frequency of sound in a sound specified only if OPENUSER is used.
 		/// Other formats use the frequency determined by the file format.
 		/// </summary>
-		public int defaultfrequency;
+		public int DefaultFrequency;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 or SOUND_FORMAT_NONE to ignore.
 		/// Format of the sound specified only if OPENUSER is used.
 		/// Other formats use the format determined by the file format.
 		/// </summary>
-		public Format format;
+		public Format Format;
 
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore. For streams.
@@ -88,155 +88,159 @@ namespace TheWarrentTeam.FmodSharp.Sound
 		/// Use this for user created streams if you want to determine the size of the callback buffer passed to you.
 		/// Specify 0 to use FMOD's default size which is currently equivalent to 400ms of the sound format created/loaded.
 		/// </summary>
-		public uint decodebuffersize;
+		public uint DecodeBufferSize;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// In a multi-sample file format such as .FSB/.DLS/.SF2, specify the initial subsound to seek to, only if CREATESTREAM is used.
 		/// </summary>
-		public int initialsubsound;
+		public int InitialSubsound;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore or have no subsounds.
 		/// In a user created multi-sample sound, specify the number of subsounds within the sound that are accessable with Sound::getSubSound / SoundGetSubSound.
 		/// </summary>
-		public int numsubsounds;
+		public int NumberSubsounds;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// In a multi-sample format such as .FSB/.DLS/.SF2 it may be desirable to specify only a subset of sounds to be loaded out of the whole file.
 		/// This is an array of subsound indicies to load into memory when created.
 		/// </summary>
-		public IntPtr inclusionlist;
+		public IntPtr InclusionList;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// This is the number of integers contained within the
 		/// </summary>
-		public int inclusionlistnum;
+		public int InclusionListNumber;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback to 'piggyback' on FMOD's read functions and accept or even write PCM data while FMOD is opening the sound.
 		/// Used for user sounds created with OPENUSER or for capturing decoded data as FMOD reads it.
 		/// </summary>
-		public PCMReadDelegate pcmreadcallback;
+		public PCMReadDelegate PCMReadCallback;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback for when the user calls a seeking function such as Channel::setPosition within a multi-sample sound, and for when it is opened.
 		/// </summary>
-		public PCMSetposDelegate pcmsetposcallback;
+		public PCMSetposDelegate PCMSetPositionCallback;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore. Callback for successful completion, or error while loading a sound that used the FMOD_NONBLOCKING flag.
 		/// </summary>
-		public NonBlockDelegate nonblockcallback;
+		public NonBlockDelegate NonBlockCallback;
 		
 		/// <summary>
-		/// [in] Optional. Specify 0 to ignore. Filename for a DLS or SF2 sample set when loading a MIDI file.   If not specified, on windows it will attempt to open /windows/system32/drivers/gm.dls, otherwise the MIDI will fail to open.
+		/// [in] Optional. Specify 0 to ignore. Filename for a DLS or SF2 sample set when loading a MIDI file.
+		/// If not specified, on windows it will attempt to open /windows/system32/drivers/gm.dls, otherwise the MIDI will fail to open.
 		/// </summary>
-		public string dlsname;
+		public string DLSName;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore. Key for encrypted FSB file.  Without this key an encrypted FSB file will not load.
 		/// </summary>
-		public string encryptionkey;
+		public string EncryptionKey;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ingore.
 		/// For sequenced formats with dynamic channel allocation such as .MID and .IT, this specifies the maximum voice count allowed while playing.
 		/// .IT defaults to 64.  .MID defaults to 32.
 		/// </summary>
-		public int maxpolyphony;
+		public int MaximumPolyphony;
 		
 		/// <summary>
-		/// [in] Optional. Specify 0 to ignore. This is user data to be attached to the sound during creation.  Access via Sound::getUserData. 
+		/// [in] Optional. Specify 0 to ignore.
+		/// This is user data to be attached to the sound during creation.
+		/// Access via Sound::getUserData. 
 		/// </summary>
-		public IntPtr userdata;
+		public IntPtr UserData;
 		
 		/// <summary>
-		/// [in] Optional. Specify 0 or FMOD_SOUND_TYPE_UNKNOWN to ignore.  Instead of scanning all codec types, use this to speed up loading by making it jump straight to this codec.
+		/// [in] Optional. Specify 0 or FMOD_SOUND_TYPE_UNKNOWN to ignore.
+		/// Instead of scanning all codec types, use this to speed up loading by making it jump straight to this codec.
 		/// </summary>
-		public Type suggestedsoundtype;
+		public Type SuggestedSoundType;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback for opening this file.
 		/// </summary>
-		public File_OpenDelegate useropen;
+		public File_OpenDelegate UserOpenCallback;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback for closing this file.
 		/// </summary>
-		public File_CloseDelegate userclose;
+		public File_CloseDelegate UserCloseCallback;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback for reading from this file.
 		/// </summary>
-		public File_ReadDelegate userread;
+		public File_ReadDelegate UserReadCallback;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback for seeking within this file.
 		/// </summary>
-		public File_SeekDelegate userseek;
+		public File_SeekDelegate UserSeekCallback;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback for asyncronously reading from this file.
 		/// </summary>
-		public File_AsyncReadDelegate userasyncread;
+		public File_AsyncReadDelegate UserAsyncReadCallback;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Callback for cancelling an asyncronous read.
 		/// </summary>
-		public File_AsyncCancelDelegate userasynccancel;
+		public File_AsyncCancelDelegate UserAsyncCancelCallback;
 
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Use this to differ the way fmod maps multichannel sounds to speakers.
 		/// See FMOD_SPEAKERMAPTYPE for more.
 		/// </summary>
-		public SpeakerMapType speakermap;
+		public SpeakerMapType SpeakerMap;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Specify a sound group if required, to put sound in as it is created.
 		/// </summary>
-		public IntPtr initialsoundgroup;
+		public IntPtr InitialSoundGroup;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore. For streams.
 		/// Specify an initial position to seek the stream to.
 		/// </summary>
-		public uint initialseekposition;
-
+		public uint InitialSeekPosition;
+		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore. For streams.
 		/// Specify the time unit for the position set in initialseekposition.
 		/// </summary>
-		public TimeUnit initialseekpostype;
-
+		public TimeUnit InitialSeekPositionType;
+		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Set to 1 to use fmod's built in file system.
 		/// Ignores setFileSystem callbacks and also FMOD_CREATESOUNEXINFO file callbacks.
 		/// Useful for specific cases where you don't want to use your own file system but want to use fmod's file system (ie net streaming).
 		/// </summary>
-		public int ignoresetfilesystem;
+		public int IgnoreSetFileSystem;
 		
 		/// <summary>
 		/// [in] Optional. Specify 0 to ignore.
 		/// Codec specific data.
 		/// See FMOD_SOUND_TYPE for what each codec might take here.
 		/// </summary>
-		public IntPtr extracodecdata;
+		public IntPtr ExtraCodecData;
 	}
-		
+	
 	
 	//TODO complete submmary
 	

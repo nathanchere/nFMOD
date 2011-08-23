@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp
+namespace Xpod.FmodSharp
 {
 	
 	/// <summary>

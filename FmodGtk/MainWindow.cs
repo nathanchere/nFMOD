@@ -26,26 +26,26 @@ using Gtk;
 
 public partial class MainWindow : Gtk.Window
 {
-	TheWarrentTeam.FmodSharp.Gtk.FFTDraw fft_Draw;
-	TheWarrentTeam.FmodSharp.SoundSystem.SoundSystem SoundSystem;
-	TheWarrentTeam.FmodSharp.Channel.Channel Channel;
-	TheWarrentTeam.FmodSharp.Sound.Sound SoundFile;
+	Xpod.FmodSharp.Gtk.FFTDraw fft_Draw;
+	Xpod.FmodSharp.SoundSystem.SoundSystem SoundSystem;
+	Xpod.FmodSharp.Channel.Channel Channel;
+	Xpod.FmodSharp.Sound.Sound SoundFile;
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
 		
-		this.SoundSystem = new TheWarrentTeam.FmodSharp.SoundSystem.SoundSystem();
+		this.SoundSystem = new Xpod.FmodSharp.SoundSystem.SoundSystem();
 		this.SoundSystem.Init();
 		
-		this.SoundFile = SoundSystem.CreateSound (@"/home/madrang/Music/Tetris.mp3", TheWarrentTeam.FmodSharp.Mode.Default);
+		this.SoundFile = SoundSystem.CreateSound (@"/home/madrang/Music/Tetris.mp3", Xpod.FmodSharp.Mode.Default);
 		
-		if(this.Channel == null)
-			this.Channel = this.SoundSystem.PlaySound(SoundFile);
-		else
-			this.SoundSystem.PlaySound(SoundFile, false, this.Channel);
+		if(this.Channel != null)
+			this.Channel.Dispose();
+		
+		this.Channel = this.SoundSystem.PlaySound(SoundFile);
 		
 		
-		this.fft_Draw = new TheWarrentTeam.FmodSharp.Gtk.FFTDraw();
+		this.fft_Draw = new Xpod.FmodSharp.Gtk.FFTDraw();
 		this.fft_Draw.Source = this.Channel;
 		this.fft_Draw.Show();
 		this.Add(this.fft_Draw);

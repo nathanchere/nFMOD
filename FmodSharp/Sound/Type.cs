@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Sound
+namespace Xpod.FmodSharp.Sound
 {
 	/// <summary>
 	/// These definitions describe the type of song being played.

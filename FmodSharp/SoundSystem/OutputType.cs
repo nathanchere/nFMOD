@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.SoundSystem
+namespace Xpod.FmodSharp.SoundSystem
 {
 	//TODO Replace System::setOutput/System::getOutput by real name.
 	//TODO Convert Remarks with real names.

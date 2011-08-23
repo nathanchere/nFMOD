@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp.Channel
+namespace Xpod.FmodSharp.Channel
 {
 	public class Channel : Handle, iSpectrumWave
 	{
@@ -44,7 +44,7 @@ namespace TheWarrentTeam.FmodSharp.Channel
 			if (this.IsInvalid)
 				return true;
 			
-			this.Stop();
+			Stop(this.handle);
 			
 			//TODO find if Channel need to be released before closing.
 			//Release (this.handle);

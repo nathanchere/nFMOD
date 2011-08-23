@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 using System;
-namespace TheWarrentTeam.FmodSharp
+namespace Xpod.FmodSharp
 {
 	public interface iSpectrumWave
 	{

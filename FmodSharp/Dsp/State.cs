@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Dsp
+namespace Xpod.FmodSharp.Dsp
 {
 	
 	//TODO complete submmary

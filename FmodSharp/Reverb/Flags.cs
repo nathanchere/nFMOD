@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Reverb
+namespace Xpod.FmodSharp.Reverb
 {
 	
 	/*

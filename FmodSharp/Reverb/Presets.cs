@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Reverb
+namespace Xpod.FmodSharp.Reverb
 {
 	//TODO end submmary
 	
@@ -600,10 +600,10 @@ namespace TheWarrentTeam.FmodSharp.Reverb
 			DecayHighFrequencyRatio = 0.21f,
 			DecayLowFrequencyRatio = 1.0f,
 			Reflections = -2780,
-			ReflectionsDelay = 0.300f,
+			ReflectionsDelay = 0.299f,
 			ReflectionsPan = new float[] { 0.0f, 0.0f, 0.0f },
 			Reverb = -1434,
-			ReverbDelay = 0.100f,
+			ReverbDelay = 0.0999f,
 			ReverbPan = new float[] { 0.0f, 0.0f, 0.0f },
 			EchoTime = 0.250f,
 			EchoDepth = 1.00f,
@@ -664,7 +664,7 @@ namespace TheWarrentTeam.FmodSharp.Reverb
 			ReflectionsDelay = 0.179f,
 			ReflectionsPan = new float[] { 0.0f, 0.0f, 0.0f },
 			Reverb = -1926,
-			ReverbDelay = 0.100f,
+			ReverbDelay = 0.0999f,
 			ReverbPan = new float[] { 0.0f, 0.0f, 0.0f },
 			EchoTime = 0.250f,
 			EchoDepth = 1.00f,

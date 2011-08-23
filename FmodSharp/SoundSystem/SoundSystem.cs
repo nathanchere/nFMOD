@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp.SoundSystem
+namespace Xpod.FmodSharp.SoundSystem
 {
 	public partial class SoundSystem : Handle, iSpectrumWave
 	{
@@ -328,8 +328,11 @@ namespace TheWarrentTeam.FmodSharp.SoundSystem
 			return new Channel.Channel (ChannelHandle);
 		}
 
-		public void PlaySound (Sound.Sound snd, bool paused, Channel.Channel chn)
+		private void PlaySound (Sound.Sound snd, bool paused, Channel.Channel chn)
 		{
+			//FIXME The handle is changed most of the time on some system.
+			//Only use the other metods to be safe.
+			
 			IntPtr channel = chn.DangerousGetHandle ();
 			
 			Error.Code ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Reuse, snd.DangerousGetHandle (), paused, ref channel);

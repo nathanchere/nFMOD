@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Error
+namespace Xpod.FmodSharp.Error
 {
 	public enum Code
 	{

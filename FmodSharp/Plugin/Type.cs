@@ -23,7 +23,7 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Plugin
+namespace Xpod.FmodSharp.Plugin
 {
 	//TODO write Summary
 	

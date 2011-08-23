@@ -23,31 +23,29 @@
 
 using System;
 
-namespace TheWarrentTeam.FmodSharp.Dsp
+namespace Xpod.FmodSharp.Dsp
 {
 	
-	    /*
-    [ENUM]
-    [
-        [DESCRIPTION]   
-        List of windowing methods used in spectrum analysis to reduce leakage / transient signals intefering with the analysis.
-        This is a problem with analysis of continuous signals that only have a small portion of the signal sample (the fft window size).
-        Windowing the signal with a curve or triangle tapers the sides of the fft window to help alleviate this problem.
-
-        [REMARKS]
-        Cyclic signals such as a sine wave that repeat their cycle in a multiple of the window size do not need windowing.
-        I.e. If the sine wave repeats every 1024, 512, 256 etc samples and the FMOD fft window is 1024, then the signal would not need windowing.
-        Not windowing is the same as FMOD_DSP_FFT_WINDOW_RECT, which is the default.
-        If the cycle of the signal (ie the sine wave) is not a multiple of the window size, it will cause frequency abnormalities, so a different windowing method is needed.
-
+	/*
         [PLATFORMS]
         Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation 2, PlayStation Portable, PlayStation 3, Wii
 
         [SEE_ALSO]      
         System::getSpectrum
         Channel::getSpectrum
-    ]
-    */
+	 */
+	
+	/// <summary>
+	/// List of windowing methods used in spectrum analysis to reduce leakage / transient signals intefering with the analysis.
+	/// This is a problem with analysis of continuous signals that only have a small portion of the signal sample (the fft window size).
+	/// Windowing the signal with a curve or triangle tapers the sides of the fft window to help alleviate this problem.
+	/// </summary>
+	/// <remarks>
+	/// Cyclic signals such as a sine wave that repeat their cycle in a multiple of the window size do not need windowing.
+	/// I.e. If the sine wave repeats every 1024, 512, 256 etc samples and the FMOD fft window is 1024, then the signal would not need windowing.
+	/// Not windowing is the same as FMOD_DSP_FFT_WINDOW_RECT, which is the default.
+	/// If the cycle of the signal (ie the sine wave) is not a multiple of the window size, it will cause frequency abnormalities, so a different windowing method is needed.
+	/// </remarks>
     public enum FFTWindow :int
     {
         Rectangle,

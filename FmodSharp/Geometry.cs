@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace TheWarrentTeam.FmodSharp
+namespace Xpod.FmodSharp
 {
 	public class Geometry : Handle
 	{
