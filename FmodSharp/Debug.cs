@@ -101,8 +101,8 @@ namespace Xpod.FmodSharp
 				int Val = 0;
 				Error.Code ReturnCode = GetLevel(ref Val);
 				if(ReturnCode == Error.Code.Unsupported) {
-					//For now just ignore this error until more information is known
-					//TODO find more information about Error.Code.Event_Failed [82]
+					// On windows you need the Loggin version of Fmod to use Debugging.
+					//Error.Code.Unsupported [82]
 				} else {
 					Error.Errors.ThrowError(ReturnCode);
 				}
@@ -113,8 +113,8 @@ namespace Xpod.FmodSharp
 			set {
 				Error.Code ReturnCode = SetLevel(value);
 				if(ReturnCode == Error.Code.Unsupported) {
-					//For now just ignore this error until more information is known
-					//TODO find more information about Error.Code.Event_Failed [82]
+					// On windows you need the Loggin version of Fmod to use Debugging.
+					//Error.Code.Unsupported [82]
 				} else {
 					Error.Errors.ThrowError(ReturnCode);
 				}
