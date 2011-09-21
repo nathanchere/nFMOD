@@ -101,24 +101,27 @@ namespace Xpod.FmodSharp.SoundSystem
 			};
 		}
 		
-		
-
-		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumDrivers")]
 		private static extern Error.Code GetNumDrivers (IntPtr system, out int Numdrivers);
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfo")]
 		private static extern Error.Code GetDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfoW")]
 		private static extern Error.Code GetDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverCaps")]
 		private static extern Error.Code GetDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode);
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetDriver")]
 		private static extern Error.Code SetDriver (IntPtr system, int driver);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriver")]
 		private static extern Error.Code GetDriver (IntPtr system, out int driver);
 		

@@ -86,15 +86,19 @@ namespace Xpod.FmodSharp.SoundSystem
 			};
 		}
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordNumDrivers")]
 		private static extern Error.Code GetRecordNumDrivers (IntPtr system, out int numdrivers);
-
+		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfo")]
 		private static extern Error.Code GetRecordDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
-
+		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfoW")]
 		private static extern Error.Code FMOD_System_GetRecordDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
-	
+		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverCaps")]
 		private static extern Error.Code GetRecordDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency);
 		

@@ -69,18 +69,23 @@ namespace Xpod.FmodSharp.SoundSystem
 			}
 		}
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateReverb")]
 		private static extern Error.Code CreateReverb (IntPtr system, ref IntPtr reverb);
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetReverbProperties")]
 		private static extern Error.Code SetReverbProperties (IntPtr system, ref Reverb.Properties prop);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetReverbProperties")]
 		private static extern Error.Code GetReverbProperties (IntPtr system, ref Reverb.Properties prop);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetReverbAmbientProperties")]
 		private static extern Error.Code SetReverbAmbientProperties (IntPtr system, ref Reverb.Properties prop);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetReverbAmbientProperties")]
 		private static extern Error.Code GetReverbAmbientProperties (IntPtr system, ref Reverb.Properties prop);
 		

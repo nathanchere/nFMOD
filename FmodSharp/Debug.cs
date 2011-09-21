@@ -120,11 +120,14 @@ namespace Xpod.FmodSharp
 				}
 			}
 		}
-	
+		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel")]
 		private static extern Error.Code SetLevel (int Level);
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel")]
 		private static extern Error.Code GetLevel (ref int Level);
+		
 	}
 }

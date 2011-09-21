@@ -50,6 +50,7 @@ namespace Xpod.FmodSharp.Channel
 			return true;
 		}
 		
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport("fmodex", EntryPoint = "FMOD_ChannelGroup_Release")]
 		private static extern Error.Code Release (IntPtr channelgroup);
 		
@@ -59,105 +60,139 @@ namespace Xpod.FmodSharp.Channel
 		//TODO Implement extern funcitons
 		/*
 	
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetSystemObject (IntPtr channelgroup, ref IntPtr system);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_SetVolume (IntPtr channelgroup, float volume);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetVolume (IntPtr channelgroup, ref float volume);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_SetPitch (IntPtr channelgroup, float pitch);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetPitch (IntPtr channelgroup, ref float pitch);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_Set3DOcclusion (IntPtr channelgroup, float directocclusion, float reverbocclusion);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_Get3DOcclusion (IntPtr channelgroup, ref float directocclusion, ref float reverbocclusion);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_SetPaused (IntPtr channelgroup, int paused);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetPaused (IntPtr channelgroup, ref int paused);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_SetMute (IntPtr channelgroup, int mute);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetMute (IntPtr channelgroup, ref int mute);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_Stop (IntPtr channelgroup);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_OverridePaused (IntPtr channelgroup, int paused);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_OverrideVolume (IntPtr channelgroup, float volume);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_OverrideFrequency (IntPtr channelgroup, float frequency);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_OverridePan (IntPtr channelgroup, float pan);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_OverrideMute (IntPtr channelgroup, int mute);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_OverrideReverbProperties (IntPtr channelgroup, ref REVERB_CHANNELPROPERTIES prop);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_Override3DAttributes (IntPtr channelgroup, ref VECTOR pos, ref VECTOR vel);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_OverrideSpeakerMix (IntPtr channelgroup, float frontleft, float frontright, float center, float lfe, float backleft, float backright, float sideleft, float sideright);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_AddGroup (IntPtr channelgroup, IntPtr @group);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetNumGroups (IntPtr channelgroup, ref int numgroups);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetGroup (IntPtr channelgroup, int index, ref IntPtr @group);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetParentGroup (IntPtr channelgroup, ref IntPtr @group);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetDSPHead (IntPtr channelgroup, ref IntPtr dsp);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_AddDSP (IntPtr channelgroup, IntPtr dsp, ref IntPtr connection);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetName (IntPtr channelgroup, StringBuilder name, int namelen);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetNumChannels (IntPtr channelgroup, ref int numchannels);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetChannel (IntPtr channelgroup, int index, ref IntPtr channel);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetSpectrum (IntPtr channelgroup, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetWaveData (IntPtr channelgroup, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_SetUserData (IntPtr channelgroup, IntPtr userdata);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetUserData (IntPtr channelgroup, ref IntPtr userdata);
 
+		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport(VERSION.dll)]
 		private static extern RESULT FMOD_ChannelGroup_GetMemoryInfo (IntPtr channelgroup, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
 		*/
