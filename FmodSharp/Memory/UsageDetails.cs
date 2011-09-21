@@ -295,5 +295,6 @@ namespace Xpod.FmodSharp.Memory
 		/// Event instance pool memory
 		/// </summary>
         public readonly uint EventInstancePool;
+		
 	}
 }

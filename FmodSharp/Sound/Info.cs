@@ -41,6 +41,7 @@ namespace Xpod.FmodSharp.Sound
 	[StructLayout(LayoutKind.Sequential)]
 	public struct Info
 	{
+		
 		/// <summary>
 		/// [in] Size of this structure.
 		/// This is used so the structure can be expanded in the future and still work on older versions of FMOD Ex.
@@ -239,6 +240,7 @@ namespace Xpod.FmodSharp.Sound
 		/// See FMOD_SOUND_TYPE for what each codec might take here.
 		/// </summary>
 		public IntPtr ExtraCodecData;
+		
 	}
 	
 	

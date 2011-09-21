@@ -70,7 +70,8 @@ namespace Xpod.FmodSharp
 		_2D = 0x8,
 		
 		/// <summary>
-		/// Makes the sound positionable in 3D.  Overrides FMOD_2D.
+		/// Makes the sound positionable in 3D.
+		/// Overrides FMOD_2D.
 		/// </summary>
 		_3D = 0x10,
 		
@@ -215,7 +216,7 @@ namespace Xpod.FmodSharp
 		/// Skips id3v2/asf/etc tag checks when opening a sound,
 		/// to reduce seek/read overhead when opening files (helps with CD performance).
 		/// </summary>
-		IGNORETAGS = 0x2000000,
+		IgnoreTags = 0x2000000,
 		
 		/// <summary>
 		/// Removes some features from samples to give a lower memory overhead, like FMOD_Sound_GetName.

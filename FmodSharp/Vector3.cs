@@ -26,6 +26,7 @@ using System.Runtime.InteropServices;
 
 namespace Xpod.FmodSharp
 {
+	
 	/// <summary>
 	/// Structure describing a point in 3D space.
 	/// </summary>

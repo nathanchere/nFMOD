@@ -117,9 +117,9 @@ namespace Xpod.FmodSharp.Sound
 		VAG,
 		// PlayStation 2 / PlayStation Portable adpcm VAG format.
 		
-		AUDIOQUEUE,
+		AudioQueue,
 		/* iPhone hardware decoder, supports AAC, ALAC and MP3. */
-        
+		
 		XWMA,
 		/* Xbox360 XWMA */
 	}

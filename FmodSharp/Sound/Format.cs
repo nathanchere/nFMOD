@@ -25,11 +25,13 @@ using System;
 
 namespace Xpod.FmodSharp.Sound
 {
+	
 	/// <summary>
 	/// These definitions describe the native format of the hardware or software buffer that will be used.
 	/// </summary>
 	public enum Format
 	{
+		
 		/// <summary>
 		/// Unitialized / unknown.
 		/// </summary>
