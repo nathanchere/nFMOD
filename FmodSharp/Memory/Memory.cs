@@ -23,6 +23,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Xpod.FmodSharp.Memory
 {
@@ -44,8 +45,7 @@ namespace Xpod.FmodSharp.Memory
 			Error.Errors.ThrowError (ReturnCode);
 		}
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_Memory_GetStats")]
+		[DllImport("fmodex", EntryPoint = "FMOD_Memory_GetStats"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetStats_External (ref int currentalloced, ref int maxalloced, bool blocking);
 		
 	}

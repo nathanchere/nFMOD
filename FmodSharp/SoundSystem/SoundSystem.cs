@@ -23,6 +23,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Xpod.FmodSharp.SoundSystem
 {
@@ -84,20 +85,16 @@ namespace Xpod.FmodSharp.SoundSystem
 			CloseSystem (this.DangerousGetHandle ());
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Create")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Create"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Create (ref IntPtr system);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Release")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Release"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Release (IntPtr system);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Init")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Init"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Init (IntPtr system, int Maxchannels, InitFlags Flags, IntPtr Extradriverdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Close")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Close"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CloseSystem (IntPtr system);
 
 		#endregion
@@ -147,8 +144,7 @@ namespace Xpod.FmodSharp.SoundSystem
 			return Error.Code.OK;
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetCallback")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetCallback"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code FMOD_System_SetCallback (IntPtr system, SystemDelegate callback);
 		
 		#endregion
@@ -187,20 +183,16 @@ namespace Xpod.FmodSharp.SoundSystem
 			}
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkProxy")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkProxy"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetNetworkProxy (IntPtr system, string proxy);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkProxy")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkProxy"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetNetworkProxy (IntPtr system, System.Text.StringBuilder proxy, int proxylen);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkTimeout")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkTimeout"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetNetworkTimeout (IntPtr system, int timeout);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkTimeout")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkTimeout"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetNetworkTimeout (IntPtr system, ref int timeout);
 		
 		#endregion
@@ -218,8 +210,7 @@ namespace Xpod.FmodSharp.SoundSystem
 			}
 		}
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetVersion")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetVersion"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetVersion (IntPtr system, ref uint version);
 		
 		#endregion
@@ -241,12 +232,10 @@ namespace Xpod.FmodSharp.SoundSystem
 			}
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetOutput")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetOutput"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetOutput (IntPtr system, OutputType output);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutput")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutput"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetOutput (IntPtr system, ref OutputType output);
 		
 		#region Channels
@@ -268,20 +257,17 @@ namespace Xpod.FmodSharp.SoundSystem
 			}
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetChannelsPlaying")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetChannelsPlaying"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetChannelsPlaying (IntPtr system, ref int channels);
 		
 		#endregion
 		
 		#region Group
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateChannelGroup")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateChannelGroup"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateChannelGroup (IntPtr system, string name, ref IntPtr channelgroup);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSoundGroup")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSoundGroup"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateSoundGroup (IntPtr system, string name, ref IntPtr soundgroup);
 
 		#endregion
@@ -359,24 +345,19 @@ namespace Xpod.FmodSharp.SoundSystem
 				throw new Exception("Channel handle got changed by Fmod.");
 		}
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateSound (IntPtr system, string name, Mode mode, ref Sound.Info exinfo, ref IntPtr Sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateSound (IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateSound")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateSound (IntPtr system, byte[] data, Mode mode, ref Sound.Info exinfo, ref IntPtr sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateSound")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateSound (IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_PlaySound")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code PlaySound (IntPtr system, Channel.Index channelid, IntPtr Sound, bool paused, ref IntPtr channel);
 		
 		#endregion
@@ -423,20 +404,16 @@ namespace Xpod.FmodSharp.SoundSystem
 			return new Sound.Sound (SoundHandle);
 		}
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateStream (IntPtr system, string name, Mode mode, ref Sound.Info exinfo, ref IntPtr Sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateStream (IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateStream")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateStream (IntPtr system, byte[] data, Mode mode, ref Sound.Info exinfo, ref IntPtr sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateStream")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateStream (IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
 
 		#endregion
@@ -445,20 +422,16 @@ namespace Xpod.FmodSharp.SoundSystem
 		
 		#region Recording
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordPosition")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordPosition"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetRecordPosition (IntPtr system, int id, ref uint position);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_RecordStart")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_RecordStart"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code RecordStart (IntPtr system, int id, IntPtr sound, int loop);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_RecordStop")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_RecordStop"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code RecordStop (IntPtr system, int id);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_IsRecording")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_IsRecording"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code IsRecording (IntPtr system, int id, ref int recording);
 
 		#endregion
@@ -489,12 +462,10 @@ namespace Xpod.FmodSharp.SoundSystem
 			GetWaveData(this.DangerousGetHandle(), wavearray, numvalues, channeloffset);
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSpectrum")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSpectrum"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetWaveData")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetWaveData"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetWaveData (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 		
 		#endregion
@@ -511,12 +482,10 @@ namespace Xpod.FmodSharp.SoundSystem
 			UpdateFinished (this.DangerousGetHandle ());
 		}
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Update")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Update"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Update (IntPtr system);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_UpdateFinished")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_UpdateFinished"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code UpdateFinished (IntPtr system);
 
 		#endregion
@@ -525,454 +494,342 @@ namespace Xpod.FmodSharp.SoundSystem
 		
 		/*
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPHead")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPHead"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetDSPHead (IntPtr system, ref IntPtr dsp);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetHardwareChannels")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetHardwareChannels"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetHardwareChannels (IntPtr system, int min2d, int max2d, int min3d, int max3d);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetHardwareChannels")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetHardwareChannels"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetHardwareChannels (IntPtr system, ref int num2d, ref int num3d, ref int total);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetSoftwareChannels")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetSoftwareChannels"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetSoftwareChannels (IntPtr system, int numsoftwarechannels);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSoftwareChannels")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSoftwareChannels"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetSoftwareChannels (IntPtr system, ref int numsoftwarechannels);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetSoftwareFormat")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetSoftwareFormat (IntPtr system, int samplerate, Sound.Format format, int numoutputchannels, int maxinputchannels, Dsp.Resampler resamplemethod);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSoftwareFormat")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetSoftwareFormat (IntPtr system, ref int samplerate, ref Sound.Format format, ref int numoutputchannels, ref int maxinputchannels, ref Dsp.Resampler resamplemethod, ref int bits);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetDSPBufferSize")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetDSPBufferSize (IntPtr system, uint bufferlength, int numbuffers);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPBufferSize")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetDSPBufferSize (IntPtr system, ref uint bufferlength, ref int numbuffers);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetFileSystem")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetFileSystem"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetFileSystem (IntPtr system, File_OpenDelegate useropen, File_CloseDelegate userclose, File_ReadDelegate userread, File_SeekDelegate userseek, File_AsyncReadDelegate userasyncread, File_AsyncCancelDelegate userasynccancel, int blockalign);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_AttachFileSystem")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_AttachFileSystem"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code AttachFileSystem (IntPtr system, File_OpenDelegate useropen, File_CloseDelegate userclose, File_ReadDelegate userread, File_SeekDelegate userseek);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetPluginPath")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetPluginPath"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetPluginPath (IntPtr system, string path);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_LoadPlugin")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_LoadPlugin"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code LoadPlugin (IntPtr system, string filename, ref uint handle, uint priority);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_UnloadPlugin")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_UnloadPlugin"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code UnloadPlugin (IntPtr system, uint handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumPlugins")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumPlugins"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetNumPlugins (IntPtr system, Plugin.Type plugintype, ref int numplugins);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetPluginHandle")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetPluginHandle"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetPluginHandle (IntPtr system, Plugin.Type plugintype, int index, ref uint handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetPluginInfo")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetPluginInfo"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetPluginInfo (IntPtr system, uint handle, ref PLUGINTYPE plugintype, StringBuilder name, int namelen, ref uint version);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateDSPByPlugin")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateDSPByPlugin"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateDSPByPlugin (IntPtr system, uint handle, ref IntPtr dsp);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateCodec")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateCodec"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateCodec (IntPtr system, IntPtr description, uint priority);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetOutputByPlugin")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetOutputByPlugin (IntPtr system, uint handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutputByPlugin")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetOutputByPlugin (IntPtr system, ref uint handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetAdvancedSettings")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetAdvancedSettings"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetAdvancedSettings (IntPtr system, ref ADVANCEDSETTINGS settings);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetAdvancedSettings")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetAdvancedSettings"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetAdvancedSettings (IntPtr system, ref ADVANCEDSETTINGS settings);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetSpeakerMode")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetSpeakerMode"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetSpeakerMode (IntPtr system, SpeakerMode speakermode);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSpeakerMode")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSpeakerMode"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetSpeakerMode (IntPtr system, ref SpeakerMode speakermode);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DRolloffCallback")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DRolloffCallback"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Set3DRolloffCallback (IntPtr system, CB_3D_RollOffDelegate callback);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DSpeakerPosition")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DSpeakerPosition"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Set3DSpeakerPosition (IntPtr system, Speaker speaker, float x, float y, int active);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DSpeakerPosition")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DSpeakerPosition"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Get3DSpeakerPosition (IntPtr system, Speaker speaker, ref float x, ref float y, ref int active);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DSettings")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DSettings"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Set3DSettings (IntPtr system, float dopplerscale, float distancefactor, float rolloffscale);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DSettings")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DSettings"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Get3DSettings (IntPtr system, ref float dopplerscale, ref float distancefactor, ref float rolloffscale);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DNumListeners")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DNumListeners"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Set3DNumListeners (IntPtr system, int numlisteners);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DNumListeners")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DNumListeners"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Get3DNumListeners (IntPtr system, ref int numlisteners);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DListenerAttributes")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Set3DListenerAttributes"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Set3DListenerAttributes (IntPtr system, int listener, ref Vector3 pos, ref Vector3 vel, ref Vector3 forward, ref Vector3 up);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DListenerAttributes")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_Get3DListenerAttributes"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Get3DListenerAttributes (IntPtr system, int listener, ref Vector3 pos, ref Vector3 vel, ref Vector3 forward, ref Vector3 up);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetFileBufferSize")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetFileBufferSize"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetFileBufferSize (IntPtr system, int sizebytes);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetFileBufferSize")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetFileBufferSize"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetFileBufferSize (IntPtr system, ref int sizebytes);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetStreamBufferSize")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetStreamBufferSize (IntPtr system, uint filebuffersize, TimeUnit filebuffersizetype);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetStreamBufferSize")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetStreamBufferSize (IntPtr system, ref uint filebuffersize, ref TimeUnit filebuffersizetype);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutputHandle")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutputHandle"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetOutputHandle (IntPtr system, ref IntPtr handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetCPUUsage")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetCPUUsage"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetCPUUsage (IntPtr system, ref float dsp, ref float stream, ref float geometry, ref float update, ref float total);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSoundRAM")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSoundRAM"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetSoundRAM (IntPtr system, ref int currentalloced, ref int maxalloced, ref int total);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumCDROMDrives")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumCDROMDrives"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetNumCDROMDrives (IntPtr system, ref int numdrives);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetCDROMDriveName")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetCDROMDriveName"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetCDROMDriveName (IntPtr system, int drive, StringBuilder drivename, int drivenamelen, StringBuilder scsiname, int scsinamelen, StringBuilder devicename, int devicenamelen);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetChannel")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetChannel"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetChannel (IntPtr system, int channelid, ref IntPtr channel);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetMasterChannelGroup")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetMasterChannelGroup"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetMasterChannelGroup (IntPtr system, ref IntPtr channelgroup);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetMasterSoundGroup")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetMasterSoundGroup"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetMasterSoundGroup (IntPtr system, ref IntPtr soundgroup);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateGeometry")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateGeometry"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code CreateGeometry (IntPtr system, int maxpolygons, int maxvertices, ref IntPtr geometry);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetGeometrySettings")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetGeometrySettings"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetGeometrySettings (IntPtr system, float maxworldsize);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetGeometrySettings")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetGeometrySettings"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetGeometrySettings (IntPtr system, ref float maxworldsize);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_LoadGeometry")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_LoadGeometry"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code LoadGeometry (IntPtr system, IntPtr data, int datasize, ref IntPtr geometry);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetGeometryOcclusion")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetGeometryOcclusion"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetGeometryOcclusion (IntPtr system, ref Vector3 listener, ref Vector3 source, ref float direct, ref float reverb);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetUserData")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetUserData"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetUserData (IntPtr system, IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetUserData")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetUserData"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetUserData (IntPtr system, ref IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetMemoryInfo")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetMemoryInfo"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetMemoryInfo (IntPtr system, uint memorybits, uint event_memorybits, ref uint memoryused, ref Memory.UsageDetails memoryused_details);
 
 		
 		 //Old Methods
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetHardwareChannels")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetHardwareChannels"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetHardwareChannels (IntPtr system, int Min2d, int Max2d, int Min3d, int Max3d);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetSoftwareChannels")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetSoftwareChannels"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetSoftwareChannels (IntPtr system, int Numsoftwarechannels);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSoftwareChannels")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSoftwareChannels"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetSoftwareChannels (IntPtr system, ref int Numsoftwarechannels);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetSoftwareFormat")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetSoftwareFormat (IntPtr system, int Samplerate, Sound.Format format, int Numoutputchannels, int Maxinputchannels, Dsp.Resampler Resamplemethod);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSoftwareFormat")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetSoftwareFormat (IntPtr system, ref int Samplerate, ref Sound.Format format, ref int Numoutputchannels, ref int Maxinputchannels, ref Dsp.Resampler Resamplemethod, ref int Bits);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetDSPBufferSize")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetDSPBufferSize (IntPtr system, int Bufferlength, int Numbuffers);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetDSPBufferSize")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetDSPBufferSize (IntPtr system, ref int Bufferlength, ref int Numbuffers);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetFileSystem")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetFileSystem"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetFileSystem (IntPtr system, int useropen, int userclose, int userread, int userseek, int Buffersize);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_AttachFileSystem")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_AttachFileSystem"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code AttachFileSystem (IntPtr system, int useropen, int userclose, int userread, int userseek);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetAdvancedSettings")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetAdvancedSettings"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetAdvancedSettings (IntPtr system, ref FMOD_ADVANCEDSETTINGS settings);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetAdvancedSettings")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetAdvancedSettings"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetAdvancedSettings (IntPtr system, ref FMOD_ADVANCEDSETTINGS settings);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetSpeakerMode")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetSpeakerMode"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetSpeakerMode (IntPtr system, SpeakerMode Speakermode);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSpeakerMode")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSpeakerMode"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetSpeakerMode (IntPtr system, ref SpeakerMode Speakermode);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetPluginPath")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetPluginPath"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetPluginPath (IntPtr system, string Path);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_LoadPlugin")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_LoadPlugin"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code LoadPlugin (IntPtr system, string Filename, ref int Handle, int Priority);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_UnloadPlugin")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_UnloadPlugin"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code UnloadPlugin (IntPtr system, int Handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetNumPlugins")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetNumPlugins"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetNumPlugins (IntPtr system, Plugin.Type Plugintype, ref int Numplugins);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetPluginHandle")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetPluginHandle"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetPluginHandle (IntPtr system, Plugin.Type Plugintype, int Index, ref int Handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetPluginInfo")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetPluginInfo"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetPluginInfo (IntPtr system, int Handle, ref Plugin.Type Plugintype, ref byte name, int namelen, ref int version);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetOutputByPlugin")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetOutputByPlugin (IntPtr system, int Handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetOutputByPlugin")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetOutputByPlugin (IntPtr system, ref int Handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByPlugin")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByPlugin"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code CreateDSPByPlugin (IntPtr system, int Handle, ref int Dsp);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateCodec")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateCodec"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code CreateCodec (IntPtr system, int CodecDescription);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DSettings")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DSettings"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Set3DSettings (IntPtr system, float Dopplerscale, float Distancefactor, float Rolloffscale);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DSettings")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DSettings"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Get3DSettings (IntPtr system, ref float Dopplerscale, ref float Distancefactor, ref float Rolloffscale);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DNumListeners")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DNumListeners"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Set3DNumListeners (IntPtr system, int Numlisteners);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DNumListeners")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DNumListeners"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Get3DNumListeners (IntPtr system, ref int Numlisteners);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DListenerAttributes")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DListenerAttributes"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Set3DListenerAttributes (IntPtr system, int Listener, ref Vector3 Pos, ref Vector3 Vel, ref Vector3 Forward, ref Vector3 Up);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DListenerAttributes")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DListenerAttributes"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Get3DListenerAttributes (IntPtr system, int Listener, ref Vector3 Pos, ref Vector3 Vel, ref Vector3 Forward, ref Vector3 Up);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DRolloffCallback")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DRolloffCallback"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Set3DRolloffCallback (IntPtr system, int Callback);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DSpeakerPosition")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DSpeakerPosition"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Set3DSpeakerPosition (IntPtr system, Speaker speaker, float X, float Y, int active);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DSpeakerPosition")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DSpeakerPosition"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code Get3DSpeakerPosition (IntPtr system, ref Speaker speaker, ref float X, ref float Y, ref int active);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetStreamBufferSize")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetStreamBufferSize (IntPtr system, int Filebuffersize, TimeUnit Filebuffersizetype);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetStreamBufferSize")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetStreamBufferSize (IntPtr system, ref int Filebuffersize, ref TimeUnit Filebuffersizetype);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetOutputHandle")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetOutputHandle"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetOutputHandle (IntPtr system, ref int Handle);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetChannelsPlaying")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetChannelsPlaying"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetChannelsPlaying (IntPtr system, ref int Channels);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetHardwareChannels")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetHardwareChannels"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetHardwareChannels (IntPtr system, ref int Num2d, ref int Num3d, ref int total);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetCPUUsage")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetCPUUsage"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetCPUUsage (IntPtr system, ref float Dsp, ref float Stream, ref float Geometry, ref float Update, ref float total);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSoundRAM")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetSoundRAM"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetSoundRAM (IntPtr system, ref int currentalloced, ref int maxalloced, ref int total);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetNumCDROMDrives")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetNumCDROMDrives"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetNumCDROMDrives (IntPtr system, ref int Numdrives);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetCDROMDriveName")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetCDROMDriveName"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetCDROMDriveName (IntPtr system, int Drive, ref byte Drivename, int Drivenamelen, ref byte Scsiname, int Scsinamelen, ref byte Devicename, int Devicenamelen);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSP")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSP"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code CreateDSP (IntPtr system, ref FMOD_DSP_DESCRIPTION description, ref int Dsp);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByType")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code CreateDSPByType (IntPtr system, Dsp.Type dsptype, ref int Dsp);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByIndex")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByIndex"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code CreateDSPByIndex (IntPtr system, int Index, ref int Dsp);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_PlayDSP")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code PlayDSP (IntPtr system, Channel.Index channelid, int Dsp, int paused, ref int channel);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetChannel")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetChannel"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetChannel (IntPtr system, int channelid, ref int channel);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetMasterChannelGroup")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetMasterChannelGroup"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetMasterChannelGroup (IntPtr system, ref int Channelgroup);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetMasterSoundGroup")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetMasterSoundGroup"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetMasterSoundGroup (IntPtr system, ref int soundgroup);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetReverbProperties")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetReverbProperties"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetReverbProperties (IntPtr system, ref Reverb.Properties Prop);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetReverbProperties")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetReverbProperties"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetReverbProperties (IntPtr system, ref Reverb.Properties Prop);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetReverbAmbientProperties")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetReverbAmbientProperties"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetReverbAmbientProperties (IntPtr system, ref Reverb.Properties Prop);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetReverbAmbientProperties")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetReverbAmbientProperties"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetReverbAmbientProperties (IntPtr system, ref Reverb.Properties Prop);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateGeometry")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateGeometry"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code CreateGeometry (IntPtr system, int MaxPolygons, int MaxVertices, ref int Geometryf);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetGeometrySettings")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetGeometrySettings"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetGeometrySettings (IntPtr system, float Maxworldsize);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetGeometrySettings")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetGeometrySettings"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetGeometrySettings (IntPtr system, ref float Maxworldsize);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_LoadGeometry")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_LoadGeometry"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code LoadGeometry (IntPtr system, int Data, int DataSize, ref int Geometry);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetUserData")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetUserData"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code SetUserData (IntPtr system, int userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetUserData")]
+		[DllImport("fmodex", CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetUserData"), SuppressUnmanagedCodeSecurity]
 		public static extern Error.Code GetUserData (IntPtr system, ref int userdata);
 		
 		*/

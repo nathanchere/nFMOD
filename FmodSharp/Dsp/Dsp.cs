@@ -172,8 +172,7 @@ namespace Xpod.FmodSharp.Dsp
 		[DllImport (VERSION.dll)]
         private static extern RESULT FMOD_DSP_GetUserData               (IntPtr dsp, ref IntPtr userdata);
         
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
         private static extern RESULT FMOD_DSP_GetMemoryInfo             (IntPtr dsp, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
 		*/
 	}

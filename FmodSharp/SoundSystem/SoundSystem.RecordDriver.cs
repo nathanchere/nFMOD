@@ -24,6 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Security;
 
 namespace Xpod.FmodSharp.SoundSystem
 {
@@ -86,20 +87,16 @@ namespace Xpod.FmodSharp.SoundSystem
 			};
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordNumDrivers")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordNumDrivers"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetRecordNumDrivers (IntPtr system, out int numdrivers);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfo")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfo"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetRecordDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfoW")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfoW"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code FMOD_System_GetRecordDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverCaps")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverCaps"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetRecordDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency);
 		
 	}

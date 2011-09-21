@@ -23,6 +23,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Xpod.FmodSharp.Dsp
 {
@@ -66,12 +67,10 @@ namespace Xpod.FmodSharp.Dsp
 			}
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_SetMix")]
+		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_SetMix"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetMix (IntPtr dspconnection, float volume);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_GetMix")]
+		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_GetMix"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetMix (IntPtr dspconnection, ref float volume);
 
 		#endregion
@@ -79,32 +78,25 @@ namespace Xpod.FmodSharp.Dsp
 		//TODO Implement extern funcitons
 		
 		/*
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_DSPConnection_GetInput (IntPtr dspconnection, ref IntPtr input);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_DSPConnection_GetOutput (IntPtr dspconnection, ref IntPtr output);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_DSPConnection_SetLevels (IntPtr dspconnection, SPEAKER speaker, float[] levels, int numlevels);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_DSPConnection_GetLevels (IntPtr dspconnection, SPEAKER speaker, [MarshalAs(UnmanagedType.LPArray)] float[] levels, int numlevels);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_DSPConnection_SetUserData (IntPtr dspconnection, IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_DSPConnection_GetUserData (IntPtr dspconnection, ref IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_DSPConnection_GetMemoryInfo (IntPtr dspconnection, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
 		*/
 	}

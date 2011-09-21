@@ -23,6 +23,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Xpod.FmodSharp.Sound
 {
@@ -50,8 +51,7 @@ namespace Xpod.FmodSharp.Sound
 			return true;
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_SoundGroup_Release")]
+		[DllImport("fmodex", EntryPoint = "FMOD_SoundGroup_Release"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Release (IntPtr soundgroup);
 
 		#endregion
@@ -59,72 +59,55 @@ namespace Xpod.FmodSharp.Sound
 		//TODO Implement extern funcitons
 		/*
 	
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetSystemObject (IntPtr soundgroup, ref IntPtr system);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_SetMaxAudible (IntPtr soundgroup, int maxaudible);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetMaxAudible (IntPtr soundgroup, ref int maxaudible);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_SetMaxAudibleBehavior (IntPtr soundgroup, SOUNDGROUP_BEHAVIOR behavior);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetMaxAudibleBehavior (IntPtr soundgroup, ref SOUNDGROUP_BEHAVIOR behavior);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_SetMuteFadeSpeed (IntPtr soundgroup, float speed);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetMuteFadeSpeed (IntPtr soundgroup, ref float speed);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_SetVolume (IntPtr soundgroup, float volume);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetVolume (IntPtr soundgroup, ref float volume);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_Stop (IntPtr soundgroup);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetName (IntPtr soundgroup, StringBuilder name, int namelen);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetNumSounds (IntPtr soundgroup, ref int numsounds);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetSound (IntPtr soundgroup, int index, ref IntPtr sound);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetNumPlaying (IntPtr soundgroup, ref int numplaying);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_SetUserData (IntPtr soundgroup, IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetUserData (IntPtr soundgroup, ref IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_SoundGroup_GetMemoryInfo (IntPtr soundgroup, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
 		*/
 	}

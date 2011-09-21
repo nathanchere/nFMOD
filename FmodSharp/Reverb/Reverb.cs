@@ -23,6 +23,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Xpod.FmodSharp.Reverb
 {
@@ -50,8 +51,7 @@ namespace Xpod.FmodSharp.Reverb
 			return true;
 		}
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_Release")]
+		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_Release"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code Release (IntPtr reverb);
 		
 		#endregion
@@ -71,12 +71,10 @@ namespace Xpod.FmodSharp.Reverb
 			}
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_SetProperties")]
+		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetProperties (IntPtr reverb, ref Properties properties);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_GetProperties")]
+		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetProperties (IntPtr reverb, ref Properties properties);
 		
 		
@@ -84,32 +82,25 @@ namespace Xpod.FmodSharp.Reverb
 		
 		/*
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_Reverb_Set3DAttributes (IntPtr reverb, ref VECTOR position, float mindistance, float maxdistance);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_Reverb_Get3DAttributes (IntPtr reverb, ref VECTOR position, ref float mindistance, ref float maxdistance);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_Reverb_SetActive (IntPtr reverb, int active);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_Reverb_GetActive (IntPtr reverb, ref int active);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_Reverb_SetUserData (IntPtr reverb, IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_Reverb_GetUserData (IntPtr reverb, ref IntPtr userdata);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport(VERSION.dll)]
+		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
 		private static extern RESULT FMOD_Reverb_GetMemoryInfo (IntPtr reverb, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
 		*/
 	}

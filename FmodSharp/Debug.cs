@@ -23,6 +23,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Xpod.FmodSharp
 {
@@ -121,12 +122,10 @@ namespace Xpod.FmodSharp
 			}
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel")]
+		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetLevel (int Level);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel")]
+		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetLevel (ref int Level);
 		
 	}

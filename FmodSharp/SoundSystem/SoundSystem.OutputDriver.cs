@@ -24,6 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Security;
 
 namespace Xpod.FmodSharp.SoundSystem
 {
@@ -101,28 +102,22 @@ namespace Xpod.FmodSharp.SoundSystem
 			};
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumDrivers")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumDrivers"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetNumDrivers (IntPtr system, out int Numdrivers);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfo")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfo"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfoW")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfoW"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverCaps")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverCaps"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetDriver")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_SetDriver"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetDriver (IntPtr system, int driver);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriver")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriver"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetDriver (IntPtr system, out int driver);
 		
 	}

@@ -23,6 +23,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace Xpod.FmodSharp.SoundSystem
 {
@@ -116,24 +117,19 @@ namespace Xpod.FmodSharp.SoundSystem
 		[DllImport ("fmodex", EntryPoint = "FMOD_System_CreateDSPByType")]
 		private static extern Error.Code CreateDspByType (IntPtr system, Dsp.Type type, ref IntPtr dsp);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_PlayDSP")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code PlayDsp (IntPtr system, Channel.Index channelid, IntPtr dsp, bool paused, ref IntPtr channel);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_AddDSP")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_AddDSP"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code AddDSP (IntPtr system, IntPtr dsp, ref IntPtr connection);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_LockDSP")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_LockDSP"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code LockDSP (IntPtr system);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_UnlockDSP")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_UnlockDSP"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code UnlockDSP (IntPtr system);
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPClock")]
+		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDSPClock"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code GetDSPClock (IntPtr system, ref uint hi, ref uint lo);
 	}
 }
