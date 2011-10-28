@@ -31,7 +31,7 @@ namespace Xpod.FmodSharp
 		public Handle () : this(IntPtr.Zero)
 		{
 		}
-		public Handle (IntPtr Handle) : this(IntPtr.Zero, true)
+		public Handle (IntPtr Handle) : this(Handle, true)
 		{
 		}
 		public Handle (IntPtr Handle, bool OwnsHandle) : base(IntPtr.Zero, OwnsHandle)
@@ -44,6 +44,6 @@ namespace Xpod.FmodSharp
 				return (this.handle == IntPtr.Zero || (int)this.handle == -1);
 			}
 		}
+		
 	}
-	
 }
