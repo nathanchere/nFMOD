@@ -22,3 +22,12 @@ Thumbs.db
 ##########
 *.userprefs
 *.pidb
+
+# Include #
+###########
+!/Dependencies/*.dll
+!/Dependencies/*.dll.config
+!/Dependencies/*.so
+!/Dependencies/*/*.dll
+!/Dependencies/*/*.dll.config
+!/Dependencies/*/*.so
