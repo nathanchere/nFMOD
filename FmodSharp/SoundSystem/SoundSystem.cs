@@ -273,7 +273,12 @@ namespace Xpod.FmodSharp.SoundSystem
 		#endregion
 		
 		#region Sound
-
+		
+		public Sound.Sound CreateSound (string path)
+		{
+			return this.CreateSound(path, Mode.Default);
+		}
+		
 		public Sound.Sound CreateSound (string path, Mode mode)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
@@ -283,7 +288,7 @@ namespace Xpod.FmodSharp.SoundSystem
 			
 			return new Sound.Sound (SoundHandle);
 		}
-
+		
 		public Sound.Sound CreateSound (string path, Mode mode, Sound.Info exinfo)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
@@ -292,6 +297,11 @@ namespace Xpod.FmodSharp.SoundSystem
 			Error.Errors.ThrowError (ReturnCode);
 			
 			return new Sound.Sound (SoundHandle);
+		}
+		
+		public Sound.Sound CreateSound (byte[] data)
+		{
+			return this.CreateSound(data, Mode.Default);
 		}
 
 		public Sound.Sound CreateSound (byte[] data, Mode mode)
@@ -316,7 +326,7 @@ namespace Xpod.FmodSharp.SoundSystem
 		
 		public Channel.Channel PlaySound (Sound.Sound snd)
 		{
-			return PlaySound (snd, false);
+			return this.PlaySound (snd, false);
 		}
 
 		public Channel.Channel PlaySound (Sound.Sound snd, bool paused)
