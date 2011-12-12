@@ -42,19 +42,14 @@ namespace PlayFile
 			Console.WriteLine ("Default Output: {0}", SoundSystem.Output);
 			
 			SoundSystem.Init();
-			
-			Xpod.FmodSharp.Channel.Channel Chan = null;
-			
 			SoundSystem.ReverbProperties = Xpod.FmodSharp.Reverb.Presets.Room;
 			
 			if (args.Length > 0) {
 				foreach (string StringItem in args) {
 					Xpod.FmodSharp.Sound.Sound SoundFile;
-					SoundFile = SoundSystem.CreateSound (StringItem, Xpod.FmodSharp.Mode.Default);
+					SoundFile = SoundSystem.CreateSound (StringItem);
 					
-					if(Chan != null)
-						Chan.Dispose();
-					
+					Xpod.FmodSharp.Channel.Channel Chan;
 					Chan = SoundSystem.PlaySound(SoundFile);
 					
 					while(Chan.IsPlaying) {
@@ -62,6 +57,7 @@ namespace PlayFile
 					}
 					
 					SoundFile.Dispose();
+					Chan.Dispose();
 				}
 				
 			} else {
