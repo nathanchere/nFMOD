@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Xpod.FmodSharp
+namespace Linsft.FmodSharp
 {
 	public abstract class Handle : SafeHandle
 	{

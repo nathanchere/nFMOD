@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Xpod.FmodSharp
+namespace Linsft.FmodSharp
 {
 	public delegate Error.Code File_OpenDelegate ([MarshalAs(UnmanagedType.LPWStr)]string name, int unicode, ref uint filesize, ref IntPtr handle, ref IntPtr userdata);
     public delegate Error.Code File_CloseDelegate (IntPtr handle, IntPtr userdata);

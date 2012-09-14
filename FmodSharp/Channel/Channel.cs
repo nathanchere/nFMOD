@@ -25,7 +25,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace Xpod.FmodSharp.Channel
+namespace Linsft.FmodSharp.Channel
 {
 	public class Channel : Handle, iSpectrumWave
 	{

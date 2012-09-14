@@ -25,7 +25,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace Xpod.FmodSharp.Sound
+namespace Linsft.FmodSharp.Sound
 {
 	public class Sound : Handle
 	{

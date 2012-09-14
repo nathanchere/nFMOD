@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodTest", "FmodTest\FmodTest.csproj", "{E1C91BDC-C190-4A01-BC2B-168D701475A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodSharp", "FmodSharp\FmodSharp.csproj", "{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}"

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp
+namespace Linsft.FmodSharp
 {
 	/// <summary>
 	/// These are speaker types defined for use with the System::setSpeakerMode or System::getSpeakerMode command.

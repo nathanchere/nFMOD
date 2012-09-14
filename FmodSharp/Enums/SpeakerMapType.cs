@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp
+namespace Linsft.FmodSharp
 {
 	/// <summary>
 	/// When creating a multichannel sound,

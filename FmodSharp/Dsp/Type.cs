@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Dsp
+namespace Linsft.FmodSharp.Dsp
 {
 	/// <summary>
 	/// These definitions can be used for creating FMOD defined special effects or DSP units.

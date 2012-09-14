@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.SoundSystem
+namespace Linsft.FmodSharp.SoundSystem
 {
 	public struct OutputDriver
 	{

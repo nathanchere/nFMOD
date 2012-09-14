@@ -34,25 +34,25 @@ namespace FmodTest
 #if DEBUG
 			
 #else
-			Xpod.FmodSharp.Debug.Level = Xpod.FmodSharp.DebugLevel.Error;
+			Linsft.FmodSharp.Debug.Level = Linsft.FmodSharp.DebugLevel.Error;
 #endif
 			
-			Console.WriteLine ("Level: {0}", Xpod.FmodSharp.Debug.Level);
-			Console.WriteLine ("Type: {0}", Xpod.FmodSharp.Debug.Type);
-			Console.WriteLine ("Display: {0}", Xpod.FmodSharp.Debug.Display);
+			Console.WriteLine ("Level: {0}", Linsft.FmodSharp.Debug.Level);
+			Console.WriteLine ("Type: {0}", Linsft.FmodSharp.Debug.Type);
+			Console.WriteLine ("Display: {0}", Linsft.FmodSharp.Debug.Display);
 			
-			var SoundSystem = new Xpod.FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new Linsft.FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output Type: {0}", SoundSystem.Output);
 			
 			SoundSystem.Init();
 			
-			Xpod.FmodSharp.Channel.Channel Chan = null;
+			Linsft.FmodSharp.Channel.Channel Chan = null;
 			
 			//Create an oscillator DSP unit for the tone.
-			Xpod.FmodSharp.Dsp.Dsp Oscillator;
+			Linsft.FmodSharp.Dsp.Dsp Oscillator;
 			
-			Oscillator = SoundSystem.CreateDspByType(Xpod.FmodSharp.Dsp.Type.Oscillator);
+			Oscillator = SoundSystem.CreateDspByType(Linsft.FmodSharp.Dsp.Type.Oscillator);
 			Chan = SoundSystem.PlayDsp(Oscillator);
 			
 			Console.WriteLine("\nPress Enter to stop.\n");

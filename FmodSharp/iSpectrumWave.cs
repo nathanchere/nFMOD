@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 using System;
-namespace Xpod.FmodSharp
+namespace Linsft.FmodSharp
 {
 	public interface iSpectrumWave
 	{

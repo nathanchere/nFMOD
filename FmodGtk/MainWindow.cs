@@ -26,18 +26,18 @@ using Gtk;
 
 public partial class MainWindow : Gtk.Window
 {
-	Xpod.FmodSharp.Gtk.FFTDraw fft_Draw;
-	Xpod.FmodSharp.SoundSystem.SoundSystem SoundSystem;
-	Xpod.FmodSharp.Channel.Channel Channel;
-	Xpod.FmodSharp.Sound.Sound SoundFile;
+	Linsft.FmodSharp.Gtk.FFTDraw fft_Draw;
+	Linsft.FmodSharp.SoundSystem.SoundSystem SoundSystem;
+	Linsft.FmodSharp.Channel.Channel Channel;
+	Linsft.FmodSharp.Sound.Sound SoundFile;
 	public MainWindow () : base(Gtk.WindowType.Toplevel)
 	{
 		Build ();
 		
-		this.SoundSystem = new Xpod.FmodSharp.SoundSystem.SoundSystem();
+		this.SoundSystem = new Linsft.FmodSharp.SoundSystem.SoundSystem();
 		this.SoundSystem.Init();
 		
-		this.SoundFile = SoundSystem.CreateSound (@"/home/madrang/Music/Tetris.mp3", Xpod.FmodSharp.Mode.Default);
+		this.SoundFile = SoundSystem.CreateSound (@"/home/madrang/Music/Tetris.mp3", Linsft.FmodSharp.Mode.Default);
 		
 		if(this.Channel != null)
 			this.Channel.Dispose();
@@ -45,7 +45,7 @@ public partial class MainWindow : Gtk.Window
 		this.Channel = this.SoundSystem.PlaySound(SoundFile);
 		
 		
-		this.fft_Draw = new Xpod.FmodSharp.Gtk.FFTDraw();
+		this.fft_Draw = new Linsft.FmodSharp.Gtk.FFTDraw();
 		this.fft_Draw.Source = this.Channel;
 		this.fft_Draw.Show();
 		this.Add(this.fft_Draw);

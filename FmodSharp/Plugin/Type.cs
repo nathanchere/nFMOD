@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Plugin
+namespace Linsft.FmodSharp.Plugin
 {
 	//TODO write Summary
 	

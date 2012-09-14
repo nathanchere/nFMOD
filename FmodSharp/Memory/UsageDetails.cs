@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Xpod.FmodSharp.Memory
+namespace Linsft.FmodSharp.Memory
 {
 	//TODO end subbmary
 	

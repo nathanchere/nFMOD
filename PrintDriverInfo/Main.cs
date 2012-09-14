@@ -34,13 +34,13 @@ namespace PrintDriverInfo
 #if DEBUG
 			
 #else
-			Xpod.FmodSharp.Debug.Level = Xpod.FmodSharp.DebugLevel.Error;
+			Linsft.FmodSharp.Debug.Level = Linsft.FmodSharp.DebugLevel.Error;
 #endif
 			
-			var SoundSystem = new Xpod.FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new Linsft.FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine("OutputDrivers");
-			foreach (Xpod.FmodSharp.SoundSystem.OutputDriver DriverItem in SoundSystem.OutputDrivers) {
+			foreach (Linsft.FmodSharp.SoundSystem.OutputDriver DriverItem in SoundSystem.OutputDrivers) {
 				Console.WriteLine("  {0}", DriverItem.Name);
 				Console.WriteLine("    Guid: {0}", DriverItem.Guid);
 				Console.WriteLine("    Capabilities: {0}", DriverItem.Capabilities);
@@ -51,7 +51,7 @@ namespace PrintDriverInfo
 			Console.WriteLine("");
 			
 			Console.WriteLine("RecordDrivers");
-			foreach (Xpod.FmodSharp.SoundSystem.RecordDriver DriverItem in SoundSystem.RecordDrivers) {
+			foreach (Linsft.FmodSharp.SoundSystem.RecordDriver DriverItem in SoundSystem.RecordDrivers) {
 				Console.WriteLine("  {0}", DriverItem.Name);
 				Console.WriteLine("    Guid: {0}", DriverItem.Guid);
 				Console.WriteLine("    Capabilities: {0}", DriverItem.Capabilities);

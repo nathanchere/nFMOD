@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Xpod.FmodSharp.Dsp
+namespace Linsft.FmodSharp.Dsp
 {
 	public class Dsp : Handle
 	{

@@ -26,7 +26,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Security;
 
-namespace Xpod.FmodSharp.SoundSystem
+namespace Linsft.FmodSharp.SoundSystem
 {
 	public partial class SoundSystem
 	{

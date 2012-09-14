@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Sound
+namespace Linsft.FmodSharp.Sound
 {
 	/// <summary>
 	/// These definitions describe the type of song being played.

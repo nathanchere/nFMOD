@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Xpod.FmodSharp.Sound
+namespace Linsft.FmodSharp.Sound
 {
 	/// <summary>
 	/// Use this structure with System::createSound when more control is needed over loading.

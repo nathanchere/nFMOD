@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Memory
+namespace Linsft.FmodSharp.Memory
 {
 	//TODO complete submmary
 	

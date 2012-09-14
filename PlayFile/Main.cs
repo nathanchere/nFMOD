@@ -34,22 +34,22 @@ namespace PlayFile
 #if DEBUG
 			
 #else
-			Xpod.FmodSharp.Debug.Level = Xpod.FmodSharp.DebugLevel.Error;
+			Linsft.FmodSharp.Debug.Level = Linsft.FmodSharp.DebugLevel.Error;
 #endif
 			
-			var SoundSystem = new Xpod.FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new Linsft.FmodSharp.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output: {0}", SoundSystem.Output);
 			
 			SoundSystem.Init();
-			SoundSystem.ReverbProperties = Xpod.FmodSharp.Reverb.Presets.Room;
+			SoundSystem.ReverbProperties = Linsft.FmodSharp.Reverb.Presets.Room;
 			
 			if (args.Length > 0) {
 				foreach (string StringItem in args) {
-					Xpod.FmodSharp.Sound.Sound SoundFile;
+					Linsft.FmodSharp.Sound.Sound SoundFile;
 					SoundFile = SoundSystem.CreateSound (StringItem);
 					
-					Xpod.FmodSharp.Channel.Channel Chan;
+					Linsft.FmodSharp.Channel.Channel Chan;
 					Chan = SoundSystem.PlaySound(SoundFile);
 					
 					while(Chan.IsPlaying) {

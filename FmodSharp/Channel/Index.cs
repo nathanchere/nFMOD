@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Channel
+namespace Linsft.FmodSharp.Channel
 {
 	/// <summary>
 	/// 

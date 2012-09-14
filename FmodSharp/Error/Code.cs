@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Error
+namespace Linsft.FmodSharp.Error
 {
 	public enum Code
 	{

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Sound
+namespace Linsft.FmodSharp.Sound
 {
 	public delegate Error.Code NonBlockDelegate (IntPtr soundraw, Error.Code result);
 	public delegate Error.Code PCMReadDelegate (IntPtr soundraw, IntPtr data, uint datalen);

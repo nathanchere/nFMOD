@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp.Dsp
+namespace Linsft.FmodSharp.Dsp
 {
 	
 	public delegate Error.Code DspDelegate (ref State dsp_state);

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Xpod.FmodSharp
+namespace Linsft.FmodSharp
 {
 	// TODO fix summary method ref
 	
