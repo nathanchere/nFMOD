@@ -13,7 +13,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Binaries\Debug\FmodSharp\FmodGtk</OutputPath>
+    <OutputPath>..\..\bin\Debug\FmodSharp\FmodGtk</OutputPath>
     <DefineConstants>DEBUG</DefineConstants>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -21,7 +21,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\Binaries\Release\FmodSharp\FmodGtk</OutputPath>
+    <OutputPath>..\..\bin\Release\FmodSharp\FmodGtk</OutputPath>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
