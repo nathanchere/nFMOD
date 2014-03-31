@@ -1,3 +1,7 @@
+/*
+ * A port of the main demo from FmodSharp (http://gitorious.org/fmodsharp).
+ */
+
 using System;
 
 namespace nFMOD
