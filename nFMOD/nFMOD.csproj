@@ -92,16 +92,12 @@
     <Compile Include="Dsp\ParameterDescription.cs" />
     <Compile Include="Dsp\FFTWindow.cs" />
     <Compile Include="Reverb\ChannelFlags.cs" />
-    <Compile Include="SoundSystem\Callback.cs" />
-    <Compile Include="SoundSystem\InitFlags.cs" />
     <Compile Include="SoundSystem\SoundSystem.cs" />
-    <Compile Include="SoundSystem\OutputType.cs" />
+    <Compile Include="SoundSystem\SoundSystem.Enums.cs" />
     <Compile Include="iSpectrumWave.cs" />
     <Compile Include="SoundSystem\SoundSystem.Dsp.cs" />
     <Compile Include="SoundSystem\SoundSystem.Reverb.cs" />
     <Compile Include="SoundSystem\SoundSystem.OutputDriver.cs" />
-    <Compile Include="SoundSystem\OutputDriver.cs" />
-    <Compile Include="SoundSystem\RecordDriver.cs" />
     <Compile Include="SoundSystem\SoundSystem.RecordDriver.cs" />
   </ItemGroup>
   <ItemGroup />

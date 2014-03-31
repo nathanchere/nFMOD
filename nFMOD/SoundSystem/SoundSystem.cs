@@ -5,8 +5,9 @@ using System.Security;
 namespace nFMOD.SoundSystem
 {
 	public partial class SoundSystem : Handle, iSpectrumWave
-	{
-		/// <summary>
+    {
+
+        /// <summary>
 		/// Used to check against <see cref="nFMOD.System.Version"/> FMOD::System::getVersion.
 		/// </summary>
 		public const uint Fmod_Version = 0x43202;

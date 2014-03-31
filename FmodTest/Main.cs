@@ -5,14 +5,8 @@ namespace nFMOD.Demo
 	class MainClass
 	{
 		public static void Main (string[] args)
-		{
+		{            
 			Console.WriteLine ("Fmod Sound Test");
-			
-#if DEBUG
-			
-#else
-			nFMOD.Debug.Level = nFMOD.DebugLevel.Error;
-#endif
 			
 			Console.WriteLine ("Level: {0}", nFMOD.Debug.Level);
 			Console.WriteLine ("Type: {0}", nFMOD.Debug.Type);

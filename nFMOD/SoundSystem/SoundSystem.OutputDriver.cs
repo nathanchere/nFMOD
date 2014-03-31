@@ -7,7 +7,23 @@ namespace nFMOD.SoundSystem
 {
 	public partial class SoundSystem
 	{
-		public OutputDriver OutputDriver {
+        public struct OutputDriverDTO
+	    {
+		    internal int Id { get; set; }
+		    public string Name { get; internal set; }
+		    public Guid Guid { get; internal set; }
+		    public Capabilities Capabilities { get; internal set; }
+		    public int MinimumFrequency { get; internal set; }
+		    public int MaximumFrequency { get; internal set; }
+		    public SpeakerMode SpeakerMode { get; internal set; }
+		
+		    public override string ToString ()
+		    {
+			    return this.Name;
+		    }
+	    }
+
+		public OutputDriverDTO OutputDriver {
 			get {
 				int driver;
 				Error.Code ReturnCode = GetDriver (this.DangerousGetHandle (), out driver);
@@ -21,7 +37,7 @@ namespace nFMOD.SoundSystem
 			}
 		}
 		
-		public IEnumerable<OutputDriver> OutputDrivers {
+		public IEnumerable<OutputDriverDTO> OutputDrivers {
 			get {
 				int Numb = this.NumberOutputDrivers;
 				for (int i = 0; i < Numb; i++) {
@@ -56,7 +72,7 @@ namespace nFMOD.SoundSystem
 			Error.Errors.ThrowError (ReturnCode);
 		}
 		
-		private OutputDriver GetOutputDriver (int Id)
+		private OutputDriverDTO GetOutputDriver (int Id)
 		{
 			Guid DriverGuid;
 			string DriverName;
@@ -67,7 +83,7 @@ namespace nFMOD.SoundSystem
 			SpeakerMode controlpanelspeakermode;
 			this.GetOutputDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
 			
-			return new OutputDriver {
+			return new OutputDriverDTO {
 				Id = Id,
 				Name = DriverName,
 				Guid = DriverGuid,

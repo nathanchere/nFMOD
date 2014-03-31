@@ -7,7 +7,22 @@ namespace nFMOD.SoundSystem
 {
 	public partial class SoundSystem
 	{
-		public IEnumerable<RecordDriver> RecordDrivers {
+        public struct RecordDriverDTO
+	    {
+		    internal int Id { get; set; }
+		    public string Name { get; internal set; }
+		    public Guid Guid { get; internal set; }
+		    public Capabilities Capabilities { get; internal set; }
+		    public int MinimumFrequency { get; internal set; }
+		    public int MaximumFrequency { get; internal set; }
+		
+		    public override string ToString ()
+		    {
+			    return this.Name;
+		    }
+	    }
+
+		public IEnumerable<RecordDriverDTO> RecordDrivers {
 			get {
 				int Numb = this.NumberRecordDrivers;
 				for (int i = 0; i < Numb; i++) {
@@ -43,7 +58,7 @@ namespace nFMOD.SoundSystem
 			Error.Errors.ThrowError (ReturnCode);
 		}
 		
-		private RecordDriver GetRecordDriver (int Id)
+		private RecordDriverDTO GetRecordDriver (int Id)
 		{
 			Guid DriverGuid;
 			string DriverName;
@@ -53,7 +68,7 @@ namespace nFMOD.SoundSystem
 			int minfrequency, maxfrequency;
 			this.GetRecordDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency);
 			
-			return new RecordDriver {
+			return new RecordDriverDTO {
 				Id = Id,
 				Name = DriverName,
 				Guid = DriverGuid,
