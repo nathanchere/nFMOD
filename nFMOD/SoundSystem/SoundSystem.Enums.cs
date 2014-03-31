@@ -81,8 +81,6 @@ namespace nFMOD.SoundSystem
 
         }
 
-        public delegate Error.Code SystemDelegate(IntPtr systemraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2);
-
         //TODO complete submary
 
         /// <summary>
