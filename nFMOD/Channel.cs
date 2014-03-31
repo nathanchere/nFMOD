@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using nFMOD.Enums;
 
 namespace nFMOD
 {
@@ -39,14 +40,14 @@ namespace nFMOD
 			get {
 				bool pause = false;
 				
-				Error.Code ReturnCode = GetPaused(this.DangerousGetHandle(), ref pause);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = GetPaused(this.DangerousGetHandle(), ref pause);
+				Errors.ThrowError(ReturnCode);
 				
 				return pause;
 			}
 			set {
-				Error.Code ReturnCode = SetPaused(this.DangerousGetHandle(), value);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = SetPaused(this.DangerousGetHandle(), value);
+				Errors.ThrowError(ReturnCode);
 			}
 		}
 		
@@ -54,14 +55,14 @@ namespace nFMOD
 			get {
 				float Vol = 0.0f;
 				
-				Error.Code ReturnCode = GetVolume(this.DangerousGetHandle(), ref Vol);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = GetVolume(this.DangerousGetHandle(), ref Vol);
+				Errors.ThrowError(ReturnCode);
 				
 				return Vol;
 			}
 			set {
-				Error.Code ReturnCode = SetVolume(this.DangerousGetHandle(), value);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = SetVolume(this.DangerousGetHandle(), value);
+				Errors.ThrowError(ReturnCode);
 			}
 		}
 		
@@ -69,14 +70,14 @@ namespace nFMOD
 			get {
 				float Freq = 0.0f;
 				
-				Error.Code ReturnCode = GetFrequency(this.DangerousGetHandle(), ref Freq);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = GetFrequency(this.DangerousGetHandle(), ref Freq);
+				Errors.ThrowError(ReturnCode);
 				
 				return Freq;
 			}
 			set {
-				Error.Code ReturnCode = SetFrequency(this.DangerousGetHandle(), value);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = SetFrequency(this.DangerousGetHandle(), value);
+				Errors.ThrowError(ReturnCode);
 			}
 		}
 		
@@ -84,40 +85,40 @@ namespace nFMOD
 			get {
 				float pan = 0.0f;
 				
-				Error.Code ReturnCode = GetPan(this.DangerousGetHandle(), ref pan);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = GetPan(this.DangerousGetHandle(), ref pan);
+				Errors.ThrowError(ReturnCode);
 				
 				return pan;
 			}
 			set {
-				Error.Code ReturnCode = SetPan(this.DangerousGetHandle(), value);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = SetPan(this.DangerousGetHandle(), value);
+				Errors.ThrowError(ReturnCode);
 			}
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetPaused"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetPaused (IntPtr channel, bool paused);
+		private static extern ErrorCode SetPaused (IntPtr channel, bool paused);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetPaused"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetPaused (IntPtr channel, ref bool paused);
+		private static extern ErrorCode GetPaused (IntPtr channel, ref bool paused);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetVolume"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetVolume (IntPtr channel, float volume);
+		private static extern ErrorCode SetVolume (IntPtr channel, float volume);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetVolume"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetVolume (IntPtr channel, ref float volume);
+		private static extern ErrorCode GetVolume (IntPtr channel, ref float volume);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetFrequency"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetFrequency (IntPtr channel, float frequency);
+		private static extern ErrorCode SetFrequency (IntPtr channel, float frequency);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetFrequency"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetFrequency (IntPtr channel, ref float frequency);
+		private static extern ErrorCode GetFrequency (IntPtr channel, ref float frequency);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetPan"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetPan (IntPtr channel, float pan);
+		private static extern ErrorCode SetPan (IntPtr channel, float pan);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetPan"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetPan (IntPtr channel, ref float pan);
+		private static extern ErrorCode GetPan (IntPtr channel, ref float pan);
 		
 		#endregion
 		
@@ -127,8 +128,8 @@ namespace nFMOD
 			get {
 				bool playing = false;
 				
-				Error.Code ReturnCode = IsPlaying_External(this.DangerousGetHandle(), ref playing);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = IsPlaying_External(this.DangerousGetHandle(), ref playing);
+				Errors.ThrowError(ReturnCode);
 				
 				return playing;
 			}
@@ -136,38 +137,38 @@ namespace nFMOD
 		
 		public void Stop()
 		{
-			Error.Code ReturnCode = Stop(this.DangerousGetHandle());
-			Error.Errors.ThrowError(ReturnCode);
+			ErrorCode ReturnCode = Stop(this.DangerousGetHandle());
+			Errors.ThrowError(ReturnCode);
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_Stop"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Stop (IntPtr channel);
+		private static extern ErrorCode Stop (IntPtr channel);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_IsPlaying"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code IsPlaying_External (IntPtr channel, ref bool isplaying);
+		private static extern ErrorCode IsPlaying_External (IntPtr channel, ref bool isplaying);
 
 		#endregion
 		
 		public bool Mute {
 			get {
 				bool Val = false;
-				Error.Code ReturnCode = GetMute(this.DangerousGetHandle(), ref Val);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = GetMute(this.DangerousGetHandle(), ref Val);
+				Errors.ThrowError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
-				Error.Code ReturnCode = SetMute(this.DangerousGetHandle(), value);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = SetMute(this.DangerousGetHandle(), value);
+				Errors.ThrowError(ReturnCode);
 			}
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_SetMute"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetMute (IntPtr channel, bool mute);
+		private static extern ErrorCode SetMute (IntPtr channel, bool mute);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetMute"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetMute (IntPtr channel, ref bool mute);
+		private static extern ErrorCode GetMute (IntPtr channel, ref bool mute);
 		
 		#region Spectrum/Wave
 		
@@ -196,10 +197,10 @@ namespace nFMOD
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetSpectrum"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
+		private static extern ErrorCode GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_GetWaveData"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetWaveData (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
+		private static extern ErrorCode GetWaveData (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 		
 		#endregion
 		

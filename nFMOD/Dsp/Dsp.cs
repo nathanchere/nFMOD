@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using nFMOD.Enums;
 
 namespace nFMOD.Dsp
 {
@@ -24,27 +25,27 @@ namespace nFMOD.Dsp
 		
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Release")]
-		private static extern Error.Code Release (IntPtr dsp);
+		private static extern ErrorCode Release (IntPtr dsp);
 		
 		public void Remove()
 		{
-			Error.Code ReturnCode = Remove_External(this.DangerousGetHandle());
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = Remove_External(this.DangerousGetHandle());
+			Errors.ThrowError (ReturnCode);
 		}
 		
 		public void Reset()
 		{
-			Error.Code ReturnCode = Reset_External(this.DangerousGetHandle());
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = Reset_External(this.DangerousGetHandle());
+			Errors.ThrowError (ReturnCode);
 		}
 		
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Remove")]
-        private static extern Error.Code Remove_External (IntPtr dsp);
+        private static extern ErrorCode Remove_External (IntPtr dsp);
 		
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport ("fmodex", EntryPoint = "FMOD_DSP_Reset")]
-        private static extern Error.Code Reset_External (IntPtr dsp);
+        private static extern ErrorCode Reset_External (IntPtr dsp);
 		
 		//TODO Implement extern funcitons
 		/*

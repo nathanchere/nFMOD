@@ -1,8 +1,6 @@
-using System;
-
-namespace nFMOD.Error
+namespace nFMOD.Enums
 {
-	public enum Code
+	public enum ErrorCode
 	{
 		/// <summary>
 		/// No errors.

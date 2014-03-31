@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using nFMOD.Enums;
 
 namespace nFMOD
 {
@@ -29,7 +30,7 @@ namespace nFMOD
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_ChannelGroup_Release"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Release (IntPtr channelgroup);
+		private static extern ErrorCode Release (IntPtr channelgroup);
 		
 		#endregion
 		

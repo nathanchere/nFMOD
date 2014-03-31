@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using nFMOD.Enums;
 
 namespace nFMOD.Dsp
 {
@@ -32,23 +33,23 @@ namespace nFMOD.Dsp
 		public float Mix {
 			get {
 				float Val = 0;
-				Error.Code ReturnCode = GetMix(this.DangerousGetHandle(), ref Val);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = GetMix(this.DangerousGetHandle(), ref Val);
+				Errors.ThrowError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
-				Error.Code ReturnCode = SetMix(this.DangerousGetHandle(), value);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = SetMix(this.DangerousGetHandle(), value);
+				Errors.ThrowError(ReturnCode);
 			}
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_SetMix"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetMix (IntPtr dspconnection, float volume);
+		private static extern ErrorCode SetMix (IntPtr dspconnection, float volume);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_DSPConnection_GetMix"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetMix (IntPtr dspconnection, ref float volume);
+		private static extern ErrorCode GetMix (IntPtr dspconnection, ref float volume);
 
 		#endregion
 		

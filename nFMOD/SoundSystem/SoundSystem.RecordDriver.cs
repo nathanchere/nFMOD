@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Security;
+using nFMOD.Enums;
 
 namespace nFMOD
 {
@@ -35,8 +36,8 @@ namespace nFMOD
 			get {
 				int numdrivers;
 				
-				Error.Code ReturnCode = GetRecordNumDrivers (this.DangerousGetHandle (), out numdrivers);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = GetRecordNumDrivers (this.DangerousGetHandle (), out numdrivers);
+				Errors.ThrowError (ReturnCode);
 				
 				return numdrivers;
 			}
@@ -46,16 +47,16 @@ namespace nFMOD
 		{
 			System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 			
-			Error.Code ReturnCode = GetRecordDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = GetRecordDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
+			Errors.ThrowError (ReturnCode);
 			
 			Name = str.ToString();
 		}
 		
 		private void GetRecordDriverCapabilities (int id, out Capabilities caps, out int minfrequency, out int maxfrequency)
 		{
-			Error.Code ReturnCode = GetRecordDriverCaps (this.DangerousGetHandle (), id, out caps, out minfrequency, out maxfrequency);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = GetRecordDriverCaps (this.DangerousGetHandle (), id, out caps, out minfrequency, out maxfrequency);
+			Errors.ThrowError (ReturnCode);
 		}
 		
 		private RecordDriverDTO GetRecordDriver (int Id)
@@ -80,16 +81,16 @@ namespace nFMOD
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordNumDrivers"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetRecordNumDrivers (IntPtr system, out int numdrivers);
+		private static extern ErrorCode GetRecordNumDrivers (IntPtr system, out int numdrivers);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfo"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetRecordDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
+		private static extern ErrorCode GetRecordDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverInfoW"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code FMOD_System_GetRecordDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
+		private static extern ErrorCode FMOD_System_GetRecordDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordDriverCaps"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetRecordDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency);
+		private static extern ErrorCode GetRecordDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency);
 		
 	}
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using nFMOD.Enums;
 
 namespace nFMOD
 {
@@ -77,33 +78,33 @@ namespace nFMOD
 		private static int DebugValue {
 			get {
 				int Val = 0;
-				Error.Code ReturnCode = GetLevel(ref Val);
-				if(ReturnCode == Error.Code.Unsupported) {
+				ErrorCode ReturnCode = GetLevel(ref Val);
+				if(ReturnCode == ErrorCode.Unsupported) {
 					// On windows you need the Loggin version of Fmod to use Debugging.
 					//Error.Code.Unsupported [82]
 				} else {
-					Error.Errors.ThrowError(ReturnCode);
+					Errors.ThrowError(ReturnCode);
 				}
 				
 				return Val;
 			}
 			
 			set {
-				Error.Code ReturnCode = SetLevel(value);
-				if(ReturnCode == Error.Code.Unsupported) {
+				ErrorCode ReturnCode = SetLevel(value);
+				if(ReturnCode == ErrorCode.Unsupported) {
 					// On windows you need the Loggin version of Fmod to use Debugging.
 					//Error.Code.Unsupported [82]
 				} else {
-					Error.Errors.ThrowError(ReturnCode);
+					Errors.ThrowError(ReturnCode);
 				}
 			}
 		}
 		
 		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetLevel (int Level);
+		private static extern ErrorCode SetLevel (int Level);
 		
 		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetLevel (ref int Level);
+		private static extern ErrorCode GetLevel (ref int Level);
 		
 	}
 }

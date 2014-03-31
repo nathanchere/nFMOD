@@ -1,12 +1,17 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using nFMOD.Enums;
 
-namespace nFMOD.Sound
+namespace nFMOD
 {
-	public class Sound : Handle
+	public partial class Sound : Handle
 	{
 		
+        public delegate ErrorCode NonBlockDelegate (IntPtr soundraw, ErrorCode result);
+	    public delegate ErrorCode PCMReadDelegate (IntPtr soundraw, IntPtr data, uint datalen);
+	    public delegate ErrorCode PCMSetposDelegate (IntPtr soundraw, int subsound, uint position, TimeUnit postype);
+
 		#region Create/Release
 		
 		private Sound()
@@ -29,11 +34,9 @@ namespace nFMOD.Sound
 		}
 
 		[DllImport("fmodex", EntryPoint = "FMOD_Sound_Release"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Release (IntPtr sound);
+		private static extern ErrorCode Release (IntPtr sound);
 		
-		#endregion
-		
-		
+		#endregion	
 		
 		//TODO Implement extern funcitons
 		

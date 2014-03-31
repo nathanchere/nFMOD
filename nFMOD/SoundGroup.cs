@@ -1,8 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using nFMOD.Enums;
 
-namespace nFMOD.Sound
+namespace nFMOD
 {
 	public class SoundGroup : Handle
 	{
@@ -29,7 +30,7 @@ namespace nFMOD.Sound
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_SoundGroup_Release"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Release (IntPtr soundgroup);
+		private static extern ErrorCode Release (IntPtr soundgroup);
 
 		#endregion
 		

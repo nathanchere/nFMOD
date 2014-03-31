@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
+using nFMOD.Enums;
 
 namespace nFMOD
 {
@@ -18,8 +19,8 @@ namespace nFMOD
 		{
 			IntPtr SoundSystemHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = Create (ref SoundSystemHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = Create (ref SoundSystemHandle);
+			Errors.ThrowError (ReturnCode);
 			
 			this.SetHandle (SoundSystemHandle);
 			
@@ -54,8 +55,8 @@ namespace nFMOD
 
 		public void Init (int Maxchannels, InitFlags Flags, IntPtr Extradriverdata)
 		{
-			Error.Code ReturnCode = Init (this.handle, Maxchannels, Flags, Extradriverdata);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = Init (this.handle, Maxchannels, Flags, Extradriverdata);
+			Errors.ThrowError (ReturnCode);
 		}
 
 		public void CloseSystem ()
@@ -64,16 +65,16 @@ namespace nFMOD
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_Create"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Create (ref IntPtr system);
+		private static extern ErrorCode Create (ref IntPtr system);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_Release"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Release (IntPtr system);
+		private static extern ErrorCode Release (IntPtr system);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_Init"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Init (IntPtr system, int Maxchannels, InitFlags Flags, IntPtr Extradriverdata);
+		private static extern ErrorCode Init (IntPtr system, int Maxchannels, InitFlags Flags, IntPtr Extradriverdata);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_Close"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CloseSystem (IntPtr system);
+		private static extern ErrorCode CloseSystem (IntPtr system);
 
 		#endregion
 		
@@ -117,13 +118,13 @@ namespace nFMOD
 		/// </summary>
 		public event SystemDelegate BadDspLevel;
 		
-		private Error.Code HandleCallback (IntPtr systemraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2)
+		private ErrorCode HandleCallback (IntPtr systemraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2)
 		{
-			return Error.Code.OK;
+			return ErrorCode.OK;
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetCallback"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code FMOD_System_SetCallback (IntPtr system, SystemDelegate callback);
+		private static extern ErrorCode FMOD_System_SetCallback (IntPtr system, SystemDelegate callback);
 		
 		#endregion
 		
@@ -134,14 +135,14 @@ namespace nFMOD
 			get {
 				System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 				
-				Error.Code ReturnCode = GetNetworkProxy (this.DangerousGetHandle (), str, str.Capacity);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = GetNetworkProxy (this.DangerousGetHandle (), str, str.Capacity);
+				Errors.ThrowError (ReturnCode);
 				
 				return str.ToString();
 			}
 			set {
-				Error.Code ReturnCode = SetNetworkProxy (this.DangerousGetHandle (), value);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = SetNetworkProxy (this.DangerousGetHandle (), value);
+				Errors.ThrowError (ReturnCode);
 			}
 		}
 		
@@ -150,28 +151,28 @@ namespace nFMOD
 			get {
 				int time = 0;
 				
-				Error.Code ReturnCode = GetNetworkTimeout (this.DangerousGetHandle (), ref time);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = GetNetworkTimeout (this.DangerousGetHandle (), ref time);
+				Errors.ThrowError (ReturnCode);
 				
 				return time;
 			}
 			set {
-				Error.Code ReturnCode = SetNetworkTimeout (this.DangerousGetHandle (), value);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = SetNetworkTimeout (this.DangerousGetHandle (), value);
+				Errors.ThrowError (ReturnCode);
 			}
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkProxy"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetNetworkProxy (IntPtr system, string proxy);
+		private static extern ErrorCode SetNetworkProxy (IntPtr system, string proxy);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkProxy"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetNetworkProxy (IntPtr system, System.Text.StringBuilder proxy, int proxylen);
+		private static extern ErrorCode GetNetworkProxy (IntPtr system, System.Text.StringBuilder proxy, int proxylen);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetNetworkTimeout"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetNetworkTimeout (IntPtr system, int timeout);
+		private static extern ErrorCode SetNetworkTimeout (IntPtr system, int timeout);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNetworkTimeout"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetNetworkTimeout (IntPtr system, ref int timeout);
+		private static extern ErrorCode GetNetworkTimeout (IntPtr system, ref int timeout);
 		
 		#endregion
 		
@@ -181,15 +182,15 @@ namespace nFMOD
 			get {
 				uint Ver = 0;
 				
-				Error.Code ReturnCode = GetVersion (this.DangerousGetHandle (), ref Ver);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = GetVersion (this.DangerousGetHandle (), ref Ver);
+				Errors.ThrowError (ReturnCode);
 				
 				return Ver;
 			}
 		}
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetVersion"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetVersion (IntPtr system, ref uint version);
+		private static extern ErrorCode GetVersion (IntPtr system, ref uint version);
 		
 		#endregion
 		
@@ -199,22 +200,22 @@ namespace nFMOD
 			get {
 				OutputType output = OutputType.Unknown;
 				
-				Error.Code ReturnCode = GetOutput (this.DangerousGetHandle (), ref output);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = GetOutput (this.DangerousGetHandle (), ref output);
+				Errors.ThrowError (ReturnCode);
 				
 				return output;
 			}
 			set {
-				Error.Code ReturnCode = SetOutput (this.DangerousGetHandle (), value);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = SetOutput (this.DangerousGetHandle (), value);
+				Errors.ThrowError (ReturnCode);
 			}
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_SetOutput"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetOutput (IntPtr system, OutputType output);
+		private static extern ErrorCode SetOutput (IntPtr system, OutputType output);
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetOutput"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetOutput (IntPtr system, ref OutputType output);
+		private static extern ErrorCode GetOutput (IntPtr system, ref OutputType output);
 		
 		#region Channels
 		
@@ -228,104 +229,104 @@ namespace nFMOD
 			get {
 				int playing = 0;
 				
-				Error.Code ReturnCode = GetChannelsPlaying(this.DangerousGetHandle(), ref playing);
-				Error.Errors.ThrowError(ReturnCode);
+				ErrorCode ReturnCode = GetChannelsPlaying(this.DangerousGetHandle(), ref playing);
+				Errors.ThrowError(ReturnCode);
 				
 				return playing;
 			}
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetChannelsPlaying"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetChannelsPlaying (IntPtr system, ref int channels);
+		private static extern ErrorCode GetChannelsPlaying (IntPtr system, ref int channels);
 		
 		#endregion
 		
 		#region Group
 		
 		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateChannelGroup"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateChannelGroup (IntPtr system, string name, ref IntPtr channelgroup);
+		private static extern ErrorCode CreateChannelGroup (IntPtr system, string name, ref IntPtr channelgroup);
 
 		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSoundGroup"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateSoundGroup (IntPtr system, string name, ref IntPtr soundgroup);
+		private static extern ErrorCode CreateSoundGroup (IntPtr system, string name, ref IntPtr soundgroup);
 
 		#endregion
 		
 		#region Sound
 		
-		public Sound.Sound CreateSound (string path)
+		public Sound CreateSound (string path)
 		{
 			return this.CreateSound(path, Mode.Default);
 		}
 		
-		public Sound.Sound CreateSound (string path, Mode mode)
+		public Sound CreateSound (string path, Mode mode)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 		
-		public Sound.Sound CreateSound (string path, Mode mode, Sound.Info exinfo)
+		public Sound CreateSound (string path, Mode mode, Sound.Info exinfo)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 		
-		public Sound.Sound CreateSound (byte[] data)
+		public Sound CreateSound (byte[] data)
 		{
 			return this.CreateSound(data, Mode.Default);
 		}
 
-		public Sound.Sound CreateSound (byte[] data, Mode mode)
+		public Sound CreateSound (byte[] data, Mode mode)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 
-		public Sound.Sound CreateSound (byte[] data, Mode mode, Sound.Info exinfo)
+		public Sound CreateSound (byte[] data, Mode mode, Sound.Info exinfo)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 		
-		public Channel PlaySound (Sound.Sound snd)
+		public Channel PlaySound (Sound snd)
 		{
 			return this.PlaySound (snd, false);
 		}
 
-		public Channel PlaySound (Sound.Sound snd, bool paused)
+		public Channel PlaySound (Sound snd, bool paused)
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
+			Errors.ThrowError (ReturnCode);
 			
 			return new Channel (ChannelHandle);
 		}
 
-		private void PlaySound (Sound.Sound snd, bool paused, Channel chn)
+		private void PlaySound (Sound snd, bool paused, Channel chn)
 		{
 			//FIXME The handle is changed most of the time on some system.
 			//Only use the other metods to be safe.
 			
 			IntPtr channel = chn.DangerousGetHandle ();
 			
-			Error.Code ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Reuse, snd.DangerousGetHandle (), paused, ref channel);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Reuse, snd.DangerousGetHandle (), paused, ref channel);
+			Errors.ThrowError (ReturnCode);
 			
 			//This can't really happend.
 			//Check just in case...
@@ -334,75 +335,75 @@ namespace nFMOD
 		}
 
 		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateSound (IntPtr system, string name, Mode mode, ref Sound.Info exinfo, ref IntPtr Sound);
+		private static extern ErrorCode CreateSound (IntPtr system, string name, Mode mode, ref Sound.Info exinfo, ref IntPtr Sound);
 
 		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateSound (IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
+		private static extern ErrorCode CreateSound (IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateSound (IntPtr system, byte[] data, Mode mode, ref Sound.Info exinfo, ref IntPtr sound);
+		private static extern ErrorCode CreateSound (IntPtr system, byte[] data, Mode mode, ref Sound.Info exinfo, ref IntPtr sound);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateSound (IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
+		private static extern ErrorCode CreateSound (IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code PlaySound (IntPtr system, Channel.Index channelid, IntPtr Sound, bool paused, ref IntPtr channel);
+		private static extern ErrorCode PlaySound (IntPtr system, Channel.Index channelid, IntPtr Sound, bool paused, ref IntPtr channel);
 		
 		#endregion
 
 		#region Stream
 		
-		public Sound.Sound CreateStream (string path, Mode mode)
+		public Sound CreateStream (string path, Mode mode)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 
-		public Sound.Sound CreateStream (string path, Mode mode, Sound.Info exinfo)
+		public Sound CreateStream (string path, Mode mode, Sound.Info exinfo)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 
-		public Sound.Sound CreateStream (byte[] data, Mode mode)
+		public Sound CreateStream (byte[] data, Mode mode)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 
-		public Sound.Sound CreateStream (byte[] data, Mode mode, Sound.Info exinfo)
+		public Sound CreateStream (byte[] data, Mode mode, Sound.Info exinfo)
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			Error.Code ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
+			Errors.ThrowError (ReturnCode);
 			
-			return new Sound.Sound (SoundHandle);
+			return new Sound (SoundHandle);
 		}
 
 		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateStream (IntPtr system, string name, Mode mode, ref Sound.Info exinfo, ref IntPtr Sound);
+		private static extern ErrorCode CreateStream (IntPtr system, string name, Mode mode, ref Sound.Info exinfo, ref IntPtr Sound);
 
 		[DllImport("fmodex", CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateStream (IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
+		private static extern ErrorCode CreateStream (IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateStream (IntPtr system, byte[] data, Mode mode, ref Sound.Info exinfo, ref IntPtr sound);
+		private static extern ErrorCode CreateStream (IntPtr system, byte[] data, Mode mode, ref Sound.Info exinfo, ref IntPtr sound);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code CreateStream (IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
+		private static extern ErrorCode CreateStream (IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
 
 		#endregion
 		
@@ -411,16 +412,16 @@ namespace nFMOD
 		#region Recording
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetRecordPosition"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetRecordPosition (IntPtr system, int id, ref uint position);
+		private static extern ErrorCode GetRecordPosition (IntPtr system, int id, ref uint position);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_RecordStart"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code RecordStart (IntPtr system, int id, IntPtr sound, int loop);
+		private static extern ErrorCode RecordStart (IntPtr system, int id, IntPtr sound, int loop);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_RecordStop"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code RecordStop (IntPtr system, int id);
+		private static extern ErrorCode RecordStop (IntPtr system, int id);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_IsRecording"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code IsRecording (IntPtr system, int id, ref int recording);
+		private static extern ErrorCode IsRecording (IntPtr system, int id, ref int recording);
 
 		#endregion
 		
@@ -451,10 +452,10 @@ namespace nFMOD
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetSpectrum"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
+		private static extern ErrorCode GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_GetWaveData"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetWaveData (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
+		private static extern ErrorCode GetWaveData (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 		
 		#endregion
 		
@@ -471,10 +472,10 @@ namespace nFMOD
 		}
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_Update"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Update (IntPtr system);
+		private static extern ErrorCode Update (IntPtr system);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_System_UpdateFinished"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code UpdateFinished (IntPtr system);
+		private static extern ErrorCode UpdateFinished (IntPtr system);
 
 		#endregion
 		
