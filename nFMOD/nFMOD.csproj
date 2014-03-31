@@ -9,6 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>nFMOD</RootNamespace>
     <AssemblyName>nFMOD</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -101,11 +103,6 @@
     <Compile Include="SoundSystem\OutputDriver.cs" />
     <Compile Include="SoundSystem\RecordDriver.cs" />
     <Compile Include="SoundSystem\SoundSystem.RecordDriver.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
