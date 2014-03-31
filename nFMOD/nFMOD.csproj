@@ -72,13 +72,12 @@
     <Compile Include="Channel.Enums.cs" />
     <Compile Include="Sound\Callback.cs" />
     <Compile Include="Reverb\Reverb.cs" />
-    <Compile Include="Reverb\Properties.cs" />
-    <Compile Include="Reverb\Flags.cs" />
+    <Compile Include="Reverb\Reverb.Properties.cs" />
     <Compile Include="Memory\Memory.cs" />
     <Compile Include="Memory\Type.cs" />
-    <Compile Include="Plugin\Type.cs" />
-    <Compile Include="Reverb\Presets.cs" />
-    <Compile Include="Reverb\ChannelProperties.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Reverb\Reverb.Presets.cs" />
+    <Compile Include="Reverb\Reverb.ChannelProperties.cs" />
     <Compile Include="Dsp\Resampler.cs" />
     <Compile Include="Memory\UsageDetails.cs" />
     <Compile Include="Dsp\Type.cs" />
@@ -90,7 +89,7 @@
     <Compile Include="Dsp\State.cs" />
     <Compile Include="Dsp\ParameterDescription.cs" />
     <Compile Include="Dsp\FFTWindow.cs" />
-    <Compile Include="Reverb\ChannelFlags.cs" />
+    <Compile Include="Reverb\Reverb.Enums.cs" />
     <Compile Include="SoundSystem\SoundSystem.cs" />
     <Compile Include="SoundSystem\SoundSystem.Enums.cs" />
     <Compile Include="iSpectrumWave.cs" />
