@@ -103,8 +103,6 @@
     <Compile Include="SoundSystem\RecordDriver.cs" />
     <Compile Include="SoundSystem\SoundSystem.RecordDriver.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Channel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

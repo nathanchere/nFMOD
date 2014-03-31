@@ -1,8 +1,8 @@
 using System;
 
-namespace nFMOD.Demo
+namespace nFMOD
 {
-	class MainClass
+	class Program
 	{
 		public static void Main (string[] args)
 		{
@@ -24,7 +24,7 @@ namespace nFMOD.Demo
 			
 			SoundSystem.Init();
 			
-			nFMOD.Channel.Channel Chan = null;
+			nFMOD.Channel Chan = null;
 			
 			//Create an oscillator DSP unit for the tone.
 			nFMOD.Dsp.Dsp Oscillator;

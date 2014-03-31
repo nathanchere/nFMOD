@@ -27,22 +27,22 @@ namespace nFMOD.SoundSystem
 			return new Dsp.Dsp (DspHandle);
 		}
 		
-		public Channel.Channel PlayDsp (Dsp.Dsp dsp)
+		public Channel PlayDsp (Dsp.Dsp dsp)
 		{
 			return PlayDsp (dsp, false);
 		}
 
-		public Channel.Channel PlayDsp (Dsp.Dsp dsp, bool paused)
+		public Channel PlayDsp (Dsp.Dsp dsp, bool paused)
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Free, dsp.DangerousGetHandle (), paused, ref ChannelHandle);
 			Error.Errors.ThrowError (ReturnCode);
 			
-			return new Channel.Channel (ChannelHandle);
+			return new Channel(ChannelHandle);
 		}
 
-		public void PlayDsp (Dsp.Dsp dsp, bool paused, Channel.Channel chn)
+		public void PlayDsp (Dsp.Dsp dsp, bool paused, Channel chn)
 		{
 			IntPtr channel = chn.DangerousGetHandle ();
 			
