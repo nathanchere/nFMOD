@@ -8,11 +8,11 @@ namespace nFMOD
 		{            
 			Console.WriteLine ("Fmod Sound Test");
 			
-			Console.WriteLine ("Level: {0}", nFMOD.Debug.Level);
-			Console.WriteLine ("Type: {0}", nFMOD.Debug.Type);
-			Console.WriteLine ("Display: {0}", nFMOD.Debug.Display);
+			Console.WriteLine ("Level: {0}", Debug.Level);
+			Console.WriteLine ("Type: {0}", Debug.Type);
+			Console.WriteLine ("Display: {0}", Debug.Display);
 			
-			var SoundSystem = new nFMOD.SoundSystem();
+			var SoundSystem = new SoundSystem();
 			
 			Console.WriteLine ("Default Output Type: {0}", SoundSystem.Output);
 			
@@ -23,7 +23,7 @@ namespace nFMOD
 			//Create an oscillator DSP unit for the tone.
 			nFMOD.Dsp.Dsp Oscillator;
 			
-			Oscillator = SoundSystem.CreateDspByType(nFMOD.Dsp.Type.Oscillator);
+			Oscillator = SoundSystem.CreateDspByType(Dsp.Type.Oscillator);
 			Chan = SoundSystem.PlayDsp(Oscillator);
 			
 			Console.WriteLine("\nPress Enter to stop.\n");
