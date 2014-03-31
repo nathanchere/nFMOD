@@ -1,48 +1,51 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodTest", "FmodTest\FmodTest.csproj", "{E1C91BDC-C190-4A01-BC2B-168D701475A8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodSharp", "FmodSharp\FmodSharp.csproj", "{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayFile", "PlayFile\PlayFile.csproj", "{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintDriverInfo", "PrintDriverInfo\PrintDriverInfo.csproj", "{ED3F571B-410F-44B7-B3B4-DE256216E92E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodGtk", "FmodGtk\FmodGtk.csproj", "{C296700D-7DD3-4E01-9FE2-E67A35B5762C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodSharp.Gtk", "FmodSharp.Gtk\FmodSharp.Gtk.csproj", "{7204FF25-5885-4260-8138-57E1CB4E7EC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD", "nFMOD\nFMOD.csproj", "{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Debug|x86.ActiveCfg = Debug|x86
-		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Debug|x86.Build.0 = Debug|x86
-		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Release|x86.ActiveCfg = Release|x86
-		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Release|x86.Build.0 = Release|x86
-		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.ActiveCfg = Debug|x86
-		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.Build.0 = Debug|x86
-		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.ActiveCfg = Release|x86
-		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.Build.0 = Release|x86
-		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Debug|x86.ActiveCfg = Debug|x86
-		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Debug|x86.Build.0 = Debug|x86
-		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Release|x86.ActiveCfg = Release|x86
-		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Release|x86.Build.0 = Release|x86
-		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.ActiveCfg = Debug|x86
-		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.Build.0 = Debug|x86
-		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.ActiveCfg = Release|x86
-		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.Build.0 = Release|x86
+		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|x86.ActiveCfg = Debug|x86
 		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|x86.Build.0 = Debug|x86
+		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|Any CPU.ActiveCfg = Release|x86
 		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|x86.ActiveCfg = Release|x86
 		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|x86.Build.0 = Release|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.ActiveCfg = Debug|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.Build.0 = Debug|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|Any CPU.ActiveCfg = Release|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.ActiveCfg = Release|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.Build.0 = Release|x86
+		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Debug|x86.ActiveCfg = Debug|x86
 		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Debug|x86.Build.0 = Debug|x86
+		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Release|Any CPU.ActiveCfg = Release|x86
 		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Release|x86.ActiveCfg = Release|x86
 		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Release|x86.Build.0 = Release|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.ActiveCfg = Debug|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.Build.0 = Debug|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.ActiveCfg = Release|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = FmodTest\FmodTest.csproj
