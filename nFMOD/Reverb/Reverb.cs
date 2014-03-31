@@ -2,9 +2,9 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace nFMOD.Reverb
+namespace nFMOD
 {
-	public class Reverb : Handle
+	public partial class Reverb : Handle
 	{
 		
 		#region Create/Release
@@ -33,9 +33,9 @@ namespace nFMOD.Reverb
 		
 		#endregion
 		
-		public Properties Properties {
+		public PropertiesDTO Properties {
 			get {
-				Properties Val = Properties.Generic;
+				PropertiesDTO Val = PropertiesDTO.Generic;
 				Error.Code ReturnCode = GetProperties(this.DangerousGetHandle(), ref Val);
 				Error.Errors.ThrowError(ReturnCode);
 				
@@ -49,10 +49,10 @@ namespace nFMOD.Reverb
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetProperties (IntPtr reverb, ref Properties properties);
+		private static extern Error.Code SetProperties (IntPtr reverb, ref PropertiesDTO properties);
 
 		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetProperties (IntPtr reverb, ref Properties properties);
+		private static extern Error.Code GetProperties (IntPtr reverb, ref PropertiesDTO properties);
 		
 		
 		//TODO Implement extern funcitons
