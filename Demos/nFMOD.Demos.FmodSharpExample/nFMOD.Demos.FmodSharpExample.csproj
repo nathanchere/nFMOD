@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E1C91BDC-C190-4A01-BC2B-168D701475A8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>nFMOD.Demo</RootNamespace>
-    <AssemblyName>nFMOD.Demo</AssemblyName>
+    <RootNamespace>nFMOD</RootNamespace>
+    <AssemblyName>nFMOD.Demos.FmodSharpExample</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -37,13 +37,13 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nFMOD\nFMOD.csproj">
+    <ProjectReference Include="..\..\nFMOD\nFMOD.csproj">
       <Project>{e0810e1a-ea20-4f0d-8d0f-5b72c3e64f6d}</Project>
       <Name>nFMOD</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Dependencies\win32\fmodex.dll">
+    <None Include="..\..\Dependencies\win32\fmodex.dll">
       <Link>fmodex.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
