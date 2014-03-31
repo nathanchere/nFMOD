@@ -25,11 +25,11 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace Linsft.FmodSharp
+namespace nFMOD
 {
 	
 	/// <summary>
-	/// Bit fields to use with <see cref="FmodSharp.Debug.Level"/> to
+	/// Bit fields to use with <see cref="Debug.Level"/> to
 	/// control the level of tty debug output with logging versions of FMOD (fmodL).
 	/// </summary>
 	/// <platforms>

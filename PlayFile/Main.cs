@@ -34,22 +34,22 @@ namespace PlayFile
 #if DEBUG
 			
 #else
-			Linsft.FmodSharp.Debug.Level = Linsft.FmodSharp.DebugLevel.Error;
+			nFMOD.Debug.Level = nFMOD.DebugLevel.Error;
 #endif
 			
-			var SoundSystem = new Linsft.FmodSharp.SoundSystem.SoundSystem();
+			var SoundSystem = new nFMOD.SoundSystem.SoundSystem();
 			
 			Console.WriteLine ("Default Output: {0}", SoundSystem.Output);
 			
 			SoundSystem.Init();
-			SoundSystem.ReverbProperties = Linsft.FmodSharp.Reverb.Presets.Room;
+			SoundSystem.ReverbProperties = nFMOD.Reverb.Presets.Room;
 			
 			if (args.Length > 0) {
 				foreach (string StringItem in args) {
-					Linsft.FmodSharp.Sound.Sound SoundFile;
+					nFMOD.Sound.Sound SoundFile;
 					SoundFile = SoundSystem.CreateSound (StringItem);
 					
-					Linsft.FmodSharp.Channel.Channel Chan;
+					nFMOD.Channel.Channel Chan;
 					Chan = SoundSystem.PlaySound(SoundFile);
 					
 					while(Chan.IsPlaying) {

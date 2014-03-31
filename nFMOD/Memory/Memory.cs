@@ -25,7 +25,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace Linsft.FmodSharp.Memory
+namespace nFMOD.Memory
 {
 	public class Memory
 	{

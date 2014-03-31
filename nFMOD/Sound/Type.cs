@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Sound
+namespace nFMOD.Sound
 {
 	/// <summary>
 	/// These definitions describe the type of song being played.

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp
+namespace nFMOD
 {
 	//TODO end convertion
 	

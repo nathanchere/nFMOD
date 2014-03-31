@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Channel
+namespace nFMOD.Channel
 {
 	/// <summary>
 	/// These callback types are used with Channel::setCallback.

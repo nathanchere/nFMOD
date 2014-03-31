@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Dsp
+namespace nFMOD.Dsp
 {
 	/// <summary>
 	/// These definitions can be used for creating FMOD defined special effects or DSP units.
@@ -40,7 +40,7 @@ namespace Linsft.FmodSharp.Dsp
 	/// Xbox, Xbox360, PlayStation 2, GameCube,
 	/// PlayStation Portable, PlayStation 3, Wii
 	/// </platforms>
-	/// <seealso cref="FmodSharp.System.System.CreateDspByType"/>
+	/// <seealso cref="nFMOD.System.System.CreateDspByType"/>
 	public enum Type : int
 	{
 		/// <summary>

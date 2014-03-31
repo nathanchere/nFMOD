@@ -25,7 +25,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace Linsft.FmodSharp.Dsp
+namespace nFMOD.Dsp
 {
 	public class Connection : Handle
 	{
