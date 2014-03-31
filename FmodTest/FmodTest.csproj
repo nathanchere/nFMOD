@@ -7,8 +7,10 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E1C91BDC-C190-4A01-BC2B-168D701475A8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>FmodTest</RootNamespace>
-    <AssemblyName>FmodTest</AssemblyName>
+    <RootNamespace>nFMOD.Demo</RootNamespace>
+    <AssemblyName>nFMOD.Demo</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugType>none</DebugType>
@@ -31,6 +33,9 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
