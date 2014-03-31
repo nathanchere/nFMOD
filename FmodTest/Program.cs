@@ -38,7 +38,7 @@ namespace nFMOD
 				
 					//Change note
 				case ConsoleKey.LeftArrow :
-					//Oscillator.setParameter((int)FMOD.DSP_OSCILLATOR.RATE, 440.0f);
+					//Oscillator.setParameter((int)FMOD.DSP_OSCILLATOR.RATE, 440.0f);                        
 					break;
 					
 				case ConsoleKey.RightArrow:
