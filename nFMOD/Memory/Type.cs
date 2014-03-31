@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Memory
+namespace nFMOD.Memory
 {
 	//TODO complete submmary
 	

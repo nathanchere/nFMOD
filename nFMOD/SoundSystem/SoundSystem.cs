@@ -25,12 +25,12 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace Linsft.FmodSharp.SoundSystem
+namespace nFMOD.SoundSystem
 {
 	public partial class SoundSystem : Handle, iSpectrumWave
 	{
 		/// <summary>
-		/// Used to check against <see cref="FmodSharp.System.Version"/> FMOD::System::getVersion.
+		/// Used to check against <see cref="nFMOD.System.Version"/> FMOD::System::getVersion.
 		/// </summary>
 		public const uint Fmod_Version = 0x43202;
 

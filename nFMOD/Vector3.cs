@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Linsft.FmodSharp
+namespace nFMOD
 {
 	
 	/// <summary>

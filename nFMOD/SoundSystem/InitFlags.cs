@@ -23,11 +23,11 @@
 
 using System;
 
-namespace Linsft.FmodSharp.SoundSystem
+namespace nFMOD.SoundSystem
 {
 	/// <summary>
 	/// //Initialization flags.
-	/// Use them with <see cref="FmodSharp.System.System.Init"/> in the flags parameter to change various behaviour.
+	/// Use them with <see cref="nFMOD.System.System.Init"/> in the flags parameter to change various behaviour.
 	/// </summary>
 	/// <platforms>
 	/// Win32, Win64, Linux, Linux64, Macintosh, Xbox, Xbox360, PlayStation 2, GameCube, PlayStation Portable, PlayStation 3, Wii

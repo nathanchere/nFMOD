@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Error
+namespace nFMOD.Error
 {
 	public enum Code
 	{

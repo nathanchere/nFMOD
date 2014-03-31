@@ -24,7 +24,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Linsft.FmodSharp
+namespace nFMOD
 {
 	public abstract class Handle : SafeHandle
 	{

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Dsp
+namespace nFMOD.Dsp
 {
 	
 	public delegate Error.Code DspDelegate (ref State dsp_state);

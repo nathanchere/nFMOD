@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Reverb
+namespace nFMOD.Reverb
 {
 	//TODO end submmary
 	

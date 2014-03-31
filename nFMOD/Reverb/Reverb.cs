@@ -25,7 +25,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace Linsft.FmodSharp.Reverb
+namespace nFMOD.Reverb
 {
 	public class Reverb : Handle
 	{

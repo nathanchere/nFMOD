@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Channel
+namespace nFMOD.Channel
 {
 	/// <summary>
 	/// 
@@ -31,9 +31,9 @@ namespace Linsft.FmodSharp.Channel
 	/// <platforms>
 	/// Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation 2, PlayStation Portable, PlayStation 3, Wii
 	/// </platforms>
-	/// <seealso cref="FmodSharp.System.PlaySound"/>
-	/// <seealso cref="FmodSharp.System.PlayDSP"/>
-	/// <seealso cref="FmodSharp.System.GetChannel"/>
+	/// <seealso cref="nFMOD.System.PlaySound"/>
+	/// <seealso cref="nFMOD.System.PlayDSP"/>
+	/// <seealso cref="nFMOD.System.GetChannel"/>
 	public enum Index
 	{
 		/// <summary>

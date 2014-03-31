@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 using System;
-namespace Linsft.FmodSharp
+namespace nFMOD
 {
 	public interface iSpectrumWave
 	{

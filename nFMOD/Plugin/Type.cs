@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Plugin
+namespace nFMOD.Plugin
 {
 	//TODO write Summary
 	

@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.Sound
+namespace nFMOD.Sound
 {
 	
 	/// <summary>

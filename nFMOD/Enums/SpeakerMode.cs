@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp
+namespace nFMOD
 {
 	/// <summary>
 	/// These are speaker types defined for use with the System::setSpeakerMode or System::getSpeakerMode command.

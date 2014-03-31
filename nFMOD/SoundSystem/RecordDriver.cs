@@ -23,7 +23,7 @@
 
 using System;
 
-namespace Linsft.FmodSharp.SoundSystem
+namespace nFMOD.SoundSystem
 {
 	public struct RecordDriver
 	{
