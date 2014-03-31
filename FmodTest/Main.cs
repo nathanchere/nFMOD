@@ -12,7 +12,7 @@ namespace nFMOD.Demo
 			Console.WriteLine ("Type: {0}", nFMOD.Debug.Type);
 			Console.WriteLine ("Display: {0}", nFMOD.Debug.Display);
 			
-			var SoundSystem = new nFMOD.SoundSystem.SoundSystem();
+			var SoundSystem = new nFMOD.SoundSystem();
 			
 			Console.WriteLine ("Default Output Type: {0}", SoundSystem.Output);
 			

@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace nFMOD.SoundSystem
+namespace nFMOD
 {
 	public partial class SoundSystem : Handle, iSpectrumWave
     {

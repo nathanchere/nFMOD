@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Security;
 
-namespace nFMOD.SoundSystem
+namespace nFMOD
 {
 	public partial class SoundSystem
 	{
