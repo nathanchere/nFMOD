@@ -1,6 +1,6 @@
 using System;
 
-namespace FmodTest
+namespace nFMOD.Demo
 {
 	class MainClass
 	{
