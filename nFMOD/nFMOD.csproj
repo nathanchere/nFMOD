@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Linsft.FmodSharp</RootNamespace>
-    <AssemblyName>Linsft.FmodSharp</AssemblyName>
+    <RootNamespace>nFMOD</RootNamespace>
+    <AssemblyName>nFMOD</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -107,16 +107,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Enums\" />
-    <Folder Include="Sound\" />
-    <Folder Include="Error\" />
-    <Folder Include="Channel\" />
-    <Folder Include="Dsp\" />
-    <Folder Include="Reverb\" />
-    <Folder Include="Memory\" />
-    <Folder Include="Plugin\" />
-    <Folder Include="SoundSystem\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
