@@ -5,20 +5,14 @@ namespace nFMOD
 	class Program
 	{
 		public static void Main (string[] args)
-		{
+		{            
 			Console.WriteLine ("Fmod Sound Test");
-			
-#if DEBUG
-			
-#else
-			nFMOD.Debug.Level = nFMOD.DebugLevel.Error;
-#endif
 			
 			Console.WriteLine ("Level: {0}", nFMOD.Debug.Level);
 			Console.WriteLine ("Type: {0}", nFMOD.Debug.Type);
 			Console.WriteLine ("Display: {0}", nFMOD.Debug.Display);
 			
-			var SoundSystem = new nFMOD.SoundSystem.SoundSystem();
+			var SoundSystem = new nFMOD.SoundSystem();
 			
 			Console.WriteLine ("Default Output Type: {0}", SoundSystem.Output);
 			
