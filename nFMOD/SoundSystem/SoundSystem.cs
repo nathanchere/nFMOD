@@ -302,22 +302,22 @@ namespace nFMOD
 			return new Sound.Sound (SoundHandle);
 		}
 		
-		public Channel.Channel PlaySound (Sound.Sound snd)
+		public Channel PlaySound (Sound.Sound snd)
 		{
 			return this.PlaySound (snd, false);
 		}
 
-		public Channel.Channel PlaySound (Sound.Sound snd, bool paused)
+		public Channel PlaySound (Sound.Sound snd, bool paused)
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
 			Error.Code ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
 			Error.Errors.ThrowError (ReturnCode);
 			
-			return new Channel.Channel (ChannelHandle);
+			return new Channel (ChannelHandle);
 		}
 
-		private void PlaySound (Sound.Sound snd, bool paused, Channel.Channel chn)
+		private void PlaySound (Sound.Sound snd, bool paused, Channel chn)
 		{
 			//FIXME The handle is changed most of the time on some system.
 			//Only use the other metods to be safe.
