@@ -2,9 +2,9 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace nFMOD.Channel
+namespace nFMOD
 {
-	public class Channel : Handle, iSpectrumWave
+	public partial class Channel : Handle, iSpectrumWave
 	{
 		
 		#region Create/Release

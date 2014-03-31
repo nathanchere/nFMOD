@@ -62,15 +62,14 @@
     <Compile Include="Error\Errors.cs" />
     <Compile Include="Error\Code.cs" />
     <Compile Include="Sound\Info.cs" />
-    <Compile Include="Channel\Index.cs" />
-    <Compile Include="Channel\Channel.cs" />
+    <Compile Include="Channel.cs" />
     <Compile Include="Debug.cs" />
-    <Compile Include="Channel\ChannelGroup.cs" />
+    <Compile Include="ChannelGroup.cs" />
     <Compile Include="Sound\SoundGroup.cs" />
     <Compile Include="Dsp\Dsp.cs" />
     <Compile Include="Dsp\Connection.cs" />
     <Compile Include="Geometry.cs" />
-    <Compile Include="Channel\Callback.cs" />
+    <Compile Include="Channel.Enums.cs" />
     <Compile Include="Sound\Callback.cs" />
     <Compile Include="Reverb\Reverb.cs" />
     <Compile Include="Reverb\Properties.cs" />
@@ -104,6 +103,8 @@
     <Compile Include="SoundSystem\RecordDriver.cs" />
     <Compile Include="SoundSystem\SoundSystem.RecordDriver.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Channel\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
