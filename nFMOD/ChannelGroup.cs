@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace nFMOD.Channel
+namespace nFMOD
 {
 	public class ChannelGroup : Handle
 	{
