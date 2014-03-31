@@ -50,7 +50,7 @@ namespace nFMOD
     */
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct PropertiesDTO
+        public struct Properties
         {
             private int instance;
             private int environment;
@@ -442,7 +442,7 @@ namespace nFMOD
 
             #region Default Preset
 
-            public static readonly PropertiesDTO Generic = new PropertiesDTO
+            public static readonly Properties Generic = new Properties
             {
                 Instance = 0,
                 Environment = -1,

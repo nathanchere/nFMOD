@@ -33,21 +33,6 @@ namespace nFMOD
 		
 		#endregion
 		
-		public PropertiesDTO Properties {
-			get {
-				PropertiesDTO Val = PropertiesDTO.Generic;
-				Error.Code ReturnCode = GetProperties(this.DangerousGetHandle(), ref Val);
-				Error.Errors.ThrowError(ReturnCode);
-				
-				return Val;
-			}
-			
-			set {
-				Error.Code ReturnCode = SetProperties(this.DangerousGetHandle(), ref value);
-				Error.Errors.ThrowError(ReturnCode);
-			}
-		}
-		
 		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
 		private static extern Error.Code SetProperties (IntPtr reverb, ref PropertiesDTO properties);
 
