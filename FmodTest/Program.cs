@@ -66,6 +66,7 @@ namespace nFMOD
 				
 				System.Threading.Thread.Sleep(10);
 			}
+            Oscillator.Dispose();
 			Chan.Dispose();
 			SoundSystem.CloseSystem();
 			SoundSystem.Dispose();
