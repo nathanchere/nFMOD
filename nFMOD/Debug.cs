@@ -83,17 +83,16 @@ namespace nFMOD
 		        {
 		            ErrorCode ReturnCode = GetLevel(ref Val);
 		            if (ReturnCode == ErrorCode.Unsupported)
-		            {
-		                // On windows you need the Loggin version of Fmod to use Debugging.
-		                //Error.Code.Unsupported [82]
+		            {		                
 		            }
 		            else
 		            {
 		                Errors.ThrowIfError(ReturnCode);
 		            }
 		        }
-		        catch (Exception ex)
+		        catch (Exception ex)                    
 		        {
+                    return -1;
 		        }
 
 		        return Val;

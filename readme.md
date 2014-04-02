@@ -15,7 +15,9 @@ Release history
 
 * update fmodex.dll version from 4.34.5 > 4.44.32
 * minimum .Net Framework version lowered from 4.0 > 2.0
-* refactor to simplify redundant class/namespace (eg "nFMOD.SoundSystem.SoundSystem")
+* proper exceptions for all unmanaged error codes
+* handler for converting ErrorCodes to Exceptions
+* simplify redundant class/namespace (eg "nFMOD.SoundSystem.SoundSystem")
 
 ####v0.1 [master]
 
