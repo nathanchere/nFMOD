@@ -4,8 +4,7 @@ using System.Security;
 using nFMOD.Enums;
 
 namespace nFMOD
-{
-	
+{	
 	/// <summary>
 	/// Bit fields to use with <see cref="Debug.Level"/> to
 	/// control the level of tty debug output with logging versions of FMOD (fmodL).
@@ -75,37 +74,33 @@ namespace nFMOD
 			set { DebugValue = (((int)value & 0x0F) << 24) | (int)(DebugValue & 0xF0FFFFFF); }
 		}
 		
-		private static int DebugValue {
+		private static int DebugValue 
+        {
 		    get
-		    {
-		        int Val = 0;
+		    {		        
 		        try
 		        {
-		            ErrorCode ReturnCode = GetLevel(ref Val);
-		            if (ReturnCode == ErrorCode.Unsupported)
-		            {		                
-		            }
-		            else
-		            {
-		                Errors.ThrowIfError(ReturnCode);
-		            }
+                    int value = 0;
+		            Errors.ThrowIfError(GetLevel(ref value));
+                    return value;
 		        }
-		        catch (Exception ex)                    
+		        catch (FmodUnimplementedException ex)
 		        {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
                     return -1;
 		        }
-
-		        return Val;
 			}
 			
-			set {
-				ErrorCode ReturnCode = SetLevel(value);
-				if(ReturnCode == ErrorCode.Unsupported) {
-					// On windows you need the Loggin version of Fmod to use Debugging.
-					//Error.Code.Unsupported [82]
-				} else {
-					Errors.ThrowIfError(ReturnCode);
-				}
+			set 
+            {
+                try
+		        {
+		            Errors.ThrowIfError(SetLevel(value));
+		        }
+		        catch (FmodUnimplementedException ex)
+		        {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);                    
+		        }
 			}
 		}
 		
