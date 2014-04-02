@@ -54,6 +54,7 @@
     <Compile Include="Enums\Mode.cs" />
     <Compile Include="Enums\SpeakerMapType.cs" />
     <Compile Include="Enums\TimeUnit.cs" />
+    <Compile Include="Exceptions.cs" />
     <Compile Include="Sound.Enums.cs" />
     <Compile Include="Callbacks.cs" />
     <Compile Include="Handle.cs" />

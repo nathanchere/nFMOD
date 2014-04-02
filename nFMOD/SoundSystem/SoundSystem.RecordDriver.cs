@@ -37,7 +37,7 @@ namespace nFMOD
 				int numdrivers;
 				
 				ErrorCode ReturnCode = GetRecordNumDrivers (this.DangerousGetHandle (), out numdrivers);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return numdrivers;
 			}
@@ -48,7 +48,7 @@ namespace nFMOD
 			System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 			
 			ErrorCode ReturnCode = GetRecordDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			Name = str.ToString();
 		}
@@ -56,7 +56,7 @@ namespace nFMOD
 		private void GetRecordDriverCapabilities (int id, out Capabilities caps, out int minfrequency, out int maxfrequency)
 		{
 			ErrorCode ReturnCode = GetRecordDriverCaps (this.DangerousGetHandle (), id, out caps, out minfrequency, out maxfrequency);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 		
 		private RecordDriverDTO GetRecordDriver (int Id)

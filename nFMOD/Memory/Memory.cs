@@ -14,13 +14,13 @@ namespace nFMOD.Memory
 		public static void GetStats (ref int currentalloced, ref int maxalloced)
 		{
 			ErrorCode ReturnCode = GetStats_External (ref currentalloced, ref maxalloced, true);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 
 		public static void GetStats (ref int currentalloced, ref int maxalloced, bool blocking)
 		{
 			ErrorCode ReturnCode = GetStats_External (ref currentalloced, ref maxalloced, blocking);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 
 		[DllImport("fmodex", EntryPoint = "FMOD_Memory_GetStats"), SuppressUnmanagedCodeSecurity]

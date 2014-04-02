@@ -28,13 +28,13 @@ namespace nFMOD
 			get {
 				int driver;
 				ErrorCode ReturnCode = GetDriver (this.DangerousGetHandle (), out driver);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return this.GetOutputDriver(driver);
 			}
 			set {
 				ErrorCode ReturnCode = SetDriver (this.DangerousGetHandle (), value.Id);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 			}
 		}
 		
@@ -51,7 +51,7 @@ namespace nFMOD
 			get {
 				int numdrivers;
 				ErrorCode ReturnCode = GetNumDrivers (this.DangerousGetHandle (), out numdrivers);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return numdrivers;
 			}
@@ -62,7 +62,7 @@ namespace nFMOD
 			System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 			
 			ErrorCode ReturnCode = GetDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			Name = str.ToString();
 		}
@@ -70,7 +70,7 @@ namespace nFMOD
 		private void GetOutputDriverCapabilities (int Id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
 		{
 			ErrorCode ReturnCode = GetDriverCaps (this.DangerousGetHandle (), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 		
 		private OutputDriverDTO GetOutputDriver (int Id)

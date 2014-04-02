@@ -12,7 +12,7 @@ namespace nFMOD
 			IntPtr ReverbHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateReverb (this.DangerousGetHandle (), ref ReverbHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Reverb (ReverbHandle);
 		}
@@ -21,14 +21,14 @@ namespace nFMOD
 			get {
 				var Val = Reverb.Properties.Generic;
 				ErrorCode ReturnCode = GetReverbProperties(this.DangerousGetHandle(), ref Val);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				ErrorCode ReturnCode = SetReverbProperties(this.DangerousGetHandle(), ref value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		
@@ -37,14 +37,14 @@ namespace nFMOD
 				var Val = Reverb.Properties.Generic;
 				
 				ErrorCode ReturnCode = GetReverbAmbientProperties(this.DangerousGetHandle(), ref Val);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				ErrorCode ReturnCode = SetReverbAmbientProperties(this.DangerousGetHandle(), ref value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		

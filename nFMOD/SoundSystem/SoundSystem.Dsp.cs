@@ -13,7 +13,7 @@ namespace nFMOD
 			IntPtr DspHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateDSP (this.DangerousGetHandle (), ref description, ref DspHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Dsp.Dsp (DspHandle);
 		}
@@ -23,7 +23,7 @@ namespace nFMOD
 			IntPtr DspHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateDspByType (this.DangerousGetHandle (), type, ref DspHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Dsp.Dsp (DspHandle);
 		}
@@ -38,7 +38,7 @@ namespace nFMOD
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Free, dsp.DangerousGetHandle (), paused, ref ChannelHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Channel(ChannelHandle);
 		}
@@ -48,7 +48,7 @@ namespace nFMOD
 			IntPtr channel = chn.DangerousGetHandle ();
 			
 			ErrorCode ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Reuse, dsp.DangerousGetHandle (), paused, ref channel);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			//This can't really happend.
 			//Check just in case...
@@ -61,7 +61,7 @@ namespace nFMOD
 			IntPtr ConnectionHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = AddDSP (this.DangerousGetHandle (), dsp.DangerousGetHandle (), ref ConnectionHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Dsp.Connection (ConnectionHandle);
 		}
@@ -69,20 +69,20 @@ namespace nFMOD
 		public void LockDSP ()
 		{
 			ErrorCode ReturnCode = LockDSP (this.DangerousGetHandle ());
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 		
 		public void UnlockDSP ()
 		{
 			ErrorCode ReturnCode = UnlockDSP (this.DangerousGetHandle ());
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 		
 		public ulong DSPClock {
 			get {
 				uint hi = 0, low = 0;
 				ErrorCode ReturnCode = GetDSPClock (this.DangerousGetHandle (), ref hi, ref low);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				return (hi << 32) | low;
 			}
 		}

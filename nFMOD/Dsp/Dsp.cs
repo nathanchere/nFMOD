@@ -30,13 +30,13 @@ namespace nFMOD.Dsp
 		public void Remove()
 		{
 			ErrorCode ReturnCode = Remove_External(this.DangerousGetHandle());
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 		
 		public void Reset()
 		{
 			ErrorCode ReturnCode = Reset_External(this.DangerousGetHandle());
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 		
 		[System.Security.SuppressUnmanagedCodeSecurity]

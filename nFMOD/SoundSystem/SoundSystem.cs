@@ -20,7 +20,7 @@ namespace nFMOD
 			IntPtr SoundSystemHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = Create (ref SoundSystemHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			this.SetHandle (SoundSystemHandle);
 			
@@ -56,7 +56,7 @@ namespace nFMOD
 		public void Init (int Maxchannels, InitFlags Flags, IntPtr Extradriverdata)
 		{
 			ErrorCode ReturnCode = Init (this.handle, Maxchannels, Flags, Extradriverdata);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 
 		public void CloseSystem ()
@@ -136,13 +136,13 @@ namespace nFMOD
 				System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 				
 				ErrorCode ReturnCode = GetNetworkProxy (this.DangerousGetHandle (), str, str.Capacity);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return str.ToString();
 			}
 			set {
 				ErrorCode ReturnCode = SetNetworkProxy (this.DangerousGetHandle (), value);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 			}
 		}
 		
@@ -152,13 +152,13 @@ namespace nFMOD
 				int time = 0;
 				
 				ErrorCode ReturnCode = GetNetworkTimeout (this.DangerousGetHandle (), ref time);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return time;
 			}
 			set {
 				ErrorCode ReturnCode = SetNetworkTimeout (this.DangerousGetHandle (), value);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 			}
 		}
 		
@@ -183,7 +183,7 @@ namespace nFMOD
 				uint Ver = 0;
 				
 				ErrorCode ReturnCode = GetVersion (this.DangerousGetHandle (), ref Ver);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return Ver;
 			}
@@ -201,13 +201,13 @@ namespace nFMOD
 				OutputType output = OutputType.Unknown;
 				
 				ErrorCode ReturnCode = GetOutput (this.DangerousGetHandle (), ref output);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return output;
 			}
 			set {
 				ErrorCode ReturnCode = SetOutput (this.DangerousGetHandle (), value);
-				Errors.ThrowError (ReturnCode);
+				Errors.ThrowIfError (ReturnCode);
 			}
 		}
 		
@@ -230,7 +230,7 @@ namespace nFMOD
 				int playing = 0;
 				
 				ErrorCode ReturnCode = GetChannelsPlaying(this.DangerousGetHandle(), ref playing);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return playing;
 			}
@@ -263,7 +263,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}
@@ -273,7 +273,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}
@@ -288,7 +288,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}
@@ -298,7 +298,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateSound (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}
@@ -313,7 +313,7 @@ namespace nFMOD
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Channel (ChannelHandle);
 		}
@@ -326,7 +326,7 @@ namespace nFMOD
 			IntPtr channel = chn.DangerousGetHandle ();
 			
 			ErrorCode ReturnCode = PlaySound (this.DangerousGetHandle (), Channel.Index.Reuse, snd.DangerousGetHandle (), paused, ref channel);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			//This can't really happend.
 			//Check just in case...
@@ -358,7 +358,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, 0, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}
@@ -368,7 +368,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}
@@ -378,7 +378,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, 0, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}
@@ -388,7 +388,7 @@ namespace nFMOD
 			IntPtr SoundHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateStream (this.DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
-			Errors.ThrowError (ReturnCode);
+			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
 		}

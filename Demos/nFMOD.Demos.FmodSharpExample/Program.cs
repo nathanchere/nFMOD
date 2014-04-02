@@ -12,9 +12,9 @@ namespace nFMOD
 		{            
 			Console.WriteLine ("Fmod Sound Test");
 			
-			//Console.WriteLine ("Level: {0}", Debug.Level);
-			//Console.WriteLine ("Type: {0}", Debug.Type);
-			//Console.WriteLine ("Display: {0}", Debug.Display);
+			Console.WriteLine ("Level: {0}", Debug.Level);
+			Console.WriteLine ("Type: {0}", Debug.Type);
+			Console.WriteLine ("Display: {0}", Debug.Display);
 			
             var SoundSystem = new SoundSystem();
 			

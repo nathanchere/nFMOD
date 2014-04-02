@@ -76,17 +76,27 @@ namespace nFMOD
 		}
 		
 		private static int DebugValue {
-			get {
-				int Val = 0;
-				ErrorCode ReturnCode = GetLevel(ref Val);
-				if(ReturnCode == ErrorCode.Unsupported) {
-					// On windows you need the Loggin version of Fmod to use Debugging.
-					//Error.Code.Unsupported [82]
-				} else {
-					Errors.ThrowError(ReturnCode);
-				}
-				
-				return Val;
+		    get
+		    {
+		        int Val = 0;
+		        try
+		        {
+		            ErrorCode ReturnCode = GetLevel(ref Val);
+		            if (ReturnCode == ErrorCode.Unsupported)
+		            {
+		                // On windows you need the Loggin version of Fmod to use Debugging.
+		                //Error.Code.Unsupported [82]
+		            }
+		            else
+		            {
+		                Errors.ThrowIfError(ReturnCode);
+		            }
+		        }
+		        catch (Exception ex)
+		        {
+		        }
+
+		        return Val;
 			}
 			
 			set {
@@ -95,7 +105,7 @@ namespace nFMOD
 					// On windows you need the Loggin version of Fmod to use Debugging.
 					//Error.Code.Unsupported [82]
 				} else {
-					Errors.ThrowError(ReturnCode);
+					Errors.ThrowIfError(ReturnCode);
 				}
 			}
 		}

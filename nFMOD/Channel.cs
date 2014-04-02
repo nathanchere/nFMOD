@@ -41,13 +41,13 @@ namespace nFMOD
 				bool pause = false;
 				
 				ErrorCode ReturnCode = GetPaused(this.DangerousGetHandle(), ref pause);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return pause;
 			}
 			set {
 				ErrorCode ReturnCode = SetPaused(this.DangerousGetHandle(), value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		
@@ -56,13 +56,13 @@ namespace nFMOD
 				float Vol = 0.0f;
 				
 				ErrorCode ReturnCode = GetVolume(this.DangerousGetHandle(), ref Vol);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return Vol;
 			}
 			set {
 				ErrorCode ReturnCode = SetVolume(this.DangerousGetHandle(), value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		
@@ -71,13 +71,13 @@ namespace nFMOD
 				float Freq = 0.0f;
 				
 				ErrorCode ReturnCode = GetFrequency(this.DangerousGetHandle(), ref Freq);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return Freq;
 			}
 			set {
 				ErrorCode ReturnCode = SetFrequency(this.DangerousGetHandle(), value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		
@@ -86,13 +86,13 @@ namespace nFMOD
 				float pan = 0.0f;
 				
 				ErrorCode ReturnCode = GetPan(this.DangerousGetHandle(), ref pan);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return pan;
 			}
 			set {
 				ErrorCode ReturnCode = SetPan(this.DangerousGetHandle(), value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		
@@ -129,7 +129,7 @@ namespace nFMOD
 				bool playing = false;
 				
 				ErrorCode ReturnCode = IsPlaying_External(this.DangerousGetHandle(), ref playing);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return playing;
 			}
@@ -138,7 +138,7 @@ namespace nFMOD
 		public void Stop()
 		{
 			ErrorCode ReturnCode = Stop(this.DangerousGetHandle());
-			Errors.ThrowError(ReturnCode);
+			Errors.ThrowIfError(ReturnCode);
 		}
 		
 		[DllImport("fmodex", EntryPoint = "FMOD_Channel_Stop"), SuppressUnmanagedCodeSecurity]
@@ -153,14 +153,14 @@ namespace nFMOD
 			get {
 				bool Val = false;
 				ErrorCode ReturnCode = GetMute(this.DangerousGetHandle(), ref Val);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				ErrorCode ReturnCode = SetMute(this.DangerousGetHandle(), value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		

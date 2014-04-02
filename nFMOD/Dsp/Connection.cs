@@ -34,14 +34,14 @@ namespace nFMOD.Dsp
 			get {
 				float Val = 0;
 				ErrorCode ReturnCode = GetMix(this.DangerousGetHandle(), ref Val);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
 				ErrorCode ReturnCode = SetMix(this.DangerousGetHandle(), value);
-				Errors.ThrowError(ReturnCode);
+				Errors.ThrowIfError(ReturnCode);
 			}
 		}
 		
