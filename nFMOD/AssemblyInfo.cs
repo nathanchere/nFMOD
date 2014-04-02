@@ -1,9 +1,11 @@
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Resources;
 
 [assembly: AssemblyTitle("nFMOD")]
 [assembly: AssemblyDescription("Managed FMOD wrapper")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Nathan Chere")]
 [assembly: AssemblyProduct("")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
@@ -14,3 +16,5 @@ using System.Reflection;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
+[assembly: ComVisibleAttribute(true)]
+[assembly: NeutralResourcesLanguageAttribute("en-US")]
