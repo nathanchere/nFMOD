@@ -352,7 +352,7 @@ namespace nFMOD
             get { return "Can't use FMOD_OPENMEMORY_POINT on non PCM source data, or non mp3/xma/adpcm data if FMOD_CREATECOMPRESSEDSAMPLE was used.";
             }
         }
-    }
+    }    
 
     public class FmodMemorySramException : FmodException {
         public override string Message {
@@ -618,4 +618,20 @@ namespace nFMOD
             get { return "The version number of this file format is not supported."; }
         }
     }
+
+    #region Irrelevant to desktop targets     
+    [Obsolete("PS2 only")]
+    public class FmodMemoryIopException : FmodException {
+        public override string Message {
+            get { return "Not enough memory or resources on PlayStation 2 IOP ram."; }
+        }
+    }    
+
+    [Obsolete("PS2 only")]
+    public class FmodIrxException : FmodException {
+        public override string Message {
+            get { return "fmodex.irx failed to initialize. This is most likely because you forgot to load it."; }
+        }
+    }    
+    #endregion
 }
