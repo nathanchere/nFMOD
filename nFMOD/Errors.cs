@@ -1,252 +1,120 @@
 using System;
+using System.Collections.Generic;
 using nFMOD.Enums;
 
 namespace nFMOD
 {
-	public static class Errors
+	internal static class Errors
 	{
+        private static readonly Dictionary<ErrorCode, Type> exceptionTypes;
+	    
+        static Errors()
+	    {
+	        exceptionTypes = new Dictionary<ErrorCode, Type>();
+            exceptionTypes[ErrorCode.AlreadyLocked] = typeof(FmodAlreadyLockedException);
+            exceptionTypes[ErrorCode.BadCommand] = typeof(FmodBadCommandException);
+            exceptionTypes[ErrorCode.CDDA_Drivers] = typeof(FmodCddaDriversException);
+            exceptionTypes[ErrorCode.CDDA_Init] = typeof(FmodCddaInitException);
+            exceptionTypes[ErrorCode.CDDA_InvalidDevice] = typeof(FmodCddaInvalidDeviceException);
+            exceptionTypes[ErrorCode.CDDA_NoAudio] = typeof(FmodCddaNoAudioException);
+            exceptionTypes[ErrorCode.CDDA_NoDevices] = typeof(FmodCddaNoDevicesException);
+            exceptionTypes[ErrorCode.CDDA_NoDisc] = typeof(FmodCddaNoDiscException);
+            exceptionTypes[ErrorCode.CDDA_Read] = typeof(FmodCddaReadException);
+            exceptionTypes[ErrorCode.COM] = typeof(FmodComException);
+            exceptionTypes[ErrorCode.Channel_Alloc] = typeof(FmodChannelAllocateException);
+            exceptionTypes[ErrorCode.Channel_Stolen] = typeof(FmodChannelStolenException);
+            exceptionTypes[ErrorCode.DMA] = typeof(FmodDmaException);
+            exceptionTypes[ErrorCode.DSP_Connection] = typeof(FmodDspConnectionException);
+            exceptionTypes[ErrorCode.DSP_Format] = typeof(FmodDspFormatException);
+            exceptionTypes[ErrorCode.DSP_NotFound] = typeof(FmodDspNotFoundException);
+            exceptionTypes[ErrorCode.DSP_Running] = typeof(FmodDspRunningException);
+            exceptionTypes[ErrorCode.DSP_TooManyConnections] = typeof(FmodDspTooManyConnectionsException);
+            exceptionTypes[ErrorCode.Event_AlreadyLoaded] = typeof(FmodEventAlreadyLoadedException);
+            exceptionTypes[ErrorCode.Event_Failed] = typeof(FmodEventFailedException);
+            exceptionTypes[ErrorCode.Event_GuidConflict] = typeof(FmodEventGuidConflictException);
+            exceptionTypes[ErrorCode.Event_InfoOnly] = typeof(FmodEventInfoOnlyException);
+            exceptionTypes[ErrorCode.Event_Internal] = typeof(FmodEventInternalException);
+            exceptionTypes[ErrorCode.Event_MaxStreams] = typeof(FmodEventMaxStreamsException);
+            exceptionTypes[ErrorCode.Event_Mismatch] = typeof(FmodEventMismatchException);
+            exceptionTypes[ErrorCode.Event_NameConflict] = typeof(FmodEventNameConflictException);
+            exceptionTypes[ErrorCode.Event_NeedsSimple] = typeof(FmodEventNeedsSimpleException);
+            exceptionTypes[ErrorCode.Event_NotFound] = typeof(FmodEventNotFoundException);
+            exceptionTypes[ErrorCode.File_Bad] = typeof(FmodFileBadException);
+            exceptionTypes[ErrorCode.File_CouldNotSeek] = typeof(FmodFileCouldNotSeekException);
+            exceptionTypes[ErrorCode.File_DiskEjected] = typeof(FmodFileDiskEjectedException);
+            exceptionTypes[ErrorCode.File_EOF] = typeof(FmodFileEofException);
+            exceptionTypes[ErrorCode.File_NotFound] = typeof(FmodFileNotFoundException);
+            exceptionTypes[ErrorCode.File_Unwanted] = typeof(FmodFileUnwantedException);
+            exceptionTypes[ErrorCode.Format] = typeof(FmodFormatException);
+            exceptionTypes[ErrorCode.HTTP] = typeof(FmodHttpException);
+            exceptionTypes[ErrorCode.HTTP_Access] = typeof(FmodHttpAccessException);
+            exceptionTypes[ErrorCode.HTTP_ProxyAuth] = typeof(FmodHttpProxyAuthException);
+            exceptionTypes[ErrorCode.HTTP_ServerError] = typeof(FmodHttpServerErrorException);
+            exceptionTypes[ErrorCode.HTTP_Timeout] = typeof(FmodHttpTimeoutException);
+            exceptionTypes[ErrorCode.IRX] = typeof(FmodIrxException);
+            exceptionTypes[ErrorCode.Initialization] = typeof(FmodInitializationException);
+            exceptionTypes[ErrorCode.Initialized] = typeof(FmodInitializedException);
+            exceptionTypes[ErrorCode.Internal] = typeof(FmodInternalException);
+            exceptionTypes[ErrorCode.InvalidAddress] = typeof(FmodInvalidAddressException);
+            exceptionTypes[ErrorCode.InvalidFloat] = typeof(FmodInvalidFloatException);
+            exceptionTypes[ErrorCode.InvalidHandle] = typeof(FmodInvalidHandleException);
+            exceptionTypes[ErrorCode.InvalidParam] = typeof(FmodInvalidParameterException);
+            exceptionTypes[ErrorCode.InvalidPosition] = typeof(FmodInvalidPositionException);
+            exceptionTypes[ErrorCode.InvalidSpeaker] = typeof(FmodInvalidSpeakerException);
+            exceptionTypes[ErrorCode.InvalidSyncpoint] = typeof(FmodInvalidSyncPointException);
+            exceptionTypes[ErrorCode.InvalidVector] = typeof(FmodInvalidVectorException);
+            exceptionTypes[ErrorCode.MaxAudible] = typeof(FmodMaxAudibleException);
+            exceptionTypes[ErrorCode.Memory] = typeof(FmodMemoryException);
+            exceptionTypes[ErrorCode.Memory_CantPoint] = typeof(FmodMemoryCantPointException);
+            exceptionTypes[ErrorCode.Memory_IOP] = typeof(FmodMemoryIopException);
+            exceptionTypes[ErrorCode.Memory_SRAM] = typeof(FmodMemorySramException);
+            exceptionTypes[ErrorCode.Music_NoCallback] = typeof(FmodMusicNoCallbackException);
+            exceptionTypes[ErrorCode.Music_NotFound] = typeof(FmodMusicNotFoundException);
+            exceptionTypes[ErrorCode.Music_Uninitialized] = typeof(FmodMusicUnintializedException);
+            exceptionTypes[ErrorCode.Needs2D] = typeof(FmodNeeds2dException);
+            exceptionTypes[ErrorCode.Needs3D] = typeof(FmodNeeds3dException);
+            exceptionTypes[ErrorCode.NeedsHardware] = typeof(FmodNeedsHardwareException);
+            exceptionTypes[ErrorCode.NeedsSoftware] = typeof(FmodNeedsSoftwareException);
+            exceptionTypes[ErrorCode.Net_Connect] = typeof(FmodNetConnectException);
+            exceptionTypes[ErrorCode.Net_SocketError] = typeof(FmodNetSocketErrorException);
+            exceptionTypes[ErrorCode.Net_Url] = typeof(FmodNetUrlException);
+            exceptionTypes[ErrorCode.Net_WouldBlock] = typeof(FmodNetWouldBlockException);
+            exceptionTypes[ErrorCode.NotReady] = typeof(FmodNotReadyException);
+            exceptionTypes[ErrorCode.Output_Allocated] = typeof(FmodOutputAllocatedException);
+            exceptionTypes[ErrorCode.Output_CreateBuffer] = typeof(FmodOutputCreateBufferException);
+            exceptionTypes[ErrorCode.Output_DriverCall] = typeof(FmodOutputDriverCallException);
+            exceptionTypes[ErrorCode.Output_Enumeration] = typeof(FmodOutputEnumerationException);
+            exceptionTypes[ErrorCode.Output_Format] = typeof(FmodOutputFormatException);
+            exceptionTypes[ErrorCode.Output_Init] = typeof(FmodOutputInitException);
+            exceptionTypes[ErrorCode.Output_NoHardware] = typeof(FmodOutputNoHardwareException);
+            exceptionTypes[ErrorCode.Output_NoSoftware] = typeof(FmodOutputNoSoftwareException);
+            exceptionTypes[ErrorCode.Pan] = typeof(FmodPanException);
+            exceptionTypes[ErrorCode.Plugin] = typeof(FmodPluginException);
+            exceptionTypes[ErrorCode.Plugin_Instances] = typeof(FmodPluginInstancesException);
+            exceptionTypes[ErrorCode.Plugin_Missing] = typeof(FmodPluginMissingException);
+            exceptionTypes[ErrorCode.Plugin_Resource] = typeof(FmodPluginResourceException);
+            exceptionTypes[ErrorCode.Preloaded] = typeof(FmodPreloadedException);
+            exceptionTypes[ErrorCode.ProgrammerSound] = typeof(FmodProgrammerSoundException);
+            exceptionTypes[ErrorCode.Record] = typeof(FmodRecordException);
+            exceptionTypes[ErrorCode.Reverb_Instance] = typeof(FmodReverbInstanceException);
+            exceptionTypes[ErrorCode.SubSound_Allocated] = typeof(FmodSubsoundAllocatedException);
+            exceptionTypes[ErrorCode.SubSound_CantMove] = typeof(FmodSubsoundCantMoveException);
+            exceptionTypes[ErrorCode.SubSound_Mode] = typeof(FmodSubsoundModeException);
+            exceptionTypes[ErrorCode.SubSounds] = typeof(FmodSubsoundsException);
+            exceptionTypes[ErrorCode.TagNotFound] = typeof(FmodTagNotFoundException);
+            exceptionTypes[ErrorCode.TooManyChannels] = typeof(FmodTooManyChannelsException);
+            exceptionTypes[ErrorCode.Unimplemented] = typeof(FmodUnimplementedException);
+            exceptionTypes[ErrorCode.Uninitialized] = typeof(FmodUninitializedException);
+            exceptionTypes[ErrorCode.Unsupported] = typeof(FmodUnsupportedException);
+            exceptionTypes[ErrorCode.Update] = typeof(FmodUpdateException);
+            exceptionTypes[ErrorCode.Version] = typeof(FmodVersionException); 
+	    }
 
-		/// <summary>
-		/// Use this module if you want to store or display a string version.
-		/// english explanation of the FMOD error codes.
-		/// </summary>
-		/// <param name="errcode">
-		/// A <see cref="fmodexvb.FMOD_RESULT"/>
-		/// </param>
-		/// <returns>
-		/// A <see cref="System.String"/>
-		/// </returns>
-		public static string ErrorString (ErrorCode errcode)
+		public static void ThrowIfError(ErrorCode errorCode)
 		{
-		    switch (errcode)
-		    {
-		        case ErrorCode.OK:
-		            return "No errors.";
-
-		        case ErrorCode.AlreadyLocked:
-		            return "Tried to call lock a second time before unlock was called. ";
-		        case ErrorCode.BadCommand:
-		            return
-		                "Tried to call a function on a data type that does not allow this type of functionality (ie calling Sound::lock on a streaming sound). ";
-		        case ErrorCode.CDDA_Drivers:
-		            return "Neither NTSCSI nor ASPI could be initialised. ";
-		        case ErrorCode.CDDA_Init:
-		            return "An error occurred while initialising the CDDA subsystem. ";
-		        case ErrorCode.CDDA_InvalidDevice:
-		            return "Couldn't find the specified device. ";
-		        case ErrorCode.CDDA_NoAudio:
-		            return "No audio tracks on the specified disc. ";
-		        case ErrorCode.CDDA_NoDevices:
-		            return "No CD/DVD devices were found. ";
-		        case ErrorCode.CDDA_NoDisc:
-		            return "No disc present in the specified drive. ";
-		        case ErrorCode.CDDA_Read:
-		            return "A CDDA read error occurred. ";
-		        case ErrorCode.Channel_Alloc:
-		            return "Error trying to allocate a channel. ";
-		        case ErrorCode.Channel_Stolen:
-		            return "The specified channel has been reused to play another sound. ";
-		        case ErrorCode.COM:
-		            return
-		                "A Win32 COM related error occured. COM failed to initialize or a QueryInterface failed meaning a Windows codec or driver was not installed properly. ";
-		        case ErrorCode.DMA:
-		            return "DMA Failure.  See debug output for more information. ";
-		        case ErrorCode.DSP_Connection:
-		            return "DSP connection error.  Connection possibly caused a cyclic dependancy. ";
-		        case ErrorCode.DSP_Format:
-		            return
-		                "DSP Format error.  A DSP unit may have attempted to connect to this network with the wrong format. ";
-		        case ErrorCode.DSP_NotFound:
-		            return "DSP connection error.  Couldn't find the DSP unit specified. ";
-		        case ErrorCode.DSP_Running:
-		            return
-		                "DSP error.  Cannot perform this operation while the network is in the middle of running.  This will most likely happen if a connection or disconnection is attempted in a DSP callback. ";
-		        case ErrorCode.DSP_TooManyConnections:
-		            return
-		                "DSP connection error.  The unit being connected to or disconnected should only have 1 input or output. ";
-		        case ErrorCode.File_Bad:
-		            return "Error loading file. ";
-		        case ErrorCode.File_CouldNotSeek:
-		            return
-		                "Couldn't perform seek operation.  This is a limitation of the medium (ie netstreams) or the file format. ";
-		        case ErrorCode.File_DiskEjected:
-		            return "Media was ejected while reading. ";
-		        case ErrorCode.File_EOF:
-		            return "End of file unexpectedly reached while trying to read essential data (truncated data?). ";
-		        case ErrorCode.File_NotFound:
-		            return "File not found. ";
-		        case ErrorCode.File_Unwanted:
-		            return "Unwanted file access occured. ";
-		        case ErrorCode.Format:
-		            return "Unsupported file or audio format. ";
-		        case ErrorCode.HTTP:
-		            return "A HTTP error occurred. This is a catch-all for HTTP errors not listed elsewhere. ";
-		        case ErrorCode.HTTP_Access:
-		            return "The specified resource requires authentication or is forbidden. ";
-		        case ErrorCode.HTTP_ProxyAuth:
-		            return "Proxy authentication is required to access the specified resource. ";
-		        case ErrorCode.HTTP_ServerError:
-		            return "A HTTP server error occurred. ";
-		        case ErrorCode.HTTP_Timeout:
-		            return "The HTTP request timed out. ";
-		        case ErrorCode.Initialization:
-		            return "FMOD was not initialized correctly to support this function. ";
-		        case ErrorCode.Initialized:
-		            return "Cannot call this command after System::init. ";
-		        case ErrorCode.Internal:
-		            return "An error occured that wasn't supposed to.  Contact support. ";
-		        case ErrorCode.InvalidFloat:
-		            return "Value passed in was a NaN, Inf or denormalized float. ";
-		        case ErrorCode.InvalidHandle:
-		            return "An invalid object handle was used. ";
-		        case ErrorCode.InvalidParam:
-		            return "An invalid parameter was passed to this function. ";
-		        case ErrorCode.InvalidSpeaker:
-		            return "An invalid speaker was passed to this function based on the current speaker mode. ";
-		        case ErrorCode.InvalidSyncpoint:
-		            return "The syncpoint did not come from this sound handle.";
-		        case ErrorCode.InvalidVector:
-		            return "The vectors passed in are not unit length, or perpendicular. ";
-		        case ErrorCode.MaxAudible:
-		            return "Reached maximum audible playback count for this sound's soundgroup. ";
-		        case ErrorCode.Memory:
-		            return "Not enough memory or resources. ";
-		        case ErrorCode.Memory_CantPoint:
-		            return
-		                "Can't use FMOD_OPENMEMORY_POINT on non PCM source data, or non mp3/xma/adpcm data if FMOD_CREATECOMPRESSEDSAMPLE was used. ";
-		        case ErrorCode.Memory_SRAM:
-		            return "Not enough memory or resources on console sound ram. ";
-		        case ErrorCode.Needs2D:
-		            return "Tried to call a command on a 3d sound when the command was meant for 2d sound. ";
-		        case ErrorCode.Needs3D:
-		            return "Tried to call a command on a 2d sound when the command was meant for 3d sound. ";
-		        case ErrorCode.NeedsHardware:
-		            return
-		                "Tried to use a feature that requires hardware support.  (ie trying to play a VAG compressed sound in software on PS2). ";
-		        case ErrorCode.NeedsSoftware:
-		            return
-		                "Tried to use a feature that requires the software engine.  Software engine has either been turned off, or command was executed on a hardware channel which does not support this feature. ";
-		        case ErrorCode.Net_Connect:
-		            return "Couldn't connect to the specified host. ";
-		        case ErrorCode.Net_SocketError:
-		            return "A socket error occurred.  This is a catch-all for socket-related errors not listed elsewhere. ";
-		        case ErrorCode.Net_Url:
-		            return "The specified URL couldn't be resolved. ";
-		        case ErrorCode.Net_WouldBlock:
-		            return "Operation on a non-blocking socket could not complete immediately. ";
-		        case ErrorCode.NotReady:
-		            return "Operation could not be performed because specified sound is not ready. ";
-		        case ErrorCode.Output_Allocated:
-		            return
-		                "Error initializing output device, but more specifically, the output device is already in use and cannot be reused. ";
-		        case ErrorCode.Output_CreateBuffer:
-		            return "Error creating hardware sound buffer. ";
-		        case ErrorCode.Output_DriverCall:
-		            return
-		                "A call to a standard soundcard driver failed, which could possibly mean a bug in the driver or resources were missing or exhausted. ";
-		        case ErrorCode.Output_Enumeration:
-		            return
-		                "Error enumerating the available driver list. List may be inconsistent due to a recent device addition or removal.";
-		        case ErrorCode.Output_Format:
-		            return
-		                "Soundcard does not support the minimum features needed for this soundsystem (16bit stereo output). ";
-		        case ErrorCode.Output_Init:
-		            return "Error initializing output device. ";
-		        case ErrorCode.Output_NoHardware:
-		            return
-		                "FMOD_HARDWARE was specified but the sound card does not have the resources nescessary to play it. ";
-		        case ErrorCode.Output_NoSoftware:
-		            return "Attempted to create a software sound but no software channels were specified in System::init. ";
-		        case ErrorCode.Pan:
-		            return "Panning only works with mono or stereo sound sources. ";
-		        case ErrorCode.Plugin:
-		            return "An unspecified error has been return ed from a 3rd party plugin. ";
-		        case ErrorCode.Plugin_Instances:
-		            return "The number of allowed instances of a plugin has been exceeded ";
-		        case ErrorCode.Plugin_Missing:
-		            return "A requested output, dsp unit type or codec was not available. ";
-		        case ErrorCode.Plugin_Resource:
-		            return "A resource that the plugin requires cannot be found. (ie the DLS file for MIDI playback) ";
-		        case ErrorCode.Record:
-		            return "An error occured trying to initialize the recording device. ";
-		        case ErrorCode.Reverb_Instance:
-		            return
-		                "Specified Instance in FMOD_REVERB_PROPERTIES couldn't be set. Most likely because another application has locked the EAX4 FX slot. ";
-		        case ErrorCode.SubSound_Allocated:
-		            return
-		                "This subsound is already being used by another sound, you cannot have more than one parent to a sound.  Null out the other parent's entry first. ";
-		        case ErrorCode.SubSound_CantMove:
-		            return
-		                "Shared subsounds cannot be replaced or moved from their parent stream, such as when the parent stream is an FSB file.";
-		        case ErrorCode.SubSound_Mode:
-		            return
-		                "The subsound's mode bits do not match with the parent sound's mode bits.  See documentation for function that it was called with.";
-		        case ErrorCode.SubSounds:
-		            return
-		                "The error occured because the sound referenced contains subsounds.  (ie you cannot play the parent sound as a static sample, only its subsounds.) ";
-		        case ErrorCode.TagNotFound:
-		            return "The specified tag could not be found or there are no tags. ";
-		        case ErrorCode.TooManyChannels:
-		            return
-		                "The sound created exceeds the allowable input channel count.  This can be increased using the maxinputchannels parameter in System::setSoftwareFormat. ";
-		        case ErrorCode.Unimplemented:
-		            return "Something in FMOD hasn't been implemented when it should be! contact support! ";
-		        case ErrorCode.Uninitialized:
-		            return "This command failed because System::init or System::setDriver was not called. ";
-		        case ErrorCode.Unsupported:
-		            return
-		                "A command issued was not supported by this object.  Possibly a plugin without certain callbacks specified. ";
-		        case ErrorCode.Update:
-		            return "An error caused by System::update occured. ";
-		        case ErrorCode.Version:
-		            return "The version number of this file format is not supported. ";
-		        case ErrorCode.Event_Failed:
-		            return
-		                "An Event failed to be retrieved, most likely due to 'just fail' being specified as the max playbacks behavior. ";
-		        case ErrorCode.Event_InfoOnly:
-		            return "Can't execute this command on an EVENT_INFOONLY event. ";
-		        case ErrorCode.Event_Internal:
-		            return "An error occured that wasn't supposed to.  See debug log for reason. ";
-		        case ErrorCode.Event_MaxStreams:
-		            return "Event failed because 'Max streams' was hit when FMOD_INIT_FAIL_ON_MAXSTREAMS was specified. ";
-		        case ErrorCode.Event_Mismatch:
-		            return "FSB mis-matches the FEV it was compiled with. ";
-		        case ErrorCode.Event_NameConflict:
-		            return "A category with the same name already exists. ";
-		        case ErrorCode.Event_NotFound:
-		            return "The requested event, event group, event category or event property could not be found. ";
-		        case ErrorCode.Music_NoCallback:
-		            return "The music callback is required, but it has not been set. ";
-		        case ErrorCode.Music_Uninitialized:
-		            return "Music system is not initialized probably because no music data is loaded. ";
-		        case ErrorCode.Music_NotFound:
-		            return "The requested music entity could not be found.";
-
-                // Irrelevant:
-
-		        case ErrorCode.InvalidAddress:
-		            return "On Xbox 360, this memory address passed to FMOD must be physical, (ie allocated with XPhysicalAlloc.) ";
-		        case ErrorCode.IRX:
-		            return "PS2 only.  fmodex.irx failed to initialize.  This is most likely because you forgot to load it. ";
-		        case ErrorCode.Memory_IOP:
-		            return "PS2 only.  Not enough memory or resources on PlayStation 2 IOP ram. ";
-
-		        default:
-		            return "Unknown error.";
-		    }
-		}
-		
-		public static void ThrowError(ErrorCode errcode)
-		{
-			if(errcode == ErrorCode.OK)
-				return;
-			
-			switch (errcode) {
-				//TODO Translate error to Exception
-			default:
-				throw new Exception(string.Format("FMod retuned an unexpected Code: [{0}] {1}: {2}",
-				                                  (int)errcode, errcode, Errors.ErrorString(errcode)));
-			}
+			if(errorCode == ErrorCode.OK) return;
+            var exceptionType = exceptionTypes[errorCode] ?? typeof(FmodException);
+            throw (FmodException)Activator.CreateInstance(exceptionType);
 		}
 		
 	}

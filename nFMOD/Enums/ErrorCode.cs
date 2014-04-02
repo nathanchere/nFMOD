@@ -1,11 +1,11 @@
 namespace nFMOD.Enums
 {
 	public enum ErrorCode
-	{
+	{        
 		/// <summary>
 		/// No errors.
 		/// </summary>
-		OK,
+		OK = 0,
 		
 		/// <summary>
 		/// Tried to call lock a second time before unlock was called.
