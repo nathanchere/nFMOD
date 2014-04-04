@@ -98,7 +98,7 @@ namespace nFMOD
 
     public class FmodDspConnectionException : FmodException {
         public override string Message {
-            get { return "DSP connection error.  Connection possibly caused a cyclic dependancy.  Or tried to connect a tree too many units deep (more than 128).";
+            get { return "DSP connection error.  DspConnection possibly caused a cyclic dependancy.  Or tried to connect a tree too many units deep (more than 128).";
             }
         }
     }

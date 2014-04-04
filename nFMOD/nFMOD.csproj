@@ -68,7 +68,7 @@
     <Compile Include="ChannelGroup.cs" />
     <Compile Include="SoundGroup.cs" />
     <Compile Include="Dsp\Dsp.cs" />
-    <Compile Include="Dsp\Connection.cs" />
+    <Compile Include="Dsp\DspConnection.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="Channel.Enums.cs" />
     <Compile Include="Reverb\Reverb.cs" />
@@ -78,17 +78,10 @@
     <Compile Include="Plugin.cs" />
     <Compile Include="Reverb\Reverb.Presets.cs" />
     <Compile Include="Reverb\Reverb.ChannelProperties.cs" />
-    <Compile Include="Dsp\Resampler.cs" />
     <Compile Include="Memory\UsageDetails.cs" />
-    <Compile Include="Dsp\Type.cs" />
     <Compile Include="Enums\Speaker.cs" />
     <Compile Include="Enums\Capabilities.cs" />
     <Compile Include="Enums\SpeakerMode.cs" />
-    <Compile Include="Dsp\Description.cs" />
-    <Compile Include="Dsp\Callbacks.cs" />
-    <Compile Include="Dsp\State.cs" />
-    <Compile Include="Dsp\ParameterDescription.cs" />
-    <Compile Include="Dsp\FFTWindow.cs" />
     <Compile Include="Reverb\Reverb.Enums.cs" />
     <Compile Include="SoundSystem\SoundSystem.cs" />
     <Compile Include="SoundSystem\SoundSystem.Enums.cs" />

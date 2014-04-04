@@ -8,32 +8,32 @@ namespace nFMOD
 	public partial class SoundSystem
 	{
 		
-		public Dsp.Dsp CreateDSP(ref Dsp.Description description)
+		public Dsp CreateDSP(ref Dsp.Description description)
 		{
 			IntPtr DspHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateDSP (this.DangerousGetHandle (), ref description, ref DspHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
-			return new Dsp.Dsp (DspHandle);
+			return new Dsp (DspHandle);
 		}
 		
-		public Dsp.Dsp CreateDspByType(Dsp.Type type)
+		public Dsp CreateDspByType(Dsp.Type type)
 		{
 			IntPtr DspHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = CreateDspByType (this.DangerousGetHandle (), type, ref DspHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
-			return new Dsp.Dsp (DspHandle);
+			return new Dsp (DspHandle);
 		}
 		
-		public Channel PlayDsp (Dsp.Dsp dsp)
+		public Channel PlayDsp (Dsp dsp)
 		{
 			return PlayDsp (dsp, false);
 		}
 
-		public Channel PlayDsp (Dsp.Dsp dsp, bool paused)
+		public Channel PlayDsp (Dsp dsp, bool paused)
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
@@ -43,7 +43,7 @@ namespace nFMOD
 			return new Channel(ChannelHandle);
 		}
 
-		public void PlayDsp (Dsp.Dsp dsp, bool paused, Channel chn)
+		public void PlayDsp (Dsp dsp, bool paused, Channel chn)
 		{
 			IntPtr channel = chn.DangerousGetHandle ();
 			
@@ -56,14 +56,14 @@ namespace nFMOD
 				throw new Exception("Channel handle got changed by Fmod.");
 		}
 		
-		public Dsp.Connection AddDsp (Dsp.Dsp dsp)
+		public DspConnection AddDsp (Dsp dsp)
 		{
 			IntPtr ConnectionHandle = IntPtr.Zero;
 			
 			ErrorCode ReturnCode = AddDSP (this.DangerousGetHandle (), dsp.DangerousGetHandle (), ref ConnectionHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
-			return new Dsp.Connection (ConnectionHandle);
+			return new DspConnection (ConnectionHandle);
 		}
 		
 		public void LockDSP ()

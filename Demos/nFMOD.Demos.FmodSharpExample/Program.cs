@@ -22,10 +22,10 @@ namespace nFMOD
 			
             SoundSystem.Init();
 			
-            nFMOD.Channel Chan = null;
+            Channel Chan = null;
 			
             //Create an oscillator DSP unit for the tone.
-            nFMOD.Dsp.Dsp Oscillator;
+            Dsp Oscillator;
 			
             Oscillator = SoundSystem.CreateDspByType(Dsp.Type.Oscillator);
             Chan = SoundSystem.PlayDsp(Oscillator);

@@ -74,7 +74,7 @@ namespace nFMOD.Enums
 		DMA,
 		
 		/// <summary>
-		/// DSP connection error.  Connection possibly caused a cyclic dependancy.
+		/// DSP connection error.  DspConnection possibly caused a cyclic dependancy.
 		/// </summary>
 		DSP_Connection,
 		
