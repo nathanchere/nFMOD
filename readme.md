@@ -3,8 +3,10 @@ nFMOD
 
 A .NET wrapper for Firelight Studio's FMOD audio library.
 
+The official FMOD SDK comes with some simple C# examples, however .Net is clearly not the primary audience for the library and the C# examples largely read like classic C code. Compared to something like nAudio, the code for interacting with FMOD in the official SDK samples felt... unrefined. nFMOD is an attempt at refinement.
+
 At this point in time nFMOD focuses solely on Windows. While Mono-based cross platform support is possible, it's not a priority.
-If you require an example of using FMOD with Mono, including a GTK-based demo for Linux, please look at [FmodSharp](https://gitorious.org/fmodsharp).
+If you require an example of using FMOD with platforms other than Winfows please look at [FmodSharp](https://gitorious.org/fmodsharp) which appears to use the same FMOD SDK base but has working GTK / Mono sample code included.
 
 Initial goals are to reduce requirements (currently .NET Framework 4.0, ideally 2.0), update to current FmodEx version, support FMOD x64, package for Nuget deployment, implement a more "managed"-style approach to better handle resource management concerns and provide more meaningful logging and exception handling.
 
@@ -39,5 +41,3 @@ Credits / thanks
 ----------------
 
 [FMOD](http://www.fmod.org/): Firelight Studios (http://firelightstudios.net/) for the underlying tech and generously making FMOD freely available for non-commercial projects
-
-[FmodSharp](https://gitorious.org/fmodsharp): Marc-Andre Ferland
