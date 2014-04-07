@@ -6,6 +6,22 @@ using System.Runtime.InteropServices;
 namespace nFMOD
 {
 
+    public struct OutputDriverDTO
+	{
+		internal int Id { get; set; }
+		public string Name { get; internal set; }
+		public Guid Guid { get; internal set; }
+		public Capabilities Capabilities { get; internal set; }
+		public int MinimumFrequency { get; internal set; }
+		public int MaximumFrequency { get; internal set; }
+		public SpeakerMode SpeakerMode { get; internal set; }
+		
+		public override string ToString ()
+		{
+			return Name;
+		}
+	}
+
     #region DSP
     public struct DspParameterDescription
     {
@@ -429,12 +445,12 @@ namespace nFMOD
         {
             get
             {
-                return this.instance;
+                return instance;
             }
             set
             {
-                this.CheckRange(value, 0, 3, "Instance");
-                this.instance = value;
+                CheckRange(value, 0, 3, "Instance");
+                instance = value;
             }
         }
 
@@ -445,12 +461,12 @@ namespace nFMOD
         {
             get
             {
-                return this.environment;
+                return environment;
             }
             set
             {
-                this.CheckRange(value, -1, 25, "Environment");
-                this.environment = value;
+                CheckRange(value, -1, 25, "Environment");
+                environment = value;
             }
         }
 
@@ -461,12 +477,12 @@ namespace nFMOD
         {
             get
             {
-                return this.envSize;
+                return envSize;
             }
             set
             {
-                this.CheckRange(value, 1.0, 100.0, "EnvironmentSize");
-                this.envSize = value;
+                CheckRange(value, 1.0, 100.0, "EnvironmentSize");
+                envSize = value;
             }
         }
 
@@ -477,12 +493,12 @@ namespace nFMOD
         {
             get
             {
-                return this.envDiffusion;
+                return envDiffusion;
             }
             set
             {
-                this.CheckRange(value, 0.0, 1.0, "EnvironmentDiffusion");
-                this.envDiffusion = value;
+                CheckRange(value, 0.0, 1.0, "EnvironmentDiffusion");
+                envDiffusion = value;
             }
         }
 
@@ -493,12 +509,12 @@ namespace nFMOD
         {
             get
             {
-                return this.room;
+                return room;
             }
             set
             {
-                this.CheckRange(value, -10000, 0, "Room");
-                this.room = value;
+                CheckRange(value, -10000, 0, "Room");
+                room = value;
             }
         }
 
@@ -509,12 +525,12 @@ namespace nFMOD
         {
             get
             {
-                return this.roomHF;
+                return roomHF;
             }
             set
             {
-                this.CheckRange(value, -10000, 0, "RoomHighFrequencies");
-                this.roomHF = value;
+                CheckRange(value, -10000, 0, "RoomHighFrequencies");
+                roomHF = value;
             }
         }
 
@@ -525,12 +541,12 @@ namespace nFMOD
         {
             get
             {
-                return this.roomLF;
+                return roomLF;
             }
             set
             {
-                this.CheckRange(value, -10000, 0, "RoomLowFrequencies");
-                this.roomLF = value;
+                CheckRange(value, -10000, 0, "RoomLowFrequencies");
+                roomLF = value;
             }
         }
 
@@ -541,12 +557,12 @@ namespace nFMOD
         {
             get
             {
-                return this.decayTime;
+                return decayTime;
             }
             set
             {
-                this.CheckRange(value, 0.1, 20.0, "DecayTime");
-                this.decayTime = value;
+                CheckRange(value, 0.1, 20.0, "DecayTime");
+                decayTime = value;
             }
         }
 
@@ -557,12 +573,12 @@ namespace nFMOD
         {
             get
             {
-                return this.decayHFRatio;
+                return decayHFRatio;
             }
             set
             {
-                this.CheckRange(value, 0.1, 2.0, "DecayHighFrequencyRatio");
-                this.decayHFRatio = value;
+                CheckRange(value, 0.1, 2.0, "DecayHighFrequencyRatio");
+                decayHFRatio = value;
             }
         }
 
@@ -573,12 +589,12 @@ namespace nFMOD
         {
             get
             {
-                return this.decayLFRatio;
+                return decayLFRatio;
             }
             set
             {
-                this.CheckRange(value, 0.1, 2.0, "DecayLowFrequencyRatio");
-                this.decayLFRatio = value;
+                CheckRange(value, 0.1, 2.0, "DecayLowFrequencyRatio");
+                decayLFRatio = value;
             }
         }
 
@@ -589,12 +605,12 @@ namespace nFMOD
         {
             get
             {
-                return this.reflections;
+                return reflections;
             }
             set
             {
-                this.CheckRange(value, -10000, 1000, "Reflections");
-                this.reflections = value;
+                CheckRange(value, -10000, 1000, "Reflections");
+                reflections = value;
             }
         }
 
@@ -605,12 +621,12 @@ namespace nFMOD
         {
             get
             {
-                return this.reflectionsDelay;
+                return reflectionsDelay;
             }
             set
             {
-                this.CheckRange(value, 0.0, 0.3, "ReflectionsDelay");
-                this.reflectionsDelay = value;
+                CheckRange(value, 0.0, 0.3, "ReflectionsDelay");
+                reflectionsDelay = value;
             }
         }
 
@@ -621,11 +637,11 @@ namespace nFMOD
         {
             get
             {
-                return this.reflectionsPan;
+                return reflectionsPan;
             }
             set
             {
-                this.reflectionsPan = value;
+                reflectionsPan = value;
             }
         }
 
@@ -636,12 +652,12 @@ namespace nFMOD
         {
             get
             {
-                return this.reverb;
+                return reverb;
             }
             set
             {
-                this.CheckRange(value, -10000, 2000, "Reverb");
-                this.reverb = value;
+                CheckRange(value, -10000, 2000, "Reverb");
+                reverb = value;
             }
         }
 
@@ -652,12 +668,12 @@ namespace nFMOD
         {
             get
             {
-                return this.reverbDelay;
+                return reverbDelay;
             }
             set
             {
-                this.CheckRange(value, 0.0, 0.1, "ReverbDelay");
-                this.reverbDelay = value;
+                CheckRange(value, 0.0, 0.1, "ReverbDelay");
+                reverbDelay = value;
             }
         }
 
@@ -668,11 +684,11 @@ namespace nFMOD
         {
             get
             {
-                return this.reverbPan;
+                return reverbPan;
             }
             set
             {
-                this.reverbPan = value;
+                reverbPan = value;
             }
         }
 
@@ -683,12 +699,12 @@ namespace nFMOD
         {
             get
             {
-                return this.echoTime;
+                return echoTime;
             }
             set
             {
-                this.CheckRange(value, 0.075, 0.25, "EchoTime");
-                this.echoTime = value;
+                CheckRange(value, 0.075, 0.25, "EchoTime");
+                echoTime = value;
             }
         }
 
@@ -699,12 +715,12 @@ namespace nFMOD
         {
             get
             {
-                return this.echoDepth;
+                return echoDepth;
             }
             set
             {
-                this.CheckRange(value, 0.0, 1.0, "EchoDepth");
-                this.echoDepth = value;
+                CheckRange(value, 0.0, 1.0, "EchoDepth");
+                echoDepth = value;
             }
         }
 
@@ -715,12 +731,12 @@ namespace nFMOD
         {
             get
             {
-                return this.modulationTime;
+                return modulationTime;
             }
             set
             {
-                this.CheckRange(value, 0.04, 4.0, "ModulationTime");
-                this.modulationTime = value;
+                CheckRange(value, 0.04, 4.0, "ModulationTime");
+                modulationTime = value;
             }
         }
 
@@ -731,12 +747,12 @@ namespace nFMOD
         {
             get
             {
-                return this.modulationDepth;
+                return modulationDepth;
             }
             set
             {
-                this.CheckRange(value, 0.0, 1.0, "ModulationDepth");
-                this.modulationDepth = value;
+                CheckRange(value, 0.0, 1.0, "ModulationDepth");
+                modulationDepth = value;
             }
         }
 
@@ -747,12 +763,12 @@ namespace nFMOD
         {
             get
             {
-                return this.airAbsorptionHF;
+                return airAbsorptionHF;
             }
             set
             {
-                this.CheckRange(value, -100.0, 0.0, "AirAbsorptionHighFrequencies");
-                this.airAbsorptionHF = value;
+                CheckRange(value, -100.0, 0.0, "AirAbsorptionHighFrequencies");
+                airAbsorptionHF = value;
             }
         }
 
@@ -763,12 +779,12 @@ namespace nFMOD
         {
             get
             {
-                return this.hFReference;
+                return hFReference;
             }
             set
             {
-                this.CheckRange(value, 1000.0, 20000.0, "HighFrequencyReference");
-                this.hFReference = value;
+                CheckRange(value, 1000.0, 20000.0, "HighFrequencyReference");
+                hFReference = value;
             }
         }
 
@@ -779,12 +795,12 @@ namespace nFMOD
         {
             get
             {
-                return this.lFReference;
+                return lFReference;
             }
             set
             {
-                this.CheckRange(value, 20.0, 1000.0, "LowFrequencyReference");
-                this.lFReference = value;
+                CheckRange(value, 20.0, 1000.0, "LowFrequencyReference");
+                lFReference = value;
             }
         }
 
@@ -795,12 +811,12 @@ namespace nFMOD
         {
             get
             {
-                return this.roomRolloffFactor;
+                return roomRolloffFactor;
             }
             set
             {
-                this.CheckRange(value, 0.0, 10.0, "RoomRolloffFactor");
-                this.roomRolloffFactor = value;
+                CheckRange(value, 0.0, 10.0, "RoomRolloffFactor");
+                roomRolloffFactor = value;
             }
         }
 
@@ -813,11 +829,11 @@ namespace nFMOD
         {
             get
             {
-                return this.flags;
+                return flags;
             }
             set
             {
-                this.flags = value;
+                flags = value;
             }
         }
 
