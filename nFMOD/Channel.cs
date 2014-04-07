@@ -4,7 +4,7 @@ using System.Security;
 
 namespace nFMOD
 {
-	public partial class Channel : Handle, iSpectrumWave
+	public partial class Channel : Handle, ISpectrumWave
 	{
 		
 		#region Create/Release
@@ -171,14 +171,14 @@ namespace nFMOD
 		
 		#region Spectrum/Wave
 		
-		public float[] GetSpectrum (int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		public float[] GetSpectrum (int numvalues, int channeloffset, FFTWindow windowtype)
 		{
 			float[] SpectrumArray = new float[numvalues];
 			this.GetSpectrum (SpectrumArray, numvalues, channeloffset, windowtype);
 			return SpectrumArray;
 		}
 		
-		public void GetSpectrum (float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		public void GetSpectrum (float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype)
 		{
 			GetSpectrum(this.DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
 		}
@@ -196,7 +196,7 @@ namespace nFMOD
 		}
 		
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetSpectrum"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
+		private static extern ErrorCode GetSpectrum (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetWaveData"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode GetWaveData (IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);

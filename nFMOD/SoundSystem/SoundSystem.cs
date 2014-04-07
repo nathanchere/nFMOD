@@ -5,7 +5,7 @@ using System.Text;
 
 namespace nFMOD
 {
-	public partial class SoundSystem : Handle, iSpectrumWave
+	public partial class SoundSystem : Handle, ISpectrumWave
     {
         #region Externs
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_Create"), SuppressUnmanagedCodeSecurity]
@@ -57,10 +57,10 @@ namespace nFMOD
 		private static extern ErrorCode GetSoftwareChannels (IntPtr system, ref int numsoftwarechannels);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_SetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode SetSoftwareFormat (IntPtr system, int samplerate, Sound.Format format, int numoutputchannels, int maxinputchannels, Dsp.Resampler resamplemethod);
+		private static extern ErrorCode SetSoftwareFormat (IntPtr system, int samplerate, Sound.Format format, int numoutputchannels, int maxinputchannels, Resampler resamplemethod);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetSoftwareFormat (IntPtr system, ref int samplerate, ref Sound.Format format, ref int numoutputchannels, ref int maxinputchannels, ref Dsp.Resampler resamplemethod, ref int bits);
+		private static extern ErrorCode GetSoftwareFormat (IntPtr system, ref int samplerate, ref Sound.Format format, ref int numoutputchannels, ref int maxinputchannels, ref Resampler resamplemethod, ref int bits);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode SetDSPBufferSize (IntPtr system, uint bufferlength, int numbuffers);
@@ -261,10 +261,10 @@ namespace nFMOD
 		public static extern ErrorCode GetCDROMDriveName (IntPtr system, int Drive, ref byte Drivename, int Drivenamelen, ref byte Scsiname, int Scsinamelen, ref byte Devicename, int Devicenamelen);
 
 		[DllImport(Common.FMOD_DLL, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSP"), SuppressUnmanagedCodeSecurity]
-		public static extern ErrorCode CreateDSP (IntPtr system, ref Dsp.Description description, ref int Dsp);
+		public static extern ErrorCode CreateDSP (IntPtr system, ref Dsp.DSPDescription description, ref int Dsp);
 
 		[DllImport(Common.FMOD_DLL, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
-		public static extern ErrorCode CreateDSPByType (IntPtr system, Dsp.Type dsptype, ref int Dsp);
+		public static extern ErrorCode CreateDSPByType (IntPtr system, DspType dsptype, ref int Dsp);
 
 		[DllImport(Common.FMOD_DLL, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByIndex"), SuppressUnmanagedCodeSecurity]
 		public static extern ErrorCode CreateDSPByIndex (IntPtr system, int Index, ref int Dsp);
@@ -700,14 +700,14 @@ namespace nFMOD
 		
 		#region Spectrum/Wave
 		
-		public float[] GetSpectrum (int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		public float[] GetSpectrum (int numvalues, int channeloffset, FFTWindow windowtype)
 		{
 			float[] SpectrumArray = new float[numvalues];
 			this.GetSpectrum (SpectrumArray, numvalues, channeloffset, windowtype);
 			return SpectrumArray;
 		}
 		
-		public void GetSpectrum (float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype)
+		public void GetSpectrum (float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype)
 		{
 			GetSpectrum(this.DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
 		}
@@ -725,7 +725,7 @@ namespace nFMOD
 		}
 		
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetSpectrum"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, Dsp.FFTWindow windowtype);
+		private static extern ErrorCode GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetWaveData"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode GetWaveData (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);

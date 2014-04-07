@@ -27,7 +27,7 @@ namespace nFMOD
             //Create an oscillator DSP unit for the tone.
             Dsp Oscillator;
 			
-            Oscillator = SoundSystem.CreateDspByType(Dsp.Type.Oscillator);
+            Oscillator = SoundSystem.CreateDspByType(DspType.Oscillator);
             Chan = SoundSystem.PlayDsp(Oscillator);
 			
             Console.WriteLine("\nPress Enter to stop.\n");

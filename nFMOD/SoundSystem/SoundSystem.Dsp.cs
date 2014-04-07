@@ -7,7 +7,7 @@ namespace nFMOD
 	public partial class SoundSystem
 	{
 		
-		public Dsp CreateDSP(ref Dsp.Description description)
+		public Dsp CreateDSP(ref Dsp.DSPDescription description)
 		{
 			IntPtr DspHandle = IntPtr.Zero;
 			
@@ -17,7 +17,7 @@ namespace nFMOD
 			return new Dsp (DspHandle);
 		}
 		
-		public Dsp CreateDspByType(Dsp.Type type)
+		public Dsp CreateDspByType(DspType type)
 		{
 			IntPtr DspHandle = IntPtr.Zero;
 			
@@ -88,11 +88,11 @@ namespace nFMOD
 
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport ("fmodex", EntryPoint = "FMOD_System_CreateDSP")]
-		private static extern ErrorCode CreateDSP (IntPtr system, ref Dsp.Description description, ref IntPtr dsp);
+		private static extern ErrorCode CreateDSP (IntPtr system, ref Dsp.DSPDescription description, ref IntPtr dsp);
 
 		[System.Security.SuppressUnmanagedCodeSecurity]
 		[DllImport ("fmodex", EntryPoint = "FMOD_System_CreateDSPByType")]
-		private static extern ErrorCode CreateDspByType (IntPtr system, Dsp.Type type, ref IntPtr dsp);
+		private static extern ErrorCode CreateDspByType (IntPtr system, DspType type, ref IntPtr dsp);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode PlayDsp (IntPtr system, Channel.Index channelid, IntPtr dsp, bool paused, ref IntPtr channel);

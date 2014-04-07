@@ -3,6 +3,222 @@ using System.Runtime.InteropServices;
 
 namespace nFMOD
 {
+    #region DSP
+    /// <summary>
+    /// List of windowing methods used in spectrum analysis to reduce leakage / transient signals
+    /// intefering with the analysis. This is a problem with analysis of continuous signals that
+    /// only have a small portion of the signal sample (the FFT window size). Windowing the signal
+    /// with a curve or triangle tapers the sides of the FFT window to help alleviate this problem.        
+    /// </summary>
+    /// <remarks>
+    /// Cyclic signals such as a sine wave that repeat their cycle in a multiple of the window size
+    /// do not need windowing (i.e. if the sine wave repeats every 1024, 512, 256 etc samples and
+    /// the FMOD fft window is 1024, then the signal would not need windowing).
+    /// Not windowing is the same as FMOD_DSP_FFT_WINDOW_RECT, which is the default.
+    /// If the cycle of the signal (i.e. the sine wave) is not a multiple of the window size, it
+    /// will cause frequency abnormalities, so a different windowing method is needed.
+    /// </remarks>
+    public enum FFTWindow : int
+    {
+        /// <summary>
+        /// w[n] = 1.0
+        /// </summary>
+        Rectangle,
+
+        /// <summary>
+        /// w[n] = TRI(2n/N)
+        /// </summary>
+        Triangle,
+
+        /// <summary>
+        /// w[n] = 0.54 - (0.46 * COS(n/N) )
+        /// </summary>
+        Hamming,
+
+        /// <summary>
+        /// w[n] = 0.5 *  (1.0  - COS(n/N) )
+        /// </summary>
+        Hanning,
+
+        /// <summary>
+        /// w[n] = 0.42 - (0.5  * COS(n/N) ) + (0.08 * COS(2.0 * n/N) )
+        /// </summary>
+        Blackman,
+
+        /// <summary>
+        /// w[n] = 0.35875 - (0.48829 * COS(1.0 * n/N)) + (0.14128 * COS(2.0 * n/N)) - (0.01168 * COS(3.0 * n/N))
+        /// </summary>
+        BlackmanHarris,
+
+        Max
+    }
+
+    /// <summary>
+    /// List of interpolation types that the FMOD software mixer supports.
+    /// </summary>
+    public enum Resampler : int
+    {
+        /// <summary>
+        /// High frequency aliasing hiss will be audible depending on the sample rate of the sound.
+        /// </summary>
+        NoInterpolation,
+
+        /// <summary>
+        /// Fast and good quality, causes very slight lowpass effect on low frequency sounds.
+        /// (default method)
+        /// </summary>
+        Linear,
+
+        /// <summary>
+        /// Slower than linear interpolation but better quality.
+        /// </summary>
+        Cubic,
+
+        /// <summary>
+        /// 5 point spline interpolation.
+        /// Slowest resampling method but best quality.
+        /// </summary>
+        Spline,
+
+        /// <summary>
+        /// Maximum number of resample methods supported.
+        /// </summary>
+        Max,
+    }
+
+    /// <summary>
+    /// These definitions can be used for creating FMOD defined special effects or DSP units.
+    /// </summary>
+    /// <remarks>
+    /// To get them to be active first create the unit then add it somewhere into the DSP
+    /// network, either at the front of the network near the soundcard unit to affect
+    /// the global output (by using System::getDSPHead) or on a single channel (using
+    /// Channel::getDSPHead).
+    /// </remarks>
+    public enum DspType : int
+    {
+        /// <summary>
+        /// This unit was created via a non FMOD plugin so has an unknown purpose.
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// This unit does nothing but take inputs and mix them together
+        /// then feed the result to the soundcard unit.
+        /// </summary>
+        Mixer,
+
+        /// <summary>
+        /// This unit generates sine/square/saw/triangle or noise tones.
+        /// </summary>
+        Oscillator,
+
+        /// <summary>
+        /// This unit filters sound using a high quality, resonant lowpass filter
+        /// algorithm but consumes more CPU time.
+        /// </summary>
+        LowPass,
+
+        /// <summary>
+        /// This unit filters sound using a resonant lowpass filter algorithm that is
+        /// used in Impulse Tracker, but with limited cutoff range (0 to 8060hz).
+        /// </summary>
+        ImpulseTrackerLowPass,
+
+        /// <summary>
+        /// This unit filters sound using a resonant highpass filter algorithm.
+        /// </summary>
+        HighPass,
+
+        /// <summary>
+        /// This unit produces an echo on the sound and fades out at the desired rate.
+        /// </summary>
+        Echo,
+
+        /// <summary>
+        /// This unit produces a flange effect on the sound.
+        /// </summary>
+        Flange,
+
+        /// <summary>
+        /// This unit distorts the sound.
+        /// </summary>
+        Distortion,
+
+        /// <summary>
+        /// This unit normalizes or amplifies the sound to a certain level.
+        /// </summary>
+        Normalize,
+
+        /// <summary>
+        /// This unit attenuates or amplifies a selected frequency range.
+        /// </summary>
+        ParameQ,
+
+        /// <summary>
+        /// This unit bends the pitch of a sound without changing the speed of playback.
+        /// </summary>
+        PitchShift,
+
+        /// <summary>
+        /// This unit produces a chorus effect on the sound.
+        /// </summary>
+        Chorus,
+
+        /// <summary>
+        /// This unit produces a reverb effect on the sound.
+        /// </summary>
+        Reverb,
+
+        /// <summary>
+        /// This unit allows the use of Steinberg VST plugins
+        /// </summary>
+        VSTPlugin,
+
+        /// <summary>
+        /// This unit allows the use of Nullsoft Winamp plugins.
+        /// </summary>
+        WinampPlugin,
+
+        /// <summary>
+        /// This unit produces an echo on the sound and fades out at the desired rate
+        /// as is used in Impulse Tracker.
+        /// </summary>
+        ImpulseTrackerEcho,
+
+        /// <summary>
+        /// This unit implements dynamic compression (linked multichannel, wideband).
+        /// </summary>
+        Compressor,
+
+        /// <summary>
+        /// This unit implements SFX reverb.
+        /// </summary>
+        SFXReverb,
+
+        /// <summary>
+        /// This unit filters sound using a simple lowpass with no resonance, but
+        /// has flexible cutoff and is fast.
+        /// </summary>
+        LowPassSimple,
+
+        /// <summary>
+        /// This unit produces different delays on individual channels of the sound.
+        /// </summary>
+        Delay,
+
+        /// <summary>
+        /// This unit produces a tremolo / chopper effect on the sound.
+        /// </summary>
+        Tremolo,
+
+        /// <summary>
+        /// This unit allows the use of LADSPA standard plugins.
+        /// </summary>
+        LADSPAPlugin
+    }
+    #endregion
+
     /// <summary>
     ///  Settings for advanced features like configuring memory and cpu usage for the
     /// FMOD_CREATECOMPRESSEDSAMPLE feature.     
