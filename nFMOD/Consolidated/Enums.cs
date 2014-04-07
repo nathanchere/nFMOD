@@ -506,14 +506,9 @@ namespace nFMOD
         /// </summary>
         Null = Max,
 
-        /// <summary>
-        /// For use with FMOD_SPEAKERMODE_7POINT1 on PS3 where the extra speakers are surround back inside of side speakers.
-        /// </summary>
+        [Obsolete("PS3-only")]
         SBL = SideLeft,
-
-        /// <summary>
-        /// For use with FMOD_SPEAKERMODE_7POINT1 on PS3 where the extra speakers are surround back inside of side speakers.
-        /// </summary>
+        [Obsolete("PS3-only")]
         SBR = SideRight,
     }
 
