@@ -299,8 +299,6 @@ namespace nFMOD
 		/// </summary>
 		public const uint Fmod_Version = 0x43202;
 
-		#region Create/Release
-
 		public SoundSystem () : base()
 		{
 			IntPtr SoundSystemHandle = IntPtr.Zero;
@@ -349,8 +347,7 @@ namespace nFMOD
 		{
 			CloseSystem (this.DangerousGetHandle ());
 		}		
-		#endregion
-		
+				
 		#region Events
 		
 		//TODO Implement SoundSystem Events.
@@ -697,10 +694,44 @@ namespace nFMOD
 		private static extern ErrorCode IsRecording (IntPtr system, int id, ref int recording);
 
 		#endregion
-		
-		#region Spectrum/Wave
-		
-		public float[] GetSpectrum (int numvalues, int channeloffset, FFTWindow windowtype)
+
+        #region Reverb
+        public Reverb CreateReverb()
+        {
+            IntPtr ReverbHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateReverb(DangerousGetHandle(), ref ReverbHandle));
+            return new Reverb(ReverbHandle);
+        }
+
+        public ReverbProperties ReverbProperties
+        {
+            get
+            {
+                var result = ReverbProperties.Generic;
+                Errors.ThrowIfError(GetReverbProperties(DangerousGetHandle(), ref result));
+                return result;
+            }
+            set { Errors.ThrowIfError(SetReverbProperties(DangerousGetHandle(), ref value)); } }
+
+        public ReverbProperties ReverbAmbientProperties
+        {
+            get
+            {
+                var Val = ReverbProperties.Generic;
+                Errors.ThrowIfError(GetReverbAmbientProperties(DangerousGetHandle(), ref Val));
+                return Val;
+            }
+
+            set
+            {
+                Errors.ThrowIfError(SetReverbAmbientProperties(DangerousGetHandle(), ref value));
+            }
+        }
+        #endregion
+
+        #region Spectrum/Wave
+
+        public float[] GetSpectrum (int numvalues, int channeloffset, FFTWindow windowtype)
 		{
 			float[] SpectrumArray = new float[numvalues];
 			this.GetSpectrum (SpectrumArray, numvalues, channeloffset, windowtype);
