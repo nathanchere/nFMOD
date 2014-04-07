@@ -26,6 +26,12 @@ namespace nFMOD
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_UpdateFinished"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode UpdateFinished (IntPtr system);
 
+        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetSpectrum"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype);
+
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetWaveData"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetWaveData (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
+
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_CreateReverb"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateReverb(IntPtr system, ref IntPtr reverb);
 
@@ -753,14 +759,7 @@ namespace nFMOD
 		public void GetWaveData (float[] wavearray, int numvalues, int channeloffset)
 		{
 			GetWaveData(this.DangerousGetHandle(), wavearray, numvalues, channeloffset);
-		}
-		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetSpectrum"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype);
-
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetWaveData"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetWaveData (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
-		
+		}	
 		#endregion
 		
 		#region Update
