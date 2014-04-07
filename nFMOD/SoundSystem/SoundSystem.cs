@@ -752,6 +752,87 @@ namespace nFMOD
 
 		#endregion
 
+        #region DSP
+        public Dsp CreateDSP(ref Dsp.DSPDescription description)
+		{
+			IntPtr DspHandle = IntPtr.Zero;
+			
+			ErrorCode ReturnCode = CreateDSP (this.DangerousGetHandle (), ref description, ref DspHandle);
+			Errors.ThrowIfError (ReturnCode);
+			
+			return new Dsp (DspHandle);
+		}
+		
+		public Dsp CreateDspByType(DspType type)
+		{
+			IntPtr DspHandle = IntPtr.Zero;
+			
+			ErrorCode ReturnCode = CreateDspByType (this.DangerousGetHandle (), type, ref DspHandle);
+			Errors.ThrowIfError (ReturnCode);
+			
+			return new Dsp (DspHandle);
+		}
+		
+		public Channel PlayDsp (Dsp dsp)
+		{
+			return PlayDsp (dsp, false);
+		}
+
+		public Channel PlayDsp (Dsp dsp, bool paused)
+		{
+			IntPtr ChannelHandle = IntPtr.Zero;
+			
+			ErrorCode ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Free, dsp.DangerousGetHandle (), paused, ref ChannelHandle);
+			Errors.ThrowIfError (ReturnCode);
+			
+			return new Channel(ChannelHandle);
+		}
+
+		public void PlayDsp (Dsp dsp, bool paused, Channel chn)
+		{
+			IntPtr channel = chn.DangerousGetHandle ();
+			
+			ErrorCode ReturnCode = PlayDsp (this.DangerousGetHandle (), Channel.Index.Reuse, dsp.DangerousGetHandle (), paused, ref channel);
+			Errors.ThrowIfError (ReturnCode);
+			
+			//This can't really happend.
+			//Check just in case...
+			if(chn.DangerousGetHandle () != channel)
+				throw new Exception("Channel handle got changed by Fmod.");
+		}
+		
+		public DspConnection AddDsp (Dsp dsp)
+		{
+			IntPtr ConnectionHandle = IntPtr.Zero;
+			
+			ErrorCode ReturnCode = AddDSP (this.DangerousGetHandle (), dsp.DangerousGetHandle (), ref ConnectionHandle);
+			Errors.ThrowIfError (ReturnCode);
+			
+			return new DspConnection (ConnectionHandle);
+		}
+		
+		public void LockDSP ()
+		{
+			ErrorCode ReturnCode = LockDSP (this.DangerousGetHandle ());
+			Errors.ThrowIfError (ReturnCode);
+		}
+		
+		public void UnlockDSP ()
+		{
+			ErrorCode ReturnCode = UnlockDSP (this.DangerousGetHandle ());
+			Errors.ThrowIfError (ReturnCode);
+		}
+		
+		public ulong DSPClock {
+			get {
+				uint hi = 0, low = 0;
+				ErrorCode ReturnCode = GetDSPClock (this.DangerousGetHandle (), ref hi, ref low);
+				Errors.ThrowIfError (ReturnCode);
+				return (hi << 32) | low;
+			}
+		}
+        #endregion
+
         #region Reverb
         public Reverb CreateReverb()
         {
@@ -784,6 +865,81 @@ namespace nFMOD
                 Errors.ThrowIfError(SetReverbAmbientProperties(DangerousGetHandle(), ref value));
             }
         }
+        #endregion
+        
+        #region Output driver
+        
+		public OutputDriverDTO OutputDriver {
+			get {
+				int driver;
+				ErrorCode ReturnCode = GetDriver (this.DangerousGetHandle (), out driver);
+				Errors.ThrowIfError (ReturnCode);
+				
+				return this.GetOutputDriver(driver);
+			}
+			set {
+				ErrorCode ReturnCode = SetDriver (this.DangerousGetHandle (), value.Id);
+				Errors.ThrowIfError (ReturnCode);
+			}
+		}
+		
+		public IEnumerable<OutputDriverDTO> OutputDrivers {
+			get {
+				int Numb = this.NumberOutputDrivers;
+				for (int i = 0; i < Numb; i++) {
+					yield return this.GetOutputDriver(i);
+				}
+			}
+		}
+		
+		private int NumberOutputDrivers {
+			get {
+				int numdrivers;
+				ErrorCode ReturnCode = GetNumDrivers (this.DangerousGetHandle (), out numdrivers);
+				Errors.ThrowIfError (ReturnCode);
+				
+				return numdrivers;
+			}
+		}
+		
+		private void GetOutputDriverInfo(int Id, out string Name, out Guid DriverGuid)
+		{
+			System.Text.StringBuilder str = new System.Text.StringBuilder(255);
+			
+			ErrorCode ReturnCode = GetDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
+			Errors.ThrowIfError (ReturnCode);
+			
+			Name = str.ToString();
+		}
+		
+		private void GetOutputDriverCapabilities (int Id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
+		{
+			ErrorCode ReturnCode = GetDriverCaps (this.DangerousGetHandle (), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
+			Errors.ThrowIfError (ReturnCode);
+		}
+		
+		private OutputDriverDTO GetOutputDriver (int Id)
+		{
+			Guid DriverGuid;
+			string DriverName;
+			this.GetOutputDriverInfo(Id, out DriverName, out DriverGuid);
+			
+			Capabilities caps;
+			int minfrequency, maxfrequency;
+			SpeakerMode controlpanelspeakermode;
+			this.GetOutputDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
+			
+			return new OutputDriverDTO {
+				Id = Id,
+				Name = DriverName,
+				Guid = DriverGuid,
+				
+				Capabilities = caps,
+				MinimumFrequency = minfrequency,
+				MaximumFrequency = maxfrequency,
+				SpeakerMode = controlpanelspeakermode
+			};
+		}
         #endregion
 
         #region Spectrum/Wave
