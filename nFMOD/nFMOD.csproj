@@ -52,10 +52,10 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Common.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Structs.cs" />
+    <Compile Include="Consolidated\Enums.cs" />
+    <Compile Include="Consolidated\Structs.cs" />
     <Compile Include="Exceptions.cs" />
-    <Compile Include="Callbacks.cs" />
+    <Compile Include="Consolidated\Callbacks.cs" />
     <Compile Include="Handle.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="Errors.cs" />
