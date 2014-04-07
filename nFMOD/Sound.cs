@@ -147,7 +147,7 @@ namespace nFMOD
 		private static extern ErrorCode GetUserData (IntPtr sound, ref IntPtr userdata);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Sound_GetMemoryInfo"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetMemoryInfo (IntPtr sound, uint memorybits, uint event_memorybits, ref uint memoryused, ref Memory.UsageDetails memoryused_details);
+		private static extern ErrorCode GetMemoryInfo (IntPtr sound, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
         #endregion
 
         #region Enums
