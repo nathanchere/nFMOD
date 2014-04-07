@@ -77,20 +77,7 @@ namespace nFMOD
 				MinimumFrequency = minfrequency,
 				MaximumFrequency = maxfrequency,
 			};
-		}
-		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordNumDrivers"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetRecordNumDrivers (IntPtr system, out int numdrivers);
-		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordDriverInfo"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetRecordDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
-		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordDriverInfoW"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode FMOD_System_GetRecordDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
-		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordDriverCaps"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetRecordDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency);
-		
+		}					
 	}
 }
 

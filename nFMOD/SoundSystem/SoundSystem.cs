@@ -47,6 +47,36 @@ namespace nFMOD
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetReverbAmbientProperties"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetReverbAmbientProperties(IntPtr system, ref ReverbProperties prop);
 
+        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordNumDrivers"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetRecordNumDrivers (IntPtr system, out int numdrivers);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordDriverInfo"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetRecordDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordDriverInfoW"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode FMOD_System_GetRecordDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetRecordDriverCaps"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetRecordDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency);
+
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetNumDrivers"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetNumDrivers (IntPtr system, out int Numdrivers);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriverInfo"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriverInfoW"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriverCaps"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_SetDriver"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetDriver (IntPtr system, int driver);
+
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriver"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriver (IntPtr system, out int driver);
+
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDSPHead"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode GetDSPHead (IntPtr system, ref IntPtr dsp);
 

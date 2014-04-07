@@ -1,43 +1,15 @@
 using System;
 
-/*
- * TODO:
- * Clean up in general
- * OutputType: Replace System::setOutput/System::getOutput by real name.
- * OutputType: Convert Remarks with real names.
- * InitFlags: complete conversion
- */
-
 namespace nFMOD
 {
     public partial class SoundSystem
     {
-
-        /*
-    [ENUM]
-    [
-        [DESCRIPTION]   
-        
-
-        [REMARKS]
-        Each callback has commanddata parameters passed as int unique to the type of callback.<br>
-        See reference to FMOD_SYSTEM_CALLBACK to determine what they might mean for each type of callback.<br>
-        <br>
-        <b>Note!</b>  Currently the user must call System::update for these callbacks to trigger!
-
-        [PLATFORMS]
-        Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation 2, PlayStation Portable, PlayStation 3, Wii
-
-        [SEE_ALSO]      
-        System::setCallback
-        FMOD_SYSTEM_CALLBACK
-        System::update
-    ]
-    */
-
         /// <summary>
         /// These callback types are used with System::setCallback.
         /// </summary>
+        /// <remarks>
+        /// Currently the user must call System::update for these callbacks to trigger.
+        /// </remarks>
         public enum CallbackType : int
         {
             /// <summary>
@@ -81,15 +53,10 @@ namespace nFMOD
 
         }
 
-        //TODO complete submary
-
         /// <summary>
         /// //Initialization flags.
-        /// Use them with <see cref="nFMOD.System.System.Init"/> in the flags parameter to change various behaviour.
+        /// Use them with <see cref="SoundSystem.Init"/> in the flags parameter to change various behaviour.
         /// </summary>
-        /// <platforms>
-        /// Win32, Win64, Linux, Linux64, Macintosh, Xbox, Xbox360, PlayStation 2, GameCube, PlayStation Portable, PlayStation 3, Wii
-        /// </platforms>
         [Flags]
         public enum InitFlags : int
         {
@@ -109,34 +76,25 @@ namespace nFMOD
             /// </summary>
             RightHanded3D = 0x2,
 
-            //TODO verify if it fails with or without SoftwareDisable.
-
             /// <summary>
             /// Disable software mixer to save memory.
             /// Anything created with SoftwareDisable will fail and DSP will not work.
             /// </summary>
-            SoftwareDisable = 0x4,
-
-            //TODO replace Channel::set3DOcclusion by real setting.
+            SoftwareDisable = 0x4, //TODO verify if it fails with or without SoftwareDisable.
 
             /// <summary>
             /// All FMOD_SOFTWARE with FMOD_3D based voices will add a
             /// software lowpass filter effect into the DSP chain which is automatically
             /// used when Channel::set3DOcclusion is used or the geometry API.
             /// </summary>
-            SoftwareOcclusion = 0x8,
+            SoftwareOcclusion = 0x8, //TODO replace Channel::set3DOcclusion by real setting.
 
             /// <summary>
             /// All Software with 3D based voices will add a
             /// software lowpass filter effect into the DSP chain which causes
             /// sounds to sound duller when the sound goes behind the listener.
             /// </summary>
-            SoftwareHRTF = 0x10,
-
-            /// <summary>
-            /// SFX reverb is run using 22/24khz delay buffers, halving the memory required.
-            /// </summary>
-            SoftwareReverbLowMem = 0x40,
+            SoftwareHRTF = 0x10,            
 
             /// <summary>
             /// Enable TCP/IP based host which allows "DSPNet Listener.exe" to connect to it,
@@ -144,7 +102,10 @@ namespace nFMOD
             /// </summary>
             EnableProfile = 0x20,
 
-            //TODO replace System::setAdvancedSettings
+            /// <summary>
+            /// SFX reverb is run using 22/24khz delay buffers, halving the memory required.
+            /// </summary>
+            SoftwareReverbLowMem = 0x40,
 
             /// <summary>
             /// Any sounds that are 0 volume will go virtual and not be processed except
@@ -154,49 +115,69 @@ namespace nFMOD
             /// </summary>
             Vol0BecomesVirtual = 0x80,
 
-
-
+            /// <summary>
+            /// For WASAPI output - enable exclusive access to hardware for lower latency at the
+            /// expense of excluding other applications from accessing the audio hardware.
+            /// </summary>
+            /// <remarks>
+            /// Win32 Vista only
+            /// </remarks>
             WASAPI_EXCLUSIVE = 0x100,
-            // Win32 Vista only - for WASAPI output - Enable exclusive access to hardware, lower latency at the expense of excluding other applications from accessing the audio hardware.
 
+            /// <summary>
+            /// For DirectSound output - FMOD_HARDWARE|FMOD_3D buffers use simple stereo
+            /// panning/doppler/attenuation when 3D hardware acceleration is not present.
+            /// </summary>
             DSOUND_HRTFNONE = 0x200,
-            // Win32 only - for DirectSound output - FMOD_HARDWARE | FMOD_3D buffers use simple stereo panning/doppler/attenuation when 3D hardware acceleration is not present.
 
+            /// <summary>
+            /// For DirectSound output - FMOD_HARDWARE|FMOD_3D buffers use a slightly higher
+            /// quality algorithm when 3D hardware acceleration is not present.
+            /// </summary>
             DSOUND_HRTFLIGHT = 0x400,
-            // Win32 only - for DirectSound output - FMOD_HARDWARE | FMOD_3D buffers use a slightly higher quality algorithm when 3D hardware acceleration is not present.
 
+            /// <summary>
+            /// For DirectSound output - FMOD_HARDWARE|FMOD_3D buffers use full quality 3D
+            /// playback when 3d hardware acceleration is not present.
+            /// </summary>
             DSOUND_HRTFFULL = 0x800,
-            // Win32 only - for DirectSound output - FMOD_HARDWARE | FMOD_3D buffers use full quality 3D playback when 3d hardware acceleration is not present.
 
-            PS2_DISABLECORE0REVERB = 0x10000,
-            // PS2 only - Disable reverb on CORE 0 to regain SRAM.
-
-            PS2_DISABLECORE1REVERB = 0x20000,
-            // PS2 only - Disable reverb on CORE 1 to regain SRAM.
-
-            PS2_DONTUSESCRATCHPAD = 0x40000,
-            // PS2 only - Disable FMOD's usage of the scratchpad.
-
-            PS2_SWAPDMACHANNELS = 0x80000,
-            // PS2 only - Changes FMOD from using SPU DMA channel 0 for software mixing, and 1 for sound data upload/file streaming, to 1 and 0 respectively.
-
-            XBOX_REMOVEHEADROOM = 0x100000,
-            // XBox only - By default DirectSound attenuates all sound by 6db to avoid clipping/distortion.  CAUTION.  If you use this flag you are responsible for the final mix to make sure clipping / distortion doesn't happen.
-
-            Xbox360_MUSICMUTENOTPAUSE = 0x200000,
-            // Xbox 360 only - The "music" channelgroup which by default pauses when custom 360 dashboard music is played, can be changed to mute (therefore continues playing) instead of pausing, by using this flag.
-
+            /// <summary>
+            /// FMOD Mixer thread is woken up to do a mix when System::update is called
+            /// rather than waking periodically on its own timer.
+            /// </summary>
             SYNCMIXERWITHUPDATE = 0x400000,
-            // Win32/Wii/PS3/Xbox/Xbox 360 - FMOD Mixer thread is woken up to do a mix when System::update is called rather than waking periodically on its own timer.
 
+            /// <summary>
+            /// Use DTS Neural surround downmixing from 7.1 if speakermode set to FMOD_SPEAKERMODE_STEREO
+            /// or FMOD_SPEAKERMODE_5POINT1. Internal DSP structure will be set to 7.1.
+            /// </summary>
             DTS_NEURALSURROUND = 0x02000000,
-            /* Win32/Mac/Linux - Use DTS Neural surround downmixing from 7.1 if speakermode set to FMOD_SPEAKERMODE_STEREO or FMOD_SPEAKERMODE_5POINT1.  Internal DSP structure will be set to 7.1. */
 
+            /// <summary>
+            /// With the geometry engine, only process the closest polygon rather than accumulating
+            /// all polygons the sound to listener line intersects.
+            /// </summary>
             GEOMETRY_USECLOSEST = 0x04000000,
-            /* All platforms - With the geometry engine, only process the closest polygon rather than accumulating all polygons the sound to listener line intersects. */
 
-            DISABLE_MYEARS = 0x08000000
-            /* Win32 - Disables MyEars HRTF 7.1 downmixing.  MyEars will otherwise be disbaled if speakermode is not set to FMOD_SPEAKERMODE_STEREO or the data file is missing. */
+            /// <summary>
+            /// Disables MyEars HRTF 7.1 downmixing. MyEars will otherwise be disbaled if speakermode is not
+            /// set to FMOD_SPEAKERMODE_STEREO or the data file is missing.
+            /// </summary>
+            DISABLE_MYEARS = 0x08000000,
+
+            [Obsolete("PS2 only")]
+            PS2_DISABLECORE0REVERB = 0x10000,
+            [Obsolete("PS2 only")]
+            PS2_DISABLECORE1REVERB = 0x20000,
+            [Obsolete("PS2 only")]
+            PS2_DONTUSESCRATCHPAD = 0x40000,
+            [Obsolete("PS2 only")]
+            PS2_SWAPDMACHANNELS = 0x80000,
+            [Obsolete("Xbox only")]
+            XBOX_REMOVEHEADROOM = 0x100000,
+            [Obsolete("Xbox360 only")]
+            Xbox360_MUSICMUTENOTPAUSE = 0x200000,
         }
 
         /// <summary>
