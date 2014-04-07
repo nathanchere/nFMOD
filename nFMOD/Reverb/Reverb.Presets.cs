@@ -776,5 +776,4 @@ namespace nFMOD
             };
         }
     }
-
 }
