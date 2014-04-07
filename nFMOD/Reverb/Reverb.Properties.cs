@@ -9,8 +9,10 @@ namespace nFMOD
         /// Structure defining a reverb environment.
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
-        public struct Properties
+        public struct ReverbProperties
         {
+
+            #region Variables
             private int instance;
             private int environment;
             private float envSize;
@@ -43,15 +45,14 @@ namespace nFMOD
             private float roomRolloffFactor;
 
             [Obsolete("Xbox-only")]
-            private float diffusion;
-
+            private readonly float diffusion;
             [Obsolete("Xbox-only")]
-            private float density;
-
+            private readonly float density;
 
             private ReverbFlags flags;
+            #endregion
 
-            /// <summary>
+            #region Properties/// <summary>
             /// EAX4 only. Environment Instance.
             /// 3 seperate reverbs simultaneously are possible.
             /// This specifies which one to set.
@@ -207,14 +208,12 @@ namespace nFMOD
                     this.CheckRange(value, 0.0, 0.3, "ReflectionsDelay");
                     this.reflectionsDelay = value;
                 }
-            }
-
-            //TODO replace by Vector3
+            }            
 
             /// <summary>
             /// Early reflections panning vector
             /// </summary>
-            public float[] ReflectionsPan
+            public float[] ReflectionsPan //TODO replace by Vector3
             {
                 get { return this.reflectionsPan; }
                 set { this.reflectionsPan = value; }
@@ -245,13 +244,11 @@ namespace nFMOD
                     this.reverbDelay = value;
                 }
             }
-
-            //TODO replace by Vector3
-
+            
             /// <summary>
             /// Late reverb panning vector)
             /// </summary>
-            public float[] ReverbPan
+            public float[] ReverbPan //TODO replace by Vector3
             {
                 get { return this.reverbPan; }
                 set { this.reverbPan = value; }
@@ -360,10 +357,11 @@ namespace nFMOD
                     this.roomRolloffFactor = value;
                 }
             }
-            
+
+            #endregion
+
             /// <summary>
-            /// Modifies the behavior of above properties.
-            /// (win32/ps2)
+            /// Modifies the behavior of other reverb properties.
             /// </summary>
             public ReverbFlags Flags
             {
@@ -379,9 +377,7 @@ namespace nFMOD
                             Min, Max));
             }
 
-            #region Default Preset
-
-            public static readonly Properties Generic = new Properties
+            public static readonly ReverbProperties Generic = new ReverbProperties
             {
                 Instance = 0,
                 Environment = -1,
@@ -406,14 +402,9 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
-
-            #endregion
-
         }
     }
 
