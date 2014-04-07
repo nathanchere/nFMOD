@@ -2,7 +2,29 @@
 using System.Runtime.InteropServices;
 
 namespace nFMOD
-{
+{     
+    /// <summary>
+    /// These are plugin types defined for use with the System::getNumPlugins / System_GetNumPlugins, 
+    /// System::getPluginInfo / System_GetPluginInfo and System::unloadPlugin / System_UnloadPlugin functions.
+    /// </summary>
+    public enum PluginType : int
+    {
+        /// <summary>
+        /// Output module.  FMOD mixed audio will play through one of these devices.
+        /// </summary>
+        Output,
+
+        /// <summary>
+        /// File format CODEC.  FMOD will use these codecs to load file formats for playback.
+        /// </summary>
+        Codec,
+
+        /// <summary>
+        /// DSP unit.  FMOD will use these plugins as part of its DSP network to apply effects to output or generate sound in realtime.
+        /// </summary>
+        Dsp,
+    }
+
     /// <summary>
     /// Bit fields for memory allocation type being passed into FMOD memory callbacks.
     /// </summary>
