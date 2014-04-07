@@ -28,16 +28,16 @@ namespace nFMOD
 			return true;
 		}
 
-		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_Release"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code Release (IntPtr reverb);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Reverb_Release"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode Release (IntPtr reverb);
 		
 		#endregion
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetProperties (IntPtr reverb, ref PropertiesDTO properties);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetProperties (IntPtr reverb, ref Properties properties);
 
-		[DllImport("fmodex", EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetProperties (IntPtr reverb, ref PropertiesDTO properties);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetProperties (IntPtr reverb, ref Properties properties);
 		
 		
 		//TODO Implement extern funcitons

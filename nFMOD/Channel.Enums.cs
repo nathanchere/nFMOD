@@ -59,7 +59,7 @@ namespace nFMOD
             Max
         }
 
-        public delegate Error.Code ChannelDelegate(IntPtr channelraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2);
+        public delegate ErrorCode ChannelDelegate(IntPtr channelraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2);
 
         //TODO end submmary
 

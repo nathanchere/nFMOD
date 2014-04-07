@@ -3,8 +3,6 @@ using System.Runtime.InteropServices;
 
 namespace nFMOD.Memory
 {
-	//TODO end subbmary
-	
 	/*
     [STRUCTURE]
     [

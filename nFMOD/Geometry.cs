@@ -26,12 +26,12 @@ namespace nFMOD
 		}
 		
 		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_Geometry_Release")]
-		private static extern Error.Code Release (IntPtr geometry);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Geometry_Release")]
+		private static extern ErrorCode Release (IntPtr geometry);
 		
 		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport("fmodex", EntryPoint = "FMOD_Geometry_Flush")]
-        private static extern Error.Code Flush_External (IntPtr geometry);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Geometry_Flush")]
+        private static extern ErrorCode Flush_External (IntPtr geometry);
     
 		
 		//TODO Implement extern funcitons

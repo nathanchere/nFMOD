@@ -8,24 +8,31 @@ The official FMOD SDK comes with some simple C# examples, however .Net is clearl
 At this point in time nFMOD focuses solely on Windows. While Mono-based cross platform support is possible, it's not a priority.
 If you require an example of using FMOD with platforms other than Winfows please look at [FmodSharp](https://gitorious.org/fmodsharp) which appears to use the same FMOD SDK base but has working GTK / Mono sample code included.
 
-Initial goals are to reduce requirements (currently .NET Framework 4.0, ideally 2.0), update to current FmodEx version, support FMOD x64, package for Nuget deployment, implement a more "managed"-style approach to better handle resource management concerns and provide more meaningful logging and exception handling.
-
 Release history
 ---------------
 
-####v0.2 [develop]
+####vNext
+
+* x64 support
+* add support for missing and new-since-4.32 functionality
+* restructure / consolidate class heirarchy
+
+####v0.2 (2014-04-04)
 
 * update fmodex.dll version from 4.34.5 > 4.44.32
 * minimum .Net Framework version lowered from 4.0 > 2.0
-* refactor to simplify redundant class/namespace (eg "nFMOD.SoundSystem.SoundSystem")
+* proper exceptions for all unmanaged error codes
+* handler for converting ErrorCodes to Exceptions
+* simplify redundant class/namespace (eg "nFMOD.SoundSystem.SoundSystem")
+* fix crash when calling GetLevel/SetLevel with non-debug build of fmodex.dll
 
-####v0.1 [master]
+####v0.1 (2014-04-01)
 
 * initial release to Nuget
 * minimum .Net Framework version lowered from 4.0 > 2.0
 * namespace restructuring
 
-####v alpha
+####vAlpha (2014-03-31)
 
 * initial release to GitHub
 
@@ -33,8 +40,6 @@ TODO
 ----
 
 * Nuget distribution: better handle fmodex.dll deployment
-
-
 
 
 Credits / thanks

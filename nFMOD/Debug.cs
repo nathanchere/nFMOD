@@ -3,8 +3,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 
 namespace nFMOD
-{
-	
+{	
 	/// <summary>
 	/// Bit fields to use with <see cref="Debug.Level"/> to
 	/// control the level of tty debug output with logging versions of FMOD (fmodL).
@@ -74,36 +73,41 @@ namespace nFMOD
 			set { DebugValue = (((int)value & 0x0F) << 24) | (int)(DebugValue & 0xF0FFFFFF); }
 		}
 		
-		private static int DebugValue {
-			get {
-				int Val = 0;
-				Error.Code ReturnCode = GetLevel(ref Val);
-				if(ReturnCode == Error.Code.Unsupported) {
-					// On windows you need the Loggin version of Fmod to use Debugging.
-					//Error.Code.Unsupported [82]
-				} else {
-					Error.Errors.ThrowError(ReturnCode);
-				}
-				
-				return Val;
+		private static int DebugValue 
+        {
+		    get
+		    {		        
+		        try
+		        {
+                    int value = 0;
+		            Errors.ThrowIfError(GetLevel(ref value));
+                    return value;
+		        }
+		        catch (FmodUnimplementedException ex)
+		        {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    return -1;
+		        }
 			}
 			
-			set {
-				Error.Code ReturnCode = SetLevel(value);
-				if(ReturnCode == Error.Code.Unsupported) {
-					// On windows you need the Loggin version of Fmod to use Debugging.
-					//Error.Code.Unsupported [82]
-				} else {
-					Error.Errors.ThrowError(ReturnCode);
-				}
+			set 
+            {
+                try
+		        {
+		            Errors.ThrowIfError(SetLevel(value));
+		        }
+		        catch (FmodUnimplementedException ex)
+		        {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);                    
+		        }
 			}
 		}
 		
-		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetLevel (int Level);
+		[DllImport(Common.FMOD_DLL, SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetLevel (int Level);
 		
-		[DllImport("fmodex", SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetLevel (ref int Level);
+		[DllImport(Common.FMOD_DLL, SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetLevel (ref int Level);
 		
 	}
 }

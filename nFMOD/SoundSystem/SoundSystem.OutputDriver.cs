@@ -3,25 +3,41 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Security;
 
-namespace nFMOD.SoundSystem
+namespace nFMOD
 {
 	public partial class SoundSystem
 	{
-		public OutputDriver OutputDriver {
+        public struct OutputDriverDTO
+	    {
+		    internal int Id { get; set; }
+		    public string Name { get; internal set; }
+		    public Guid Guid { get; internal set; }
+		    public Capabilities Capabilities { get; internal set; }
+		    public int MinimumFrequency { get; internal set; }
+		    public int MaximumFrequency { get; internal set; }
+		    public SpeakerMode SpeakerMode { get; internal set; }
+		
+		    public override string ToString ()
+		    {
+			    return this.Name;
+		    }
+	    }
+
+		public OutputDriverDTO OutputDriver {
 			get {
 				int driver;
-				Error.Code ReturnCode = GetDriver (this.DangerousGetHandle (), out driver);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = GetDriver (this.DangerousGetHandle (), out driver);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return this.GetOutputDriver(driver);
 			}
 			set {
-				Error.Code ReturnCode = SetDriver (this.DangerousGetHandle (), value.Id);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = SetDriver (this.DangerousGetHandle (), value.Id);
+				Errors.ThrowIfError (ReturnCode);
 			}
 		}
 		
-		public IEnumerable<OutputDriver> OutputDrivers {
+		public IEnumerable<OutputDriverDTO> OutputDrivers {
 			get {
 				int Numb = this.NumberOutputDrivers;
 				for (int i = 0; i < Numb; i++) {
@@ -33,8 +49,8 @@ namespace nFMOD.SoundSystem
 		private int NumberOutputDrivers {
 			get {
 				int numdrivers;
-				Error.Code ReturnCode = GetNumDrivers (this.DangerousGetHandle (), out numdrivers);
-				Error.Errors.ThrowError (ReturnCode);
+				ErrorCode ReturnCode = GetNumDrivers (this.DangerousGetHandle (), out numdrivers);
+				Errors.ThrowIfError (ReturnCode);
 				
 				return numdrivers;
 			}
@@ -44,19 +60,19 @@ namespace nFMOD.SoundSystem
 		{
 			System.Text.StringBuilder str = new System.Text.StringBuilder(255);
 			
-			Error.Code ReturnCode = GetDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = GetDriverInfo (this.DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
+			Errors.ThrowIfError (ReturnCode);
 			
 			Name = str.ToString();
 		}
 		
 		private void GetOutputDriverCapabilities (int Id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
 		{
-			Error.Code ReturnCode = GetDriverCaps (this.DangerousGetHandle (), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
-			Error.Errors.ThrowError (ReturnCode);
+			ErrorCode ReturnCode = GetDriverCaps (this.DangerousGetHandle (), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
+			Errors.ThrowIfError (ReturnCode);
 		}
 		
-		private OutputDriver GetOutputDriver (int Id)
+		private OutputDriverDTO GetOutputDriver (int Id)
 		{
 			Guid DriverGuid;
 			string DriverName;
@@ -67,7 +83,7 @@ namespace nFMOD.SoundSystem
 			SpeakerMode controlpanelspeakermode;
 			this.GetOutputDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
 			
-			return new OutputDriver {
+			return new OutputDriverDTO {
 				Id = Id,
 				Name = DriverName,
 				Guid = DriverGuid,
@@ -79,23 +95,23 @@ namespace nFMOD.SoundSystem
 			};
 		}
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetNumDrivers"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetNumDrivers (IntPtr system, out int Numdrivers);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetNumDrivers"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetNumDrivers (IntPtr system, out int Numdrivers);
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfo"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriverInfo"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriverInfo (IntPtr system, int id, System.Text.StringBuilder name, int namelen, out Guid guid);
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverInfoW"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriverInfoW"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriverInfoW (IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] System.Text.StringBuilder name, int namelen, out Guid guid);
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriverCaps"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriverCaps"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriverCaps (IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode);
 		
-		[DllImport("fmodex", EntryPoint = "FMOD_System_SetDriver"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code SetDriver (IntPtr system, int driver);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_SetDriver"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetDriver (IntPtr system, int driver);
 
-		[DllImport("fmodex", EntryPoint = "FMOD_System_GetDriver"), SuppressUnmanagedCodeSecurity]
-		private static extern Error.Code GetDriver (IntPtr system, out int driver);
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDriver"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDriver (IntPtr system, out int driver);
 		
 	}
 }
