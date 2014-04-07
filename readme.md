@@ -17,6 +17,7 @@ Release history
 * add support for missing and new-since-4.32 functionality
 * restructure / consolidate class heirarchy
 * expose more FMOD functionality internally
+* cull more code specific to non-Windows platforms (eg PS2, Xbox)
 
 ####v0.2 (2014-04-04)
 
