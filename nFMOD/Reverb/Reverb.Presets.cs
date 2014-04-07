@@ -8,8 +8,7 @@ namespace nFMOD
         /// <summary>
         /// A set of predefined environment PARAMETERS, created by Creative Labs
         /// These are used to initialize an FMOD_REVERB_PROPERTIES structure statically.
-        /// ie 
-        /// FMOD_REVERB_PROPERTIES prop = FMOD_PRESET_GENERIC;
+        /// ie FMOD_REVERB_PROPERTIES prop = FMOD_PRESET_GENERIC;
         /// </summary>
         public static class Presets
         {
@@ -41,7 +40,6 @@ namespace nFMOD
                 RoomRolloffFactor = 0.0f,
                 Diffusion = 0.0f,
                 Density = 0.0f,
-                //TODO Find documentation about the Flag 0x33F.
                 Flags = (ReverbFlags)0x33F
             };
 
@@ -737,9 +735,7 @@ namespace nFMOD
                 Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
-
-            #region Non I3DL2 presets
-
+            
             public static readonly Properties Drugged = new Properties {
                 Instance = 0,
                 Environment = 23,
@@ -832,58 +828,6 @@ namespace nFMOD
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
-
-            #endregion
-
-            #region PlayStation 2 Only presets
-
-            public static readonly Properties PS2_Room = new Properties {
-                Environment = 1,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Studio_A = new Properties {
-                Environment = 2,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Studio_B = new Properties {
-                Environment = 3,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Studio_C = new Properties {
-                Environment = 4,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Hall = new Properties {
-                Environment = 5,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Space = new Properties {
-                Environment = 6,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Echo = new Properties {
-                Environment = 7,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Delay = new Properties {
-                Environment = 8,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            public static readonly Properties PS2_Pipe = new Properties {
-                Environment = 9,
-                Flags = (ReverbFlags)0x31f
-            };
-
-            #endregion
-
         }
     }
 
