@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodTest", "FmodTest\FmodTest.csproj", "{E1C91BDC-C190-4A01-BC2B-168D701475A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodSharp", "FmodSharp\FmodSharp.csproj", "{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayFile", "PlayFile\PlayFile.csproj", "{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintDriverInfo", "PrintDriverInfo\PrintDriverInfo.csproj", "{ED3F571B-410F-44B7-B3B4-DE256216E92E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodGtk", "FmodGtk\FmodGtk.csproj", "{C296700D-7DD3-4E01-9FE2-E67A35B5762C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmodSharp.Gtk", "FmodSharp.Gtk\FmodSharp.Gtk.csproj", "{7204FF25-5885-4260-8138-57E1CB4E7EC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Debug|x86.ActiveCfg = Debug|x86
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Debug|x86.Build.0 = Debug|x86
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Release|x86.ActiveCfg = Release|x86
+		{7204FF25-5885-4260-8138-57E1CB4E7EC1}.Release|x86.Build.0 = Release|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.ActiveCfg = Debug|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Debug|x86.Build.0 = Debug|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.ActiveCfg = Release|x86
+		{A0D30738-C1A8-493C-9617-EFE4EAFD1CAD}.Release|x86.Build.0 = Release|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Debug|x86.ActiveCfg = Debug|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Debug|x86.Build.0 = Debug|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Release|x86.ActiveCfg = Release|x86
+		{C296700D-7DD3-4E01-9FE2-E67A35B5762C}.Release|x86.Build.0 = Release|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.ActiveCfg = Debug|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Debug|x86.Build.0 = Debug|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.ActiveCfg = Release|x86
+		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.Build.0 = Release|x86
+		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|x86.ActiveCfg = Debug|x86
+		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|x86.Build.0 = Debug|x86
+		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|x86.ActiveCfg = Release|x86
+		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|x86.Build.0 = Release|x86
+		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Debug|x86.ActiveCfg = Debug|x86
+		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Debug|x86.Build.0 = Debug|x86
+		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Release|x86.ActiveCfg = Release|x86
+		{ED3F571B-410F-44B7-B3B4-DE256216E92E}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = FmodTest\FmodTest.csproj
+		Policies = $0
+		$0.StandardHeader = $1
+		$1.Text = @Author:\n      Marc-Andre Ferland <madrang@gmail.com>\n\nCopyright (c) 2011 TheWarrentTeam\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the "Software"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.
+		$1.IncludeInNewFiles = True
+		$0.VersionControlPolicy = $2
+		$2.inheritsSet = Mono
+		$0.ChangeLogPolicy = $3
+		$3.UpdateMode = None
+		$3.MessageStyle = $4
+		$4.LineAlign = 0
+		$3.inheritsSet = Mono
+	EndGlobalSection
+EndGlobal
