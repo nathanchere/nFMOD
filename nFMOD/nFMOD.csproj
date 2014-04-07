@@ -73,9 +73,6 @@
     <Compile Include="Reverb.Presets.cs" />
     <Compile Include="SoundSystem\SoundSystem.cs" />
     <Compile Include="ISpectrumWave.cs" />
-    <Compile Include="SoundSystem\SoundSystem.Dsp.cs" />
-    <Compile Include="SoundSystem\SoundSystem.OutputDriver.cs" />
-    <Compile Include="SoundSystem\SoundSystem.RecordDriver.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
