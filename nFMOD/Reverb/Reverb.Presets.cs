@@ -13,7 +13,7 @@ namespace nFMOD
         public static class Presets
         {
 
-            public static readonly Properties Off = new Properties {
+            public static readonly ReverbProperties Off = new ReverbProperties {
                 Instance = 0,
                 Environment = -1,
                 EnvironmentSize = 7.5f,
@@ -43,7 +43,7 @@ namespace nFMOD
                 Flags = (ReverbFlags)0x33F
             };
 
-            public static readonly Properties Generic = new Properties {
+            public static readonly ReverbProperties Generic = new ReverbProperties {
                 Instance = 0,
                 Environment = 0,
                 EnvironmentSize = 7.5f,
@@ -73,7 +73,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties PaddedCell = new Properties {
+            public static readonly ReverbProperties PaddedCell = new ReverbProperties {
                 Instance = 0,
                 Environment = 1,
                 EnvironmentSize = 1.4f,
@@ -103,7 +103,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Room = new Properties {
+            public static readonly ReverbProperties Room = new ReverbProperties {
                 Instance = 0,
                 Environment = 2,
                 EnvironmentSize = 1.9f,
@@ -133,7 +133,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Bathroom = new Properties {
+            public static readonly ReverbProperties Bathroom = new ReverbProperties {
                 Instance = 0,
                 Environment = 3,
                 EnvironmentSize = 1.4f,
@@ -163,7 +163,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties LivingRoom = new Properties {
+            public static readonly ReverbProperties LivingRoom = new ReverbProperties {
                 Instance = 0,
                 Environment = 4,
                 EnvironmentSize = 2.5f,
@@ -193,7 +193,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties StoneRoom = new Properties {
+            public static readonly ReverbProperties StoneRoom = new ReverbProperties {
                 Instance = 0,
                 Environment = 5,
                 EnvironmentSize = 11.6f,
@@ -223,7 +223,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Auditorium = new Properties {
+            public static readonly ReverbProperties Auditorium = new ReverbProperties {
                 Instance = 0,
                 Environment = 6,
                 EnvironmentSize = 21.6f,
@@ -253,7 +253,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties ConcertHall = new Properties {
+            public static readonly ReverbProperties ConcertHall = new ReverbProperties {
                 Instance = 0,
                 Environment = 7,
                 EnvironmentSize = 19.6f,
@@ -283,7 +283,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Cave = new Properties {
+            public static readonly ReverbProperties Cave = new ReverbProperties {
                 Instance = 0,
                 Environment = 8,
                 EnvironmentSize = 14.6f,
@@ -314,7 +314,7 @@ namespace nFMOD
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
-            public static readonly Properties Arena = new Properties {
+            public static readonly ReverbProperties Arena = new ReverbProperties {
                 Instance = 0,
                 Environment = 9,
                 EnvironmentSize = 36.2f,
@@ -344,7 +344,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Hangar = new Properties {
+            public static readonly ReverbProperties Hangar = new ReverbProperties {
                 Instance = 0,
                 Environment = 10,
                 EnvironmentSize = 50.3f,
@@ -374,7 +374,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties CarpettedHallway = new Properties {
+            public static readonly ReverbProperties CarpettedHallway = new ReverbProperties {
                 Instance = 0,
                 Environment = 11,
                 EnvironmentSize = 1.9f,
@@ -404,7 +404,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Hallway = new Properties {
+            public static readonly ReverbProperties Hallway = new ReverbProperties {
                 Instance = 0,
                 Environment = 12,
                 EnvironmentSize = 1.8f,
@@ -434,7 +434,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties StoneCorridor = new Properties {
+            public static readonly ReverbProperties StoneCorridor = new ReverbProperties {
                 Instance = 0,
                 Environment = 13,
                 EnvironmentSize = 13.5f,
@@ -464,7 +464,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Alley = new Properties {
+            public static readonly ReverbProperties Alley = new ReverbProperties {
                 Instance = 0,
                 Environment = 14,
                 EnvironmentSize = 7.5f,
@@ -494,7 +494,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Forest = new Properties {
+            public static readonly ReverbProperties Forest = new ReverbProperties {
                 Instance = 0,
                 Environment = 15,
                 EnvironmentSize = 38.0f,
@@ -524,7 +524,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties City = new Properties {
+            public static readonly ReverbProperties City = new ReverbProperties {
                 Instance = 0,
                 Environment = 16,
                 EnvironmentSize = 7.5f,
@@ -554,7 +554,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Mountains = new Properties {
+            public static readonly ReverbProperties Mountains = new ReverbProperties {
                 Instance = 0,
                 Environment = 17,
                 EnvironmentSize = 100.0f,
@@ -585,7 +585,7 @@ namespace nFMOD
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
-            public static readonly Properties Quarry = new Properties {
+            public static readonly ReverbProperties Quarry = new ReverbProperties {
                 Instance = 0,
                 Environment = 18,
                 EnvironmentSize = 17.5f,
@@ -615,7 +615,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Plain = new Properties {
+            public static readonly ReverbProperties Plain = new ReverbProperties {
                 Instance = 0,
                 Environment = 19,
                 EnvironmentSize = 42.5f,
@@ -645,7 +645,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Parkinglot = new Properties {
+            public static readonly ReverbProperties Parkinglot = new ReverbProperties {
                 Instance = 0,
                 Environment = 20,
                 EnvironmentSize = 8.3f,
@@ -676,7 +676,7 @@ namespace nFMOD
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
-            public static readonly Properties SewerPipe = new Properties {
+            public static readonly ReverbProperties SewerPipe = new ReverbProperties {
                 Instance = 0,
                 Environment = 21,
                 EnvironmentSize = 1.7f,
@@ -706,7 +706,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
 
-            public static readonly Properties Underwater = new Properties {
+            public static readonly ReverbProperties Underwater = new ReverbProperties {
                 Instance = 0,
                 Environment = 22,
                 EnvironmentSize = 1.8f,
@@ -736,7 +736,7 @@ namespace nFMOD
                 Flags = ReverbFlags.Default
             };
             
-            public static readonly Properties Drugged = new Properties {
+            public static readonly ReverbProperties Drugged = new ReverbProperties {
                 Instance = 0,
                 Environment = 23,
                 EnvironmentSize = 1.9f,
@@ -767,7 +767,7 @@ namespace nFMOD
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
-            public static readonly Properties Dizzy = new Properties {
+            public static readonly ReverbProperties Dizzy = new ReverbProperties {
                 Instance = 0,
                 Environment = 24,
                 EnvironmentSize = 1.8f,
@@ -798,7 +798,7 @@ namespace nFMOD
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
-            public static readonly Properties Psychotic = new Properties {
+            public static readonly ReverbProperties Psychotic = new ReverbProperties {
                 Instance = 0,
                 Environment = 25,
                 EnvironmentSize = 1.0f,

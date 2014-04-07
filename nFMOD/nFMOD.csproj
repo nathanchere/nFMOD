@@ -68,14 +68,9 @@
     <Compile Include="Geometry.cs" />
     <Compile Include="Channel.Enums.cs" />
     <Compile Include="Reverb\Reverb.cs" />
-    <Compile Include="Reverb\Reverb.Properties.cs" />
-    <Compile Include="Memory\Memory.cs" />
-    <Compile Include="Memory\Type.cs" />
+    <Compile Include="Memory.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Reverb\Reverb.Presets.cs" />
-    <Compile Include="Reverb\Reverb.ChannelProperties.cs" />
-    <Compile Include="Memory\UsageDetails.cs" />
-    <Compile Include="Reverb\Reverb.Enums.cs" />
     <Compile Include="SoundSystem\SoundSystem.cs" />
     <Compile Include="SoundSystem\SoundSystem.Enums.cs" />
     <Compile Include="iSpectrumWave.cs" />
