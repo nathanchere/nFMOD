@@ -1170,195 +1170,291 @@ namespace nFMOD
     }
 
     /// <summary>
-        /// Structure defining the properties for a reverb source, related to a FMOD channel.
-        /// </summary>
+    /// Structure defining the properties for a reverb source, related to a FMOD channel.
+    /// </summary>
+    /// <remarks>
+    /// Note the default reverb properties are the same as the PRESET_GENERIC preset.
+    /// Note that integer values that typically range from -10,000 to 1000 are represented in 
+    /// decibels, and are of a logarithmic scale, not linear, wheras FLOAT values are typically linear.                
+    /// </remarks>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ReverbChannelProperties
+    {
+
+        /// <summary>
+        /// [in/out] Direct path level (at low and mid frequencies)
+        /// </summary>            
         /// <remarks>
-        /// Note the default reverb properties are the same as the PRESET_GENERIC preset.
-        /// Note that integer values that typically range from -10,000 to 1000 are represented in 
-        /// decibels, and are of a logarithmic scale, not linear, wheras FLOAT values are typically linear.                
+        /// Min: -10000
+        /// Max: 1000
+        /// Default: 0
         /// </remarks>
-        [StructLayout(LayoutKind.Sequential)]
-        public struct ReverbChannelProperties
-        {
-            
-            /// <summary>
-            /// [in/out] Direct path level (at low and mid frequencies)
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 1000
-            /// Default: 0
-            /// </remarks>
-            public int Direct;
+        public int Direct;
 
-            /// <summary>
-            /// [in/out] Delative direct path level at high frequencies 
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 0
-            /// Default: 0
-            /// </remarks>
-            public int DirectHF;
-            
-            /// <summary>
-            /// [in/out] Room effect level (at low and mid frequencies)
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 1000
-            /// Default: 0
-            /// </remarks>
-            public int Room;
+        /// <summary>
+        /// [in/out] Delative direct path level at high frequencies 
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int DirectHF;
 
-            /// <summary>
-            /// [in/out] Relative room effect level at high frequencies
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 0
-            /// Default: 0
-            /// </remarks>
-            public int RoomHF;            
+        /// <summary>
+        /// [in/out] Room effect level (at low and mid frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 1000
+        /// Default: 0
+        /// </remarks>
+        public int Room;
 
-            /// <summary>
-            /// [in/out] Main obstruction control (attenuation at high frequencies)
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 0
-            /// Default: 0
-            /// </remarks>
-            public int Obstruction;            
+        /// <summary>
+        /// [in/out] Relative room effect level at high frequencies
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int RoomHF;
 
-            /// <summary>
-            /// [in/out] Obstruction low-frequency level re. main control
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 1.0
-            /// Default: 0.0
-            /// </remarks>
-            public float ObstructionLFRatio;
+        /// <summary>
+        /// [in/out] Main obstruction control (attenuation at high frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int Obstruction;
 
-            /// <summary>
-            /// [in/out] Main occlusion control (attenuation at high frequencies)
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 0
-            /// Default: 0
-            /// </remarks>
-            public int Occlusion;
+        /// <summary>
+        /// [in/out] Obstruction low-frequency level re. main control
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 1.0
+        /// Default: 0.0
+        /// </remarks>
+        public float ObstructionLFRatio;
 
-            /// <summary>
-            /// [in/out] Occlusion low-frequency level re. main control
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 1.0
-            /// Default: 0.25
-            /// </remarks>
-            public float OcclusionLFRatio;
+        /// <summary>
+        /// [in/out] Main occlusion control (attenuation at high frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int Occlusion;
 
-            /// <summary>
-            /// [in/out] Relative occlusion control for room effect
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 10.0
-            /// Default: 1.5
-            /// </remarks>
-            public float OcclusionRoomRatio;
+        /// <summary>
+        /// [in/out] Occlusion low-frequency level re. main control
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 1.0
+        /// Default: 0.25
+        /// </remarks>
+        public float OcclusionLFRatio;
 
-            /// <summary>
-            /// [in/out] Relative occlusion control for direct path
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 10.0
-            /// Default: 1.0
-            /// </remarks>
-            public float OcclusionDirectRatio;
+        /// <summary>
+        /// [in/out] Relative occlusion control for room effect
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 1.5
+        /// </remarks>
+        public float OcclusionRoomRatio;
 
-            /// <summary>
-            /// [in/out] Main exlusion control (attenuation at high frequencies)
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 0
-            /// Default: 0
-            /// </remarks>
-            public int Exclusion;
+        /// <summary>
+        /// [in/out] Relative occlusion control for direct path
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 1.0
+        /// </remarks>
+        public float OcclusionDirectRatio;
 
-            /// <summary>
-            /// [in/out] Exclusion low-frequency level re. main control
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 1.0
-            /// Default: 1.0
-            /// </remarks>
-            public float ExclusionLFRatio;
+        /// <summary>
+        /// [in/out] Main exlusion control (attenuation at high frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int Exclusion;
 
-            /// <summary>
-            /// [in/out] Outside sound cone level at high frequencies
-            /// </summary>            
-            /// <remarks>
-            /// Min: -10000
-            /// Max: 0
-            /// Default: 0
-            /// </remarks>
-            public int OutsideVolumeHF;
+        /// <summary>
+        /// [in/out] Exclusion low-frequency level re. main control
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 1.0
+        /// Default: 1.0
+        /// </remarks>
+        public float ExclusionLFRatio;
 
-            /// <summary>
-            /// [in/out] Like DS3D flDopplerFactor but per source
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 10.0
-            /// Default: 0.0
-            /// </remarks>
-            public float DopplerFactor;
+        /// <summary>
+        /// [in/out] Outside sound cone level at high frequencies
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int OutsideVolumeHF;
 
-            /// <summary>
-            /// [in/out] Like DS3D flRolloffFactor but per source
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 10.0
-            /// Default: 0.0
-            /// </remarks>
-            public float RolloffFactor;
+        /// <summary>
+        /// [in/out] Like DS3D flDopplerFactor but per source
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 0.0
+        /// </remarks>
+        public float DopplerFactor;
 
-            /// <summary>
-            /// [in/out] Like DS3D flRolloffFactor but for room effect
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 10.0
-            /// Default: 0.0
-            /// </remarks>
-            public float RoomRolloffFactor;
+        /// <summary>
+        /// [in/out] Like DS3D flRolloffFactor but per source
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 0.0
+        /// </remarks>
+        public float RolloffFactor;
 
-            /// <summary>
-            /// [in/out] Multiplies AirAbsorptionHF member of REVERB_PROPERTIES
-            /// </summary>            
-            /// <remarks>
-            /// Min: 0.0
-            /// Max: 10.0
-            /// Default: 1.0
-            /// </remarks>
-            public float AirAbsorptionFactor;
+        /// <summary>
+        /// [in/out] Like DS3D flRolloffFactor but for room effect
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 0.0
+        /// </remarks>
+        public float RoomRolloffFactor;
 
-            /// <summary>
-            /// [in/out] Modifies the behavior of properties
-            /// </summary>                        
-            public ChannelFlags Flags;
+        /// <summary>
+        /// [in/out] Multiplies AirAbsorptionHF member of REVERB_PROPERTIES
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 1.0
+        /// </remarks>
+        public float AirAbsorptionFactor;
 
-            /// <summary>
-            /// [in/out] DSP network location to connect reverb for this channel
-            /// </summary>            
-            public IntPtr ConnectionPoint;
-        }
+        /// <summary>
+        /// [in/out] Modifies the behavior of properties
+        /// </summary>                        
+        public ReverbChannelFlags Flags;
+
+        /// <summary>
+        /// [in/out] DSP network location to connect reverb for this channel
+        /// </summary>            
+        public IntPtr ConnectionPoint;
+    }
+
+    /// <summary>        
+    /// Values for the Flags member of the REVERB_CHANNELPROPERTIES structure.
+    /// </summary>
+    [Flags]
+    public enum ReverbChannelFlags : uint
+    {
+        /// <summary>
+        /// Automatic setting of 'Direct' due to distance from listener.
+        /// </summary>
+        DirectHFAuto = 0x00000001,
+
+        /// <summary>
+        /// Automatic setting of 'Room' due to distance from listener.
+        /// </summary>
+        RoomAuto = 0x00000002,
+
+        /// <summary>
+        /// Automatic setting of 'RoomHF' due to distance from listener.
+        /// </summary>
+        RoomHFAuto = 0x00000004,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 0.  Default target.
+        /// </summary>
+        Instance0 = 0x00000010,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 1.
+        /// </summary>
+        Instance1 = 0x00000020,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 2.
+        /// </summary>
+        Instance2 = 0x00000040,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 3.
+        /// </summary>
+        Instance3 = 0x00000080,
+
+        Default = (DirectHFAuto | RoomAuto | RoomHFAuto | Instance0)
+    }
+
+    /// <summary>
+    /// Values for the Flags member of the REVERB_PROPERTIES structure.
+    /// </summary>
+    [Flags]
+    public enum ReverbFlags : uint
+    {
+        /// <summary>
+        /// 'EnvSize' affects reverberation decay time
+        /// </summary>
+        DecayTimeScale = 0x00000001,
+
+        /// <summary>
+        /// 'EnvSize' affects reflection level
+        /// </summary>
+        ReflectionsScale = 0x00000002,
+
+        /// <summary>
+        /// 'EnvSize' affects initial reflection delay time
+        /// </summary>
+        ReflectionsDelayScale = 0x00000004,
+
+        /// <summary>
+        /// 'EnvSize' affects reflections level
+        /// </summary>
+        ReverbScale = 0x00000008,
+
+        /// <summary>
+        /// 'EnvSize' affects late reverberation delay time
+        /// </summary>
+        ReverbDelayScale = 0x00000010,
+
+        /// <summary>
+        /// AirAbsorptionHF affects DecayHFRatio
+        /// </summary>
+        DecayHFLimit = 0x00000020,
+
+        /// <summary>
+        /// 'EnvSize' affects echo time
+        /// </summary>
+        EchoTimeScale = 0x00000040,
+
+        /// <summary>
+        /// 'EnvSize' affects modulation time
+        /// </summary>
+        ModulationTimeScale = 0x00000080,
+
+        Default = DecayTimeScale | ReflectionsScale |
+                  ReflectionsDelayScale | ReverbScale |
+                  ReverbDelayScale | DecayHFLimit
+    }
+
 }

@@ -84,7 +84,7 @@ namespace nFMOD
             private float roomRolloffFactor;
             private float diffusion;
             private float density;
-            private Flags flags;
+            private ReverbFlags flags;
 
             /// <summary>
             /// EAX4 only. Environment Instance.
@@ -426,7 +426,7 @@ namespace nFMOD
             /// Modifies the behavior of above properties.
             /// (win32/ps2)
             /// </summary>
-            public Flags Flags
+            public ReverbFlags Flags
             {
                 get { return this.flags; }
                 set { this.flags = value; }
@@ -470,7 +470,7 @@ namespace nFMOD
                 RoomRolloffFactor = 0.0f,
                 Diffusion = 100.0f,
                 Density = 100.0f,
-                Flags = Flags.Default
+                Flags = ReverbFlags.Default
             };
 
             #endregion
