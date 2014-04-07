@@ -41,8 +41,14 @@ namespace nFMOD
             private float hFReference;
             private float lFReference;
             private float roomRolloffFactor;
+
+            [Obsolete("Xbox-only")]
             private float diffusion;
+
+            [Obsolete("Xbox-only")]
             private float density;
+
+
             private ReverbFlags flags;
 
             /// <summary>
@@ -74,7 +80,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// environment size in meters (win32 only)
+            /// Environment size in meters
             /// </summary>
             public float EnvironmentSize
             {
@@ -87,7 +93,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// environment diffusion (win32/xbox)
+            /// Environment diffusion
             /// </summary>
             public float EnvironmentDiffusion
             {
@@ -100,7 +106,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// room effect level (at mid frequencies) (win32/xbox)
+            /// Room effect level at mid frequencies
             /// </summary>
             public int Room
             {
@@ -113,7 +119,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// relative room effect level at high frequencies (win32/xbox)
+            /// Relative room effect level at high frequencies
             /// </summary>
             public int RoomHighFrequencies
             {
@@ -126,7 +132,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// relative room effect level at low frequencies (win32 only)
+            /// Relative room effect level at low frequencies
             /// </summary>
             public int RoomLowFrequencies
             {
@@ -139,7 +145,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// reverberation decay time at mid frequencies (win32/xbox)
+            /// Reverb decay time at mid frequencies
             /// </summary>
             public float DecayTime
             {
@@ -152,7 +158,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// high-frequency to mid-frequency decay time ratio (win32/xbox)
+            /// High-frequency to mid-frequency decay time ratio
             /// </summary>
             public float DecayHighFrequencyRatio
             {
@@ -165,7 +171,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// low-frequency to mid-frequency decay time ratio (win32 only)
+            /// Low-frequency to mid-frequency decay time ratio
             /// </summary>
             public float DecayLowFrequencyRatio
             {
@@ -178,7 +184,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// early reflections level relative to room effect (win32/xbox)
+            /// Early reflections level relative to room effect
             /// </summary>
             public int Reflections
             {
@@ -191,7 +197,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// initial reflection delay time (win32/xbox)
+            /// Initial reflection delay time
             /// </summary>
             public float ReflectionsDelay
             {
@@ -206,7 +212,7 @@ namespace nFMOD
             //TODO replace by Vector3
 
             /// <summary>
-            /// early reflections panning vector (win32 only)
+            /// Early reflections panning vector
             /// </summary>
             public float[] ReflectionsPan
             {
@@ -215,7 +221,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// late reverberation level relative to room effect (win32/xbox)
+            /// Late reverb level relative to room effect
             /// </summary>
             public int Reverb
             {
@@ -228,7 +234,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// late reverberation delay time relative to initial reflection (win32/xbox)
+            /// Late reverb delay time relative to initial reflection
             /// </summary>
             public float ReverbDelay
             {
@@ -243,7 +249,7 @@ namespace nFMOD
             //TODO replace by Vector3
 
             /// <summary>
-            /// late reverberation panning vector (win32 only)
+            /// Late reverb panning vector)
             /// </summary>
             public float[] ReverbPan
             {
@@ -252,7 +258,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// echo time (win32 only)
+            /// Echo time
             /// </summary>
             public float EchoTime
             {
@@ -265,7 +271,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// echo depth (win32 only)
+            /// Echo depth
             /// </summary>
             public float EchoDepth
             {
@@ -278,7 +284,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// modulation time (win32 only)
+            /// Modulation time
             /// </summary>
             public float ModulationTime
             {
@@ -291,7 +297,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// modulation depth (win32 only)
+            /// Modulation depth
             /// </summary>
             public float ModulationDepth
             {
@@ -304,7 +310,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// change in level per meter at high frequencies (win32 only)
+            /// Change in level per meter at high frequencies
             /// </summary>
             public float AirAbsorptionHighFrequencies
             {
@@ -317,7 +323,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// reference high frequency (hz) (win32/xbox)
+            /// Reference high frequency (hz)
             /// </summary>
             public float HighFrequencyReference
             {
@@ -330,7 +336,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// reference low frequency (hz) (win32 only)
+            /// Reference low frequency (hz)
             /// </summary>
             public float LowFrequencyReference
             {
@@ -343,7 +349,7 @@ namespace nFMOD
             }
 
             /// <summary>
-            /// like rolloffscale in System::set3DSettings but for reverb room size effect (win32)
+            /// Like rolloffscale in System::set3DSettings but for reverb room size effect
             /// </summary>
             public float RoomRolloffFactor
             {
@@ -354,33 +360,7 @@ namespace nFMOD
                     this.roomRolloffFactor = value;
                 }
             }
-
-            /// <summary>
-            /// Value that controls the echo density in the late reverberation decay. (xbox only)
-            /// </summary>
-            public float Diffusion
-            {
-                get { return this.diffusion; }
-                set
-                {
-                    this.CheckRange(value, 0.0, 100.0, "Diffusion");
-                    this.diffusion = value;
-                }
-            }
-
-            /// <summary>
-            /// Value that controls the modal density in the late reverberation decay (xbox only)
-            /// </summary>
-            public float Density
-            {
-                get { return this.density; }
-                set
-                {
-                    this.CheckRange(value, 0.0, 100.0, "Environment");
-                    this.density = value;
-                }
-            }
-
+            
             /// <summary>
             /// Modifies the behavior of above properties.
             /// (win32/ps2)
