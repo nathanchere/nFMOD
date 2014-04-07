@@ -4,10 +4,12 @@ using System.Runtime.InteropServices;
 namespace nFMOD
 {
     /// <summary>
-    ///  Settings for advanced features like configuring memory and cpu usage for the FMOD_CREATECOMPRESSEDSAMPLE feature.     
+    ///  Settings for advanced features like configuring memory and cpu usage for the
+    /// FMOD_CREATECOMPRESSEDSAMPLE feature.     
     /// </summary>
     /// <remarks>
-    /// maxMPEGcodecs / maxADPCMcodecs / maxXMAcodecs will determine the maximum cpu usage of playing realtime samples.  Use this to lower potential excess cpu usage and also control memory usage.
+    /// maxMPEGcodecs / maxADPCMcodecs / maxXMAcodecs will determine the maximum cpu usage of playing
+    /// realtime samples.  Use this to lower potential excess cpu usage and also control memory usage.
     /// </remarks>
     [StructLayout(LayoutKind.Sequential)]
     public struct AdvancedSettings
@@ -285,7 +287,8 @@ namespace nFMOD
         PCMBytes = 0x4,
 
         /// <summary>
-        /// Raw file bytes of (compressed) sound data (does not include headers).  Only used by Sound::getLength and Channel::getPosition.
+        /// Raw file bytes of (compressed) sound data (does not include headers).  Only used by
+        /// Sound::getLength and Channel::getPosition.
         /// </summary>
         RawBytes = 0x8,
 
@@ -295,12 +298,14 @@ namespace nFMOD
         ModOrder = 0x100,
 
         /// <summary>
-        /// MOD/S3M/XM/IT.  Current row in a sequenced module format.  Sound::getLength will return the number if rows in the currently playing or seeked to pattern. 
+        /// MOD/S3M/XM/IT.  Current row in a sequenced module format.  Sound::getLength will return the number
+        /// if rows in the currently playing or seeked to pattern. 
         /// </summary>
         ModRow = 0x200,
 
         /// <summary>
-        /// MOD/S3M/XM/IT.  Current pattern in a sequenced module format.  Sound::getLength will return the number of patterns in the song and Channel::getPosition will return the currently playing pattern.
+        /// MOD/S3M/XM/IT.  Current pattern in a sequenced module format.  Sound::getLength will return the
+        /// number of patterns in the song and Channel::getPosition will return the currently playing pattern.
         /// </summary>
         ModPattern = 0x400,
 
