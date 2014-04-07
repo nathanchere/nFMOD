@@ -22,7 +22,7 @@ namespace nFMOD
 	/// getMemoryInfo, each member of this structure will hold the amount of memory used for its type in bytes.
 	/// </remarks>	
 	[StructLayout(LayoutKind.Sequential)]
-    public struct UsageDetails
+    public struct MemoryUsageDetails
     {
 		/// <summary>
 		/// Memory not accounted for by other types.
