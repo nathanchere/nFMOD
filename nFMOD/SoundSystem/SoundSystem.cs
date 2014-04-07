@@ -26,6 +26,27 @@ namespace nFMOD
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_UpdateFinished"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode UpdateFinished (IntPtr system);
 
+		[DllImport ("fmodex", EntryPoint = "FMOD_System_CreateDSP"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode CreateDSP (IntPtr system, ref Dsp.DSPDescription description, ref IntPtr dsp);
+		
+		[DllImport ("fmodex", EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode CreateDspByType (IntPtr system, DspType type, ref IntPtr dsp);
+
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode PlayDsp (IntPtr system, Channel.Index channelid, IntPtr dsp, bool paused, ref IntPtr channel);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_AddDSP"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode AddDSP (IntPtr system, IntPtr dsp, ref IntPtr connection);
+		
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_LockDSP"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode LockDSP (IntPtr system);
+
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_UnlockDSP"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode UnlockDSP (IntPtr system);
+
+		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDSPClock"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetDSPClock (IntPtr system, ref uint hi, ref uint lo);
+
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetSpectrum"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode GetSpectrum (IntPtr system, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype);
 

@@ -86,28 +86,7 @@ namespace nFMOD
 			}
 		}
 
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport ("fmodex", EntryPoint = "FMOD_System_CreateDSP")]
-		private static extern ErrorCode CreateDSP (IntPtr system, ref Dsp.DSPDescription description, ref IntPtr dsp);
-
-		[System.Security.SuppressUnmanagedCodeSecurity]
-		[DllImport ("fmodex", EntryPoint = "FMOD_System_CreateDSPByType")]
-		private static extern ErrorCode CreateDspByType (IntPtr system, DspType type, ref IntPtr dsp);
-
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode PlayDsp (IntPtr system, Channel.Index channelid, IntPtr dsp, bool paused, ref IntPtr channel);
 		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_AddDSP"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode AddDSP (IntPtr system, IntPtr dsp, ref IntPtr connection);
-		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_LockDSP"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode LockDSP (IntPtr system);
-
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_UnlockDSP"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode UnlockDSP (IntPtr system);
-
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_GetDSPClock"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetDSPClock (IntPtr system, ref uint hi, ref uint lo);
 	}
 }
 
