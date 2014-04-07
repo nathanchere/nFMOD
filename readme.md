@@ -13,11 +13,17 @@ Release history
 
 ####vNext
 
+* code clean-up 
 * x64 support
+
+####v0.3 (2014-04-07)
+
+* Basic x64 support ground work (largely untested)
 * add support for missing and new-since-4.32 functionality
 * restructure / consolidate class heirarchy
 * expose more FMOD functionality internally
 * cull more code specific to non-Windows platforms (eg PS2, Xbox)
+* mark code which can't be removed (eg interop struct fields) as Obsolete
 
 ####v0.2 (2014-04-04)
 
