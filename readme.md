@@ -44,6 +44,7 @@ TODO
 * Nuget distribution: better handle fmodex.dll deployment
 * Go through and update comments from before v0.2 refactor which still
   reference C-style class names, structs etc
+* update minimum version constant after regression testing
 
 
 Credits / thanks
