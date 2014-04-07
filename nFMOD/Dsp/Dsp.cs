@@ -1,35 +1,62 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
+using System.Text;
 
 namespace nFMOD
 {
     public class Dsp : Handle
     {
-        internal Dsp(IntPtr hnd)
-            : base()
+        internal Dsp(IntPtr hnd) : base()
         {
-            this.SetHandle(hnd);
+            SetHandle(hnd);
         }
 
+        /// <summary>
+        /// List of windowing methods used in spectrum analysis to reduce leakage / transient signals
+        /// intefering with the analysis. This is a problem with analysis of continuous signals that
+        /// only have a small portion of the signal sample (the FFT window size). Windowing the signal
+        /// with a curve or triangle tapers the sides of the FFT window to help alleviate this problem.        
+        /// </summary>
+        /// <remarks>
+        /// Cyclic signals such as a sine wave that repeat their cycle in a multiple of the window size
+        /// do not need windowing (i.e. if the sine wave repeats every 1024, 512, 256 etc samples and
+        /// the FMOD fft window is 1024, then the signal would not need windowing).
+        /// Not windowing is the same as FMOD_DSP_FFT_WINDOW_RECT, which is the default.
+        /// If the cycle of the signal (i.e. the sine wave) is not a multiple of the window size, it
+        /// will cause frequency abnormalities, so a different windowing method is needed.
+        /// </remarks>
         public enum FFTWindow : int
         {
+            /// <summary>
+            /// w[n] = 1.0
+            /// </summary>
             Rectangle,
-            // w[n] = 1.0
 
-            Triangle,
-            // w[n] = TRI(2n/N)
+            /// <summary>
+            /// w[n] = TRI(2n/N)
+            /// </summary>
+            Triangle,           
 
+            /// <summary>
+            /// w[n] = 0.54 - (0.46 * COS(n/N) )
+            /// </summary>
             Hamming,
-            // w[n] = 0.54 - (0.46 * COS(n/N) )
 
+            /// <summary>
+            /// w[n] = 0.5 *  (1.0  - COS(n/N) )
+            /// </summary>
             Hanning,
-            // w[n] = 0.5 *  (1.0  - COS(n/N) )
 
+            /// <summary>
+            /// w[n] = 0.42 - (0.5  * COS(n/N) ) + (0.08 * COS(2.0 * n/N) )
+            /// </summary>
             Blackman,
-            // w[n] = 0.42 - (0.5  * COS(n/N) ) + (0.08 * COS(2.0 * n/N) )
 
+            /// <summary>
+            /// w[n] = 0.35875 - (0.48829 * COS(1.0 * n/N)) + (0.14128 * COS(2.0 * n/N)) - (0.01168 * COS(3.0 * n/N))
+            /// </summary>
             BlackmanHarris,
-            // w[n] = 0.35875 - (0.48829 * COS(1.0 * n/N)) + (0.14128 * COS(2.0 * n/N)) - (0.01168 * COS(3.0 * n/N))
 
             Max
         }
@@ -114,43 +141,43 @@ namespace nFMOD
 
         public delegate ErrorCode SetParamDelegate(ref State dsp_state, int index, float val);
 
-        public delegate ErrorCode GetParamDelegate(ref State dsp_state, int index, ref float val, System.Text.StringBuilder valuestr);
+        public delegate ErrorCode GetParamDelegate(ref State dsp_state, int index, ref float val, StringBuilder valuestr);
 
         public delegate ErrorCode DialogDelegate(ref State dsp_state, IntPtr hwnd, bool show);
 
         protected override bool ReleaseHandle()
         {
-            if (this.IsInvalid)
+            if (IsInvalid)
                 return true;
 
-            this.Remove();
-            Release(this.handle);
-            this.SetHandleAsInvalid();
+            Remove();
+            Release(handle);
+            SetHandleAsInvalid();
 
             return true;
         }
 
-        [System.Security.SuppressUnmanagedCodeSecurity]
+        [SuppressUnmanagedCodeSecurity]
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_DSP_Release")]
         private static extern ErrorCode Release(IntPtr dsp);
 
         public void Remove()
         {
-            ErrorCode ReturnCode = Remove_External(this.DangerousGetHandle());
+            ErrorCode ReturnCode = Remove_External(DangerousGetHandle());
             Errors.ThrowIfError(ReturnCode);
         }
 
         public void Reset()
         {
-            ErrorCode ReturnCode = Reset_External(this.DangerousGetHandle());
+            ErrorCode ReturnCode = Reset_External(DangerousGetHandle());
             Errors.ThrowIfError(ReturnCode);
         }
 
-        [System.Security.SuppressUnmanagedCodeSecurity]
+        [SuppressUnmanagedCodeSecurity]
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_DSP_Remove")]
         private static extern ErrorCode Remove_External(IntPtr dsp);
 
-        [System.Security.SuppressUnmanagedCodeSecurity]
+        [SuppressUnmanagedCodeSecurity]
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_DSP_Reset")]
         private static extern ErrorCode Reset_External(IntPtr dsp);
 
