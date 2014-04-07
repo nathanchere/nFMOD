@@ -63,19 +63,17 @@
     <Compile Include="Debug.cs" />
     <Compile Include="ChannelGroup.cs" />
     <Compile Include="SoundGroup.cs" />
-    <Compile Include="Dsp\Dsp.cs" />
-    <Compile Include="Dsp\DspConnection.cs" />
+    <Compile Include="Dsp.cs" />
+    <Compile Include="DspConnection.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="Channel.Enums.cs" />
-    <Compile Include="Reverb\Reverb.cs" />
+    <Compile Include="Reverb.cs" />
     <Compile Include="Memory.cs" />
     <Compile Include="Plugin.cs" />
-    <Compile Include="Reverb\Reverb.Presets.cs" />
+    <Compile Include="Reverb.Presets.cs" />
     <Compile Include="SoundSystem\SoundSystem.cs" />
-    <Compile Include="SoundSystem\SoundSystem.Enums.cs" />
-    <Compile Include="iSpectrumWave.cs" />
+    <Compile Include="ISpectrumWave.cs" />
     <Compile Include="SoundSystem\SoundSystem.Dsp.cs" />
-    <Compile Include="SoundSystem\SoundSystem.Reverb.cs" />
     <Compile Include="SoundSystem\SoundSystem.OutputDriver.cs" />
     <Compile Include="SoundSystem\SoundSystem.RecordDriver.cs" />
   </ItemGroup>
