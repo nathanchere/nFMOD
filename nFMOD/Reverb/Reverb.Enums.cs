@@ -3,24 +3,10 @@ using System;
 namespace nFMOD
 {
     public partial class Reverb
-    {
-        /*
-    [DEFINE] 
-    [
-        [NAME] 
-        REVERB_CHANNELFLAGS
-
-        [DESCRIPTION]
-        Values for the Flags member of the REVERB_CHANNELPROPERTIES structure.
-
-        [PLATFORMS]
-        Win32, Win64, Linux, Linux64, Macintosh, Xbox360, PlayStation 2, PlayStation Portable, PlayStation 3, Wii
-
-        [SEE_ALSO]
-        REVERB_CHANNELPROPERTIES
-    ]
-    */
-
+    {        
+        /// <summary>        
+        /// Values for the Flags member of the REVERB_CHANNELPROPERTIES structure.
+        /// </summary>
         [Flags]
         public enum ChannelFlags : uint
         {

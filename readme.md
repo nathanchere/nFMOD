@@ -16,6 +16,7 @@ Release history
 * x64 support
 * add support for missing and new-since-4.32 functionality
 * restructure / consolidate class heirarchy
+* expose more FMOD functionality internally
 
 ####v0.2 (2014-04-04)
 
