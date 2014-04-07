@@ -37,9 +37,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 0.0f,
-                Density = 0.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = (ReverbFlags)0x33F
             };
 
@@ -67,9 +65,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
 
@@ -97,9 +93,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,               
                 Flags = ReverbFlags.Default
             };
 
@@ -128,8 +122,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -158,8 +150,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 60.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -187,9 +177,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
 
@@ -218,8 +206,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -247,9 +233,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
 
@@ -278,8 +262,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -307,9 +289,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
@@ -338,9 +318,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
 
@@ -369,8 +347,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -399,8 +375,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -428,9 +402,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
 
@@ -458,9 +430,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
 
@@ -488,9 +458,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,                
                 Flags = ReverbFlags.Default
             };
 
@@ -519,8 +487,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 79.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -549,8 +515,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 50.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -579,8 +543,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 27.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
@@ -610,8 +572,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -640,8 +600,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 21.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -670,8 +628,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
@@ -701,8 +657,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 80.0f,
-                Density = 60.0f,
                 Flags = ReverbFlags.Default
             };
 
@@ -731,8 +685,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.Default
             };
             
@@ -760,9 +712,7 @@ namespace nFMOD
                 AirAbsorptionHighFrequencies = -5.0f,
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
-                RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
+                RoomRolloffFactor = 0.0f,               
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
@@ -792,8 +742,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
@@ -823,8 +771,6 @@ namespace nFMOD
                 HighFrequencyReference = 5000.0f,
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
-                Diffusion = 100.0f,
-                Density = 100.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
