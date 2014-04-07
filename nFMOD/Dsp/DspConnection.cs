@@ -32,7 +32,7 @@ namespace nFMOD
 		private static extern ErrorCode GetUserData (IntPtr dspconnection, ref IntPtr userdata);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_DSPConnection_GetMemoryInfo"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetMemoryInfo (IntPtr dspconnection, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
+		private static extern ErrorCode GetMemoryInfo (IntPtr dspconnection, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
         #endregion
 
 
