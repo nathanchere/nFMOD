@@ -40,7 +40,7 @@ namespace nFMOD
         private static extern ErrorCode GetNetworkTimeout(IntPtr system, ref int timeout);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSP"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateDSP(IntPtr system, ref Dsp.DSPDescription description, ref IntPtr dsp);
+        private static extern ErrorCode CreateDSP(IntPtr system, ref DSPDescription description, ref IntPtr dsp);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateDspByType(IntPtr system, DspType type, ref IntPtr dsp);
@@ -328,7 +328,7 @@ namespace nFMOD
         public static extern ErrorCode GetCDROMDriveName(IntPtr system, int Drive, ref byte Drivename, int Drivenamelen, ref byte Scsiname, int Scsinamelen, ref byte Devicename, int Devicenamelen);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSP"), SuppressUnmanagedCodeSecurity]
-        public static extern ErrorCode CreateDSP(IntPtr system, ref Dsp.DSPDescription description, ref int Dsp);
+        public static extern ErrorCode CreateDSP(IntPtr system, ref DSPDescription description, ref int Dsp);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode CreateDSPByType(IntPtr system, DspType dsptype, ref int Dsp);
@@ -678,7 +678,7 @@ namespace nFMOD
 
         #region Methods
         #region Methods - DSP
-        public Dsp CreateDSP(ref Dsp.DSPDescription description)
+        public Dsp CreateDSP(ref DSPDescription description)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
