@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Security;
 
-namespace nFMOD.Memory
+namespace nFMOD
 {
     public class Memory
     {
