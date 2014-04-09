@@ -34,7 +34,7 @@ namespace nFMOD
 		private static extern ErrorCode CreateDspByType (IntPtr system, DspType type, ref IntPtr dsp);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode PlayDsp (IntPtr system, Channel.Index channelid, IntPtr dsp, bool paused, ref IntPtr channel);
+		private static extern ErrorCode PlayDsp (IntPtr system, ChannelIndex channelid, IntPtr dsp, bool paused, ref IntPtr channel);
 		
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_AddDSP"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode AddDSP (IntPtr system, IntPtr dsp, ref IntPtr connection);
@@ -328,7 +328,7 @@ namespace nFMOD
 		public static extern ErrorCode CreateDSPByIndex (IntPtr system, int Index, ref int Dsp);
 
 		[DllImport(Common.FMOD_DLL, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
-		public static extern ErrorCode PlayDSP (IntPtr system, Channel.Index channelid, int Dsp, int paused, ref int channel);
+		public static extern ErrorCode PlayDSP (IntPtr system, ChannelIndex channelid, int Dsp, int paused, ref int channel);
 
 		[DllImport(Common.FMOD_DLL, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetChannel"), SuppressUnmanagedCodeSecurity]
 		public static extern ErrorCode GetChannel (IntPtr system, int channelid, ref int channel);
@@ -640,7 +640,7 @@ namespace nFMOD
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = PlaySound (DangerousGetHandle (), Channel.Index.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
+			ErrorCode ReturnCode = PlaySound (DangerousGetHandle (), ChannelIndex.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Channel (ChannelHandle);
@@ -653,7 +653,7 @@ namespace nFMOD
 			
 			IntPtr channel = chn.DangerousGetHandle ();
 			
-			ErrorCode ReturnCode = PlaySound (DangerousGetHandle (), Channel.Index.Reuse, snd.DangerousGetHandle (), paused, ref channel);
+			ErrorCode ReturnCode = PlaySound (DangerousGetHandle (), ChannelIndex.Reuse, snd.DangerousGetHandle (), paused, ref channel);
 			Errors.ThrowIfError (ReturnCode);
 			
 			//This can't really happend.
@@ -675,7 +675,7 @@ namespace nFMOD
 		private static extern ErrorCode CreateSound (IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode PlaySound (IntPtr system, Channel.Index channelid, IntPtr Sound, bool paused, ref IntPtr channel);
+		private static extern ErrorCode PlaySound (IntPtr system, ChannelIndex channelid, IntPtr Sound, bool paused, ref IntPtr channel);
 		
 		#endregion
 
@@ -783,7 +783,7 @@ namespace nFMOD
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle (), Channel.Index.Free, dsp.DangerousGetHandle (), paused, ref ChannelHandle);
+			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle (), ChannelIndex.Free, dsp.DangerousGetHandle (), paused, ref ChannelHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Channel(ChannelHandle);
@@ -793,7 +793,7 @@ namespace nFMOD
 		{
 			IntPtr channel = chn.DangerousGetHandle ();
 			
-			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle (), Channel.Index.Reuse, dsp.DangerousGetHandle (), paused, ref channel);
+			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle (), paused, ref channel);
 			Errors.ThrowIfError (ReturnCode);
 			
 			//This can't really happend.

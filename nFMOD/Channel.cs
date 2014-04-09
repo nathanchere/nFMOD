@@ -4,13 +4,11 @@ using System.Security;
 
 namespace nFMOD
 {
-	public partial class Channel : Handle, ISpectrumWave
+	public class Channel : Handle, ISpectrumWave
 	{
-		
-		#region Create/Release		
-		private Channel ()
-		{
-		}
+		private Channel () { }
+
+        public delegate ErrorCode ChannelDelegate(IntPtr channelraw, ChannelCallbackType type, IntPtr commanddata1, IntPtr commanddata2);
 
 		internal Channel (IntPtr hnd)
 		{
@@ -23,15 +21,12 @@ namespace nFMOD
 				return true;
 			
 			Stop(handle);
-			
-			//TODO find if Channel need to be released before closing.
-			//Release (this.handle);
+						
+			//Release (this.handle); //TODO find if Channel need to be released before closing.
 			SetHandleAsInvalid ();
 			
 			return true;
-		}
-		
-		#endregion
+		}			
 		
 		#region Properties
 		
