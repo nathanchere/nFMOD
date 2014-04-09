@@ -14,7 +14,6 @@ At this point in time nFMOD focuses solely on Windows. While Mono-based cross pl
 Branch | Status | Download | Description
 ------|-----|------|--------
 master | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/master)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/master.zip) | for those who want to live on the bleeding edge
-
 stable | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/stable)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/stable.zip) | latest released/numbered code
 
 *CI generously provided by [Appveyor](http://appveyor.com)*
