@@ -357,7 +357,7 @@ namespace nFMOD
 		/// </summary>
 		public const uint Fmod_Version = 0x43202;
 
-		public SoundSystem ()
+		public SoundSystem()
 		{
 			IntPtr SoundSystemHandle = IntPtr.Zero;
 			
@@ -368,24 +368,24 @@ namespace nFMOD
 			
 			if (Version < Fmod_Version) {
 				Release (handle);
-				SetHandleAsInvalid ();
+				SetHandleAsInvalid();
 				throw new NotSupportedException ("The current version of Fmod isnt supported.");
 			}
 		}
 
-		protected override bool ReleaseHandle ()
+		protected override bool ReleaseHandle()
 		{
 			if (IsInvalid)
 				return true;
 			
 			CloseSystem (handle);
 			Release (handle);
-			SetHandleAsInvalid ();
+			SetHandleAsInvalid();
 			
 			return true;
 		}
 		
-		public void Init ()
+		public void Init()
 		{
 			Init (32, InitFlags.Normal | InitFlags.RightHanded3D);
 		}
@@ -401,9 +401,9 @@ namespace nFMOD
 			Errors.ThrowIfError (ReturnCode);
 		}
 
-		public void CloseSystem ()
+		public void CloseSystem()
 		{
-			CloseSystem (DangerousGetHandle ());
+			CloseSystem (DangerousGetHandle());
 		}		
 				
 		#region Events
@@ -463,13 +463,13 @@ namespace nFMOD
 			get {
 				StringBuilder str = new StringBuilder(255);
 				
-				ErrorCode ReturnCode = GetNetworkProxy (DangerousGetHandle (), str, str.Capacity);
+				ErrorCode ReturnCode = GetNetworkProxy (DangerousGetHandle(), str, str.Capacity);
 				Errors.ThrowIfError (ReturnCode);
 				
 				return str.ToString();
 			}
 			set {
-				ErrorCode ReturnCode = SetNetworkProxy (DangerousGetHandle (), value);
+				ErrorCode ReturnCode = SetNetworkProxy (DangerousGetHandle(), value);
 				Errors.ThrowIfError (ReturnCode);
 			}
 		}
@@ -479,13 +479,13 @@ namespace nFMOD
 			get {
 				int time = 0;
 				
-				ErrorCode ReturnCode = GetNetworkTimeout (DangerousGetHandle (), ref time);
+				ErrorCode ReturnCode = GetNetworkTimeout (DangerousGetHandle(), ref time);
 				Errors.ThrowIfError (ReturnCode);
 				
 				return time;
 			}
 			set {
-				ErrorCode ReturnCode = SetNetworkTimeout (DangerousGetHandle (), value);
+				ErrorCode ReturnCode = SetNetworkTimeout (DangerousGetHandle(), value);
 				Errors.ThrowIfError (ReturnCode);
 			}
 		}
@@ -510,7 +510,7 @@ namespace nFMOD
 			get {
 				uint Ver = 0;
 				
-				ErrorCode ReturnCode = GetVersion (DangerousGetHandle (), ref Ver);
+				ErrorCode ReturnCode = GetVersion (DangerousGetHandle(), ref Ver);
 				Errors.ThrowIfError (ReturnCode);
 				
 				return Ver;
@@ -528,13 +528,13 @@ namespace nFMOD
 			get {
 				OutputType output = OutputType.Unknown;
 				
-				ErrorCode ReturnCode = GetOutput (DangerousGetHandle (), ref output);
+				ErrorCode ReturnCode = GetOutput (DangerousGetHandle(), ref output);
 				Errors.ThrowIfError (ReturnCode);
 				
 				return output;
 			}
 			set {
-				ErrorCode ReturnCode = SetOutput (DangerousGetHandle (), value);
+				ErrorCode ReturnCode = SetOutput (DangerousGetHandle(), value);
 				Errors.ThrowIfError (ReturnCode);
 			}
 		}
@@ -590,7 +590,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateSound (DangerousGetHandle (), path, mode, 0, ref SoundHandle);
+			ErrorCode ReturnCode = CreateSound (DangerousGetHandle(), path, mode, 0, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -600,7 +600,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateSound (DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
+			ErrorCode ReturnCode = CreateSound (DangerousGetHandle(), path, mode, ref exinfo, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -615,7 +615,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateSound (DangerousGetHandle (), data, mode, 0, ref SoundHandle);
+			ErrorCode ReturnCode = CreateSound (DangerousGetHandle(), data, mode, 0, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -625,7 +625,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateSound (DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
+			ErrorCode ReturnCode = CreateSound (DangerousGetHandle(), data, mode, ref exinfo, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -640,7 +640,7 @@ namespace nFMOD
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = PlaySound (DangerousGetHandle (), ChannelIndex.Free, snd.DangerousGetHandle (), paused, ref ChannelHandle);
+			ErrorCode ReturnCode = PlaySound (DangerousGetHandle(), ChannelIndex.Free, snd.DangerousGetHandle(), paused, ref ChannelHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Channel (ChannelHandle);
@@ -651,14 +651,14 @@ namespace nFMOD
 			//FIXME The handle is changed most of the time on some system.
 			//Only use the other metods to be safe.
 			
-			IntPtr channel = chn.DangerousGetHandle ();
+			IntPtr channel = chn.DangerousGetHandle();
 			
-			ErrorCode ReturnCode = PlaySound (DangerousGetHandle (), ChannelIndex.Reuse, snd.DangerousGetHandle (), paused, ref channel);
+			ErrorCode ReturnCode = PlaySound (DangerousGetHandle(), ChannelIndex.Reuse, snd.DangerousGetHandle(), paused, ref channel);
 			Errors.ThrowIfError (ReturnCode);
 			
 			//This can't really happend.
 			//Check just in case...
-			if(chn.DangerousGetHandle () == channel)
+			if(chn.DangerousGetHandle() == channel)
 				throw new Exception("Channel handle got changed by Fmod.");
 		}
 
@@ -685,7 +685,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateStream (DangerousGetHandle (), path, mode, 0, ref SoundHandle);
+			ErrorCode ReturnCode = CreateStream (DangerousGetHandle(), path, mode, 0, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -695,7 +695,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateStream (DangerousGetHandle (), path, mode, ref exinfo, ref SoundHandle);
+			ErrorCode ReturnCode = CreateStream (DangerousGetHandle(), path, mode, ref exinfo, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -705,7 +705,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateStream (DangerousGetHandle (), data, mode, 0, ref SoundHandle);
+			ErrorCode ReturnCode = CreateStream (DangerousGetHandle(), data, mode, 0, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -715,7 +715,7 @@ namespace nFMOD
 		{
 			IntPtr SoundHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateStream (DangerousGetHandle (), data, mode, ref exinfo, ref SoundHandle);
+			ErrorCode ReturnCode = CreateStream (DangerousGetHandle(), data, mode, ref exinfo, ref SoundHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Sound (SoundHandle);
@@ -758,7 +758,7 @@ namespace nFMOD
 		{
 			IntPtr DspHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateDSP (DangerousGetHandle (), ref description, ref DspHandle);
+			ErrorCode ReturnCode = CreateDSP (DangerousGetHandle(), ref description, ref DspHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Dsp (DspHandle);
@@ -768,7 +768,7 @@ namespace nFMOD
 		{
 			IntPtr DspHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = CreateDspByType (DangerousGetHandle (), type, ref DspHandle);
+			ErrorCode ReturnCode = CreateDspByType (DangerousGetHandle(), type, ref DspHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Dsp (DspHandle);
@@ -783,7 +783,7 @@ namespace nFMOD
 		{
 			IntPtr ChannelHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle (), ChannelIndex.Free, dsp.DangerousGetHandle (), paused, ref ChannelHandle);
+			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle(), ChannelIndex.Free, dsp.DangerousGetHandle(), paused, ref ChannelHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new Channel(ChannelHandle);
@@ -791,14 +791,14 @@ namespace nFMOD
 
 		public void PlayDsp (Dsp dsp, bool paused, Channel chn)
 		{
-			IntPtr channel = chn.DangerousGetHandle ();
+			IntPtr channel = chn.DangerousGetHandle();
 			
-			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle (), paused, ref channel);
+			ErrorCode ReturnCode = PlayDsp (DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel);
 			Errors.ThrowIfError (ReturnCode);
 			
 			//This can't really happend.
 			//Check just in case...
-			if(chn.DangerousGetHandle () != channel)
+			if(chn.DangerousGetHandle() != channel)
 				throw new Exception("Channel handle got changed by Fmod.");
 		}
 		
@@ -806,28 +806,28 @@ namespace nFMOD
 		{
 			IntPtr ConnectionHandle = IntPtr.Zero;
 			
-			ErrorCode ReturnCode = AddDSP (DangerousGetHandle (), dsp.DangerousGetHandle (), ref ConnectionHandle);
+			ErrorCode ReturnCode = AddDSP (DangerousGetHandle(), dsp.DangerousGetHandle(), ref ConnectionHandle);
 			Errors.ThrowIfError (ReturnCode);
 			
 			return new DspConnection (ConnectionHandle);
 		}
 		
-		public void LockDSP ()
+		public void LockDSP()
 		{
-			ErrorCode ReturnCode = LockDSP (DangerousGetHandle ());
+			ErrorCode ReturnCode = LockDSP (DangerousGetHandle());
 			Errors.ThrowIfError (ReturnCode);
 		}
 		
-		public void UnlockDSP ()
+		public void UnlockDSP()
 		{
-			ErrorCode ReturnCode = UnlockDSP (DangerousGetHandle ());
+			ErrorCode ReturnCode = UnlockDSP (DangerousGetHandle());
 			Errors.ThrowIfError (ReturnCode);
 		}
 		
 		public ulong DSPClock {
 			get {
 				uint hi = 0, low = 0;
-				ErrorCode ReturnCode = GetDSPClock (DangerousGetHandle (), ref hi, ref low);
+				ErrorCode ReturnCode = GetDSPClock (DangerousGetHandle(), ref hi, ref low);
 				Errors.ThrowIfError (ReturnCode);
 				return (hi << 32) | low;
 			}
@@ -882,7 +882,7 @@ namespace nFMOD
 			get {
 				int numdrivers;
 				
-				ErrorCode ReturnCode = GetRecordNumDrivers (DangerousGetHandle (), out numdrivers);
+				ErrorCode ReturnCode = GetRecordNumDrivers (DangerousGetHandle(), out numdrivers);
 				Errors.ThrowIfError (ReturnCode);
 				
 				return numdrivers;
@@ -893,7 +893,7 @@ namespace nFMOD
 		{
 			StringBuilder str = new StringBuilder(255);
 			
-			ErrorCode ReturnCode = GetRecordDriverInfo (DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
+			ErrorCode ReturnCode = GetRecordDriverInfo (DangerousGetHandle(), Id, str, str.Capacity, out DriverGuid);
 			Errors.ThrowIfError (ReturnCode);
 			
 			Name = str.ToString();
@@ -901,7 +901,7 @@ namespace nFMOD
 		
 		private void GetRecordDriverCapabilities (int id, out Capabilities caps, out int minfrequency, out int maxfrequency)
 		{
-			ErrorCode ReturnCode = GetRecordDriverCaps (DangerousGetHandle (), id, out caps, out minfrequency, out maxfrequency);
+			ErrorCode ReturnCode = GetRecordDriverCaps (DangerousGetHandle(), id, out caps, out minfrequency, out maxfrequency);
 			Errors.ThrowIfError (ReturnCode);
 		}
 		
@@ -931,13 +931,13 @@ namespace nFMOD
         public OutputDriverDTO OutputDriver {
 			get {
 				int driver;
-				ErrorCode ReturnCode = GetDriver (DangerousGetHandle (), out driver);
+				ErrorCode ReturnCode = GetDriver (DangerousGetHandle(), out driver);
 				Errors.ThrowIfError (ReturnCode);
 				
 				return GetOutputDriver(driver);
 			}
 			set {
-				ErrorCode ReturnCode = SetDriver (DangerousGetHandle (), value.Id);
+				ErrorCode ReturnCode = SetDriver (DangerousGetHandle(), value.Id);
 				Errors.ThrowIfError (ReturnCode);
 			}
 		}
@@ -954,7 +954,7 @@ namespace nFMOD
 		private int NumberOutputDrivers {
 			get {
 				int numdrivers;
-				ErrorCode ReturnCode = GetNumDrivers (DangerousGetHandle (), out numdrivers);
+				ErrorCode ReturnCode = GetNumDrivers (DangerousGetHandle(), out numdrivers);
 				Errors.ThrowIfError (ReturnCode);
 				
 				return numdrivers;
@@ -965,7 +965,7 @@ namespace nFMOD
 		{
 			StringBuilder str = new StringBuilder(255);
 			
-			ErrorCode ReturnCode = GetDriverInfo (DangerousGetHandle (), Id, str, str.Capacity, out DriverGuid);
+			ErrorCode ReturnCode = GetDriverInfo (DangerousGetHandle(), Id, str, str.Capacity, out DriverGuid);
 			Errors.ThrowIfError (ReturnCode);
 			
 			Name = str.ToString();
@@ -973,7 +973,7 @@ namespace nFMOD
 		
 		private void GetOutputDriverCapabilities (int Id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
 		{
-			ErrorCode ReturnCode = GetDriverCaps (DangerousGetHandle (), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
+			ErrorCode ReturnCode = GetDriverCaps (DangerousGetHandle(), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
 			Errors.ThrowIfError (ReturnCode);
 		}
 		
@@ -1030,14 +1030,14 @@ namespace nFMOD
 		
 		#region Update
 
-		public void Update ()
+		public void Update()
 		{
-			Update (DangerousGetHandle ());
+			Update (DangerousGetHandle());
 		}
 
-		public void UpdateFinished ()
+		public void UpdateFinished()
 		{
-			UpdateFinished (DangerousGetHandle ());
+			UpdateFinished (DangerousGetHandle());
 		}		
 		#endregion			
 	}

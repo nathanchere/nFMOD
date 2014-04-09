@@ -6,7 +6,7 @@ namespace nFMOD
 {
 	public class Channel : Handle, ISpectrumWave
 	{
-		private Channel () { }
+		private Channel() { }
 
         public delegate ErrorCode ChannelDelegate(IntPtr channelraw, ChannelCallbackType type, IntPtr commanddata1, IntPtr commanddata2);
 
@@ -15,7 +15,7 @@ namespace nFMOD
 			SetHandle(hnd);
 		}
 		
-		protected override bool ReleaseHandle ()
+		protected override bool ReleaseHandle()
 		{
 			if (IsInvalid)
 				return true;
@@ -23,7 +23,7 @@ namespace nFMOD
 			Stop(handle);
 						
 			//Release (this.handle); //TODO find if Channel need to be released before closing.
-			SetHandleAsInvalid ();
+			SetHandleAsInvalid();
 			
 			return true;
 		}			

@@ -5,7 +5,7 @@ namespace nFMOD
 {
 	public abstract class Handle : SafeHandle
 	{
-		public Handle () : this(IntPtr.Zero)
+		public Handle() : this(IntPtr.Zero)
 		{
 		}
 		public Handle (IntPtr Handle) : this(Handle, true)

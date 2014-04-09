@@ -15,13 +15,13 @@ namespace nFMOD
 			SetHandle (hnd);
 		}
 
-		protected override bool ReleaseHandle ()
+		protected override bool ReleaseHandle()
 		{
 			if (IsInvalid)
 				return true;
 			
 			Release (handle);
-			SetHandleAsInvalid ();
+			SetHandleAsInvalid();
 			
 			return true;
 		}
