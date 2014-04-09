@@ -557,213 +557,212 @@ namespace nFMOD
     }
     #endregion
 
-    /// <summary>
-    ///  Settings for advanced features like configuring memory and cpu usage for the
-    /// FMOD_CREATECOMPRESSEDSAMPLE feature.     
-    /// </summary>
-    /// <remarks>
-    /// maxMPEGcodecs / maxADPCMcodecs / maxXMAcodecs will determine the maximum cpu usage of playing
-    /// realtime samples.  Use this to lower potential excess cpu usage and also control memory usage.
-    /// </remarks>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct AdvancedSettings
-    {
-        /// <summary>
-        /// Size of structure. Use sizeof(AdvancedSettings).
+    #region Sound
+            /// <summary>
+        /// These definitions describe the native format of the hardware or software buffer that will be used.
         /// </summary>
-        public int cbsize;
+        public enum SoundFormat
+        {
+
+            /// <summary>
+            /// Unitialized / unknown.
+            /// </summary>
+            None,
+
+            /// <summary>
+            /// 8bit integer PCM data.
+            /// </summary>
+            PCM8,
+
+            /// <summary>
+            /// 16bit integer PCM data.
+            /// </summary>
+            PCM16,
+
+            /// <summary>
+            /// 24bit integer PCM data.
+            /// </summary>
+            PCM24,
+
+            /// <summary>
+            /// 32bit integer PCM data.
+            /// </summary>
+            PCM32,
+
+            /// <summary>
+            /// 32bit floating point PCM data.
+            /// </summary>
+            PCMFLOAT,
+
+            /// <summary>
+            /// Compressed GameCube DSP data.
+            /// </summary>
+            GCADPCM,
+
+            /// <summary>
+            /// Compressed XBox ADPCM data.
+            /// </summary>
+            IMAADPCM,
+
+            /// <summary>
+            /// Compressed PlayStation 2 ADPCM data.
+            /// </summary>
+            VAG,
+
+            /// <summary>
+            /// Compressed Xbox360 data.
+            /// </summary>
+            XMA,
+
+            /// <summary>
+            /// Compressed MPEG layer 2 or 3 data.
+            /// </summary>
+            MPEG,
+
+            /// <summary>
+            /// Maximum number of sound formats supported.
+            /// </summary>
+            Max,
+
+            /// <summary>
+            /// Compressed CELT data.
+            /// </summary>
+            CELT,
+        }
 
         /// <summary>
-        /// For use with FMOD_CREATECOMPRESSEDSAMPLE only.
-        /// MPEG codecs consume 48,696 bytes per instance and this number will determine how many MPEG
-        /// channels can be played simultaneously.
+        /// These definitions describe the type of song being played.
         /// </summary>
-        /// <remarks>
-        /// Default: 16
-        /// </remarks>
-        public int maxMPEGcodecs;
+        public enum SoundType
+        {
+            /// <summary>
+            /// 3rd party / unknown plugin format.
+            /// </summary>
+            Unknown,
 
-        /// <summary>
-        /// For use with FMOD_CREATECOMPRESSEDSAMPLE only. ADPCM codecs consume 1k per instance and
-        /// this number will determine how many ADPCM channels can be played simultaneously.
-        /// </summary>
-        /// <remarks>
-        /// Default: 32
-        /// </remarks>
-        public int maxADPCMcodecs;
+            /// <summary>
+            /// AAC.  Currently unsupported.
+            /// </summary>
+            AAC,
 
-        /// <summary>
-        /// For use with FMOD_CREATECOMPRESSEDSAMPLE only.
-        /// XMA codecs consume 8k per instance and this number will determine how many XMA channels
-        /// can be played simultaneously.
-        /// </summary>
-        /// <remarks>
-        /// Default: 32
-        /// </remarks>
-        public int maxXMAcodecs;
+            AIFF,
 
-        [Obsolete("PS3 only")]
-        public int maxPCMcodecs;
+            /// <summary>
+            /// Microsoft Advanced Systems Format (ie WMA/ASF/WMV).
+            /// </summary>
+            ASF,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. For use with FMOD_CREATECOMPRESSEDSAMPLE only. CELT codecs consume
-        /// 11,500 bytes per instance and this number will determine how many CELT channels can be played simultaneously.
-        /// </summary>
-        /// <remarks>
-        /// Default: 16
-        /// </remarks>
-        public int maxCELTcodecs;
+            /// <summary>
+            /// Sony ATRAC 3 format
+            /// </summary>
+            AT3,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. For use with FMOD_CREATECOMPRESSEDSAMPLE only. Vorbis codecs consume
-        /// 12,000 bytes per instance and this number will determine how many Vorbis channels can be played simultaneously.
-        /// </summary>
-        /// <remarks>
-        /// Default: 32
-        /// </remarks>
-        public int maxVORBIScodecs;
+            /// <summary>
+            /// Digital CD audio.
+            /// </summary>
+            CDDA,
 
-        /// <summary>
-        /// [in/out]
-        /// </summary>        
-        public int ASIONumChannels;
+            /// <summary>
+            /// Sound font / downloadable sound bank.
+            /// </summary>
+            DLS,
 
-        /// <summary>
-        /// [in/out]
-        /// </summary>
-        public IntPtr ASIOChannelList;
+            /// <summary>
+            /// FLAC lossless codec.
+            /// </summary>
+            FLAC,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. Pointer to a list of speakers that the ASIO channels map to.
-        /// This can be called after System::init to remap ASIO output.
-        /// </summary>
-        public IntPtr ASIOSpeakerList;
+            /// <summary>
+            /// FMOD Sample Bank.
+            /// </summary>
+            FSB,
 
-        /// <summary>
-        /// [in/out] The max number of 3d reverb DSP's in the system.
-        /// </summary>
-        public int max3DReverbDSPs;
+            /// <summary>
+            /// GameCube ADPCM
+            /// </summary>
+            GCADPCM,
 
-        /// <summary>
-        /// [in/out] For use with FMOD_INIT_HRTF_LOWPASS. The angle (0-360) of a 3D sound from the listener's
-        /// forward vector at which the HRTF function begins to have an effect.
-        /// </summary>
-        /// <remarks>
-        /// Default: 180.0f
-        /// </remarks>
-        public float HRTFMinAngle;
+            /// <summary>
+            /// Impulse Tracker
+            /// </summary>
+            IT,
 
-        /// <summary>
-        /// [in/out] For use with FMOD_INIT_HRTF_LOWPASS.  The angle (0-360) of a 3D sound from the listener's
-        /// forward vector at which the HRTF function begins to have maximum effect.  Default = 360.0
-        /// </summary>
-        /// <remarks>
-        /// Default: 360.0f
-        /// </remarks>
-        public float HRTFMaxAngle;
+            /// <summary>
+            /// MIDI
+            /// </summary>
+            MIDI,
 
-        /// <summary>
-        /// [in/out] For use with FMOD_INIT_HRTF_LOWPASS. The cutoff frequency of the HRTF's lowpass filter function
-        /// when at maximum effect (i.e. at HRTFMaxAngle).
-        /// </summary>
-        /// <remarks>
-        /// Default: 4000.0f
-        /// </remarks>
-        public float HRTFFreq;
+            /// <summary>
+            /// Protracker / Fasttracker MOD
+            /// </summary>
+            MOD,
 
-        /// <summary>
-        ///  [in/out] For use with FMOD_INIT_VOL0_BECOMES_VIRTUAL. If this flag is used, and the volume is 0.0, then the sound
-        /// will become virtual. Use this value to raise the threshold to a different point where a sound goes virtual.
-        /// </summary>
-        public float vol0virtualvol;
+            /// <summary>
+            /// MP2/MP3 MPEG
+            /// </summary>
+            MPEG,            
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. For use with FMOD Event system only.  Specifies the number of slots
-        /// available for simultaneous non blocking loads.
-        /// </summary>
-        /// <remarks>
-        /// Default: 32
-        /// </remarks>
-        public int eventqueuesize;
+            /// <summary>
+            /// Ogg vorbis
+            /// </summary>
+            OGGVORBIS,           
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. For streams. This determines the default size of the double buffer (in
-        /// milliseconds) that a stream uses.
-        /// </summary>
-        /// <remarks>
-        /// Default: 400
-        /// </remarks>
-        public uint defaultDecodeBufferSize;
+            /// <summary>
+            /// Metadata only from ASX/PLS/M3U/WAX playlists
+            /// </summary>
+            PLAYLIST,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. Gives fmod's logging system a path/filename. Normally the log is placed
-        /// in the same directory as the executable and called fmod.log. When using System::getAdvancedSettings, provide at
-        /// least 256 bytes of memory to copy into.
-        /// </summary>
-        public string debugLogFilename;
+            /// <summary>
+            /// Raw PCM data
+            /// </summary>
+            RAW,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. For use with FMOD_INIT_ENABLE_PROFILE. Specify the port to listen on
-        /// for connections by the profiler application.
-        /// </summary>
-        public ushort profileport;
+            /// <summary>
+            /// ScreamTracker 3
+            /// </summary>
+            S3M,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. The maximum time in miliseconds it takes for a channel to fade to the
-        /// new level when its occlusion changes.
-        /// </summary>
-        public uint geometryMaxFadeTime;
+            /// <summary>
+            /// Sound font 2
+            /// </summary>
+            SF2,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. The maximum number of buffers for use with getWaveData/getSpectrum.
-        /// </summary>
-        public uint maxSpectrumWaveDataBuffers;
+            /// <summary>
+            /// User created sound
+            /// </summary>
+            User,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. The delay the music system should allow for loading a sample from
-        /// disk (in milliseconds).
-        /// </summary>
-        /// <remarks>
-        /// Default: 400
-        /// </remarks>
-        public uint musicSystemCacheDelay;
+            /// <summary>
+            /// Microsoft WAV
+            /// </summary>
+            WAV,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. For use with FMOD_INIT_DISTANCE_FILTERING. The default center
-        /// frequency in Hz for the distance filtering effect.
-        /// </summary>
-        /// <remarks>
-        /// Default: 1500.0f
-        /// </remarks>
-        public float distanceFilterCenterFreq;
+            /// <summary>
+            /// FastTracker 2
+            /// </summary>
+            XM,
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. Specify the stack size for the FMOD Stream thread in bytes.
-        /// Useful for custom codecs that use excess stack.
-        /// </summary>
-        /// <remarks>
-        /// Default: 49152 (48kb)
-        /// </remarks>
-        public uint stackSizeStream;
+            /// <summary>
+            /// Xbox360 XMA
+            /// </summary>
+            XMA,            
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. Specify the stack size for the FMOD_NONBLOCKING loading thread.
-        /// Useful for custom codecs that use excess stack.
-        /// </summary>
-        /// <remarks>
-        /// Default: 65,536 (64kb)
-        /// </remarks>
-        public uint stackSizeNonBlocking;
+            /// <summary>
+            /// PlayStation 2 / PlayStation Portable adpcm VAG format
+            /// </summary>
+            VAG,            
 
-        /// <summary>
-        /// [in/out] Optional. Specify 0 to ignore. Specify the stack size for the FMOD mixer thread. Useful for
-        /// custom dsps that use excess stack. 
-        /// </summary>
-        /// <remarks>
-        /// Default: 49152 (48kb)
-        /// </remarks>
-        public uint stackSizeMixer;
-    }
+            /// <summary>
+            /// iPhone hardware decoder, supports AAC, ALAC and MP3
+            /// </summary>
+            AudioQueue,
+
+            /// <summary>
+            /// Xbox360 XWMA
+            /// </summary>
+            XWMA,
+        }
+    #endregion
 
     /// <summary>
     /// These are plugin types defined for use with the System::getNumPlugins / System_GetNumPlugins, 

@@ -129,10 +129,10 @@ namespace nFMOD
         private static extern ErrorCode GetSoftwareChannels(IntPtr system, ref int numsoftwarechannels);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetSoftwareFormat(IntPtr system, int samplerate, Sound.Format format, int numoutputchannels, int maxinputchannels, Resampler resamplemethod);
+        private static extern ErrorCode SetSoftwareFormat(IntPtr system, int samplerate, SoundFormat format, int numoutputchannels, int maxinputchannels, Resampler resamplemethod);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetSoftwareFormat(IntPtr system, ref int samplerate, ref Sound.Format format, ref int numoutputchannels, ref int maxinputchannels, ref Resampler resamplemethod, ref int bits);
+        private static extern ErrorCode GetSoftwareFormat(IntPtr system, ref int samplerate, ref SoundFormat format, ref int numoutputchannels, ref int maxinputchannels, ref Resampler resamplemethod, ref int bits);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetDSPBufferSize(IntPtr system, uint bufferlength, int numbuffers);
@@ -384,13 +384,13 @@ namespace nFMOD
         private static extern ErrorCode CreateSoundGroup(IntPtr system, string name, ref IntPtr soundgroup);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr Sound);
+        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, ref SoundInfo exinfo, ref IntPtr Sound);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, ref SoundInfo exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
@@ -399,13 +399,13 @@ namespace nFMOD
         private static extern ErrorCode PlaySound(IntPtr system, ChannelIndex channelid, IntPtr Sound, bool paused, ref IntPtr channel);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr Sound);
+        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, ref SoundInfo exinfo, ref IntPtr Sound);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, ref SoundInfo exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
@@ -844,7 +844,7 @@ namespace nFMOD
             return new Sound(result);
         }
 
-        public Sound CreateStream(string path, Mode mode, Sound.SoundInfo exinfo)
+        public Sound CreateStream(string path, Mode mode, SoundInfo exinfo)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref result));
@@ -858,7 +858,7 @@ namespace nFMOD
             return new Sound(result);
         }
 
-        public Sound CreateStream(byte[] data, Mode mode, Sound.SoundInfo exinfo)
+        public Sound CreateStream(byte[] data, Mode mode, SoundInfo exinfo)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref result));
@@ -877,7 +877,7 @@ namespace nFMOD
             return new Sound(result);
         }
 
-        public Sound CreateSound(string path, Mode mode, Sound.SoundInfo exinfo)
+        public Sound CreateSound(string path, Mode mode, SoundInfo exinfo)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, ref exinfo, ref result));
@@ -891,7 +891,7 @@ namespace nFMOD
             return new Sound(SoundHandle);
         }
 
-        public Sound CreateSound(byte[] data, Mode mode, Sound.SoundInfo exinfo)
+        public Sound CreateSound(byte[] data, Mode mode, SoundInfo exinfo)
         {
             IntPtr SoundHandle = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, ref exinfo, ref SoundHandle));
