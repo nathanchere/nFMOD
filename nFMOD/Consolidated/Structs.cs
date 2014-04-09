@@ -897,19 +897,9 @@ namespace nFMOD
         private float decayHFRatio;
         private float decayLFRatio;
         private int reflections;
-        private float reflectionsDelay;
-
-        //TODO replace by Vector3
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-        private float[] reflectionsPan;
-
+        private float reflectionsDelay;       
         private int reverb;
         private float reverbDelay;
-
-        //TODO replace by Vector3
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
-        private float[] reverbPan;
-
         private float echoTime;
         private float echoDepth;
         private float modulationTime;
@@ -1122,21 +1112,6 @@ namespace nFMOD
         }
 
         /// <summary>
-        /// Early reflections panning vector
-        /// </summary>
-        public float[] ReflectionsPan //TODO replace by Vector3
-        {
-            get
-            {
-                return reflectionsPan;
-            }
-            set
-            {
-                reflectionsPan = value;
-            }
-        }
-
-        /// <summary>
         /// Late reverb level relative to room effect
         /// </summary>
         public int Reverb
@@ -1157,29 +1132,11 @@ namespace nFMOD
         /// </summary>
         public float ReverbDelay
         {
-            get
-            {
-                return reverbDelay;
-            }
+            get { return reverbDelay; }
             set
             {
                 CheckRange(value, 0.0, 0.1, "ReverbDelay");
                 reverbDelay = value;
-            }
-        }
-
-        /// <summary>
-        /// Late reverb panning vector)
-        /// </summary>
-        public float[] ReverbPan //TODO replace by Vector3
-        {
-            get
-            {
-                return reverbPan;
-            }
-            set
-            {
-                reverbPan = value;
             }
         }
 
@@ -1349,10 +1306,8 @@ namespace nFMOD
             DecayLowFrequencyRatio = 1.0f,
             Reflections = -2602,
             ReflectionsDelay = 0.007f,
-            ReflectionsPan = new float[] { 0.0f, 0.0f, 0.0f },
             Reverb = 200,
             ReverbDelay = 0.011f,
-            ReverbPan = new float[] { 0.0f, 0.0f, 0.0f },
             EchoTime = 0.25f,
             EchoDepth = 0.0f,
             ModulationTime = 0.25f,

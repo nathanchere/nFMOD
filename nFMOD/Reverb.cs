@@ -5,11 +5,38 @@ using System.Security;
 namespace nFMOD
 {
 	public partial class Reverb : Handle
-	{
-		
-		#region Create/Release
-		
-		private Reverb()
+    {
+        #region Externs
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetProperties (IntPtr reverb, ref ReverbProperties properties);
+
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetProperties (IntPtr reverb, ref ReverbProperties properties);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode Set3DAttributes (IntPtr reverb, ref Vector3 position, float mindistance, float maxdistance);
+
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode Get3DAttributes (IntPtr reverb, ref Vector3 position, ref float mindistance, ref float maxdistance);
+
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetActive (IntPtr reverb, int active);
+
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetActive (IntPtr reverb, ref int active);
+
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetUserData (IntPtr reverb, IntPtr userdata);
+
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetUserData (IntPtr reverb, ref IntPtr userdata);
+
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetMemoryInfo (IntPtr reverb, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
+        #endregion
+        #region Create/Release
+
+        private Reverb()
 		{
 		}
 		internal Reverb (IntPtr hnd)
@@ -32,39 +59,7 @@ namespace nFMOD
 		private static extern ErrorCode Release (IntPtr reverb);
 		
 		#endregion
-		
-		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode SetProperties (IntPtr reverb, ref ReverbProperties properties);
-
-		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetProperties (IntPtr reverb, ref ReverbProperties properties);
-		
-		
-		//TODO Implement extern funcitons
-		
-		/*
-
-		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
-		private static extern RESULT FMOD_Reverb_Set3DAttributes (IntPtr reverb, ref VECTOR position, float mindistance, float maxdistance);
-
-		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
-		private static extern RESULT FMOD_Reverb_Get3DAttributes (IntPtr reverb, ref VECTOR position, ref float mindistance, ref float maxdistance);
-
-		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
-		private static extern RESULT FMOD_Reverb_SetActive (IntPtr reverb, int active);
-
-		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
-		private static extern RESULT FMOD_Reverb_GetActive (IntPtr reverb, ref int active);
-
-		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
-		private static extern RESULT FMOD_Reverb_SetUserData (IntPtr reverb, IntPtr userdata);
-
-		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
-		private static extern RESULT FMOD_Reverb_GetUserData (IntPtr reverb, ref IntPtr userdata);
-
-		[DllImport(VERSION.dll), SuppressUnmanagedCodeSecurity]
-		private static extern RESULT FMOD_Reverb_GetMemoryInfo (IntPtr reverb, uint memorybits, uint event_memorybits, ref uint memoryused, ref MEMORY_USAGE_DETAILS memoryused_details);
-		*/
+			
 	}
 }
 
