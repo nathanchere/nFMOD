@@ -436,7 +436,12 @@ namespace nFMOD
             if (Version < Common.FMOD_DLL_MINIMUM_VERSION) {
                 Release(handle);
                 SetHandleAsInvalid();
-                throw new NotSupportedException("The current version of Fmod isnt supported.");
+                var message = string.Format("{0}.dll is vesrsion {1:X}. Minimum supported version is {2:X}.",
+                    Common.FMOD_DLL_NAME,                    
+                    Version,
+                    Common.FMOD_DLL_MINIMUM_VERSION
+                    );
+                throw new NotSupportedException(message);
             }
         }
 
@@ -609,9 +614,232 @@ namespace nFMOD
                 Errors.ThrowIfError(SetReverbAmbientProperties(DangerousGetHandle(), ref value));
             }
         }
+
+        public ulong DSPClock
+        {
+            get
+            {
+                uint high = 0, low = 0;
+                Errors.ThrowIfError(GetDSPClock(DangerousGetHandle(), ref high, ref low));
+                return (high << 32) | low;
+            }
+        }
+
+        public OutputDriverDTO OutputDriver
+        {
+            get
+            {
+                int result;
+                Errors.ThrowIfError(GetDriver(DangerousGetHandle(), out result));
+                return GetOutputDriver(result);
+            }
+            set
+            {
+                Errors.ThrowIfError(SetDriver(DangerousGetHandle(), value.Id));
+            }
+        }
+
+        private int NumberOutputDrivers
+        {
+            get
+            {
+                int result;
+                Errors.ThrowIfError(GetNumDrivers(DangerousGetHandle(), out result));
+                return result;
+            }
+        }
+
+        private int NumberRecordDrivers
+        {
+            get
+            {
+                int result;
+                Errors.ThrowIfError(GetRecordNumDrivers(DangerousGetHandle(), out result));
+                return result;
+            }
+        }
         #endregion
-      
-        #region Methods methods
+
+        #region Native properties
+        public IEnumerable<OutputDriverDTO> OutputDrivers
+        {
+            get
+            {
+                int result = NumberOutputDrivers;
+                for (int i = 0; i < result; i++) {
+                    yield return GetOutputDriver(i);
+                }
+            }
+        }
+
+        public IEnumerable<RecordDriverDTO> RecordDrivers
+        {
+            get
+            {
+                int result = NumberRecordDrivers;
+                for (int i = 0; i < result; i++) {
+                    yield return GetRecordDriver(i);
+                }
+            }
+        }
+        #endregion
+
+        #region Methods
+        #region Methods - DSP
+        public Dsp CreateDSP(ref Dsp.DSPDescription description)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
+            return new Dsp(result);
+        }
+
+        public Dsp CreateDspByType(DspType type)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateDspByType(DangerousGetHandle(), type, ref result));
+            return new Dsp(result);
+        }
+
+        public Channel PlayDsp(Dsp dsp, bool paused = false)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Free, dsp.DangerousGetHandle(), paused, ref result));
+            return new Channel(result);
+        }
+
+        public void PlayDsp(Dsp dsp, bool paused, Channel chn)
+        {
+            IntPtr channel = chn.DangerousGetHandle();
+            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel));            
+            
+            if (chn.DangerousGetHandle() != channel) throw new Exception("Channel handle got changed by Fmod."); //TODO: check: is this really needed?
+        }
+
+        public DspConnection AddDsp(Dsp dsp)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(AddDSP(DangerousGetHandle(), dsp.DangerousGetHandle(), ref result));
+            return new DspConnection(result);
+        }
+
+        public void LockDSP()
+        {
+            Errors.ThrowIfError(LockDSP(DangerousGetHandle()));
+        }
+
+        public void UnlockDSP()
+        {
+            Errors.ThrowIfError(UnlockDSP(DangerousGetHandle()));
+        }
+        #endregion
+
+        #region Methods - Update
+        public void Update()
+        {
+            Update(DangerousGetHandle());
+        }
+
+        public void UpdateFinished()
+        {
+            UpdateFinished(DangerousGetHandle());
+        }
+        #endregion
+
+        // TODO: get rid of out calls
+        private void GetRecordDriverInfo(int Id, out string Name, out Guid DriverGuid)
+        {
+            var result = new StringBuilder(255);
+            Errors.ThrowIfError(GetRecordDriverInfo(DangerousGetHandle(), Id, result, result.Capacity, out DriverGuid));
+            Name = result.ToString();
+        }
+
+        private void GetRecordDriverCapabilities(int id, out Capabilities caps, out int minfrequency, out int maxfrequency)
+        {
+            Errors.ThrowIfError(GetRecordDriverCaps(DangerousGetHandle(), id, out caps, out minfrequency, out maxfrequency));
+        }
+
+        // TODO: possibly refactor this whole thing
+        private RecordDriverDTO GetRecordDriver(int Id)
+        {
+            Guid DriverGuid;
+            string DriverName;
+            GetRecordDriverInfo(Id, out DriverName, out DriverGuid);
+
+            Capabilities caps;
+            int minfrequency, maxfrequency;
+            GetRecordDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency);
+
+            return new RecordDriverDTO {
+                Id = Id,
+                Name = DriverName,
+                Guid = DriverGuid,
+
+                Capabilities = caps,
+                MinimumFrequency = minfrequency,
+                MaximumFrequency = maxfrequency,
+            };
+        }
+
+        public float[] GetSpectrum(int numvalues, int channeloffset, FFTWindow windowtype)
+        {
+            float[] SpectrumArray = new float[numvalues];
+            GetSpectrum(SpectrumArray, numvalues, channeloffset, windowtype);
+            return SpectrumArray;
+        }
+
+        public void GetSpectrum(float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype)
+        {
+            GetSpectrum(DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
+        }
+
+        public float[] GetWaveData(int numvalues, int channeloffset)
+        {
+            float[] WaveArray = new float[numvalues];
+            GetWaveData(WaveArray, numvalues, channeloffset);
+            return WaveArray;
+        }
+
+        public void GetWaveData(float[] wavearray, int numvalues, int channeloffset)
+        {
+            GetWaveData(DangerousGetHandle(), wavearray, numvalues, channeloffset);
+        }
+
+        private void GetOutputDriverInfo(int Id, out string Name, out Guid DriverGuid)
+        {
+            var result = new StringBuilder(255);
+            Errors.ThrowIfError(GetDriverInfo(DangerousGetHandle(), Id, result, result.Capacity, out DriverGuid));
+            Name = result.ToString();
+        }
+
+        private void GetOutputDriverCapabilities(int Id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
+        {
+            Errors.ThrowIfError(GetDriverCaps(DangerousGetHandle(), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode));
+        }
+        
+        // TODO: possibly refactor whole thing
+        private OutputDriverDTO GetOutputDriver(int Id)
+        {
+            Guid DriverGuid;
+            string DriverName;
+            GetOutputDriverInfo(Id, out DriverName, out DriverGuid);
+
+            Capabilities caps;
+            int minfrequency, maxfrequency;
+            SpeakerMode controlpanelspeakermode;
+            GetOutputDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
+
+            return new OutputDriverDTO {
+                Id = Id,
+                Name = DriverName,
+                Guid = DriverGuid,
+
+                Capabilities = caps,
+                MinimumFrequency = minfrequency,
+                MaximumFrequency = maxfrequency,
+                SpeakerMode = controlpanelspeakermode
+            };
+        }
+
         public Sound CreateStream(string path, Mode mode)
         {
             IntPtr result = IntPtr.Zero;
@@ -705,233 +933,6 @@ namespace nFMOD
             return new Reverb(result);
         }
 
-        #endregion
-
-        #region DSP
-        public Dsp CreateDSP(ref Dsp.DSPDescription description)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
-            return new Dsp(result);
-        }
-
-        public Dsp CreateDspByType(DspType type)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateDspByType(DangerousGetHandle(), type, ref result));
-            return new Dsp(result);
-        }
-
-        public Channel PlayDsp(Dsp dsp, bool paused = false)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Free, dsp.DangerousGetHandle(), paused, ref result));
-            return new Channel(result);
-        }
-
-        public void PlayDsp(Dsp dsp, bool paused, Channel chn)
-        {
-            IntPtr channel = chn.DangerousGetHandle();
-            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel));            
-            
-            if (chn.DangerousGetHandle() != channel) throw new Exception("Channel handle got changed by Fmod."); //TODO: check: is this really needed?
-        }
-
-        public DspConnection AddDsp(Dsp dsp)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(AddDSP(DangerousGetHandle(), dsp.DangerousGetHandle(), ref result));
-            return new DspConnection(result);
-        }
-
-        public void LockDSP()
-        {
-            Errors.ThrowIfError(LockDSP(DangerousGetHandle()));
-        }
-
-        public void UnlockDSP()
-        {
-            Errors.ThrowIfError(UnlockDSP(DangerousGetHandle()));
-        }
-
-        public ulong DSPClock
-        {
-            get
-            {
-                uint high = 0, low = 0;
-                Errors.ThrowIfError(GetDSPClock(DangerousGetHandle(), ref high, ref low));
-                return (high << 32) | low;
-            }
-        }
-        #endregion
-        
-        #region Record driver
-        public IEnumerable<RecordDriverDTO> RecordDrivers
-        {
-            get
-            {
-                int result = NumberRecordDrivers;
-                for (int i = 0; i < result; i++) {
-                    yield return GetRecordDriver(i);
-                }
-            }
-        }
-
-        private int NumberRecordDrivers
-        {
-            get
-            {
-                int result;
-                Errors.ThrowIfError(GetRecordNumDrivers(DangerousGetHandle(), out result));
-                return result;
-            }
-        }
-
-        // TODO: get rid of out calls
-        private void GetRecordDriverInfo(int Id, out string Name, out Guid DriverGuid)
-        {
-            var result = new StringBuilder(255);
-            Errors.ThrowIfError(GetRecordDriverInfo(DangerousGetHandle(), Id, result, result.Capacity, out DriverGuid));
-            Name = result.ToString();
-        }
-
-        private void GetRecordDriverCapabilities(int id, out Capabilities caps, out int minfrequency, out int maxfrequency)
-        {
-            Errors.ThrowIfError(GetRecordDriverCaps(DangerousGetHandle(), id, out caps, out minfrequency, out maxfrequency));
-        }
-
-        private RecordDriverDTO GetRecordDriver(int Id)
-        {
-            Guid DriverGuid;
-            string DriverName;
-            GetRecordDriverInfo(Id, out DriverName, out DriverGuid);
-
-            Capabilities caps;
-            int minfrequency, maxfrequency;
-            GetRecordDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency);
-
-            return new RecordDriverDTO {
-                Id = Id,
-                Name = DriverName,
-                Guid = DriverGuid,
-
-                Capabilities = caps,
-                MinimumFrequency = minfrequency,
-                MaximumFrequency = maxfrequency,
-            };
-        }
-        #endregion
-
-        #region Output driver
-        public OutputDriverDTO OutputDriver
-        {
-            get
-            {
-                int driver;
-                Errors.ThrowIfError(GetDriver(DangerousGetHandle(), out driver));
-                return GetOutputDriver(driver);
-            }
-            set
-            {
-                Errors.ThrowIfError(SetDriver(DangerousGetHandle(), value.Id));
-            }
-        }
-
-        public IEnumerable<OutputDriverDTO> OutputDrivers
-        {
-            get
-            {
-                int Numb = NumberOutputDrivers;
-                for (int i = 0; i < Numb; i++) {
-                    yield return GetOutputDriver(i);
-                }
-            }
-        }
-
-        private int NumberOutputDrivers
-        {
-            get
-            {
-                int numdrivers;
-                Errors.ThrowIfError(GetNumDrivers(DangerousGetHandle(), out numdrivers));
-                return numdrivers;
-            }
-        }
-
-        private void GetOutputDriverInfo(int Id, out string Name, out Guid DriverGuid)
-        {
-            var str = new StringBuilder(255);
-            Errors.ThrowIfError(GetDriverInfo(DangerousGetHandle(), Id, str, str.Capacity, out DriverGuid));
-            Name = str.ToString();
-        }
-
-        private void GetOutputDriverCapabilities(int Id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
-        {
-            Errors.ThrowIfError(GetDriverCaps(DangerousGetHandle(), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode));
-        }
-
-        private OutputDriverDTO GetOutputDriver(int Id)
-        {
-            Guid DriverGuid;
-            string DriverName;
-            GetOutputDriverInfo(Id, out DriverName, out DriverGuid);
-
-            Capabilities caps;
-            int minfrequency, maxfrequency;
-            SpeakerMode controlpanelspeakermode;
-            GetOutputDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
-
-            return new OutputDriverDTO {
-                Id = Id,
-                Name = DriverName,
-                Guid = DriverGuid,
-
-                Capabilities = caps,
-                MinimumFrequency = minfrequency,
-                MaximumFrequency = maxfrequency,
-                SpeakerMode = controlpanelspeakermode
-            };
-        }
-        #endregion
-
-        #region Spectrum/Wave
-
-        public float[] GetSpectrum(int numvalues, int channeloffset, FFTWindow windowtype)
-        {
-            float[] SpectrumArray = new float[numvalues];
-            GetSpectrum(SpectrumArray, numvalues, channeloffset, windowtype);
-            return SpectrumArray;
-        }
-
-        public void GetSpectrum(float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype)
-        {
-            GetSpectrum(DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
-        }
-
-        public float[] GetWaveData(int numvalues, int channeloffset)
-        {
-            float[] WaveArray = new float[numvalues];
-            GetWaveData(WaveArray, numvalues, channeloffset);
-            return WaveArray;
-        }
-
-        public void GetWaveData(float[] wavearray, int numvalues, int channeloffset)
-        {
-            GetWaveData(DangerousGetHandle(), wavearray, numvalues, channeloffset);
-        }
-        #endregion
-
-        #region Update
-
-        public void Update()
-        {
-            Update(DangerousGetHandle());
-        }
-
-        public void UpdateFinished()
-        {
-            UpdateFinished(DangerousGetHandle());
-        }
-        #endregion
+        #endregion                
     }
 }
