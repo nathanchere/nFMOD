@@ -17,7 +17,7 @@ namespace nFMOD
     /// If FMOD_DELAYTYPE_END_MS is specified, the value is not treated as a 64 bit number, just the delay hi value is used and it is
     /// treated as milliseconds.
     /// </remarks>
-    public enum DelayType : int
+    public enum DelayType
     {
         /// <summary>
         /// Delay at the end of the sound in milliseconds. Use delayhi only.
@@ -64,7 +64,7 @@ namespace nFMOD
     /// Each callback has commanddata parameters passed int unique to the type of callback.
     /// See reference to FMOD_CHANNEL_CALLBACK to determine what they might mean for each type of callback.
     /// </remarks>
-    public enum ChannelCallbackType : int
+    public enum ChannelCallbackType
     {
         /// <summary>
         /// Called when a sound ends.
@@ -100,7 +100,7 @@ namespace nFMOD
     /// <remarks>
     /// Currently the user must call System::update for these callbacks to trigger.
     /// </remarks>
-    public enum CallbackType : int
+    public enum CallbackType
     {
         /// <summary>
         /// Called when the enumerated list of devices has changed.
@@ -148,7 +148,7 @@ namespace nFMOD
     /// Use them with <see cref="SoundSystem.Init"/> in the flags parameter to change various behaviour.
     /// </summary>
     [Flags]
-    public enum InitFlags : int
+    public enum InitFlags
     {
         /// <summary>
         /// Initialize normally.
@@ -284,7 +284,7 @@ namespace nFMOD
     /// Currently these are the only FMOD drivers that take extra information.
     /// Other unknown plugins may have different requirements.
     /// </remarks>
-    public enum OutputType : int
+    public enum OutputType
     {
         /// <summary>
         /// Picks the best output mode for the platform.
@@ -380,7 +380,7 @@ namespace nFMOD
     /// If the cycle of the signal (i.e. the sine wave) is not a multiple of the window size, it
     /// will cause frequency abnormalities, so a different windowing method is needed.
     /// </remarks>
-    public enum FFTWindow : int
+    public enum FFTWindow
     {
         /// <summary>
         /// w[n] = 1.0
@@ -418,7 +418,7 @@ namespace nFMOD
     /// <summary>
     /// List of interpolation types that the FMOD software mixer supports.
     /// </summary>
-    public enum Resampler : int
+    public enum Resampler
     {
         /// <summary>
         /// High frequency aliasing hiss will be audible depending on the sample rate of the sound.
@@ -457,7 +457,7 @@ namespace nFMOD
     /// the global output (by using System::getDSPHead) or on a single channel (using
     /// Channel::getDSPHead).
     /// </remarks>
-    public enum DspType : int
+    public enum DspType
     {
         /// <summary>
         /// This unit was created via a non FMOD plugin so has an unknown purpose.
@@ -795,7 +795,7 @@ namespace nFMOD
     /// These are plugin types defined for use with the System::getNumPlugins / System_GetNumPlugins, 
     /// System::getPluginInfo / System_GetPluginInfo and System::unloadPlugin / System_UnloadPlugin functions.
     /// </summary>
-    public enum PluginType : int
+    public enum PluginType
     {
         /// <summary>
         /// Output module.  FMOD mixed audio will play through one of these devices.
@@ -923,7 +923,7 @@ namespace nFMOD
     /// <summary>
     /// These are speaker types defined for use with the System::setSpeakerMode or System::getSpeakerMode command.
     /// </summary>
-    public enum SpeakerMode : int
+    public enum SpeakerMode
     {
         /// <summary>		
         /// Output devices that are not specifically mono/stereo/quad/surround/5.1 or 7.1, but are multichannel.
@@ -1059,7 +1059,7 @@ namespace nFMOD
     /// For example (FMOD_SPEAKER)7 would use the 7th speaker (also the same as FMOD_SPEAKER_SIDE_RIGHT).
     /// Values higher than this can be used if an output system has more than 8 speaker types / output channels.  15 is the current maximum.
     /// </remarks>
-    public enum Speaker : int
+    public enum Speaker
     {
         FrontLeft,
         FrontRight,
@@ -1802,7 +1802,7 @@ namespace nFMOD
     /// List of tag types that could be stored within a sound.
     /// These include id3 tags, metadata from netstreams and vorbis/asf data.
     /// </summary>
-    public enum TagType : int
+    public enum TagType
     {
         UNKNOWN = 0,
         ID3V1,
@@ -1820,7 +1820,7 @@ namespace nFMOD
     /// <summary>
     /// List of data types that can be returned by Sound::getTag
     /// </summary>
-    public enum TagDataType : int
+    public enum TagDataType
     {
         BINARY = 0,
         INT,
@@ -1835,7 +1835,7 @@ namespace nFMOD
     /// <summary>
     /// These values describe what state a sound is in after NONBLOCKING has been used to open it.
     /// </summary>
-    public enum OpenState : int
+    public enum OpenState
     {
         /// <summary>
         /// Opened and ready to play
@@ -1878,7 +1878,7 @@ namespace nFMOD
         SETPOSITION,
     }
 
-    public enum SoundGroupBehavior : int
+    public enum SoundGroupBehavior
     {
         /// <summary>
         /// Any sound played that puts the sound count over the SoundGroup::setMaxAudible setting, will simply fail during System::playSound.
