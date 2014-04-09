@@ -976,79 +976,80 @@ namespace nFMOD
         /// <summary>
         /// AAC.  Currently unsupported.
         /// </summary>
-        AAC,
+        Aac,
 
-        AIFF,
+        Aiff,
 
         /// <summary>
         /// Microsoft Advanced Systems Format (ie WMA/ASF/WMV).
         /// </summary>
-        ASF,
+        Asf,
 
         /// <summary>
         /// Sony ATRAC 3 format
         /// </summary>
-        AT3,
+        At3,
 
         /// <summary>
         /// Digital CD audio.
         /// </summary>
-        CDDA,
+        Cdda,
 
         /// <summary>
         /// Sound font / downloadable sound bank.
         /// </summary>
-        DLS,
+        Dls,
 
         /// <summary>
         /// FLAC lossless codec.
         /// </summary>
-        FLAC,
+        Flac,
 
         /// <summary>
         /// FMOD Sample Bank.
         /// </summary>
-        FSB,
+        Fsb,
 
         /// <summary>
         /// GameCube ADPCM
         /// </summary>
-        GCADPCM,
+        [Obsolete("GameCube only")]
+        GcAdPcm,
 
         /// <summary>
         /// Impulse Tracker
         /// </summary>
-        IT,
+        It,
 
         /// <summary>
         /// MIDI
         /// </summary>
-        MIDI,
+        Midi,
 
         /// <summary>
         /// Protracker / Fasttracker MOD
         /// </summary>
-        MOD,
+        Mod,
 
         /// <summary>
         /// MP2/MP3 MPEG
         /// </summary>
-        MPEG,
+        Mpeg,
 
         /// <summary>
         /// Ogg vorbis
         /// </summary>
-        OGGVORBIS,
+        OggVorbis,
 
         /// <summary>
         /// Metadata only from ASX/PLS/M3U/WAX playlists
         /// </summary>
-        PLAYLIST,
+        Playlist,
 
         /// <summary>
         /// Raw PCM data
         /// </summary>
-        RAW,
+        Raw,
 
         /// <summary>
         /// ScreamTracker 3
@@ -1058,7 +1059,7 @@ namespace nFMOD
         /// <summary>
         /// Sound font 2
         /// </summary>
-        SF2,
+        Sf2,
 
         /// <summary>
         /// User created sound
@@ -1068,32 +1069,36 @@ namespace nFMOD
         /// <summary>
         /// Microsoft WAV
         /// </summary>
-        WAV,
+        Wav,
 
         /// <summary>
         /// FastTracker 2
         /// </summary>
-        XM,
+        Xm,
 
         /// <summary>
         /// Xbox360 XMA
         /// </summary>
-        XMA,
+        [Obsolete("Xbox360 only")]
+        Xma,
 
         /// <summary>
         /// PlayStation 2 / PlayStation Portable adpcm VAG format
         /// </summary>
-        VAG,
+        [Obsolete("PS2/PSP only")]
+        Vag,
 
         /// <summary>
         /// iPhone hardware decoder, supports AAC, ALAC and MP3
         /// </summary>
+        [Obsolete(" only")]
         AudioQueue,
 
         /// <summary>
         /// Xbox360 XWMA
         /// </summary>
-        XWMA,
+        [Obsolete(" only")]
+        Xwma,
     }
 
     #endregion
