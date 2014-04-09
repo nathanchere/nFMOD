@@ -5,7 +5,7 @@ using System.Text;
 
 namespace nFMOD
 {
-	public partial class Sound : Handle
+	public class Sound : Handle
     {
         #region Externs
         [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Sound_Release"), SuppressUnmanagedCodeSecurity]
@@ -66,7 +66,7 @@ namespace nFMOD
 		private static extern ErrorCode GetLength (IntPtr sound, ref uint length, TimeUnit lengthtype);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Sound_GetFormat"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetFormat (IntPtr sound, ref Sound.Type type, ref Sound.Format format, ref int channels, ref int bits);
+		private static extern ErrorCode GetFormat (IntPtr sound, ref Type type, ref Format format, ref int channels, ref int bits);
 
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Sound_GetNumSubSounds"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode GetNumSubSounds (IntPtr sound, ref int numsubsounds);
@@ -582,17 +582,17 @@ namespace nFMOD
 
 		private Sound() { }
 
-		internal Sound (IntPtr hnd) : base()
+		internal Sound (IntPtr hnd)
 		{
 			SetHandle (hnd);
 		}
 
-		protected override bool ReleaseHandle ()
+		protected override bool ReleaseHandle()
 		{
 			if (IsInvalid) return true;
 			
 			Release (handle);
-			SetHandleAsInvalid ();			
+			SetHandleAsInvalid();			
 			return true;
 		}
 	}

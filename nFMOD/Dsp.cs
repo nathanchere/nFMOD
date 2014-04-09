@@ -111,7 +111,6 @@ namespace nFMOD
         #endregion
 
         internal Dsp(IntPtr hnd)
-            : base()
         {
             SetHandle(hnd);
         }

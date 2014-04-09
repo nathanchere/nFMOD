@@ -9,21 +9,21 @@ namespace nFMOD
 		
 		#region Create/Release
 		
-		private ChannelGroup ()
+		private ChannelGroup()
 		{
 		}
-		internal ChannelGroup (IntPtr hnd) : base()
+		internal ChannelGroup (IntPtr hnd)
 		{
-			this.SetHandle(hnd);
+			SetHandle(hnd);
 		}
 		
-		protected override bool ReleaseHandle ()
+		protected override bool ReleaseHandle()
 		{
-			if (this.IsInvalid)
+			if (IsInvalid)
 				return true;
 			
-			Release (this.handle);
-			this.SetHandleAsInvalid ();
+			Release (handle);
+			SetHandleAsInvalid();
 			
 			return true;
 		}

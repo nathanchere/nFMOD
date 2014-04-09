@@ -16,5 +16,5 @@ using System.Resources;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
-[assembly: ComVisibleAttribute(true)]
-[assembly: NeutralResourcesLanguageAttribute("en-US")]
+[assembly: ComVisible(true)]
+[assembly: NeutralResourcesLanguage("en-US")]

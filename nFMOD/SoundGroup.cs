@@ -63,14 +63,14 @@ namespace nFMOD
 		private static extern ErrorCode GetMemoryInfo (IntPtr soundgroup, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);		
         #endregion
 
-        private SoundGroup () { }
+        private SoundGroup() { }
 
-		internal SoundGroup (IntPtr hnd) : base()
+		internal SoundGroup (IntPtr hnd)
 		{
 			SetHandle(hnd);
 		}
 		
-		protected override bool ReleaseHandle ()
+		protected override bool ReleaseHandle()
 		{
 			if (IsInvalid) return true;
 			

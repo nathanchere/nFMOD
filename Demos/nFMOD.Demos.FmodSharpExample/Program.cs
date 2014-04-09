@@ -3,6 +3,7 @@
  */
 
 using System;
+using System.Threading;
 
 namespace nFMOD
 {
@@ -68,7 +69,7 @@ namespace nFMOD
                     break;
                 }
 				
-                System.Threading.Thread.Sleep(10);
+                Thread.Sleep(10);
             }
             Oscillator.Dispose();
             Chan.Dispose();

@@ -12,18 +12,18 @@ namespace nFMOD
 		private Reverb()
 		{
 		}
-		internal Reverb (IntPtr hnd) : base()
+		internal Reverb (IntPtr hnd)
 		{
-			this.SetHandle (hnd);
+			SetHandle (hnd);
 		}
 
-		protected override bool ReleaseHandle ()
+		protected override bool ReleaseHandle()
 		{
-			if (this.IsInvalid)
+			if (IsInvalid)
 				return true;
 			
-			Release (this.handle);
-			this.SetHandleAsInvalid ();
+			Release (handle);
+			SetHandleAsInvalid();
 			
 			return true;
 		}
