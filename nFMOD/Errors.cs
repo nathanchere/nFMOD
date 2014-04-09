@@ -49,8 +49,7 @@ namespace nFMOD
             exceptionTypes[ErrorCode.HTTP_Access] = typeof(FmodHttpAccessException);
             exceptionTypes[ErrorCode.HTTP_ProxyAuth] = typeof(FmodHttpProxyAuthException);
             exceptionTypes[ErrorCode.HTTP_ServerError] = typeof(FmodHttpServerErrorException);
-            exceptionTypes[ErrorCode.HTTP_Timeout] = typeof(FmodHttpTimeoutException);
-            exceptionTypes[ErrorCode.IRX] = typeof(FmodIrxException);
+            exceptionTypes[ErrorCode.HTTP_Timeout] = typeof(FmodHttpTimeoutException);            
             exceptionTypes[ErrorCode.Initialization] = typeof(FmodInitializationException);
             exceptionTypes[ErrorCode.Initialized] = typeof(FmodInitializedException);
             exceptionTypes[ErrorCode.Internal] = typeof(FmodInternalException);
@@ -64,8 +63,7 @@ namespace nFMOD
             exceptionTypes[ErrorCode.InvalidVector] = typeof(FmodInvalidVectorException);
             exceptionTypes[ErrorCode.MaxAudible] = typeof(FmodMaxAudibleException);
             exceptionTypes[ErrorCode.Memory] = typeof(FmodMemoryException);
-            exceptionTypes[ErrorCode.Memory_CantPoint] = typeof(FmodMemoryCantPointException);
-            exceptionTypes[ErrorCode.Memory_IOP] = typeof(FmodMemoryIopException);
+            exceptionTypes[ErrorCode.Memory_CantPoint] = typeof(FmodMemoryCantPointException);            
             exceptionTypes[ErrorCode.Memory_SRAM] = typeof(FmodMemorySramException);
             exceptionTypes[ErrorCode.Music_NoCallback] = typeof(FmodMusicNoCallbackException);
             exceptionTypes[ErrorCode.Music_NotFound] = typeof(FmodMusicNotFoundException);
@@ -106,8 +104,14 @@ namespace nFMOD
             exceptionTypes[ErrorCode.Uninitialized] = typeof(FmodUninitializedException);
             exceptionTypes[ErrorCode.Unsupported] = typeof(FmodUnsupportedException);
             exceptionTypes[ErrorCode.Update] = typeof(FmodUpdateException);
-            exceptionTypes[ErrorCode.Version] = typeof(FmodVersionException); 
-	    }
+            exceptionTypes[ErrorCode.Version] = typeof(FmodVersionException);
+            
+            /*
+             * // Only valid for Playstation 2: 
+             * exceptionTypes[ErrorCode.IRX] = typeof(FmodIrxException);
+             * exceptionTypes[ErrorCode.Memory_IOP] = typeof(FmodMemoryIopException);
+             */
+        }
 
 		public static void ThrowIfError(ErrorCode errorCode)
 		{
