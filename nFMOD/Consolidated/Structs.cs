@@ -430,7 +430,7 @@ namespace nFMOD
 
     }
 
-    public struct OutputDriverDTO
+    public struct OutputDriver
     {
         internal int Id
         {
@@ -447,7 +447,7 @@ namespace nFMOD
             get;
             internal set;
         }
-        public Capabilities Capabilities
+        public DeviceCapabilities Capabilities
         {
             get;
             internal set;
@@ -474,7 +474,7 @@ namespace nFMOD
         }
     }
 
-    public struct RecordDriverDTO
+    public struct RecordDriver
     {
         internal int Id
         {
@@ -491,7 +491,7 @@ namespace nFMOD
             get;
             internal set;
         }
-        public Capabilities Capabilities
+        public DeviceCapabilities Capabilities
         {
             get;
             internal set;
@@ -512,8 +512,7 @@ namespace nFMOD
             return Name;
         }
     }
-
-    #region DSP
+    
     public struct DspParameterDescription
     {
         /// <summary>
@@ -570,7 +569,6 @@ namespace nFMOD
         /// </summary>
         public ushort SpeakerMask;
     }
-    #endregion
 
     [StructLayout(LayoutKind.Sequential)]
     public struct Vector3

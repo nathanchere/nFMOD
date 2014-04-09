@@ -93,7 +93,7 @@ namespace nFMOD
         private static extern ErrorCode FMOD_System_GetRecordDriverInfoW(IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder name, int namelen, out Guid guid);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetRecordDriverCaps"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetRecordDriverCaps(IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency);
+        private static extern ErrorCode GetRecordDriverCaps(IntPtr system, int id, out DeviceCapabilities caps, out int minfrequency, out int maxfrequency);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetNumDrivers"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetNumDrivers(IntPtr system, out int Numdrivers);
@@ -105,7 +105,7 @@ namespace nFMOD
         private static extern ErrorCode GetDriverInfoW(IntPtr system, int id, [MarshalAs(UnmanagedType.LPWStr)] StringBuilder name, int namelen, out Guid guid);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetDriverCaps"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetDriverCaps(IntPtr system, int id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode);
+        private static extern ErrorCode GetDriverCaps(IntPtr system, int id, out DeviceCapabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetDriver"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetDriver(IntPtr system, int driver);
@@ -384,31 +384,31 @@ namespace nFMOD
         private static extern ErrorCode CreateSoundGroup(IntPtr system, string name, ref IntPtr soundgroup);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, ref SoundInfo exinfo, ref IntPtr Sound);
+        private static extern ErrorCode CreateSound(IntPtr system, string name, SoundMode mode, ref SoundInfo exinfo, ref IntPtr Sound);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateSound(IntPtr system, string name, SoundMode mode, int exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, ref SoundInfo exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, SoundMode mode, ref SoundInfo exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, SoundMode mode, int exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode PlaySound(IntPtr system, ChannelIndex channelid, IntPtr Sound, bool paused, ref IntPtr channel);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, ref SoundInfo exinfo, ref IntPtr Sound);
+        private static extern ErrorCode CreateStream(IntPtr system, string name, SoundMode mode, ref SoundInfo exinfo, ref IntPtr Sound);
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateStream(IntPtr system, string name, SoundMode mode, int exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, ref SoundInfo exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, SoundMode mode, ref SoundInfo exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
+        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, SoundMode mode, int exinfo, ref IntPtr sound);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetRecordPosition"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetRecordPosition(IntPtr system, int id, ref uint position);
@@ -622,7 +622,7 @@ namespace nFMOD
             }
         }
 
-        public OutputDriverDTO OutputDriver
+        public OutputDriver OutputDriver
         {
             get
             {
@@ -658,7 +658,7 @@ namespace nFMOD
         #endregion
 
         #region Native properties
-        public IEnumerable<OutputDriverDTO> OutputDrivers
+        public IEnumerable<OutputDriver> OutputDrivers
         {
             get
             {
@@ -669,7 +669,7 @@ namespace nFMOD
             }
         }
 
-        public IEnumerable<RecordDriverDTO> RecordDrivers
+        public IEnumerable<RecordDriver> RecordDrivers
         {
             get
             {
@@ -750,23 +750,23 @@ namespace nFMOD
             Name = result.ToString();
         }
 
-        private void GetRecordDriverCapabilities(int id, out Capabilities caps, out int minfrequency, out int maxfrequency)
+        private void GetRecordDriverCapabilities(int id, out DeviceCapabilities caps, out int minfrequency, out int maxfrequency)
         {
             Errors.ThrowIfError(GetRecordDriverCaps(DangerousGetHandle(), id, out caps, out minfrequency, out maxfrequency));
         }
 
         // TODO: possibly refactor this whole thing
-        private RecordDriverDTO GetRecordDriver(int Id)
+        private RecordDriver GetRecordDriver(int Id)
         {
             Guid DriverGuid;
             string DriverName;
             GetRecordDriverInfo(Id, out DriverName, out DriverGuid);
 
-            Capabilities caps;
+            DeviceCapabilities caps;
             int minfrequency, maxfrequency;
             GetRecordDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency);
 
-            return new RecordDriverDTO {
+            return new RecordDriver {
                 Id = Id,
                 Name = DriverName,
                 Guid = DriverGuid,
@@ -808,24 +808,24 @@ namespace nFMOD
             Name = result.ToString();
         }
 
-        private void GetOutputDriverCapabilities(int Id, out Capabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
+        private void GetOutputDriverCapabilities(int Id, out DeviceCapabilities caps, out int minfrequency, out int maxfrequency, out SpeakerMode controlpanelspeakermode)
         {
             Errors.ThrowIfError(GetDriverCaps(DangerousGetHandle(), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode));
         }
         
         // TODO: possibly refactor whole thing
-        private OutputDriverDTO GetOutputDriver(int Id)
+        private OutputDriver GetOutputDriver(int Id)
         {
             Guid DriverGuid;
             string DriverName;
             GetOutputDriverInfo(Id, out DriverName, out DriverGuid);
 
-            Capabilities caps;
+            DeviceCapabilities caps;
             int minfrequency, maxfrequency;
             SpeakerMode controlpanelspeakermode;
             GetOutputDriverCapabilities(Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode);
 
-            return new OutputDriverDTO {
+            return new OutputDriver {
                 Id = Id,
                 Name = DriverName,
                 Guid = DriverGuid,
@@ -837,28 +837,28 @@ namespace nFMOD
             };
         }
 
-        public Sound CreateStream(string path, Mode mode)
+        public Sound CreateStream(string path, SoundMode mode)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, 0, ref result));
             return new Sound(result);
         }
 
-        public Sound CreateStream(string path, Mode mode, SoundInfo exinfo)
+        public Sound CreateStream(string path, SoundMode mode, SoundInfo exinfo)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref result));
             return new Sound(result);
         }
 
-        public Sound CreateStream(byte[] data, Mode mode)
+        public Sound CreateStream(byte[] data, SoundMode mode)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, 0, ref result));
             return new Sound(result);
         }
 
-        public Sound CreateStream(byte[] data, Mode mode, SoundInfo exinfo)
+        public Sound CreateStream(byte[] data, SoundMode mode, SoundInfo exinfo)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref result));
@@ -867,31 +867,31 @@ namespace nFMOD
 
         public Sound CreateSound(string path)
         {
-            return CreateSound(path, Mode.Default);
+            return CreateSound(path, SoundMode.Default);
         }
 
-        public Sound CreateSound(string path, Mode mode)
+        public Sound CreateSound(string path, SoundMode mode)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, 0, ref result));
             return new Sound(result);
         }
 
-        public Sound CreateSound(string path, Mode mode, SoundInfo exinfo)
+        public Sound CreateSound(string path, SoundMode mode, SoundInfo exinfo)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, ref exinfo, ref result));
             return new Sound(result);
         }
 
-        public Sound CreateSound(byte[] data, Mode mode = Mode.Default)
+        public Sound CreateSound(byte[] data, SoundMode mode = SoundMode.Default)
         {
             IntPtr SoundHandle = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, 0, ref SoundHandle));
             return new Sound(SoundHandle);
         }
 
-        public Sound CreateSound(byte[] data, Mode mode, SoundInfo exinfo)
+        public Sound CreateSound(byte[] data, SoundMode mode, SoundInfo exinfo)
         {
             IntPtr SoundHandle = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, ref exinfo, ref SoundHandle));
