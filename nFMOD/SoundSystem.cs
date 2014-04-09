@@ -362,6 +362,9 @@ namespace nFMOD
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetUserData"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetUserData(IntPtr system, ref int userdata);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetCallback"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode FMOD_System_SetCallback(IntPtr system, SystemDelegate callback);
         #endregion
 
         public SoundSystem()
@@ -391,12 +394,7 @@ namespace nFMOD
             return true;
         }
 
-        public void Init()
-        {
-            Init(32, InitFlags.Normal | InitFlags.RightHanded3D);
-        }
-
-        public void Init(int Maxchannels, InitFlags Flags)
+        public void Init(int Maxchannels = 32, InitFlags Flags = InitFlags.Normal | InitFlags.RightHanded3D)
         {
             Init(Maxchannels, Flags, IntPtr.Zero);
         }
@@ -414,7 +412,6 @@ namespace nFMOD
         #region Events
 
         //TODO Implement SoundSystem Events.
-
         public delegate void SystemDelegate(SoundSystem Sys);
 
         /// <summary>
@@ -454,11 +451,7 @@ namespace nFMOD
         private ErrorCode HandleCallback(IntPtr systemraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2)
         {
             return ErrorCode.OK;
-        }
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetCallback"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode FMOD_System_SetCallback(IntPtr system, SystemDelegate callback);
-
+        }       
         #endregion
 
         #region Network
