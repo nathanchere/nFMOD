@@ -580,9 +580,66 @@ namespace nFMOD
                 return result;
             }
         }
+
+        public ReverbProperties ReverbProperties
+        {
+            get
+            {
+                var result = ReverbProperties.Generic;
+                Errors.ThrowIfError(GetReverbProperties(DangerousGetHandle(), ref result));
+                return result;
+            }
+            set
+            {
+                Errors.ThrowIfError(SetReverbProperties(DangerousGetHandle(), ref value));
+            }
+        }
+
+        public ReverbProperties ReverbAmbientProperties
+        {
+            get
+            {
+                var result = ReverbProperties.Generic;
+                Errors.ThrowIfError(GetReverbAmbientProperties(DangerousGetHandle(), ref result));
+                return result;
+            }
+
+            set
+            {
+                Errors.ThrowIfError(SetReverbAmbientProperties(DangerousGetHandle(), ref value));
+            }
+        }
         #endregion
       
-        #region Sound methods
+        #region Methods methods
+        public Sound CreateStream(string path, Mode mode)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, 0, ref result));
+            return new Sound(result);
+        }
+
+        public Sound CreateStream(string path, Mode mode, Sound.SoundInfo exinfo)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref result));
+            return new Sound(result);
+        }
+
+        public Sound CreateStream(byte[] data, Mode mode)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, 0, ref result));
+            return new Sound(result);
+        }
+
+        public Sound CreateStream(byte[] data, Mode mode, Sound.SoundInfo exinfo)
+        {
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref result));
+            return new Sound(result);
+        }
+
         public Sound CreateSound(string path)
         {
             return CreateSound(path, Mode.Default);
@@ -640,36 +697,14 @@ namespace nFMOD
             if (chn.DangerousGetHandle() == channel)
                 throw new Exception("Channel handle got changed by Fmod.");
         }
-        #endregion
 
-        #region Stream methods
-        public Sound CreateStream(string path, Mode mode)
+        public Reverb CreateReverb()
         {
             IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, 0, ref result));
-            return new Sound(result);
+            Errors.ThrowIfError(CreateReverb(DangerousGetHandle(), ref result));
+            return new Reverb(result);
         }
 
-        public Sound CreateStream(string path, Mode mode, Sound.SoundInfo exinfo)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateStream(byte[] data, Mode mode)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, 0, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateStream(byte[] data, Mode mode, Sound.SoundInfo exinfo)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref result));
-            return new Sound(result);
-        }
         #endregion
 
         #region DSP
@@ -729,52 +764,14 @@ namespace nFMOD
             }
         }
         #endregion
-
-        #region Reverb
-        public Reverb CreateReverb()
-        {
-            IntPtr ReverbHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateReverb(DangerousGetHandle(), ref ReverbHandle));
-            return new Reverb(ReverbHandle);
-        }
-
-        public ReverbProperties ReverbProperties
-        {
-            get
-            {
-                var result = ReverbProperties.Generic;
-                Errors.ThrowIfError(GetReverbProperties(DangerousGetHandle(), ref result));
-                return result;
-            }
-            set
-            {
-                Errors.ThrowIfError(SetReverbProperties(DangerousGetHandle(), ref value));
-            }
-        }
-
-        public ReverbProperties ReverbAmbientProperties
-        {
-            get
-            {
-                var Val = ReverbProperties.Generic;
-                Errors.ThrowIfError(GetReverbAmbientProperties(DangerousGetHandle(), ref Val));
-                return Val;
-            }
-
-            set
-            {
-                Errors.ThrowIfError(SetReverbAmbientProperties(DangerousGetHandle(), ref value));
-            }
-        }
-        #endregion
-
+        
         #region Record driver
         public IEnumerable<RecordDriverDTO> RecordDrivers
         {
             get
             {
-                int Numb = NumberRecordDrivers;
-                for (int i = 0; i < Numb; i++) {
+                int result = NumberRecordDrivers;
+                for (int i = 0; i < result; i++) {
                     yield return GetRecordDriver(i);
                 }
             }
@@ -784,17 +781,18 @@ namespace nFMOD
         {
             get
             {
-                int numdrivers;
-                Errors.ThrowIfError(GetRecordNumDrivers(DangerousGetHandle(), out numdrivers));
-                return numdrivers;
+                int result;
+                Errors.ThrowIfError(GetRecordNumDrivers(DangerousGetHandle(), out result));
+                return result;
             }
         }
 
+        // TODO: get rid of out calls
         private void GetRecordDriverInfo(int Id, out string Name, out Guid DriverGuid)
         {
-            var str = new StringBuilder(255);
-            Errors.ThrowIfError(GetRecordDriverInfo(DangerousGetHandle(), Id, str, str.Capacity, out DriverGuid));
-            Name = str.ToString();
+            var result = new StringBuilder(255);
+            Errors.ThrowIfError(GetRecordDriverInfo(DangerousGetHandle(), Id, result, result.Capacity, out DriverGuid));
+            Name = result.ToString();
         }
 
         private void GetRecordDriverCapabilities(int id, out Capabilities caps, out int minfrequency, out int maxfrequency)

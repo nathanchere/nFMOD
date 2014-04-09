@@ -59,6 +59,7 @@ How I approach my public projects is explained on [my github home page](http://n
 #### TODO (one day)
 
 * go through and fix anything TODO
+* get rid of most of the out and ref parameters
 * Nuget distribution: better handle fmodex.dll deployment
 * Go through and update comments from before v0.2 refactor which still
   reference C-style class names, structs etc
