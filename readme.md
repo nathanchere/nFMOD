@@ -23,7 +23,7 @@ How I approach my public projects is explained on [my github home page](http://n
 ## Release history
 
 #### vNext
-* 
+* Enum cleanup
 
 #### v0.4.2 (2014-04-09)
 * Add cleanup of DSP, ChannelGroup, Debug code which was missed in v0.4 release
