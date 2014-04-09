@@ -275,94 +275,91 @@ namespace nFMOD
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetMemoryInfo"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetMemoryInfo(IntPtr system, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
 
-
-        //Old Methods
-
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode SetDSPBufferSize(IntPtr system, int Bufferlength, int Numbuffers);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetDSPBufferSize(IntPtr system, ref int Bufferlength, ref int Numbuffers);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetFileSystem"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetFileSystem"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode SetFileSystem(IntPtr system, int useropen, int userclose, int userread, int userseek, int Buffersize);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_AttachFileSystem"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_AttachFileSystem"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode AttachFileSystem(IntPtr system, int useropen, int userclose, int userread, int userseek);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_LoadPlugin"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_LoadPlugin"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode LoadPlugin(IntPtr system, string Filename, ref int Handle, int Priority);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_UnloadPlugin"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_UnloadPlugin"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode UnloadPlugin(IntPtr system, int Handle);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetPluginHandle"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetPluginHandle"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetPluginHandle(IntPtr system, Plugin.Type Plugintype, int Index, ref int Handle);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetPluginInfo"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetPluginInfo"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetPluginInfo(IntPtr system, int Handle, ref Plugin.Type Plugintype, ref byte name, int namelen, ref int version);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode SetOutputByPlugin(IntPtr system, int Handle);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetOutputByPlugin(IntPtr system, ref int Handle);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByPlugin"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByPlugin"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode CreateDSPByPlugin(IntPtr system, int Handle, ref int Dsp);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateCodec"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateCodec"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode CreateCodec(IntPtr system, int CodecDescription);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Set3DRolloffCallback"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_Set3DRolloffCallback"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode Set3DRolloffCallback(IntPtr system, int Callback);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_Get3DSpeakerPosition"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_Get3DSpeakerPosition"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode Get3DSpeakerPosition(IntPtr system, ref Speaker speaker, ref float X, ref float Y, ref int active);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode SetStreamBufferSize(IntPtr system, int Filebuffersize, TimeUnit Filebuffersizetype);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetStreamBufferSize"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetStreamBufferSize(IntPtr system, ref int Filebuffersize, ref TimeUnit Filebuffersizetype);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetOutputHandle"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetOutputHandle"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetOutputHandle(IntPtr system, ref int Handle);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetCDROMDriveName"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetCDROMDriveName"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetCDROMDriveName(IntPtr system, int Drive, ref byte Drivename, int Drivenamelen, ref byte Scsiname, int Scsinamelen, ref byte Devicename, int Devicenamelen);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSP"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSP"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode CreateDSP(IntPtr system, ref Dsp.DSPDescription description, ref int Dsp);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode CreateDSPByType(IntPtr system, DspType dsptype, ref int Dsp);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateDSPByIndex"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByIndex"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode CreateDSPByIndex(IntPtr system, int Index, ref int Dsp);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode PlayDSP(IntPtr system, ChannelIndex channelid, int Dsp, int paused, ref int channel);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetChannel"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetChannel"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetChannel(IntPtr system, int channelid, ref int channel);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetMasterChannelGroup"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetMasterChannelGroup"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetMasterChannelGroup(IntPtr system, ref int Channelgroup);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetMasterSoundGroup"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetMasterSoundGroup"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetMasterSoundGroup(IntPtr system, ref int soundgroup);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_CreateGeometry"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateGeometry"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode CreateGeometry(IntPtr system, int MaxPolygons, int MaxVertices, ref int Geometryf);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_LoadGeometry"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_LoadGeometry"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode LoadGeometry(IntPtr system, int Data, int DataSize, ref int Geometry);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_SetUserData"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetUserData"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode SetUserData(IntPtr system, int userdata);
 
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, SetLastError = true, EntryPoint = "FMOD_System_GetUserData"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetUserData"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode GetUserData(IntPtr system, ref int userdata);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetCallback"), SuppressUnmanagedCodeSecurity]
@@ -379,7 +376,6 @@ namespace nFMOD
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetChannelsPlaying"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetChannelsPlaying(IntPtr system, ref int channels);
-
         
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateChannelGroup"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateChannelGroup(IntPtr system, string name, ref IntPtr channelgroup);
