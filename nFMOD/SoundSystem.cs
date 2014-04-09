@@ -399,6 +399,30 @@ namespace nFMOD
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode PlaySound(IntPtr system, ChannelIndex channelid, IntPtr Sound, bool paused, ref IntPtr channel);
+
+        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr Sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetRecordPosition"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode GetRecordPosition(IntPtr system, int id, ref uint position);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_RecordStart"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode RecordStart(IntPtr system, int id, IntPtr sound, int loop);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_RecordStop"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode RecordStop(IntPtr system, int id);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_IsRecording"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode IsRecording(IntPtr system, int id, ref int recording);
         #endregion
 
         public SoundSystem()
@@ -619,109 +643,70 @@ namespace nFMOD
         #endregion
 
         #region Stream methods
-
         public Sound CreateStream(string path, Mode mode)
         {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, 0, ref SoundHandle));
-            return new Sound(SoundHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, 0, ref result));
+            return new Sound(result);
         }
 
         public Sound CreateStream(string path, Mode mode, Sound.SoundInfo exinfo)
         {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref SoundHandle));
-            return new Sound(SoundHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref result));
+            return new Sound(result);
         }
 
         public Sound CreateStream(byte[] data, Mode mode)
         {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, 0, ref SoundHandle));
-            return new Sound(SoundHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, 0, ref result));
+            return new Sound(result);
         }
 
         public Sound CreateStream(byte[] data, Mode mode, Sound.SoundInfo exinfo)
         {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref SoundHandle));
-            return new Sound(SoundHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref result));
+            return new Sound(result);
         }
-
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr Sound);
-
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr sound);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateStream"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateStream(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
-
-        #endregion
-
-        #endregion
-
-        #region Recording
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetRecordPosition"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetRecordPosition(IntPtr system, int id, ref uint position);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_RecordStart"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode RecordStart(IntPtr system, int id, IntPtr sound, int loop);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_RecordStop"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode RecordStop(IntPtr system, int id);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_IsRecording"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode IsRecording(IntPtr system, int id, ref int recording);
-
         #endregion
 
         #region DSP
         public Dsp CreateDSP(ref Dsp.DSPDescription description)
         {
-            IntPtr DspHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref DspHandle));
-            return new Dsp(DspHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
+            return new Dsp(result);
         }
 
         public Dsp CreateDspByType(DspType type)
         {
-            IntPtr DspHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateDspByType(DangerousGetHandle(), type, ref DspHandle));
-            return new Dsp(DspHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateDspByType(DangerousGetHandle(), type, ref result));
+            return new Dsp(result);
         }
 
-        public Channel PlayDsp(Dsp dsp)
+        public Channel PlayDsp(Dsp dsp, bool paused = false)
         {
-            return PlayDsp(dsp, false);
-        }
-
-        public Channel PlayDsp(Dsp dsp, bool paused)
-        {
-            IntPtr ChannelHandle = IntPtr.Zero;
-            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Free, dsp.DangerousGetHandle(), paused, ref ChannelHandle));
-            return new Channel(ChannelHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Free, dsp.DangerousGetHandle(), paused, ref result));
+            return new Channel(result);
         }
 
         public void PlayDsp(Dsp dsp, bool paused, Channel chn)
         {
             IntPtr channel = chn.DangerousGetHandle();
-            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel));
-            //TODO: This can't really happend.
-            //Check just in case...
-            if (chn.DangerousGetHandle() != channel)
-                throw new Exception("Channel handle got changed by Fmod.");
+            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel));            
+            
+            if (chn.DangerousGetHandle() != channel) throw new Exception("Channel handle got changed by Fmod."); //TODO: check: is this really needed?
         }
 
         public DspConnection AddDsp(Dsp dsp)
         {
-            IntPtr ConnectionHandle = IntPtr.Zero;
-            Errors.ThrowIfError(AddDSP(DangerousGetHandle(), dsp.DangerousGetHandle(), ref ConnectionHandle));
-            return new DspConnection(ConnectionHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(AddDSP(DangerousGetHandle(), dsp.DangerousGetHandle(), ref result));
+            return new DspConnection(result);
         }
 
         public void LockDSP()
@@ -738,9 +723,9 @@ namespace nFMOD
         {
             get
             {
-                uint hi = 0, low = 0;
-                Errors.ThrowIfError(GetDSPClock(DangerousGetHandle(), ref hi, ref low));
-                return (hi << 32) | low;
+                uint high = 0, low = 0;
+                Errors.ThrowIfError(GetDSPClock(DangerousGetHandle(), ref high, ref low));
+                return (high << 32) | low;
             }
         }
         #endregion
