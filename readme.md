@@ -27,6 +27,7 @@ How I approach my public projects is explained on [my github home page](http://n
 * code clean-up
 * x64 support
 * more consolidation of class heirarchy
+* code for declared but not implemented extern methods
 
 ####v0.3 (2014-04-07)
 
