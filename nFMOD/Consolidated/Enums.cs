@@ -254,62 +254,62 @@ namespace nFMOD
         /// <remarks>
         /// Win32 Vista only
         /// </remarks>
-        WASAPI_EXCLUSIVE = 0x100,
+        WasapiExclusive = 0x100,
 
         /// <summary>
         /// For DirectSound output - FMOD_HARDWARE|FMOD_3D buffers use simple stereo
         /// panning/doppler/attenuation when 3D hardware acceleration is not present.
         /// </summary>
-        DSOUND_HRTFNONE = 0x200,
+        DirectsoundHrtfNone = 0x200,
 
         /// <summary>
         /// For DirectSound output - FMOD_HARDWARE|FMOD_3D buffers use a slightly higher
         /// quality algorithm when 3D hardware acceleration is not present.
         /// </summary>
-        DSOUND_HRTFLIGHT = 0x400,
+        DirectsoundHrtfLight = 0x400,
 
         /// <summary>
         /// For DirectSound output - FMOD_HARDWARE|FMOD_3D buffers use full quality 3D
         /// playback when 3d hardware acceleration is not present.
         /// </summary>
-        DSOUND_HRTFFULL = 0x800,
+        DirectsoundHrtfFull = 0x800,
 
         /// <summary>
         /// FMOD Mixer thread is woken up to do a mix when System::update is called
         /// rather than waking periodically on its own timer.
         /// </summary>
-        SYNCMIXERWITHUPDATE = 0x400000,
+        SyncMixerWithUpdate = 0x400000,
 
         /// <summary>
         /// Use DTS Neural surround downmixing from 7.1 if speakermode set to FMOD_SPEAKERMODE_STEREO
         /// or FMOD_SPEAKERMODE_5POINT1. Internal DSP structure will be set to 7.1.
         /// </summary>
-        DTS_NEURALSURROUND = 0x02000000,
+        DtsNeuralSurround = 0x02000000,
 
         /// <summary>
         /// With the geometry engine, only process the closest polygon rather than accumulating
         /// all polygons the sound to listener line intersects.
         /// </summary>
-        GEOMETRY_USECLOSEST = 0x04000000,
+        GeometryUseClosest = 0x04000000,
 
         /// <summary>
         /// Disables MyEars HRTF 7.1 downmixing. MyEars will otherwise be disbaled if speakermode is not
         /// set to FMOD_SPEAKERMODE_STEREO or the data file is missing.
         /// </summary>
-        DISABLE_MYEARS = 0x08000000,
+        DisableMyEarsHrtf = 0x08000000,
 
         [Obsolete("PS2 only")]
-        PS2_DISABLECORE0REVERB = 0x10000,
+        DisableCore0Reverb = 0x10000,
         [Obsolete("PS2 only")]
-        PS2_DISABLECORE1REVERB = 0x20000,
+        DisableCore1Reverb = 0x20000,
         [Obsolete("PS2 only")]
-        PS2_DONTUSESCRATCHPAD = 0x40000,
+        DontUseScratchPad = 0x40000,
         [Obsolete("PS2 only")]
-        PS2_SWAPDMACHANNELS = 0x80000,
+        SwapDmacChannels = 0x80000,
         [Obsolete("Xbox only")]
-        XBOX_REMOVEHEADROOM = 0x100000,
+        RemoveHeadRoom = 0x100000,
         [Obsolete("Xbox360 only")]
-        Xbox360_MUSICMUTENOTPAUSE = 0x200000,
+        MusicMuteNotPause = 0x200000,
     }
 
     /// <summary>
