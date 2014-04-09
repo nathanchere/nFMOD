@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Common.cs" />
+    <Compile Include="Consolidated\Delegates.cs" />
     <Compile Include="Consolidated\Enums.cs" />
     <Compile Include="Consolidated\Structs.cs" />
     <Compile Include="FmodException.cs" />

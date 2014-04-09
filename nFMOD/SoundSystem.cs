@@ -187,7 +187,7 @@ namespace nFMOD
         private static extern ErrorCode GetSpeakerMode(IntPtr system, ref SpeakerMode speakermode);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_Set3DRolloffCallback"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode Set3DRolloffCallback(IntPtr system, CB_3D_RollOffDelegate callback);
+        private static extern ErrorCode Set3DRolloffCallback(IntPtr system, System_3D_RollOffDelegate callback);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_Set3DSpeakerPosition"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode Set3DSpeakerPosition(IntPtr system, Speaker speaker, float x, float y, int active);
@@ -467,8 +467,6 @@ namespace nFMOD
         }
 
         #region Events
-        public delegate void SystemDelegate(SoundSystem system); //TODO Implement SoundSystem Events.        
-
         /// <summary>
         /// Called when the enumerated list of devices has changed.
         /// </summary>

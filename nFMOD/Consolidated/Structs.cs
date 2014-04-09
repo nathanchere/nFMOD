@@ -308,18 +308,18 @@ namespace nFMOD
         /// Callback to 'piggyback' on FMOD's read functions and accept or even write PCM data while FMOD is opening the sound.
         /// Used for user sounds created with OPENUSER or for capturing decoded data as FMOD reads it.
         /// </summary>
-        public Sound.PCMReadDelegate PCMReadCallback;
+        public PCMReadDelegate PCMReadCallback;
 
         /// <summary>
         /// [in] Optional. Specify 0 to ignore.
         /// Callback for when the user calls a seeking function such as Channel::setPosition within a multi-sample sound, and for when it is opened.
         /// </summary>
-        public Sound.PCMSetposDelegate PCMSetPositionCallback;
+        public PCMSetposDelegate PCMSetPositionCallback;
 
         /// <summary>
         /// [in] Optional. Specify 0 to ignore. Callback for successful completion, or error while loading a sound that used the FMOD_NONBLOCKING flag.
         /// </summary>
-        public Sound.NonBlockDelegate NonBlockCallback;
+        public NonBlockDelegate NonBlockCallback;
 
         /// <summary>
         /// [in] Optional. Specify 0 to ignore. Filename for a DLS or SF2 sample set when loading a MIDI file.

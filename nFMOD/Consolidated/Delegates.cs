@@ -12,6 +12,8 @@ namespace nFMOD
     #endregion
 
     #region SoundSystem
+    public delegate void SystemDelegate(SoundSystem system);
+
     public delegate ErrorCode File_OpenDelegate([MarshalAs(UnmanagedType.LPWStr)]string name, int unicode, ref uint filesize, ref IntPtr handle, ref IntPtr userdata);
     public delegate ErrorCode File_CloseDelegate(IntPtr handle, IntPtr userdata);
     public delegate ErrorCode File_ReadDelegate(IntPtr handle, IntPtr buffer, uint sizebytes, ref uint bytesread, IntPtr userdata);
