@@ -365,6 +365,25 @@ namespace nFMOD
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetCallback"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode FMOD_System_SetCallback(IntPtr system, SystemDelegate callback);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetVersion"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode GetVersion(IntPtr system, ref uint version);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetOutput"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode SetOutput(IntPtr system, OutputType output);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetOutput"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode GetOutput(IntPtr system, ref OutputType output);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetChannelsPlaying"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode GetChannelsPlaying(IntPtr system, ref int channels);
+
+        
+        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateChannelGroup"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateChannelGroup(IntPtr system, string name, ref IntPtr channelgroup);
+
+        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSoundGroup"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateSoundGroup(IntPtr system, string name, ref IntPtr soundgroup);
         #endregion
 
         public SoundSystem()
@@ -410,9 +429,7 @@ namespace nFMOD
         }
 
         #region Events
-
-        //TODO Implement SoundSystem Events.
-        public delegate void SystemDelegate(SoundSystem Sys);
+        public delegate void SystemDelegate(SoundSystem system); //TODO Implement SoundSystem Events.        
 
         /// <summary>
         /// Called when the enumerated list of devices has changed.
@@ -454,15 +471,14 @@ namespace nFMOD
         }       
         #endregion
 
-        #region Network
-
+        #region Properties wrapping non-managed code
         public string NetworkProxy
         {
             get
             {
-                var str = new StringBuilder(255);
-                Errors.ThrowIfError(GetNetworkProxy(DangerousGetHandle(), str, str.Capacity));
-                return str.ToString();
+                var result = new StringBuilder(255);
+                Errors.ThrowIfError(GetNetworkProxy(DangerousGetHandle(), result, result.Capacity));
+                return result.ToString();
             }
             set
             {
@@ -474,57 +490,39 @@ namespace nFMOD
         {
             get
             {
-                int time = 0;
-                Errors.ThrowIfError(GetNetworkTimeout(DangerousGetHandle(), ref time));
-                return time;
+                int result = 0;
+                Errors.ThrowIfError(GetNetworkTimeout(DangerousGetHandle(), ref result));
+                return result;
             }
             set
             {
                 Errors.ThrowIfError(SetNetworkTimeout(DangerousGetHandle(), value));
             }
-        }        
-        #endregion
-
-        #region Others
-
+        }                
+        
         public uint Version
         {
             get
             {
-                uint Ver = 0;
-                Errors.ThrowIfError(GetVersion(DangerousGetHandle(), ref Ver));
-                return Ver;
+                uint result = 0;
+                Errors.ThrowIfError(GetVersion(DangerousGetHandle(), ref result));
+                return result;
             }
-        }
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetVersion"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetVersion(IntPtr system, ref uint version);
-
-        #endregion
-
-        #region Output
-
+        }        
+       
         public OutputType Output
         {
             get
             {
-                var output = OutputType.Unknown;
-                Errors.ThrowIfError(GetOutput(DangerousGetHandle(), ref output));
-                return output;
+                var result = OutputType.Unknown;
+                Errors.ThrowIfError(GetOutput(DangerousGetHandle(), ref result));
+                return result;
             }
             set
             {
                 Errors.ThrowIfError(SetOutput(DangerousGetHandle(), value));
             }
         }
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetOutput"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetOutput(IntPtr system, OutputType output);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetOutput"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetOutput(IntPtr system, ref OutputType output);
-
-        #region Channels
 
         public bool IsPlaying
         {
@@ -538,29 +536,14 @@ namespace nFMOD
         {
             get
             {
-                int playing = 0;
-                Errors.ThrowIfError(GetChannelsPlaying(DangerousGetHandle(), ref playing));
-                return playing;
+                int result = 0;
+                Errors.ThrowIfError(GetChannelsPlaying(DangerousGetHandle(), ref result));
+                return result;
             }
         }
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetChannelsPlaying"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetChannelsPlaying(IntPtr system, ref int channels);
-
         #endregion
-
-        #region Group
-
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateChannelGroup"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateChannelGroup(IntPtr system, string name, ref IntPtr channelgroup);
-
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSoundGroup"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSoundGroup(IntPtr system, string name, ref IntPtr soundgroup);
-
-        #endregion
-
+      
         #region Sound
-
         public Sound CreateSound(string path)
         {
             return CreateSound(path, Mode.Default);
@@ -568,24 +551,19 @@ namespace nFMOD
 
         public Sound CreateSound(string path, Mode mode)
         {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, 0, ref SoundHandle));
-            return new Sound(SoundHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, 0, ref result));
+            return new Sound(result);
         }
 
         public Sound CreateSound(string path, Mode mode, Sound.SoundInfo exinfo)
         {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, ref exinfo, ref SoundHandle));
-            return new Sound(SoundHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, ref exinfo, ref result));
+            return new Sound(result);
         }
 
-        public Sound CreateSound(byte[] data)
-        {
-            return CreateSound(data, Mode.Default);
-        }
-
-        public Sound CreateSound(byte[] data, Mode mode)
+        public Sound CreateSound(byte[] data, Mode mode = Mode.Default)
         {
             IntPtr SoundHandle = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, 0, ref SoundHandle));
