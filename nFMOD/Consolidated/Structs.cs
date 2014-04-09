@@ -1017,9 +1017,9 @@ namespace nFMOD
         private float lFReference;
         private float roomRolloffFactor;
 
-        [Obsolete("Xbox-only")]
+        [Obsolete("Xbox only")]
         private readonly float diffusion;
-        [Obsolete("Xbox-only")]
+        [Obsolete("Xbox only")]
         private readonly float density;
 
         private ReverbFlags flags;

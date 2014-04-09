@@ -1079,7 +1079,8 @@ namespace nFMOD
         /// <summary>
         /// Xbox360 XMA
         /// </summary>
-        [Obsolete("Xbox360 only")] Xma,
+        [Obsolete("Xbox360 only")]
+        Xma,
 
         /// <summary>
         /// PlayStation 2 / PlayStation Portable adpcm VAG format
@@ -1742,6 +1743,7 @@ namespace nFMOD
         /// <summary>
         /// On Xbox 360 this memory address passed to FMOD must be physical (ie allocated with XPhysicalAlloc.)
         /// </summary>
+        [Obsolete("Xbox360 only")]
         InvalidAddress,
 
         /// <summary>
