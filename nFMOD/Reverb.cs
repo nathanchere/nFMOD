@@ -28,15 +28,15 @@ namespace nFMOD
 			return true;
 		}
 
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Reverb_Release"), SuppressUnmanagedCodeSecurity]
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_Release"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode Release (IntPtr reverb);
 		
 		#endregion
 		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode SetProperties (IntPtr reverb, ref ReverbProperties properties);
 
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode GetProperties (IntPtr reverb, ref ReverbProperties properties);
 		
 		

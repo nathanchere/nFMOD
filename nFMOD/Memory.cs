@@ -6,7 +6,7 @@ namespace nFMOD.Memory
 {
     public class Memory
     {
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Memory_GetStats"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Memory_GetStats"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetStats_External(ref int currentalloced, ref int maxalloced, bool blocking);
 
         public static void GetStats(ref int currentalloced, ref int maxalloced)

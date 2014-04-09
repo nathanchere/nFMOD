@@ -87,28 +87,28 @@ namespace nFMOD
 			}
         }
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_SetPaused"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_SetPaused"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetPaused(IntPtr channel, bool paused);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetPaused"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetPaused"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetPaused(IntPtr channel, ref bool paused);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_SetVolume"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_SetVolume"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetVolume(IntPtr channel, float volume);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetVolume"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetVolume"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetVolume(IntPtr channel, ref float volume);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_SetFrequency"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_SetFrequency"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetFrequency(IntPtr channel, float frequency);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetFrequency"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetFrequency"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetFrequency(IntPtr channel, ref float frequency);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_SetPan"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_SetPan"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetPan(IntPtr channel, float pan);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetPan"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetPan"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetPan(IntPtr channel, ref float pan);
 
         #endregion
@@ -131,10 +131,10 @@ namespace nFMOD
 			Errors.ThrowIfError(Stop(DangerousGetHandle()));
 		}
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_Stop"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_Stop"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode Stop(IntPtr channel);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_IsPlaying"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_IsPlaying"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode IsPlaying_External(IntPtr channel, ref bool isplaying);
 
         #endregion
@@ -152,10 +152,10 @@ namespace nFMOD
 			}
         }
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_SetMute"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_SetMute"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetMute(IntPtr channel, bool mute);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetMute"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetMute"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetMute(IntPtr channel, ref bool mute);
 
         #region Spectrum/Wave
@@ -184,10 +184,10 @@ namespace nFMOD
             GetWaveData(DangerousGetHandle(), wavearray, numvalues, channeloffset);
         }
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetSpectrum"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetSpectrum"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetSpectrum(IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype);
 
-        [DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetWaveData"), SuppressUnmanagedCodeSecurity]
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetWaveData"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetWaveData(IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 
         #endregion

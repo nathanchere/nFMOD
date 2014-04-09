@@ -103,10 +103,10 @@ namespace nFMOD
 			}
 		}
 		
-		[DllImport(Common.FMOD_DLL, SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
+		[DllImport(Common.FMOD_DLL_NAME, SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode SetLevel (int Level);
 		
-		[DllImport(Common.FMOD_DLL, SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
+		[DllImport(Common.FMOD_DLL_NAME, SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode GetLevel (ref int Level);
 		
 	}

@@ -27,11 +27,11 @@ namespace nFMOD
 		}
 		
 		[SuppressUnmanagedCodeSecurity]
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Geometry_Release")]
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Geometry_Release")]
 		private static extern ErrorCode Release (IntPtr geometry);
 		
 		[SuppressUnmanagedCodeSecurity]
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Geometry_Flush")]
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Geometry_Flush")]
         private static extern ErrorCode Flush_External (IntPtr geometry);
     
 		

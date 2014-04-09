@@ -28,7 +28,7 @@ namespace nFMOD
 			return true;
 		}
 		
-		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_ChannelGroup_Release"), SuppressUnmanagedCodeSecurity]
+		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_ChannelGroup_Release"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode Release (IntPtr channelgroup);
 		
 		#endregion
