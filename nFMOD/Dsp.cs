@@ -123,6 +123,4 @@ namespace nFMOD
             Errors.ThrowIfError(Reset_External(DangerousGetHandle()));
         }
     }
-
-
 }
