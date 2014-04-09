@@ -849,42 +849,42 @@ namespace nFMOD
         /// <summary>
         /// Opened and ready to play
         /// </summary>
-        READY = 0,
+        Ready = 0,
 
         /// <summary>
         /// Initial load in progress
         /// </summary>
-        LOADING,
+        Loading,
 
         /// <summary>
         /// Failed to open - file not found, out of memory etc.  See return value of Sound::getOpenState for what happened
         /// </summary>        
-        ERROR,
+        Error,
 
         /// <summary>
         /// Connecting to remote host (internet sounds only)
         /// </summary>
-        CONNECTING,
+        Connecting,
 
         /// <summary>
         /// Buffering data
         /// </summary>
-        BUFFERING,
+        Buffering,
 
         /// <summary>
         /// Seeking to subsound and re-flushing stream buffer
         /// </summary>
-        SEEKING,
+        Seeking,
 
         /// <summary>
         /// Ready and playing, but not possible to release at this time without stalling the main thread
         /// </summary>
-        PLAYING,
+        Playing,
 
         /// <summary>
         /// Seeking within a stream to a different position
         /// </summary>
-        SETPOSITION,
+        SetPosition,
     }
 
     /// <summary>
