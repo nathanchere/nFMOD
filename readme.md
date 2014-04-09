@@ -22,13 +22,8 @@ How I approach my public projects is explained on [my github home page](http://n
 
 ## Release history
 
-#### v?
-
-* x64 support
-* code for declared but not implemented extern methods
-* implement appropriate events
-
 #### vNext
+* ?
 
 #### v0.4 (2014-04-09)
 * massive code clean-up and consolidation of class heirarchy
@@ -63,13 +58,16 @@ How I approach my public projects is explained on [my github home page](http://n
 
 * initial release to GitHub
 
-#### TODO (one day)
+#### vTODO (one day)
 
 * go through and fix anything TODO
 * get rid of most of the out and ref parameters
 * Nuget distribution: better handle fmodex.dll deployment
 * Go through and update comments from before v0.2 refactor which still
   reference C-style class names, structs etc
+* thorough x64 support
+* code for declared but not implemented extern methods
+* implement appropriate events
 
 ## Credits / thanks
 
