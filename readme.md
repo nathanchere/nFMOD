@@ -7,11 +7,19 @@ nFMOD is an attempt at "refinement".
 
 At this point in time nFMOD focuses solely on Windows. While Mono-based cross platform support is possible, it's not a priority. If you require an example of using FMOD with platforms other than Winfows please look at [FmodSharp] (https://gitorious.org/fmodsharp) which appears to also use the same FMOD SDK base but has GTK+ / Mono samples working.
 
-##### Contact
-
 [![Send me a tweet](http://nathanchere.github.io/twitter_tweet.png)](https://twitter.com/intent/tweet?screen_name=nathanchere "Send me a tweet") [![Follow me](http://nathanchere.github.io/twitter_follow.png)](https://twitter.com/intent/user?screen_name=nathanchere "Follow me")
 
-[My GitHub home page](http://nathanchere.github.io)
+## Status
+
+Branch | Status | Download | Description
+------|-----|------|--------
+master | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/master)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/master.zip) | for those who want to live on the bleeding edge
+
+stable | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/stable)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/stable.zip) | latest released/numbered code
+
+*CI generously provided by [Appveyor](http://appveyor.com)*
+
+How I approach my public projects is explained on [my github home page](http://nathanchere.github.io).
 
 ## Release history
 
@@ -55,20 +63,6 @@ At this point in time nFMOD focuses solely on Windows. While Mono-based cross pl
 * Go through and update comments from before v0.2 refactor which still
   reference C-style class names, structs etc
 * update minimum version constant after regression testing
-
-## About the repository
-
-As with any of my projects intended for public consumption, the two main branches are:
-
-* **master**: for those who want to live on the bleeding edge
-* **stable**: only updated with numbered releases
-
-*CI generously provided by [Appveyor](http://appveyor.com)*
-
-Branch | Status | Download
-------|-----|------
-master | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/master)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/master.zip)
-stable | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/stable)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/stable.zip)
 
 ## Credits / thanks
 
