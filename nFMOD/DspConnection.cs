@@ -35,7 +35,6 @@ namespace nFMOD
 		private static extern ErrorCode GetMemoryInfo (IntPtr dspconnection, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
         #endregion
 
-
         internal DspConnection(IntPtr ConnPtr)
         {
             SetHandle(ConnPtr);
