@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace nFMOD
 {
@@ -9,27 +10,27 @@ namespace nFMOD
 		{
 		}
 		
-		internal Geometry (IntPtr hnd) : base()
+		internal Geometry (IntPtr hnd)
 		{
-			this.SetHandle (hnd);
+			SetHandle (hnd);
 		}
 
 		protected override bool ReleaseHandle ()
 		{
-			if (this.IsInvalid)
+			if (IsInvalid)
 				return true;
 			
-			Release (this.handle);
-			this.SetHandleAsInvalid ();
+			Release (handle);
+			SetHandleAsInvalid ();
 			
 			return true;
 		}
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
+		[SuppressUnmanagedCodeSecurity]
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Geometry_Release")]
 		private static extern ErrorCode Release (IntPtr geometry);
 		
-		[System.Security.SuppressUnmanagedCodeSecurity]
+		[SuppressUnmanagedCodeSecurity]
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Geometry_Flush")]
         private static extern ErrorCode Flush_External (IntPtr geometry);
     

@@ -7,26 +7,26 @@ namespace nFMOD
 	public partial class Channel : Handle, ISpectrumWave
 	{
 		
-		#region Create/Release
-		
+		#region Create/Release		
 		private Channel ()
 		{
 		}
-		internal Channel (IntPtr hnd) : base()
+
+		internal Channel (IntPtr hnd)
 		{
-			this.SetHandle(hnd);
+			SetHandle(hnd);
 		}
 		
 		protected override bool ReleaseHandle ()
 		{
-			if (this.IsInvalid)
+			if (IsInvalid)
 				return true;
 			
-			Stop(this.handle);
+			Stop(handle);
 			
 			//TODO find if Channel need to be released before closing.
 			//Release (this.handle);
-			this.SetHandleAsInvalid ();
+			SetHandleAsInvalid ();
 			
 			return true;
 		}
@@ -39,13 +39,13 @@ namespace nFMOD
 			get {
 				bool pause = false;
 				
-				ErrorCode ReturnCode = GetPaused(this.DangerousGetHandle(), ref pause);
+				ErrorCode ReturnCode = GetPaused(DangerousGetHandle(), ref pause);
 				Errors.ThrowIfError(ReturnCode);
 				
 				return pause;
 			}
 			set {
-				ErrorCode ReturnCode = SetPaused(this.DangerousGetHandle(), value);
+				ErrorCode ReturnCode = SetPaused(DangerousGetHandle(), value);
 				Errors.ThrowIfError(ReturnCode);
 			}
 		}
@@ -54,13 +54,13 @@ namespace nFMOD
 			get {
 				float Vol = 0.0f;
 				
-				ErrorCode ReturnCode = GetVolume(this.DangerousGetHandle(), ref Vol);
+				ErrorCode ReturnCode = GetVolume(DangerousGetHandle(), ref Vol);
 				Errors.ThrowIfError(ReturnCode);
 				
 				return Vol;
 			}
 			set {
-				ErrorCode ReturnCode = SetVolume(this.DangerousGetHandle(), value);
+				ErrorCode ReturnCode = SetVolume(DangerousGetHandle(), value);
 				Errors.ThrowIfError(ReturnCode);
 			}
 		}
@@ -69,13 +69,13 @@ namespace nFMOD
 			get {
 				float Freq = 0.0f;
 				
-				ErrorCode ReturnCode = GetFrequency(this.DangerousGetHandle(), ref Freq);
+				ErrorCode ReturnCode = GetFrequency(DangerousGetHandle(), ref Freq);
 				Errors.ThrowIfError(ReturnCode);
 				
 				return Freq;
 			}
 			set {
-				ErrorCode ReturnCode = SetFrequency(this.DangerousGetHandle(), value);
+				ErrorCode ReturnCode = SetFrequency(DangerousGetHandle(), value);
 				Errors.ThrowIfError(ReturnCode);
 			}
 		}
@@ -84,13 +84,13 @@ namespace nFMOD
 			get {
 				float pan = 0.0f;
 				
-				ErrorCode ReturnCode = GetPan(this.DangerousGetHandle(), ref pan);
+				ErrorCode ReturnCode = GetPan(DangerousGetHandle(), ref pan);
 				Errors.ThrowIfError(ReturnCode);
 				
 				return pan;
 			}
 			set {
-				ErrorCode ReturnCode = SetPan(this.DangerousGetHandle(), value);
+				ErrorCode ReturnCode = SetPan(DangerousGetHandle(), value);
 				Errors.ThrowIfError(ReturnCode);
 			}
 		}
@@ -127,7 +127,7 @@ namespace nFMOD
 			get {
 				bool playing = false;
 				
-				ErrorCode ReturnCode = IsPlaying_External(this.DangerousGetHandle(), ref playing);
+				ErrorCode ReturnCode = IsPlaying_External(DangerousGetHandle(), ref playing);
 				Errors.ThrowIfError(ReturnCode);
 				
 				return playing;
@@ -136,7 +136,7 @@ namespace nFMOD
 		
 		public void Stop()
 		{
-			ErrorCode ReturnCode = Stop(this.DangerousGetHandle());
+			ErrorCode ReturnCode = Stop(DangerousGetHandle());
 			Errors.ThrowIfError(ReturnCode);
 		}
 		
@@ -151,14 +151,14 @@ namespace nFMOD
 		public bool Mute {
 			get {
 				bool Val = false;
-				ErrorCode ReturnCode = GetMute(this.DangerousGetHandle(), ref Val);
+				ErrorCode ReturnCode = GetMute(DangerousGetHandle(), ref Val);
 				Errors.ThrowIfError(ReturnCode);
 				
 				return Val;
 			}
 			
 			set {
-				ErrorCode ReturnCode = SetMute(this.DangerousGetHandle(), value);
+				ErrorCode ReturnCode = SetMute(DangerousGetHandle(), value);
 				Errors.ThrowIfError(ReturnCode);
 			}
 		}
@@ -174,25 +174,25 @@ namespace nFMOD
 		public float[] GetSpectrum (int numvalues, int channeloffset, FFTWindow windowtype)
 		{
 			float[] SpectrumArray = new float[numvalues];
-			this.GetSpectrum (SpectrumArray, numvalues, channeloffset, windowtype);
+			GetSpectrum (SpectrumArray, numvalues, channeloffset, windowtype);
 			return SpectrumArray;
 		}
 		
 		public void GetSpectrum (float[] spectrumarray, int numvalues, int channeloffset, FFTWindow windowtype)
 		{
-			GetSpectrum(this.DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
+			GetSpectrum(DangerousGetHandle(), spectrumarray, numvalues, channeloffset, windowtype);
 		}
 		
 		public float[] GetWaveData (int numvalues, int channeloffset)
 		{
 			float[] WaveArray = new float[numvalues];
-			this.GetWaveData (WaveArray, numvalues, channeloffset);
+			GetWaveData (WaveArray, numvalues, channeloffset);
 			return WaveArray;
 		}
 		
 		public void GetWaveData (float[] wavearray, int numvalues, int channeloffset)
 		{
-			GetWaveData(this.DangerousGetHandle(), wavearray, numvalues, channeloffset);
+			GetWaveData(DangerousGetHandle(), wavearray, numvalues, channeloffset);
 		}
 		
 		[DllImport(Common.FMOD_DLL, EntryPoint = "FMOD_Channel_GetSpectrum"), SuppressUnmanagedCodeSecurity]

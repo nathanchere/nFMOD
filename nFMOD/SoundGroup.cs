@@ -65,7 +65,7 @@ namespace nFMOD
 
         private SoundGroup () { }
 
-		internal SoundGroup (IntPtr hnd) : base()
+		internal SoundGroup (IntPtr hnd)
 		{
 			SetHandle(hnd);
 		}

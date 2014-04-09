@@ -4,7 +4,7 @@ namespace nFMOD
 {
     public class FmodException : Exception
     {
-        public FmodException(int errorCode = -1) : base()
+        public FmodException(int errorCode = -1)
         {
             ErrorCode = errorCode;
         }
