@@ -901,52 +901,56 @@ namespace nFMOD
         /// <summary>
         /// 8bit integer PCM data.
         /// </summary>
-        PCM8,
+        Pcm8Bit,
 
         /// <summary>
         /// 16bit integer PCM data.
         /// </summary>
-        PCM16,
+        Pcm16Bit,
 
         /// <summary>
         /// 24bit integer PCM data.
         /// </summary>
-        PCM24,
+        Pcm24Bit,
 
         /// <summary>
         /// 32bit integer PCM data.
         /// </summary>
-        PCM32,
+        Pcm32Bit,
 
         /// <summary>
         /// 32bit floating point PCM data.
         /// </summary>
-        PCMFLOAT,
+        PcmFloat,
 
         /// <summary>
         /// Compressed GameCube DSP data.
         /// </summary>
-        GCADPCM,
+        [Obsolete("GameCube only")]
+        GcAdPcm,
 
         /// <summary>
         /// Compressed XBox ADPCM data.
         /// </summary>
-        IMAADPCM,
+        [Obsolete("Xbox only")]
+        ImaAdPcm,
 
         /// <summary>
         /// Compressed PlayStation 2 ADPCM data.
         /// </summary>
-        VAG,
+        [Obsolete("PS2 only")]
+        Vag,
 
         /// <summary>
         /// Compressed Xbox360 data.
         /// </summary>
-        XMA,
+        [Obsolete("Xbox360 only")]
+        Xma,
 
         /// <summary>
         /// Compressed MPEG layer 2 or 3 data.
         /// </summary>
-        MPEG,
+        Mpeg,
 
         /// <summary>
         /// Maximum number of sound formats supported.
@@ -956,7 +960,7 @@ namespace nFMOD
         /// <summary>
         /// Compressed CELT data.
         /// </summary>
-        CELT,
+        Celt,
     }
 
     /// <summary>
