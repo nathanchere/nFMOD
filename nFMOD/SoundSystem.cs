@@ -384,6 +384,21 @@ namespace nFMOD
 
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSoundGroup"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateSoundGroup(IntPtr system, string name, ref IntPtr soundgroup);
+
+        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr Sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode PlaySound(IntPtr system, ChannelIndex channelid, IntPtr Sound, bool paused, ref IntPtr channel);
         #endregion
 
         public SoundSystem()
@@ -543,7 +558,7 @@ namespace nFMOD
         }
         #endregion
       
-        #region Sound
+        #region Sound methods
         public Sound CreateSound(string path)
         {
             return CreateSound(path, Mode.Default);
@@ -584,9 +599,9 @@ namespace nFMOD
 
         public Channel PlaySound(Sound snd, bool paused)
         {
-            IntPtr ChannelHandle = IntPtr.Zero;
-            Errors.ThrowIfError(PlaySound(DangerousGetHandle(), ChannelIndex.Free, snd.DangerousGetHandle(), paused, ref ChannelHandle));
-            return new Channel(ChannelHandle);
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(PlaySound(DangerousGetHandle(), ChannelIndex.Free, snd.DangerousGetHandle(), paused, ref result));
+            return new Channel(result);
         }
 
         private void PlaySound(Sound snd, bool paused, Channel chn)
@@ -601,25 +616,9 @@ namespace nFMOD
             if (chn.DangerousGetHandle() == channel)
                 throw new Exception("Channel handle got changed by Fmod.");
         }
-
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr Sound);
-
-        [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, string name, Mode mode, int exinfo, ref IntPtr sound);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, ref Sound.SoundInfo exinfo, ref IntPtr sound);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateSound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateSound(IntPtr system, byte[] data, Mode mode, int exinfo, ref IntPtr sound);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode PlaySound(IntPtr system, ChannelIndex channelid, IntPtr Sound, bool paused, ref IntPtr channel);
-
         #endregion
 
-        #region Stream
+        #region Stream methods
 
         public Sound CreateStream(string path, Mode mode)
         {
