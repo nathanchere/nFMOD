@@ -2306,17 +2306,17 @@ namespace nFMOD
         /// <summary>
         /// Currently playing subsound in a sentence time in milliseconds.
         /// </summary>
-        Sentence_Milliseconds = 0x10000,
+        SentenceMilliseconds = 0x10000,
 
         /// <summary>
         /// Currently playing subsound in a sentence time in PCM Samples, related to milliseconds * samplerate / 1000.
         /// </summary>
-        Sentence_PCM = 0x20000,
+        SentencePcm = 0x20000,
 
         /// <summary>
         /// Currently playing subsound in a sentence time in bytes, related to PCM samples * channels * datawidth (ie 16bit = 2 bytes).
         /// </summary>
-        Sentence_PCMBytes = 0x40000,
+        SentencePcmBytes = 0x40000,
 
         /// <summary>
         /// Currently playing sentence index according to the channel.
@@ -2326,7 +2326,7 @@ namespace nFMOD
         /// <summary>
         /// Currently playing subsound index in a sentence.
         /// </summary>
-        Sentence_SubSound = 0x100000,
+        SentenceSubSound = 0x100000,
 
         /// <summary>
         /// Time value as seen by buffered stream.  This is always ahead of audible time, and is only used for processing.
