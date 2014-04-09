@@ -71,8 +71,8 @@
     <Compile Include="Memory.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Reverb.Presets.cs" />
-    <Compile Include="SoundSystem\SoundSystem.cs" />
     <Compile Include="ISpectrumWave.cs" />
+    <Compile Include="SoundSystem.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
