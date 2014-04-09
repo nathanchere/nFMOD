@@ -156,10 +156,10 @@ namespace nFMOD
         private static extern ErrorCode UnloadPlugin(IntPtr system, uint handle);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetNumPlugins"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetNumPlugins(IntPtr system, Plugin.Type plugintype, ref int numplugins);
+        private static extern ErrorCode GetNumPlugins(IntPtr system, PluginType plugintype, ref int numplugins);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetPluginHandle"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetPluginHandle(IntPtr system, Plugin.Type plugintype, int index, ref uint handle);
+        private static extern ErrorCode GetPluginHandle(IntPtr system, PluginType plugintype, int index, ref uint handle);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetPluginInfo"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetPluginInfo(IntPtr system, uint handle, ref PluginType plugintype, StringBuilder name, int namelen, ref uint version);
@@ -294,10 +294,10 @@ namespace nFMOD
         public static extern ErrorCode UnloadPlugin(IntPtr system, int Handle);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetPluginHandle"), SuppressUnmanagedCodeSecurity]
-        public static extern ErrorCode GetPluginHandle(IntPtr system, Plugin.Type Plugintype, int Index, ref int Handle);
+        public static extern ErrorCode GetPluginHandle(IntPtr system, PluginType Plugintype, int Index, ref int Handle);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetPluginInfo"), SuppressUnmanagedCodeSecurity]
-        public static extern ErrorCode GetPluginInfo(IntPtr system, int Handle, ref Plugin.Type Plugintype, ref byte name, int namelen, ref int version);
+        public static extern ErrorCode GetPluginInfo(IntPtr system, int Handle, ref PluginType Plugintype, ref byte name, int namelen, ref int version);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetOutputByPlugin"), SuppressUnmanagedCodeSecurity]
         public static extern ErrorCode SetOutputByPlugin(IntPtr system, int Handle);

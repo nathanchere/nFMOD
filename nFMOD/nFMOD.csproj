@@ -68,8 +68,6 @@
     <Compile Include="Geometry.cs" />
     <Compile Include="Reverb.cs" />
     <Compile Include="Memory.cs" />
-    <Compile Include="Plugin.cs" />
-    <Compile Include="Reverb.Presets.cs" />
     <Compile Include="ISpectrumWave.cs" />
     <Compile Include="SoundSystem.cs" />
   </ItemGroup>
