@@ -90,6 +90,51 @@ namespace nFMOD
 
     #endregion
 
+    #region Debug
+    /// <summary>
+	/// Bit fields to use with <see cref="Debug.Level"/> to
+	/// control the level of tty debug output with logging versions of FMOD (fmodL).
+	/// </summary>
+	[Flags]
+	public enum DebugLevel : byte
+	{
+		None = 0x00,		
+		Log = 0x01,
+		Error = 0x02,
+		Warning = 0x04,
+		Hint = 0x08,
+		
+		All = 0xFF,
+	}
+	
+	[Flags]
+	public enum DebugType : byte
+	{
+		None = 0x00,
+		
+		Memory = 0x01,
+        Thread = 0x02,
+        File = 0x04,
+        Net = 0x08,
+        Event = 0x10,
+		
+        All = 0xFF,
+	}
+	
+	[Flags]
+	public enum DebugDisplay : byte
+	{
+		None = 0x00,
+		
+		Timestamps = 0x01,
+        LineNumbers = 0x02,
+        Compress = 0x04,
+        Thread = 0x08,
+		
+        All = 0x0F,
+	}
+    #endregion
+
     #region SoundSystem
     /// <summary>
     /// These callback types are used with System::setCallback.
