@@ -5,8 +5,16 @@ using System.Security;
 namespace nFMOD
 {	
 	public static class Debug
-	{
-		public static DebugLevel Level {
+    {
+        #region Externs
+        [DllImport(Common.FMOD_DLL_NAME, SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode SetLevel (int Level);
+		
+		[DllImport(Common.FMOD_DLL_NAME, SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
+		private static extern ErrorCode GetLevel (ref int Level);
+        #endregion
+
+        public static DebugLevel Level {
 			get { return (DebugLevel)(DebugValue & 0xFF); }
 			set { DebugValue = (int)value | (int)(DebugValue & 0xFFFFFF00); }
 		}
@@ -27,9 +35,9 @@ namespace nFMOD
 		    {		        
 		        try
 		        {
-                    int value = 0;
-		            Errors.ThrowIfError(GetLevel(ref value));
-                    return value;
+                    int result = 0;
+		            Errors.ThrowIfError(GetLevel(ref result));
+                    return result;
 		        }
 		        catch (FmodUnimplementedException ex)
 		        {
@@ -50,12 +58,5 @@ namespace nFMOD
 		        }
 			}
 		}
-		
-		[DllImport(Common.FMOD_DLL_NAME, SetLastError = true, EntryPoint = "FMOD_Debug_SetLevel"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode SetLevel (int Level);
-		
-		[DllImport(Common.FMOD_DLL_NAME, SetLastError = true, EntryPoint = "FMOD_Debug_GetLevel"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetLevel (ref int Level);
-		
 	}
 }
