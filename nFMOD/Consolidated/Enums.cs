@@ -4,6 +4,46 @@ using System.Runtime.InteropServices;
 namespace nFMOD
 {
     #region Channel
+
+    /// <summary>
+    /// Types of delay that can be used with Channel::setDelay / Channel::getDelay
+    /// </summary>
+    /// <remarks>
+    /// If you haven't called Channel::setDelay yet, if you call Channel::getDelay with FMOD_DELAYTYPE_DSPCLOCK_START it will return the 
+    /// equivalent global DSP clock value to determine when a channel started, so that you can use it for other channels to sync against.
+    /// Use System::getDSPClock to also get the current dspclock time, a base for future calls to Channel::setDelay.
+    /// Use FMOD_64BIT_ADD or FMOD_64BIT_SUB to add a hi/lo combination together and cope with wraparound.
+    /// If FMOD_DELAYTYPE_END_MS is specified, the value is not treated as a 64 bit number, just the delay hi value is used and it is
+    /// treated as milliseconds.
+    /// </remarks>
+    public enum DelayType : int
+    {
+        /// <summary>
+        /// Delay at the end of the sound in milliseconds. Use delayhi only.
+        /// Channel::isPlaying will remain true until this delay has passed even though the sound itself has stopped playing
+        /// </summary>
+        END_MS,              
+
+        /// <summary>
+        /// Time the sound started if Channel::getDelay is used, or if Channel::setDelay is used, the sound will delay
+        /// playing until this exact tick.
+        /// </summary>
+        DSPCLOCK_START,      
+
+        /// <summary>
+        /// Time the sound should end. If this is non-zero, the channel will go silent at this exact tick.
+        /// </summary>
+        DSPCLOCK_END,        
+        
+        /// <summary>
+        /// Time the sound should pause. If this is non-zero, the channel will pause at this exact tick.
+        /// </summary>
+        DSPCLOCK_PAUSE,      
+
+        MAX                  
+    }
+    }
+
     public enum ChannelIndex
     {
         /// <summary>
