@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace nFMOD
 {
+
     #region Channel
 
     /// <summary>
@@ -22,26 +23,25 @@ namespace nFMOD
         /// Delay at the end of the sound in milliseconds. Use delayhi only.
         /// Channel::isPlaying will remain true until this delay has passed even though the sound itself has stopped playing
         /// </summary>
-        END_MS,              
+        END_MS,
 
         /// <summary>
         /// Time the sound started if Channel::getDelay is used, or if Channel::setDelay is used, the sound will delay
         /// playing until this exact tick.
         /// </summary>
-        DSPCLOCK_START,      
+        DSPCLOCK_START,
 
         /// <summary>
         /// Time the sound should end. If this is non-zero, the channel will go silent at this exact tick.
         /// </summary>
-        DSPCLOCK_END,        
-        
+        DSPCLOCK_END,
+
         /// <summary>
         /// Time the sound should pause. If this is non-zero, the channel will pause at this exact tick.
         /// </summary>
-        DSPCLOCK_PAUSE,      
+        DSPCLOCK_PAUSE,
 
-        MAX                  
-    }
+        MAX
     }
 
     public enum ChannelIndex
@@ -89,9 +89,11 @@ namespace nFMOD
 
         Max
     }
+
     #endregion
 
     #region SoundSystem
+
     /// <summary>
     /// These callback types are used with System::setCallback.
     /// </summary>
@@ -254,18 +256,12 @@ namespace nFMOD
         /// </summary>
         DISABLE_MYEARS = 0x08000000,
 
-        [Obsolete("PS2 only")]
-        PS2_DISABLECORE0REVERB = 0x10000,
-        [Obsolete("PS2 only")]
-        PS2_DISABLECORE1REVERB = 0x20000,
-        [Obsolete("PS2 only")]
-        PS2_DONTUSESCRATCHPAD = 0x40000,
-        [Obsolete("PS2 only")]
-        PS2_SWAPDMACHANNELS = 0x80000,
-        [Obsolete("Xbox only")]
-        XBOX_REMOVEHEADROOM = 0x100000,
-        [Obsolete("Xbox360 only")]
-        Xbox360_MUSICMUTENOTPAUSE = 0x200000,
+        [Obsolete("PS2 only")] PS2_DISABLECORE0REVERB = 0x10000,
+        [Obsolete("PS2 only")] PS2_DISABLECORE1REVERB = 0x20000,
+        [Obsolete("PS2 only")] PS2_DONTUSESCRATCHPAD = 0x40000,
+        [Obsolete("PS2 only")] PS2_SWAPDMACHANNELS = 0x80000,
+        [Obsolete("Xbox only")] XBOX_REMOVEHEADROOM = 0x100000,
+        [Obsolete("Xbox360 only")] Xbox360_MUSICMUTENOTPAUSE = 0x200000,
     }
 
     /// <summary>
@@ -345,43 +341,31 @@ namespace nFMOD
         /// </summary>
         ASIO,
 
-        [Obsolete("Linux only")]
-        OSS,
-        [Obsolete("Linux only")]
-        ALSA,
-        [Obsolete("Linux only")]
-        ESD,
-        [Obsolete("Linux only")]
-        PulseAudio,
-        [Obsolete("Mac only")]
-        SoundManager,
-        [Obsolete("Mac only")]
-        CoreAudio,
-        [Obsolete("Xbox only")]
-        Xbox,
-        [Obsolete("PS2 only")]
-        PS2,
-        [Obsolete("PS3 only")]
-        PS3,
-        [Obsolete("GameCube only")]
-        GameCube,
-        [Obsolete("Xbox360 only")]
-        Xbox360,
-        [Obsolete("PSP only")]
-        PSP,
-        [Obsolete("Wii only")]
-        Wii,
-        [Obsolete("Android only")]
-        Android,
+        [Obsolete("Linux only")] OSS,
+        [Obsolete("Linux only")] ALSA,
+        [Obsolete("Linux only")] ESD,
+        [Obsolete("Linux only")] PulseAudio,
+        [Obsolete("Mac only")] SoundManager,
+        [Obsolete("Mac only")] CoreAudio,
+        [Obsolete("Xbox only")] Xbox,
+        [Obsolete("PS2 only")] PS2,
+        [Obsolete("PS3 only")] PS3,
+        [Obsolete("GameCube only")] GameCube,
+        [Obsolete("Xbox360 only")] Xbox360,
+        [Obsolete("PSP only")] PSP,
+        [Obsolete("Wii only")] Wii,
+        [Obsolete("Android only")] Android,
 
         /// <summary>
         /// Maximum number of output types supported.
         /// </summary>
         Max
     }
+
     #endregion
 
     #region DSP
+
     /// <summary>
     /// List of windowing methods used in spectrum analysis to reduce leakage / transient signals
     /// intefering with the analysis. This is a problem with analysis of continuous signals that
@@ -595,213 +579,216 @@ namespace nFMOD
         /// </summary>
         LADSPAPlugin
     }
+
     #endregion
 
     #region Sound
-            /// <summary>
-        /// These definitions describe the native format of the hardware or software buffer that will be used.
-        /// </summary>
-        public enum SoundFormat
-        {
 
-            /// <summary>
-            /// Unitialized / unknown.
-            /// </summary>
-            None,
-
-            /// <summary>
-            /// 8bit integer PCM data.
-            /// </summary>
-            PCM8,
-
-            /// <summary>
-            /// 16bit integer PCM data.
-            /// </summary>
-            PCM16,
-
-            /// <summary>
-            /// 24bit integer PCM data.
-            /// </summary>
-            PCM24,
-
-            /// <summary>
-            /// 32bit integer PCM data.
-            /// </summary>
-            PCM32,
-
-            /// <summary>
-            /// 32bit floating point PCM data.
-            /// </summary>
-            PCMFLOAT,
-
-            /// <summary>
-            /// Compressed GameCube DSP data.
-            /// </summary>
-            GCADPCM,
-
-            /// <summary>
-            /// Compressed XBox ADPCM data.
-            /// </summary>
-            IMAADPCM,
-
-            /// <summary>
-            /// Compressed PlayStation 2 ADPCM data.
-            /// </summary>
-            VAG,
-
-            /// <summary>
-            /// Compressed Xbox360 data.
-            /// </summary>
-            XMA,
-
-            /// <summary>
-            /// Compressed MPEG layer 2 or 3 data.
-            /// </summary>
-            MPEG,
-
-            /// <summary>
-            /// Maximum number of sound formats supported.
-            /// </summary>
-            Max,
-
-            /// <summary>
-            /// Compressed CELT data.
-            /// </summary>
-            CELT,
-        }
+    /// <summary>
+    /// These definitions describe the native format of the hardware or software buffer that will be used.
+    /// </summary>
+    public enum SoundFormat
+    {
 
         /// <summary>
-        /// These definitions describe the type of song being played.
+        /// Unitialized / unknown.
         /// </summary>
-        public enum SoundType
-        {
-            /// <summary>
-            /// 3rd party / unknown plugin format.
-            /// </summary>
-            Unknown,
+        None,
 
-            /// <summary>
-            /// AAC.  Currently unsupported.
-            /// </summary>
-            AAC,
+        /// <summary>
+        /// 8bit integer PCM data.
+        /// </summary>
+        PCM8,
 
-            AIFF,
+        /// <summary>
+        /// 16bit integer PCM data.
+        /// </summary>
+        PCM16,
 
-            /// <summary>
-            /// Microsoft Advanced Systems Format (ie WMA/ASF/WMV).
-            /// </summary>
-            ASF,
+        /// <summary>
+        /// 24bit integer PCM data.
+        /// </summary>
+        PCM24,
 
-            /// <summary>
-            /// Sony ATRAC 3 format
-            /// </summary>
-            AT3,
+        /// <summary>
+        /// 32bit integer PCM data.
+        /// </summary>
+        PCM32,
 
-            /// <summary>
-            /// Digital CD audio.
-            /// </summary>
-            CDDA,
+        /// <summary>
+        /// 32bit floating point PCM data.
+        /// </summary>
+        PCMFLOAT,
 
-            /// <summary>
-            /// Sound font / downloadable sound bank.
-            /// </summary>
-            DLS,
+        /// <summary>
+        /// Compressed GameCube DSP data.
+        /// </summary>
+        GCADPCM,
 
-            /// <summary>
-            /// FLAC lossless codec.
-            /// </summary>
-            FLAC,
+        /// <summary>
+        /// Compressed XBox ADPCM data.
+        /// </summary>
+        IMAADPCM,
 
-            /// <summary>
-            /// FMOD Sample Bank.
-            /// </summary>
-            FSB,
+        /// <summary>
+        /// Compressed PlayStation 2 ADPCM data.
+        /// </summary>
+        VAG,
 
-            /// <summary>
-            /// GameCube ADPCM
-            /// </summary>
-            GCADPCM,
+        /// <summary>
+        /// Compressed Xbox360 data.
+        /// </summary>
+        XMA,
 
-            /// <summary>
-            /// Impulse Tracker
-            /// </summary>
-            IT,
+        /// <summary>
+        /// Compressed MPEG layer 2 or 3 data.
+        /// </summary>
+        MPEG,
 
-            /// <summary>
-            /// MIDI
-            /// </summary>
-            MIDI,
+        /// <summary>
+        /// Maximum number of sound formats supported.
+        /// </summary>
+        Max,
 
-            /// <summary>
-            /// Protracker / Fasttracker MOD
-            /// </summary>
-            MOD,
+        /// <summary>
+        /// Compressed CELT data.
+        /// </summary>
+        CELT,
+    }
 
-            /// <summary>
-            /// MP2/MP3 MPEG
-            /// </summary>
-            MPEG,            
+    /// <summary>
+    /// These definitions describe the type of song being played.
+    /// </summary>
+    public enum SoundType
+    {
+        /// <summary>
+        /// 3rd party / unknown plugin format.
+        /// </summary>
+        Unknown,
 
-            /// <summary>
-            /// Ogg vorbis
-            /// </summary>
-            OGGVORBIS,           
+        /// <summary>
+        /// AAC.  Currently unsupported.
+        /// </summary>
+        AAC,
 
-            /// <summary>
-            /// Metadata only from ASX/PLS/M3U/WAX playlists
-            /// </summary>
-            PLAYLIST,
+        AIFF,
 
-            /// <summary>
-            /// Raw PCM data
-            /// </summary>
-            RAW,
+        /// <summary>
+        /// Microsoft Advanced Systems Format (ie WMA/ASF/WMV).
+        /// </summary>
+        ASF,
 
-            /// <summary>
-            /// ScreamTracker 3
-            /// </summary>
-            S3M,
+        /// <summary>
+        /// Sony ATRAC 3 format
+        /// </summary>
+        AT3,
 
-            /// <summary>
-            /// Sound font 2
-            /// </summary>
-            SF2,
+        /// <summary>
+        /// Digital CD audio.
+        /// </summary>
+        CDDA,
 
-            /// <summary>
-            /// User created sound
-            /// </summary>
-            User,
+        /// <summary>
+        /// Sound font / downloadable sound bank.
+        /// </summary>
+        DLS,
 
-            /// <summary>
-            /// Microsoft WAV
-            /// </summary>
-            WAV,
+        /// <summary>
+        /// FLAC lossless codec.
+        /// </summary>
+        FLAC,
 
-            /// <summary>
-            /// FastTracker 2
-            /// </summary>
-            XM,
+        /// <summary>
+        /// FMOD Sample Bank.
+        /// </summary>
+        FSB,
 
-            /// <summary>
-            /// Xbox360 XMA
-            /// </summary>
-            XMA,            
+        /// <summary>
+        /// GameCube ADPCM
+        /// </summary>
+        GCADPCM,
 
-            /// <summary>
-            /// PlayStation 2 / PlayStation Portable adpcm VAG format
-            /// </summary>
-            VAG,            
+        /// <summary>
+        /// Impulse Tracker
+        /// </summary>
+        IT,
 
-            /// <summary>
-            /// iPhone hardware decoder, supports AAC, ALAC and MP3
-            /// </summary>
-            AudioQueue,
+        /// <summary>
+        /// MIDI
+        /// </summary>
+        MIDI,
 
-            /// <summary>
-            /// Xbox360 XWMA
-            /// </summary>
-            XWMA,
-        }
+        /// <summary>
+        /// Protracker / Fasttracker MOD
+        /// </summary>
+        MOD,
+
+        /// <summary>
+        /// MP2/MP3 MPEG
+        /// </summary>
+        MPEG,
+
+        /// <summary>
+        /// Ogg vorbis
+        /// </summary>
+        OGGVORBIS,
+
+        /// <summary>
+        /// Metadata only from ASX/PLS/M3U/WAX playlists
+        /// </summary>
+        PLAYLIST,
+
+        /// <summary>
+        /// Raw PCM data
+        /// </summary>
+        RAW,
+
+        /// <summary>
+        /// ScreamTracker 3
+        /// </summary>
+        S3M,
+
+        /// <summary>
+        /// Sound font 2
+        /// </summary>
+        SF2,
+
+        /// <summary>
+        /// User created sound
+        /// </summary>
+        User,
+
+        /// <summary>
+        /// Microsoft WAV
+        /// </summary>
+        WAV,
+
+        /// <summary>
+        /// FastTracker 2
+        /// </summary>
+        XM,
+
+        /// <summary>
+        /// Xbox360 XMA
+        /// </summary>
+        XMA,
+
+        /// <summary>
+        /// PlayStation 2 / PlayStation Portable adpcm VAG format
+        /// </summary>
+        VAG,
+
+        /// <summary>
+        /// iPhone hardware decoder, supports AAC, ALAC and MP3
+        /// </summary>
+        AudioQueue,
+
+        /// <summary>
+        /// Xbox360 XWMA
+        /// </summary>
+        XWMA,
+    }
+
     #endregion
 
     /// <summary>
@@ -1099,10 +1086,8 @@ namespace nFMOD
         /// </summary>
         Null = Max,
 
-        [Obsolete("PS3-only")]
-        SBL = SideLeft,
-        [Obsolete("PS3-only")]
-        SBR = SideRight,
+        [Obsolete("PS3-only")] SBL = SideLeft,
+        [Obsolete("PS3-only")] SBR = SideRight,
     }
 
     /// <summary>
@@ -2278,5 +2263,4 @@ namespace nFMOD
                   ReflectionsDelayScale | ReverbScale |
                   ReverbDelayScale | DecayHFLimit
     }
-
 }
