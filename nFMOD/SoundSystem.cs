@@ -8,6 +8,8 @@ namespace nFMOD
 {
     public class SoundSystem : Handle, ISpectrumWave
     {
+        // TODO: implement cleanup behaviour in dtor
+
         #region Externs
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_Create"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode Create(ref IntPtr system);
@@ -427,13 +429,12 @@ namespace nFMOD
 
         public SoundSystem()
         {
-            IntPtr SoundSystemHandle = IntPtr.Zero;
+            IntPtr result = IntPtr.Zero;
+            Errors.ThrowIfError(Create(ref result));
+            SetHandle(result);
 
-            Errors.ThrowIfError(Create(ref SoundSystemHandle));
-
-            SetHandle(SoundSystemHandle);
-
-            if (Version < Common.FMOD_DLL_MINIMUM_VERSION) {
+            if (Version < Common.FMOD_DLL_MINIMUM_VERSION)
+{
                 Release(handle);
                 SetHandleAsInvalid();
                 var message = string.Format("{0}.dll is vesrsion {1:X}. Minimum supported version is {2:X}.",
