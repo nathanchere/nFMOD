@@ -29,7 +29,11 @@ How I approach my public projects is explained on [my github home page](http://n
 * implement appropriate events
 
 #### vNext
+
+#### v0.4 (2014-04-09)
 * massive code clean-up and consolidation of class heirarchy
+* minimum version supported updated to 4.44.32
+* expose more FMOD functionality internally
 
 ####v0.3 (2014-04-07)
 
