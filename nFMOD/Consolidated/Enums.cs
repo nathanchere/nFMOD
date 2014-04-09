@@ -3,9 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace nFMOD
 {
-
     #region Channel
-
     /// <summary>
     /// Types of delay that can be used with Channel::setDelay / Channel::getDelay
     /// </summary>
@@ -93,7 +91,6 @@ namespace nFMOD
     #endregion
 
     #region SoundSystem
-
     /// <summary>
     /// These callback types are used with System::setCallback.
     /// </summary>
@@ -256,12 +253,18 @@ namespace nFMOD
         /// </summary>
         DISABLE_MYEARS = 0x08000000,
 
-        [Obsolete("PS2 only")] PS2_DISABLECORE0REVERB = 0x10000,
-        [Obsolete("PS2 only")] PS2_DISABLECORE1REVERB = 0x20000,
-        [Obsolete("PS2 only")] PS2_DONTUSESCRATCHPAD = 0x40000,
-        [Obsolete("PS2 only")] PS2_SWAPDMACHANNELS = 0x80000,
-        [Obsolete("Xbox only")] XBOX_REMOVEHEADROOM = 0x100000,
-        [Obsolete("Xbox360 only")] Xbox360_MUSICMUTENOTPAUSE = 0x200000,
+        [Obsolete("PS2 only")]
+        PS2_DISABLECORE0REVERB = 0x10000,
+        [Obsolete("PS2 only")]
+        PS2_DISABLECORE1REVERB = 0x20000,
+        [Obsolete("PS2 only")]
+        PS2_DONTUSESCRATCHPAD = 0x40000,
+        [Obsolete("PS2 only")]
+        PS2_SWAPDMACHANNELS = 0x80000,
+        [Obsolete("Xbox only")]
+        XBOX_REMOVEHEADROOM = 0x100000,
+        [Obsolete("Xbox360 only")]
+        Xbox360_MUSICMUTENOTPAUSE = 0x200000,
     }
 
     /// <summary>
@@ -341,20 +344,34 @@ namespace nFMOD
         /// </summary>
         ASIO,
 
-        [Obsolete("Linux only")] OSS,
-        [Obsolete("Linux only")] ALSA,
-        [Obsolete("Linux only")] ESD,
-        [Obsolete("Linux only")] PulseAudio,
-        [Obsolete("Mac only")] SoundManager,
-        [Obsolete("Mac only")] CoreAudio,
-        [Obsolete("Xbox only")] Xbox,
-        [Obsolete("PS2 only")] PS2,
-        [Obsolete("PS3 only")] PS3,
-        [Obsolete("GameCube only")] GameCube,
-        [Obsolete("Xbox360 only")] Xbox360,
-        [Obsolete("PSP only")] PSP,
-        [Obsolete("Wii only")] Wii,
-        [Obsolete("Android only")] Android,
+        [Obsolete("Linux only")]
+        OSS,
+        [Obsolete("Linux only")]
+        ALSA,
+        [Obsolete("Linux only")]
+        ESD,
+        [Obsolete("Linux only")]
+        PulseAudio,
+        [Obsolete("Mac only")]
+        SoundManager,
+        [Obsolete("Mac only")]
+        CoreAudio,
+        [Obsolete("Xbox only")]
+        Xbox,
+        [Obsolete("PS2 only")]
+        PS2,
+        [Obsolete("PS3 only")]
+        PS3,
+        [Obsolete("GameCube only")]
+        GameCube,
+        [Obsolete("Xbox360 only")]
+        Xbox360,
+        [Obsolete("PSP only")]
+        PSP,
+        [Obsolete("Wii only")]
+        Wii,
+        [Obsolete("Android only")]
+        Android,
 
         /// <summary>
         /// Maximum number of output types supported.
@@ -365,7 +382,6 @@ namespace nFMOD
     #endregion
 
     #region DSP
-
     /// <summary>
     /// List of windowing methods used in spectrum analysis to reduce leakage / transient signals
     /// intefering with the analysis. This is a problem with analysis of continuous signals that
@@ -583,6 +599,257 @@ namespace nFMOD
     #endregion
 
     #region Sound
+    /// <summary>
+    /// Sound description bitfields, bitwise OR them together for loading and describing sounds.
+    /// </summary>
+    /// <remarks>
+    /// By default a sound will open as a static sound that is decompressed fully into memory.
+    /// To have a sound stream instead, use FMOD_CREATESTREAM.
+    /// Some opening modes (ie FMOD_OPENUSER, FMOD_OPENMEMORY, FMOD_OPENRAW) will need extra information.
+    /// This can be provided using the FMOD_CREATESOUNDEXINFO structure.
+    /// </remarks>
+    [Flags]
+    public enum SoundMode : uint
+    {
+        /// <summary>
+        /// FMOD_DEFAULT is a default sound type.
+        /// Equivalent to all the defaults listed below.
+        /// FMOD_LOOP_OFF, FMOD_2D, FMOD_HARDWARE.
+        /// </summary>
+        Default = 0x0,
+
+        /// <summary>
+        /// For non looping sounds. (default).  Overrides FMOD_LOOP_NORMAL / FMOD_LOOP_BIDI.
+        /// </summary>
+        LoopOff = 0x1,
+
+        /// <summary>
+        /// For forward looping sounds.
+        /// </summary>
+        LoopNormal = 0x2,
+
+        /// <summary>
+        /// For bidirectional looping sounds. (only works on software mixed static sounds).
+        /// </summary>
+        LoopBidi = 0x4,
+
+        /// <summary>
+        /// Ignores any 3d processing. (default).
+        /// </summary>
+        _2D = 0x8,
+
+        /// <summary>
+        /// Makes the sound positionable in 3D.
+        /// Overrides FMOD_2D.
+        /// </summary>
+        _3D = 0x10,
+
+        /// <summary>
+        /// Attempts to make sounds use hardware acceleration. (default).
+        /// </summary>
+        Hardware = 0x20,
+
+        /// <summary>
+        /// Makes sound reside in software.
+        /// Overrides FMOD_HARDWARE.
+        /// Use this for FFT,
+        /// DSP, 2D multi speaker support and other software related features.
+        /// </summary>
+        Software = 0x40,
+
+        /// <summary>
+        /// Decompress at runtime, streaming from the source provided (standard stream).
+        /// Overrides FMOD_CREATESAMPLE.
+        /// </summary>
+        CreateStream = 0x80,
+
+        /// <summary>
+        /// Decompress at loadtime,
+        /// decompressing or decoding whole file into memory as the target sample format.
+        /// (standard sample).
+        /// </summary>
+        CreateSample = 0x100,
+
+        /// <summary>
+        /// Load MP2, MP3, IMAADPCM or XMA into memory and leave it compressed.
+        /// During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'.
+        /// Can only be used in combination with FMOD_SOFTWARE.
+        /// </summary>
+        CreateCompressedSample = 0x200,
+
+        /// <summary>
+        /// Opens a user created static sample or stream.
+        /// Use FMOD_CREATESOUNDEXINFO to specify format and/or read callbacks.
+        /// If a user created 'sample' is created with no read callback, the sample will be empty.
+        /// Use FMOD_Sound_Lock and FMOD_Sound_Unlock to place sound data into the sound if this is the case.
+        /// </summary>
+        OpenUser = 0x400,
+
+        /// <summary>
+        /// "name_or_data" will be interpreted as a pointer to memory instead of filename for creating sounds.
+        /// </summary>
+        OpenMemory = 0x800,
+
+        /// <summary>
+        /// "name_or_data" will be interpreted as a pointer to memory instead of filename for creating sounds.
+        /// Use FMOD_CREATESOUNDEXINFO to specify length.
+        /// This differs to FMOD_OPENMEMORY in that it uses the memory as is, without duplicating the memory into its own buffers.
+        /// FMOD_SOFTWARE only. Doesn't work with FMOD_HARDWARE, as sound hardware cannot access main ram on a lot of platforms.
+        /// Cannot be freed after open, only after Sound::release.
+        /// Will not work if the data is compressed and FMOD_CREATECOMPRESSEDSAMPLE is not used.
+        /// </summary>
+        OpenMemoryPoint = 0x10000000,
+
+        /// <summary>
+        /// Will ignore file format and treat as raw pcm.
+        /// User may need to declare if data is FMOD_SIGNED or FMOD_UNSIGNED
+        /// </summary>
+        OpenRaw = 0x1000,
+
+        /// <summary>
+        /// Just open the file, dont prebuffer or read.
+        /// Good for fast opens for info, or when FMOD_Sound_ReadData is to be used.
+        /// </summary>
+        OpenOnly = 0x2000,
+
+        /// <summary>
+        /// For FMOD_System_CreateSound - for accurate FMOD_Sound_GetLength / FMOD_Channel_SetPosition on VBR MP3, AAC and MOD/S3M/XM/IT/MIDI files.
+        /// Scans file first, so takes longer to open.
+        /// FMOD_OPENONLY does not affect this.
+        /// </summary>
+        AccurateTime = 0x4000,
+
+        /// <summary>
+        /// For corrupted / bad MP3 files.
+        /// This will search all the way through the file until it hits a valid MPEG header.
+        /// Normally only searches for 4k.
+        /// </summary>
+        MpegSearch = 0x8000,
+
+        /// <summary>
+        /// For opening sounds and getting streamed subsounds (seeking) asyncronously.
+        /// Use Sound::getOpenState to poll the state of the sound as it opens or retrieves the subsound in the background.
+        /// </summary>
+        NonBlocking = 0x10000,
+
+        /// <summary>
+        /// Unique sound, can only be played one at a time.
+        /// </summary>
+        Unique = 0x20000,
+
+        /// <summary>
+        /// Make the sound's position, velocity and orientation relative to the listener.
+        /// </summary>
+        _3D_HeadRelative = 0x40000,
+
+        /// <summary>
+        /// Make the sound's position, velocity and orientation absolute (relative to the world). (DEFAULT)
+        /// </summary>
+        _3D_WorldRelative = 0x80000,
+
+        /// <summary>
+        /// This sound will follow the standard logarithmic rolloff model where mindistance = full volume,
+        /// maxdistance = where sound stops attenuating,
+        /// and rolloff is fixed according to the global rolloff factor.  (default)
+        /// </summary>
+        _3D_LogRolloff = 0x100000,
+
+        /// <summary>
+        /// This sound will follow a linear rolloff model where mindistance = full volume, maxdistance = silence.
+        /// </summary>
+        _3D_LinearRolloff = 0x200000,
+
+        /// <summary>
+        /// This sound will follow a rolloff model defined by FMOD_Sound_Set3DCustomRolloff / FMOD_Channel_Set3DCustomRolloff.
+        /// </summary>
+        _3D_CustomRolloff = 0x4000000,
+
+        /// <summary>
+        /// For CDDA sounds only - use ASPI instead of NTSCSI to access the specified CD/DVD device.
+        /// </summary>
+        CDDA_ForceASPI = 0x400000,
+
+        /// <summary>
+        /// For CDDA sounds only - perform jitter correction.
+        /// Jitter correction helps produce a more accurate CDDA stream at the cost of more CPU time.
+        /// </summary>
+        CDDA_JitterCorrect = 0x800000,
+
+        /// <summary>
+        /// Filename is double-byte unicode.
+        /// </summary>
+        Unicode = 0x1000000,
+
+        /// <summary>
+        /// Skips id3v2/asf/etc tag checks when opening a sound,
+        /// to reduce seek/read overhead when opening files (helps with CD performance).
+        /// </summary>
+        IgnoreTags = 0x2000000,
+
+        /// <summary>
+        /// Removes some features from samples to give a lower memory overhead, like FMOD_Sound_GetName.
+        /// </summary>
+        LowMemory = 0x8000000,
+
+        /// <summary>
+        /// Load sound into the secondary RAM of supported platform.  On PS3, sounds will be loaded into RSX/VRAM.
+        /// </summary>
+        LoadSecondaryRam = 0x20000000,
+
+        /// <summary>
+        /// For sounds that start virtual (due to being quiet or low importance),
+        /// instead of swapping back to audible,
+        /// and playing at the correct offset according to time,
+        /// this flag makes the sound play from the start.
+        /// </summary>
+        Virtual_PlayFromStart = 0x80000000
+    }
+
+    /// <summary>
+    /// These values describe what state a sound is in after NONBLOCKING has been used to open it.
+    /// </summary>
+    public enum SoundOpenState
+    {
+        /// <summary>
+        /// Opened and ready to play
+        /// </summary>
+        READY = 0,
+
+        /// <summary>
+        /// Initial load in progress
+        /// </summary>
+        LOADING,
+
+        /// <summary>
+        /// Failed to open - file not found, out of memory etc.  See return value of Sound::getOpenState for what happened
+        /// </summary>        
+        ERROR,
+
+        /// <summary>
+        /// Connecting to remote host (internet sounds only)
+        /// </summary>
+        CONNECTING,
+
+        /// <summary>
+        /// Buffering data
+        /// </summary>
+        BUFFERING,
+
+        /// <summary>
+        /// Seeking to subsound and re-flushing stream buffer
+        /// </summary>
+        SEEKING,
+
+        /// <summary>
+        /// Ready and playing, but not possible to release at this time without stalling the main thread
+        /// </summary>
+        PLAYING,
+
+        /// <summary>
+        /// Seeking within a stream to a different position
+        /// </summary>
+        SETPOSITION,
+    }
 
     /// <summary>
     /// These definitions describe the native format of the hardware or software buffer that will be used.
@@ -791,135 +1058,7 @@ namespace nFMOD
 
     #endregion
 
-    /// <summary>
-    /// These are plugin types defined for use with the System::getNumPlugins / System_GetNumPlugins, 
-    /// System::getPluginInfo / System_GetPluginInfo and System::unloadPlugin / System_UnloadPlugin functions.
-    /// </summary>
-    public enum PluginType
-    {
-        /// <summary>
-        /// Output module.  FMOD mixed audio will play through one of these devices.
-        /// </summary>
-        Output,
-
-        /// <summary>
-        /// File format CODEC.  FMOD will use these codecs to load file formats for playback.
-        /// </summary>
-        Codec,
-
-        /// <summary>
-        /// DSP unit.  FMOD will use these plugins as part of its DSP network to apply effects to output or generate sound in realtime.
-        /// </summary>
-        Dsp,
-    }
-
-    /// <summary>
-    /// Bit fields for memory allocation type being passed into FMOD memory callbacks.
-    /// </summary>
-    public enum MemoryType
-    {
-        /// <summary>
-        /// Standard memory.
-        /// </summary>
-        Normal = 0x00000000,
-
-        /// <summary>
-        /// Stream file buffer, size controllable with System::setStreamBufferSize.
-        /// </summary>
-        StreamFile = 0x00000001,
-
-        /// <summary>
-        /// Stream decode buffer, size controllable with FMOD_CREATESOUNDEXINFO::decodebuffersize.
-        /// </summary>
-        StreamDecode = 0x00000002,
-
-        /// <summary>
-        /// Requires XPhysicalAlloc / XPhysicalFree.
-        /// </summary>
-        Xbox360_Physical = 0x00100000,
-
-        /// <summary>
-        /// Persistent memory. Memory will be freed when System::release is called.
-        /// </summary>
-        Persistent = 0x00200000,
-
-        /// <summary>
-        /// Secondary memory. Allocation should be in secondary memory. For example RSX on the PS3.
-        /// </summary>
-        Secondary = 0x00400000
-    }
-
-    /// <summary>
-    /// List of time types that can be returned by Sound::getLength and used with Channel::setPosition or Channel::getPosition.
-    /// </summary>
-    public enum TimeUnit
-    {
-        Milliseconds = 0x1,
-
-        /// <summary>
-        /// PCM Samples, related to milliseconds * samplerate / 1000.
-        /// </summary>
-        PCM = 0x2,
-
-        /// <summary>
-        /// Bytes, related to PCM samples * channels * datawidth (ie 16bit = 2 bytes).
-        /// </summary>
-        PCMBytes = 0x4,
-
-        /// <summary>
-        /// Raw file bytes of (compressed) sound data (does not include headers).  Only used by
-        /// Sound::getLength and Channel::getPosition.
-        /// </summary>
-        RawBytes = 0x8,
-
-        /// <summary>
-        /// MOD/S3M/XM/IT.  Order in a sequenced module format.  Use Sound::getFormat to determine the format.
-        /// </summary>
-        ModOrder = 0x100,
-
-        /// <summary>
-        /// MOD/S3M/XM/IT.  Current row in a sequenced module format.  Sound::getLength will return the number
-        /// if rows in the currently playing or seeked to pattern. 
-        /// </summary>
-        ModRow = 0x200,
-
-        /// <summary>
-        /// MOD/S3M/XM/IT.  Current pattern in a sequenced module format.  Sound::getLength will return the
-        /// number of patterns in the song and Channel::getPosition will return the currently playing pattern.
-        /// </summary>
-        ModPattern = 0x400,
-
-        /// <summary>
-        /// Currently playing subsound in a sentence time in milliseconds.
-        /// </summary>
-        Sentence_Milliseconds = 0x10000,
-
-        /// <summary>
-        /// Currently playing subsound in a sentence time in PCM Samples, related to milliseconds * samplerate / 1000.
-        /// </summary>
-        Sentence_PCM = 0x20000,
-
-        /// <summary>
-        /// Currently playing subsound in a sentence time in bytes, related to PCM samples * channels * datawidth (ie 16bit = 2 bytes).
-        /// </summary>
-        Sentence_PCMBytes = 0x40000,
-
-        /// <summary>
-        /// Currently playing sentence index according to the channel.
-        /// </summary>
-        Sentence = 0x80000,
-
-        /// <summary>
-        /// Currently playing subsound index in a sentence.
-        /// </summary>
-        Sentence_SubSound = 0x100000,
-
-        /// <summary>
-        /// Time value as seen by buffered stream.  This is always ahead of audible time, and is only used for processing.
-        /// </summary>
-        Buffered = 0x10000000
-    }
-
+    #region Speaker
     /// <summary>
     /// These are speaker types defined for use with the System::setSpeakerMode or System::getSpeakerMode command.
     /// </summary>
@@ -1086,216 +1225,304 @@ namespace nFMOD
         /// </summary>
         Null = Max,
 
-        [Obsolete("PS3-only")] SBL = SideLeft,
-        [Obsolete("PS3-only")] SBR = SideRight,
+        [Obsolete("PS3-only")]
+        SBL = SideLeft,
+        [Obsolete("PS3-only")]
+        SBR = SideRight,
+    }
+    #endregion
+
+    #region Reverb
+    /// <summary>
+    /// Structure defining the properties for a reverb source, related to a FMOD channel.
+    /// </summary>
+    /// <remarks>
+    /// Note the default reverb properties are the same as the PRESET_GENERIC preset.
+    /// Note that integer values that typically range from -10,000 to 1000 are represented in 
+    /// decibels, and are of a logarithmic scale, not linear, wheras FLOAT values are typically linear.                
+    /// </remarks>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ReverbChannelProperties
+    {
+
+        /// <summary>
+        /// [in/out] Direct path level (at low and mid frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 1000
+        /// Default: 0
+        /// </remarks>
+        public int Direct;
+
+        /// <summary>
+        /// [in/out] Delative direct path level at high frequencies 
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int DirectHF;
+
+        /// <summary>
+        /// [in/out] Room effect level (at low and mid frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 1000
+        /// Default: 0
+        /// </remarks>
+        public int Room;
+
+        /// <summary>
+        /// [in/out] Relative room effect level at high frequencies
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int RoomHF;
+
+        /// <summary>
+        /// [in/out] Main obstruction control (attenuation at high frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int Obstruction;
+
+        /// <summary>
+        /// [in/out] Obstruction low-frequency level re. main control
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 1.0
+        /// Default: 0.0
+        /// </remarks>
+        public float ObstructionLFRatio;
+
+        /// <summary>
+        /// [in/out] Main occlusion control (attenuation at high frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int Occlusion;
+
+        /// <summary>
+        /// [in/out] Occlusion low-frequency level re. main control
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 1.0
+        /// Default: 0.25
+        /// </remarks>
+        public float OcclusionLFRatio;
+
+        /// <summary>
+        /// [in/out] Relative occlusion control for room effect
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 1.5
+        /// </remarks>
+        public float OcclusionRoomRatio;
+
+        /// <summary>
+        /// [in/out] Relative occlusion control for direct path
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 1.0
+        /// </remarks>
+        public float OcclusionDirectRatio;
+
+        /// <summary>
+        /// [in/out] Main exlusion control (attenuation at high frequencies)
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int Exclusion;
+
+        /// <summary>
+        /// [in/out] Exclusion low-frequency level re. main control
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 1.0
+        /// Default: 1.0
+        /// </remarks>
+        public float ExclusionLFRatio;
+
+        /// <summary>
+        /// [in/out] Outside sound cone level at high frequencies
+        /// </summary>            
+        /// <remarks>
+        /// Min: -10000
+        /// Max: 0
+        /// Default: 0
+        /// </remarks>
+        public int OutsideVolumeHF;
+
+        /// <summary>
+        /// [in/out] Like DS3D flDopplerFactor but per source
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 0.0
+        /// </remarks>
+        public float DopplerFactor;
+
+        /// <summary>
+        /// [in/out] Like DS3D flRolloffFactor but per source
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 0.0
+        /// </remarks>
+        public float RolloffFactor;
+
+        /// <summary>
+        /// [in/out] Like DS3D flRolloffFactor but for room effect
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 0.0
+        /// </remarks>
+        public float RoomRolloffFactor;
+
+        /// <summary>
+        /// [in/out] Multiplies AirAbsorptionHF member of REVERB_PROPERTIES
+        /// </summary>            
+        /// <remarks>
+        /// Min: 0.0
+        /// Max: 10.0
+        /// Default: 1.0
+        /// </remarks>
+        public float AirAbsorptionFactor;
+
+        /// <summary>
+        /// [in/out] Modifies the behavior of properties
+        /// </summary>                        
+        public ReverbChannelFlags Flags;
+
+        /// <summary>
+        /// [in/out] DSP network location to connect reverb for this channel
+        /// </summary>            
+        public IntPtr ConnectionPoint;
+    }
+
+    /// <summary>        
+    /// Values for the Flags member of the REVERB_CHANNELPROPERTIES structure.
+    /// </summary>
+    [Flags]
+    public enum ReverbChannelFlags : uint
+    {
+        /// <summary>
+        /// Automatic setting of 'Direct' due to distance from listener.
+        /// </summary>
+        DirectHFAuto = 0x00000001,
+
+        /// <summary>
+        /// Automatic setting of 'Room' due to distance from listener.
+        /// </summary>
+        RoomAuto = 0x00000002,
+
+        /// <summary>
+        /// Automatic setting of 'RoomHF' due to distance from listener.
+        /// </summary>
+        RoomHFAuto = 0x00000004,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 0.  Default target.
+        /// </summary>
+        Instance0 = 0x00000010,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 1.
+        /// </summary>
+        Instance1 = 0x00000020,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 2.
+        /// </summary>
+        Instance2 = 0x00000040,
+
+        /// <summary>
+        /// Specify channel to target reverb instance 3.
+        /// </summary>
+        Instance3 = 0x00000080,
+
+        Default = (DirectHFAuto | RoomAuto | RoomHFAuto | Instance0)
     }
 
     /// <summary>
-    /// Sound description bitfields, bitwise OR them together for loading and describing sounds.
+    /// Values for the Flags member of the REVERB_PROPERTIES structure.
     /// </summary>
-    /// <remarks>
-    /// By default a sound will open as a static sound that is decompressed fully into memory.
-    /// To have a sound stream instead, use FMOD_CREATESTREAM.
-    /// Some opening modes (ie FMOD_OPENUSER, FMOD_OPENMEMORY, FMOD_OPENRAW) will need extra information.
-    /// This can be provided using the FMOD_CREATESOUNDEXINFO structure.
-    /// </remarks>
     [Flags]
-    public enum Mode : uint
+    public enum ReverbFlags : uint
     {
         /// <summary>
-        /// FMOD_DEFAULT is a default sound type.
-        /// Equivalent to all the defaults listed below.
-        /// FMOD_LOOP_OFF, FMOD_2D, FMOD_HARDWARE.
+        /// 'EnvSize' affects reverberation decay time
         /// </summary>
-        Default = 0x0,
+        DecayTimeScale = 0x00000001,
 
         /// <summary>
-        /// For non looping sounds. (default).  Overrides FMOD_LOOP_NORMAL / FMOD_LOOP_BIDI.
+        /// 'EnvSize' affects reflection level
         /// </summary>
-        LoopOff = 0x1,
+        ReflectionsScale = 0x00000002,
 
         /// <summary>
-        /// For forward looping sounds.
+        /// 'EnvSize' affects initial reflection delay time
         /// </summary>
-        LoopNormal = 0x2,
+        ReflectionsDelayScale = 0x00000004,
 
         /// <summary>
-        /// For bidirectional looping sounds. (only works on software mixed static sounds).
+        /// 'EnvSize' affects reflections level
         /// </summary>
-        LoopBidi = 0x4,
+        ReverbScale = 0x00000008,
 
         /// <summary>
-        /// Ignores any 3d processing. (default).
+        /// 'EnvSize' affects late reverberation delay time
         /// </summary>
-        _2D = 0x8,
+        ReverbDelayScale = 0x00000010,
 
         /// <summary>
-        /// Makes the sound positionable in 3D.
-        /// Overrides FMOD_2D.
+        /// AirAbsorptionHF affects DecayHFRatio
         /// </summary>
-        _3D = 0x10,
+        DecayHFLimit = 0x00000020,
 
         /// <summary>
-        /// Attempts to make sounds use hardware acceleration. (default).
+        /// 'EnvSize' affects echo time
         /// </summary>
-        Hardware = 0x20,
+        EchoTimeScale = 0x00000040,
 
         /// <summary>
-        /// Makes sound reside in software.
-        /// Overrides FMOD_HARDWARE.
-        /// Use this for FFT,
-        /// DSP, 2D multi speaker support and other software related features.
+        /// 'EnvSize' affects modulation time
         /// </summary>
-        Software = 0x40,
+        ModulationTimeScale = 0x00000080,
 
-        /// <summary>
-        /// Decompress at runtime, streaming from the source provided (standard stream).
-        /// Overrides FMOD_CREATESAMPLE.
-        /// </summary>
-        CreateStream = 0x80,
-
-        /// <summary>
-        /// Decompress at loadtime,
-        /// decompressing or decoding whole file into memory as the target sample format.
-        /// (standard sample).
-        /// </summary>
-        CreateSample = 0x100,
-
-        /// <summary>
-        /// Load MP2, MP3, IMAADPCM or XMA into memory and leave it compressed.
-        /// During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'.
-        /// Can only be used in combination with FMOD_SOFTWARE.
-        /// </summary>
-        CreateCompressedSample = 0x200,
-
-        /// <summary>
-        /// Opens a user created static sample or stream.
-        /// Use FMOD_CREATESOUNDEXINFO to specify format and/or read callbacks.
-        /// If a user created 'sample' is created with no read callback, the sample will be empty.
-        /// Use FMOD_Sound_Lock and FMOD_Sound_Unlock to place sound data into the sound if this is the case.
-        /// </summary>
-        OpenUser = 0x400,
-
-        /// <summary>
-        /// "name_or_data" will be interpreted as a pointer to memory instead of filename for creating sounds.
-        /// </summary>
-        OpenMemory = 0x800,
-
-        /// <summary>
-        /// "name_or_data" will be interpreted as a pointer to memory instead of filename for creating sounds.
-        /// Use FMOD_CREATESOUNDEXINFO to specify length.
-        /// This differs to FMOD_OPENMEMORY in that it uses the memory as is, without duplicating the memory into its own buffers.
-        /// FMOD_SOFTWARE only. Doesn't work with FMOD_HARDWARE, as sound hardware cannot access main ram on a lot of platforms.
-        /// Cannot be freed after open, only after Sound::release.
-        /// Will not work if the data is compressed and FMOD_CREATECOMPRESSEDSAMPLE is not used.
-        /// </summary>
-        OpenMemoryPoint = 0x10000000,
-
-        /// <summary>
-        /// Will ignore file format and treat as raw pcm.
-        /// User may need to declare if data is FMOD_SIGNED or FMOD_UNSIGNED
-        /// </summary>
-        OpenRaw = 0x1000,
-
-        /// <summary>
-        /// Just open the file, dont prebuffer or read.
-        /// Good for fast opens for info, or when FMOD_Sound_ReadData is to be used.
-        /// </summary>
-        OpenOnly = 0x2000,
-
-        /// <summary>
-        /// For FMOD_System_CreateSound - for accurate FMOD_Sound_GetLength / FMOD_Channel_SetPosition on VBR MP3, AAC and MOD/S3M/XM/IT/MIDI files.
-        /// Scans file first, so takes longer to open.
-        /// FMOD_OPENONLY does not affect this.
-        /// </summary>
-        AccurateTime = 0x4000,
-
-        /// <summary>
-        /// For corrupted / bad MP3 files.
-        /// This will search all the way through the file until it hits a valid MPEG header.
-        /// Normally only searches for 4k.
-        /// </summary>
-        MpegSearch = 0x8000,
-
-        /// <summary>
-        /// For opening sounds and getting streamed subsounds (seeking) asyncronously.
-        /// Use Sound::getOpenState to poll the state of the sound as it opens or retrieves the subsound in the background.
-        /// </summary>
-        NonBlocking = 0x10000,
-
-        /// <summary>
-        /// Unique sound, can only be played one at a time.
-        /// </summary>
-        Unique = 0x20000,
-
-        /// <summary>
-        /// Make the sound's position, velocity and orientation relative to the listener.
-        /// </summary>
-        _3D_HeadRelative = 0x40000,
-
-        /// <summary>
-        /// Make the sound's position, velocity and orientation absolute (relative to the world). (DEFAULT)
-        /// </summary>
-        _3D_WorldRelative = 0x80000,
-
-        /// <summary>
-        /// This sound will follow the standard logarithmic rolloff model where mindistance = full volume,
-        /// maxdistance = where sound stops attenuating,
-        /// and rolloff is fixed according to the global rolloff factor.  (default)
-        /// </summary>
-        _3D_LogRolloff = 0x100000,
-
-        /// <summary>
-        /// This sound will follow a linear rolloff model where mindistance = full volume, maxdistance = silence.
-        /// </summary>
-        _3D_LinearRolloff = 0x200000,
-
-        /// <summary>
-        /// This sound will follow a rolloff model defined by FMOD_Sound_Set3DCustomRolloff / FMOD_Channel_Set3DCustomRolloff.
-        /// </summary>
-        _3D_CustomRolloff = 0x4000000,
-
-        /// <summary>
-        /// For CDDA sounds only - use ASPI instead of NTSCSI to access the specified CD/DVD device.
-        /// </summary>
-        CDDA_ForceASPI = 0x400000,
-
-        /// <summary>
-        /// For CDDA sounds only - perform jitter correction.
-        /// Jitter correction helps produce a more accurate CDDA stream at the cost of more CPU time.
-        /// </summary>
-        CDDA_JitterCorrect = 0x800000,
-
-        /// <summary>
-        /// Filename is double-byte unicode.
-        /// </summary>
-        Unicode = 0x1000000,
-
-        /// <summary>
-        /// Skips id3v2/asf/etc tag checks when opening a sound,
-        /// to reduce seek/read overhead when opening files (helps with CD performance).
-        /// </summary>
-        IgnoreTags = 0x2000000,
-
-        /// <summary>
-        /// Removes some features from samples to give a lower memory overhead, like FMOD_Sound_GetName.
-        /// </summary>
-        LowMemory = 0x8000000,
-
-        /// <summary>
-        /// Load sound into the secondary RAM of supported platform.  On PS3, sounds will be loaded into RSX/VRAM.
-        /// </summary>
-        LoadSecondaryRam = 0x20000000,
-
-        /// <summary>
-        /// For sounds that start virtual (due to being quiet or low importance),
-        /// instead of swapping back to audible,
-        /// and playing at the correct offset according to time,
-        /// this flag makes the sound play from the start.
-        /// </summary>
-        Virtual_PlayFromStart = 0x80000000
+        Default = DecayTimeScale | ReflectionsScale |
+                  ReflectionsDelayScale | ReverbScale |
+                  ReverbDelayScale | DecayHFLimit
     }
+    #endregion
 
+    #region Misc
     public enum ErrorCode
     {
         /// <summary>
@@ -1832,52 +2059,6 @@ namespace nFMOD
         CDTOC
     }
 
-    /// <summary>
-    /// These values describe what state a sound is in after NONBLOCKING has been used to open it.
-    /// </summary>
-    public enum OpenState
-    {
-        /// <summary>
-        /// Opened and ready to play
-        /// </summary>
-        READY = 0,
-
-        /// <summary>
-        /// Initial load in progress
-        /// </summary>
-        LOADING,
-
-        /// <summary>
-        /// Failed to open - file not found, out of memory etc.  See return value of Sound::getOpenState for what happened
-        /// </summary>        
-        ERROR,
-
-        /// <summary>
-        /// Connecting to remote host (internet sounds only)
-        /// </summary>
-        CONNECTING,
-
-        /// <summary>
-        /// Buffering data
-        /// </summary>
-        BUFFERING,
-
-        /// <summary>
-        /// Seeking to subsound and re-flushing stream buffer
-        /// </summary>
-        SEEKING,
-
-        /// <summary>
-        /// Ready and playing, but not possible to release at this time without stalling the main thread
-        /// </summary>
-        PLAYING,
-
-        /// <summary>
-        /// Seeking within a stream to a different position
-        /// </summary>
-        SETPOSITION,
-    }
-
     public enum SoundGroupBehavior
     {
         /// <summary>
@@ -1897,7 +2078,7 @@ namespace nFMOD
     }
 
     [Flags]
-    public enum Capabilities : uint
+    public enum DeviceCapabilities : uint
     {
         /// <summary>
         /// Device has no special capabilities.
@@ -1977,290 +2158,132 @@ namespace nFMOD
     }
 
     /// <summary>
-    /// Structure defining the properties for a reverb source, related to a FMOD channel.
+    /// These are plugin types defined for use with the System::getNumPlugins / System_GetNumPlugins, 
+    /// System::getPluginInfo / System_GetPluginInfo and System::unloadPlugin / System_UnloadPlugin functions.
     /// </summary>
-    /// <remarks>
-    /// Note the default reverb properties are the same as the PRESET_GENERIC preset.
-    /// Note that integer values that typically range from -10,000 to 1000 are represented in 
-    /// decibels, and are of a logarithmic scale, not linear, wheras FLOAT values are typically linear.                
-    /// </remarks>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct ReverbChannelProperties
-    {
-
-        /// <summary>
-        /// [in/out] Direct path level (at low and mid frequencies)
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 1000
-        /// Default: 0
-        /// </remarks>
-        public int Direct;
-
-        /// <summary>
-        /// [in/out] Delative direct path level at high frequencies 
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 0
-        /// Default: 0
-        /// </remarks>
-        public int DirectHF;
-
-        /// <summary>
-        /// [in/out] Room effect level (at low and mid frequencies)
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 1000
-        /// Default: 0
-        /// </remarks>
-        public int Room;
-
-        /// <summary>
-        /// [in/out] Relative room effect level at high frequencies
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 0
-        /// Default: 0
-        /// </remarks>
-        public int RoomHF;
-
-        /// <summary>
-        /// [in/out] Main obstruction control (attenuation at high frequencies)
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 0
-        /// Default: 0
-        /// </remarks>
-        public int Obstruction;
-
-        /// <summary>
-        /// [in/out] Obstruction low-frequency level re. main control
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 1.0
-        /// Default: 0.0
-        /// </remarks>
-        public float ObstructionLFRatio;
-
-        /// <summary>
-        /// [in/out] Main occlusion control (attenuation at high frequencies)
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 0
-        /// Default: 0
-        /// </remarks>
-        public int Occlusion;
-
-        /// <summary>
-        /// [in/out] Occlusion low-frequency level re. main control
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 1.0
-        /// Default: 0.25
-        /// </remarks>
-        public float OcclusionLFRatio;
-
-        /// <summary>
-        /// [in/out] Relative occlusion control for room effect
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 10.0
-        /// Default: 1.5
-        /// </remarks>
-        public float OcclusionRoomRatio;
-
-        /// <summary>
-        /// [in/out] Relative occlusion control for direct path
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 10.0
-        /// Default: 1.0
-        /// </remarks>
-        public float OcclusionDirectRatio;
-
-        /// <summary>
-        /// [in/out] Main exlusion control (attenuation at high frequencies)
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 0
-        /// Default: 0
-        /// </remarks>
-        public int Exclusion;
-
-        /// <summary>
-        /// [in/out] Exclusion low-frequency level re. main control
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 1.0
-        /// Default: 1.0
-        /// </remarks>
-        public float ExclusionLFRatio;
-
-        /// <summary>
-        /// [in/out] Outside sound cone level at high frequencies
-        /// </summary>            
-        /// <remarks>
-        /// Min: -10000
-        /// Max: 0
-        /// Default: 0
-        /// </remarks>
-        public int OutsideVolumeHF;
-
-        /// <summary>
-        /// [in/out] Like DS3D flDopplerFactor but per source
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 10.0
-        /// Default: 0.0
-        /// </remarks>
-        public float DopplerFactor;
-
-        /// <summary>
-        /// [in/out] Like DS3D flRolloffFactor but per source
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 10.0
-        /// Default: 0.0
-        /// </remarks>
-        public float RolloffFactor;
-
-        /// <summary>
-        /// [in/out] Like DS3D flRolloffFactor but for room effect
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 10.0
-        /// Default: 0.0
-        /// </remarks>
-        public float RoomRolloffFactor;
-
-        /// <summary>
-        /// [in/out] Multiplies AirAbsorptionHF member of REVERB_PROPERTIES
-        /// </summary>            
-        /// <remarks>
-        /// Min: 0.0
-        /// Max: 10.0
-        /// Default: 1.0
-        /// </remarks>
-        public float AirAbsorptionFactor;
-
-        /// <summary>
-        /// [in/out] Modifies the behavior of properties
-        /// </summary>                        
-        public ReverbChannelFlags Flags;
-
-        /// <summary>
-        /// [in/out] DSP network location to connect reverb for this channel
-        /// </summary>            
-        public IntPtr ConnectionPoint;
-    }
-
-    /// <summary>        
-    /// Values for the Flags member of the REVERB_CHANNELPROPERTIES structure.
-    /// </summary>
-    [Flags]
-    public enum ReverbChannelFlags : uint
+    public enum PluginType
     {
         /// <summary>
-        /// Automatic setting of 'Direct' due to distance from listener.
+        /// Output module.  FMOD mixed audio will play through one of these devices.
         /// </summary>
-        DirectHFAuto = 0x00000001,
+        Output,
 
         /// <summary>
-        /// Automatic setting of 'Room' due to distance from listener.
+        /// File format CODEC.  FMOD will use these codecs to load file formats for playback.
         /// </summary>
-        RoomAuto = 0x00000002,
+        Codec,
 
         /// <summary>
-        /// Automatic setting of 'RoomHF' due to distance from listener.
+        /// DSP unit.  FMOD will use these plugins as part of its DSP network to apply effects to output or generate sound in realtime.
         /// </summary>
-        RoomHFAuto = 0x00000004,
-
-        /// <summary>
-        /// Specify channel to target reverb instance 0.  Default target.
-        /// </summary>
-        Instance0 = 0x00000010,
-
-        /// <summary>
-        /// Specify channel to target reverb instance 1.
-        /// </summary>
-        Instance1 = 0x00000020,
-
-        /// <summary>
-        /// Specify channel to target reverb instance 2.
-        /// </summary>
-        Instance2 = 0x00000040,
-
-        /// <summary>
-        /// Specify channel to target reverb instance 3.
-        /// </summary>
-        Instance3 = 0x00000080,
-
-        Default = (DirectHFAuto | RoomAuto | RoomHFAuto | Instance0)
+        Dsp,
     }
 
     /// <summary>
-    /// Values for the Flags member of the REVERB_PROPERTIES structure.
+    /// Bit fields for memory allocation type being passed into FMOD memory callbacks.
     /// </summary>
-    [Flags]
-    public enum ReverbFlags : uint
+    public enum MemoryType
     {
         /// <summary>
-        /// 'EnvSize' affects reverberation decay time
+        /// Standard memory.
         /// </summary>
-        DecayTimeScale = 0x00000001,
+        Normal = 0x00000000,
 
         /// <summary>
-        /// 'EnvSize' affects reflection level
+        /// Stream file buffer, size controllable with System::setStreamBufferSize.
         /// </summary>
-        ReflectionsScale = 0x00000002,
+        StreamFile = 0x00000001,
 
         /// <summary>
-        /// 'EnvSize' affects initial reflection delay time
+        /// Stream decode buffer, size controllable with FMOD_CREATESOUNDEXINFO::decodebuffersize.
         /// </summary>
-        ReflectionsDelayScale = 0x00000004,
+        StreamDecode = 0x00000002,
 
         /// <summary>
-        /// 'EnvSize' affects reflections level
+        /// Requires XPhysicalAlloc / XPhysicalFree.
         /// </summary>
-        ReverbScale = 0x00000008,
+        Xbox360_Physical = 0x00100000,
 
         /// <summary>
-        /// 'EnvSize' affects late reverberation delay time
+        /// Persistent memory. Memory will be freed when System::release is called.
         /// </summary>
-        ReverbDelayScale = 0x00000010,
+        Persistent = 0x00200000,
 
         /// <summary>
-        /// AirAbsorptionHF affects DecayHFRatio
+        /// Secondary memory. Allocation should be in secondary memory. For example RSX on the PS3.
         /// </summary>
-        DecayHFLimit = 0x00000020,
-
-        /// <summary>
-        /// 'EnvSize' affects echo time
-        /// </summary>
-        EchoTimeScale = 0x00000040,
-
-        /// <summary>
-        /// 'EnvSize' affects modulation time
-        /// </summary>
-        ModulationTimeScale = 0x00000080,
-
-        Default = DecayTimeScale | ReflectionsScale |
-                  ReflectionsDelayScale | ReverbScale |
-                  ReverbDelayScale | DecayHFLimit
+        Secondary = 0x00400000
     }
+
+    /// <summary>
+    /// List of time types that can be returned by Sound::getLength and used with Channel::setPosition or Channel::getPosition.
+    /// </summary>
+    public enum TimeUnit
+    {
+        Milliseconds = 0x1,
+
+        /// <summary>
+        /// PCM Samples, related to milliseconds * samplerate / 1000.
+        /// </summary>
+        PCM = 0x2,
+
+        /// <summary>
+        /// Bytes, related to PCM samples * channels * datawidth (ie 16bit = 2 bytes).
+        /// </summary>
+        PCMBytes = 0x4,
+
+        /// <summary>
+        /// Raw file bytes of (compressed) sound data (does not include headers).  Only used by
+        /// Sound::getLength and Channel::getPosition.
+        /// </summary>
+        RawBytes = 0x8,
+
+        /// <summary>
+        /// MOD/S3M/XM/IT.  Order in a sequenced module format.  Use Sound::getFormat to determine the format.
+        /// </summary>
+        ModOrder = 0x100,
+
+        /// <summary>
+        /// MOD/S3M/XM/IT.  Current row in a sequenced module format.  Sound::getLength will return the number
+        /// if rows in the currently playing or seeked to pattern. 
+        /// </summary>
+        ModRow = 0x200,
+
+        /// <summary>
+        /// MOD/S3M/XM/IT.  Current pattern in a sequenced module format.  Sound::getLength will return the
+        /// number of patterns in the song and Channel::getPosition will return the currently playing pattern.
+        /// </summary>
+        ModPattern = 0x400,
+
+        /// <summary>
+        /// Currently playing subsound in a sentence time in milliseconds.
+        /// </summary>
+        Sentence_Milliseconds = 0x10000,
+
+        /// <summary>
+        /// Currently playing subsound in a sentence time in PCM Samples, related to milliseconds * samplerate / 1000.
+        /// </summary>
+        Sentence_PCM = 0x20000,
+
+        /// <summary>
+        /// Currently playing subsound in a sentence time in bytes, related to PCM samples * channels * datawidth (ie 16bit = 2 bytes).
+        /// </summary>
+        Sentence_PCMBytes = 0x40000,
+
+        /// <summary>
+        /// Currently playing sentence index according to the channel.
+        /// </summary>
+        Sentence = 0x80000,
+
+        /// <summary>
+        /// Currently playing subsound index in a sentence.
+        /// </summary>
+        Sentence_SubSound = 0x100000,
+
+        /// <summary>
+        /// Time value as seen by buffered stream.  This is always ahead of audible time, and is only used for processing.
+        /// </summary>
+        Buffered = 0x10000000
+    }
+    #endregion
 }

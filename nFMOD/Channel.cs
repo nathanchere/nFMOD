@@ -170,10 +170,10 @@ namespace nFMOD
         private static extern ErrorCode AddDSP(IntPtr channel, IntPtr dsp, ref IntPtr connection);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_SetMode"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetMode(IntPtr channel, Mode mode);
+        private static extern ErrorCode SetMode(IntPtr channel, SoundMode mode);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_GetMode"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetMode(IntPtr channel, ref Mode mode);
+        private static extern ErrorCode GetMode(IntPtr channel, ref SoundMode mode);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_SetLoopCount"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetLoopCount(IntPtr channel, int loopcount);

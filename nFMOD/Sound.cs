@@ -78,7 +78,7 @@ namespace nFMOD
 		private static extern ErrorCode GetTag (IntPtr sound, string name, int index, ref Tag tag);
 
 		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Sound_GetOpenState"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetOpenState (IntPtr sound, ref OpenState openstate, ref uint percentbuffered, ref int starving);
+		private static extern ErrorCode GetOpenState (IntPtr sound, ref SoundOpenState openstate, ref uint percentbuffered, ref int starving);
 
 		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Sound_ReadData"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode ReadData (IntPtr sound, IntPtr buffer, uint lenbytes, ref uint read);
@@ -108,10 +108,10 @@ namespace nFMOD
 		private static extern ErrorCode DeleteSyncPoint (IntPtr sound, IntPtr point);
 
 		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Sound_SetMode"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode SetMode (IntPtr sound, Mode mode);
+		private static extern ErrorCode SetMode (IntPtr sound, SoundMode mode);
 
 		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Sound_GetMode"), SuppressUnmanagedCodeSecurity]
-		private static extern ErrorCode GetMode (IntPtr sound, ref Mode mode);
+		private static extern ErrorCode GetMode (IntPtr sound, ref SoundMode mode);
 
 		[DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Sound_SetLoopCount"), SuppressUnmanagedCodeSecurity]
 		private static extern ErrorCode SetLoopCount (IntPtr sound, int loopcount);
