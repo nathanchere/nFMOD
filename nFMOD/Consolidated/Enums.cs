@@ -2107,19 +2107,22 @@ namespace nFMOD
     public enum SoundGroupBehavior
     {
         /// <summary>
-        /// Any sound played that puts the sound count over the SoundGroup::setMaxAudible setting, will simply fail during System::playSound.
+        /// Any sound played that puts the sound count over the SoundGroup::setMaxAudible setting, will
+        /// simply fail during System::playSound.
         /// </summary>
-        BEHAVIOR_FAIL,
+        Fail,
 
         /// <summary>
-        /// Any sound played that puts the sound count over the SoundGroup::setMaxAudible setting, will be silent, then if another sound in the group stops the sound that was silent before becomes audible again.
+        /// Any sound played that puts the sound count over the SoundGroup::setMaxAudible setting, will be silent,
+        /// then if another sound in the group stops the sound that was silent before becomes audible again.
         /// </summary>
-        BEHAVIOR_MUTE,
+        Mute,
 
         /// <summary>
-        /// Any sound played that puts the sound count over the SoundGroup::setMaxAudible setting, will steal the quietest / least important sound playing in the group.
+        /// Any sound played that puts the sound count over the SoundGroup::setMaxAudible setting, will steal the
+        /// quietest / least important sound playing in the group.
         /// </summary>
-        BEHAVIOR_STEALLOWEST
+        StealLowest
     }
 
     [Flags]
