@@ -57,6 +57,7 @@ namespace nFMOD
             return true;
         }
 
+        #region Presets
         /// <summary>
         /// A set of predefined environment PARAMETERS, created by Creative Labs
         /// These are used to initialize an FMOD_REVERB_PROPERTIES structure statically.
@@ -773,6 +774,7 @@ namespace nFMOD
                 ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
         }
+        #endregion
     }
 }
 
