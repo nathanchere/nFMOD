@@ -67,8 +67,8 @@ As with any of my projects intended for public consumption, the two main branche
 
 Branch | Status | Download
 ------|-----|------
-master | [![Build status](https://ci-beta.appveyor.com/api/projects/status/rgra2l9lhf8281v6/branch/master)](https://ci-beta.appveyor.com/project/nathanchere/coverttweeter) | [.zip](https://github.com/nathanchere/CovertTweeter/archive/master.zip)
-stable | [![Build status](https://ci-beta.appveyor.com/api/projects/status/rgra2l9lhf8281v6/branch/stable)](https://ci-beta.appveyor.com/project/nathanchere/coverttweeter) | [.zip](https://github.com/nathanchere/CovertTweeter/archive/stable.zip)
+master | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/master)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/master.zip)
+stable | [![Build status](https://ci.appveyor.com/api/projects/status/93dn556v0jw4q6la/branch/stable)](https://ci.appveyor.com/project/nathanchere/nfmod) | [.zip](https://github.com/nathanchere/nFMOD/archive/stable.zip)
 
 ## Credits / thanks
 
