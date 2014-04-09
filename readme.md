@@ -5,7 +5,7 @@ The official FMOD SDK comes with some C# examples, however .Net is clearly not t
 
 nFMOD is an attempt at "refinement".
 
-At this point in time nFMOD focuses solely on Windows. While Mono-based cross platform support is possible, it's not a priority. If you require an example of using FMOD with platforms other than Winfows please look at [FmodSharp] (https://gitorious.org/fmodsharp) which appears to also use the same FMOD SDK base but has GTK+ / Mono samples working.
+At this point in time nFMOD focuses solely on Windows. While Mono-based cross platform support is possible, it's not a priority. If you require an example of using FMOD with platforms other than Winfows please look at [FmodSharp] (https://gitorious.org/fmodsharp) which appears to also use the same FMOD SDK base but has GTK+ / Mono samples working. nFMOD actually started out as a fork of FmodSharp before I realised similarity to the official FMOD SDK and decided to base off the latter for consistency.
 
 [![Send me a tweet](http://nathanchere.github.io/twitter_tweet.png)](https://twitter.com/intent/tweet?screen_name=nathanchere "Send me a tweet") [![Follow me](http://nathanchere.github.io/twitter_follow.png)](https://twitter.com/intent/user?screen_name=nathanchere "Follow me")
 
@@ -77,4 +77,4 @@ How I approach my public projects is explained on [my github home page](http://n
 ## Credits / thanks
 
 * [Firelight Studios](http://firelightstudios.net/): for the underlying [FMOD](http://www.fmod.org/) library which is the real star of the show, and generously making FMOD freely available for non-commercial projects
-* [Marc-Andre Ferland](https://github.com/madrang): for the [FmodSharp](https://gitorious.org/fmodsharp) project which demonstrates how to use FMOD with .Net for non-Windows platforms
+* [Marc-Andre Ferland](https://github.com/madrang): for the [FmodSharp](https://gitorious.org/fmodsharp) project which demonstrates how to use FMOD with .Net for non-Windows platforms.
