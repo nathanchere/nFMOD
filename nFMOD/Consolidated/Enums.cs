@@ -2076,17 +2076,17 @@ namespace nFMOD
     /// </summary>
     public enum TagType
     {
-        UNKNOWN = 0,
-        ID3V1,
-        ID3V2,
-        VORBISCOMMENT,
-        SHOUTCAST,
-        ICECAST,
-        ASF,
-        MIDI,
-        PLAYLIST,
-        FMOD,
-        USER
+        Unknown = 0,
+        Id3V1,
+        Id3V2,
+        VorbisComment,
+        Shoutcase,
+        Icecast,
+        Asf,
+        Midi,
+        Playlist,
+        Fmod,
+        User
     }
 
     /// <summary>
@@ -2094,14 +2094,14 @@ namespace nFMOD
     /// </summary>
     public enum TagDataType
     {
-        BINARY = 0,
-        INT,
-        FLOAT,
-        STRING,
-        STRING_UTF16,
-        STRING_UTF16BE,
-        STRING_UTF8,
-        CDTOC
+        Binary = 0,
+        Int,
+        Float,
+        String,
+        StringUtf16,
+        StringUtf16Be,
+        StringUtf8,
+        Cdtoc
     }
 
     public enum SoundGroupBehavior
