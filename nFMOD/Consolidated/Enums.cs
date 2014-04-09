@@ -21,25 +21,25 @@ namespace nFMOD
         /// Delay at the end of the sound in milliseconds. Use delayhi only.
         /// Channel::isPlaying will remain true until this delay has passed even though the sound itself has stopped playing
         /// </summary>
-        END_MS,
+        EndInMilliseconds,
 
         /// <summary>
         /// Time the sound started if Channel::getDelay is used, or if Channel::setDelay is used, the sound will delay
         /// playing until this exact tick.
         /// </summary>
-        DSPCLOCK_START,
+        DspClockStart,
 
         /// <summary>
         /// Time the sound should end. If this is non-zero, the channel will go silent at this exact tick.
         /// </summary>
-        DSPCLOCK_END,
+        DspClockEnd,
 
         /// <summary>
         /// Time the sound should pause. If this is non-zero, the channel will pause at this exact tick.
         /// </summary>
-        DSPCLOCK_PAUSE,
+        DspClockPause,
 
-        MAX
+        Max
     }
 
     public enum ChannelIndex
@@ -360,13 +360,13 @@ namespace nFMOD
         /// Non-realtime version of FMOD_OUTPUTTYPE_NOSOUND.
         /// User can drive mixer with System::update at whatever rate they want.
         /// </summary>
-        NoSound_NRT,
+        NoSoundNonRealtime,
 
         /// <summary>
         /// Non-realtime version of FMOD_OUTPUTTYPE_WAVWRITER.
         /// User can drive mixer with System::update at whatever rate they want.
         /// </summary>
-        WavWriter_NRT,
+        WavWriterNonRealtime,
 
         /// <summary>
         /// DirectSound output. Use this to get hardware accelerated 3D
@@ -423,7 +423,6 @@ namespace nFMOD
         /// </summary>
         Max
     }
-
     #endregion
 
     #region DSP
@@ -596,7 +595,7 @@ namespace nFMOD
         /// <summary>
         /// This unit allows the use of Steinberg VST plugins
         /// </summary>
-        VSTPlugin,
+        VstPlugin,
 
         /// <summary>
         /// This unit allows the use of Nullsoft Winamp plugins.
@@ -617,7 +616,7 @@ namespace nFMOD
         /// <summary>
         /// This unit implements SFX reverb.
         /// </summary>
-        SFXReverb,
+        SfxReverb,
 
         /// <summary>
         /// This unit filters sound using a simple lowpass with no resonance, but
@@ -638,7 +637,7 @@ namespace nFMOD
         /// <summary>
         /// This unit allows the use of LADSPA standard plugins.
         /// </summary>
-        LADSPAPlugin
+        LadspaPlugin
     }
 
     #endregion
@@ -676,57 +675,51 @@ namespace nFMOD
         /// <summary>
         /// For bidirectional looping sounds. (only works on software mixed static sounds).
         /// </summary>
-        LoopBidi = 0x4,
+        LoopBidirectional = 0x4,
 
         /// <summary>
-        /// Ignores any 3d processing. (default).
+        /// "2D" positioning. Ignores any 3d processing. (default).
         /// </summary>
-        _2D = 0x8,
+        NoSurround = 0x8,
 
         /// <summary>
-        /// Makes the sound positionable in 3D.
-        /// Overrides FMOD_2D.
+        /// "3D" positioning. Overrides SoundMode.NoSurround
         /// </summary>
-        _3D = 0x10,
+        Surround = 0x10,
 
         /// <summary>
         /// Attempts to make sounds use hardware acceleration. (default).
         /// </summary>
-        Hardware = 0x20,
+        HardwareProcessing = 0x20,
 
         /// <summary>
-        /// Makes sound reside in software.
-        /// Overrides FMOD_HARDWARE.
-        /// Use this for FFT,
-        /// DSP, 2D multi speaker support and other software related features.
+        /// Makes sound reside in software. Overrides SoundMode.Hardware  Overrides SoundMode.HardwareProcessing.
+        /// Use this for FFT, DSP, 2D multi speaker support and other software related features.
         /// </summary>
-        Software = 0x40,
+        SoftwareProcessing = 0x40,
 
         /// <summary>
-        /// Decompress at runtime, streaming from the source provided (standard stream).
-        /// Overrides FMOD_CREATESAMPLE.
+        /// Decompress at runtime, streaming from the standard stream source provided.
+        /// Overrides SoundMode.CreateSample.
         /// </summary>
         CreateStream = 0x80,
 
         /// <summary>
-        /// Decompress at loadtime,
-        /// decompressing or decoding whole file into memory as the target sample format.
-        /// (standard sample).
+        /// Decompress at loadtime, decompressing or decoding whole file into memory as the target sample format.
         /// </summary>
         CreateSample = 0x100,
 
         /// <summary>
         /// Load MP2, MP3, IMAADPCM or XMA into memory and leave it compressed.
         /// During playback the FMOD software mixer will decode it in realtime as a 'compressed sample'.
-        /// Can only be used in combination with FMOD_SOFTWARE.
+        /// Can only be used in combination with SoundMode.SoftwareProcessing.
         /// </summary>
         CreateCompressedSample = 0x200,
 
         /// <summary>
-        /// Opens a user created static sample or stream.
-        /// Use FMOD_CREATESOUNDEXINFO to specify format and/or read callbacks.
+        /// Opens a user created static sample or stream. Use SoundInfo to specify format and/or read callbacks.
         /// If a user created 'sample' is created with no read callback, the sample will be empty.
-        /// Use FMOD_Sound_Lock and FMOD_Sound_Unlock to place sound data into the sound if this is the case.
+        /// Use Sound_Lock and Sound_Unlock to place sound data into the sound if this is the case.
         /// </summary>
         OpenUser = 0x400,
 
@@ -785,40 +778,39 @@ namespace nFMOD
         /// <summary>
         /// Make the sound's position, velocity and orientation relative to the listener.
         /// </summary>
-        _3D_HeadRelative = 0x40000,
+        SurroundHeadRelative = 0x40000,
 
         /// <summary>
-        /// Make the sound's position, velocity and orientation absolute (relative to the world). (DEFAULT)
+        /// [default] Make the sound's position, velocity and orientation absolute (relative to the world).
         /// </summary>
-        _3D_WorldRelative = 0x80000,
+        SurroundWorldRelative = 0x80000,
 
         /// <summary>
-        /// This sound will follow the standard logarithmic rolloff model where mindistance = full volume,
-        /// maxdistance = where sound stops attenuating,
-        /// and rolloff is fixed according to the global rolloff factor.  (default)
+        /// [default] This sound will follow the standard logarithmic rolloff model where mindistance = full volume,
+        /// maxdistance = where sound stops attenuating, and rolloff is fixed according to the global rolloff factor.
         /// </summary>
-        _3D_LogRolloff = 0x100000,
+        SurroundLogRolloff = 0x100000,
 
         /// <summary>
         /// This sound will follow a linear rolloff model where mindistance = full volume, maxdistance = silence.
         /// </summary>
-        _3D_LinearRolloff = 0x200000,
+        SurroundLinearRolloff = 0x200000,
 
         /// <summary>
-        /// This sound will follow a rolloff model defined by FMOD_Sound_Set3DCustomRolloff / FMOD_Channel_Set3DCustomRolloff.
+        /// This sound will follow a rolloff model defined by Set3DCustomRolloff / Set3DCustomRolloff.
         /// </summary>
-        _3D_CustomRolloff = 0x4000000,
+        SurroundCustomRolloff = 0x4000000,
 
         /// <summary>
         /// For CDDA sounds only - use ASPI instead of NTSCSI to access the specified CD/DVD device.
         /// </summary>
-        CDDA_ForceASPI = 0x400000,
+        CddaForceAspi = 0x400000,
 
         /// <summary>
         /// For CDDA sounds only - perform jitter correction.
         /// Jitter correction helps produce a more accurate CDDA stream at the cost of more CPU time.
         /// </summary>
-        CDDA_JitterCorrect = 0x800000,
+        CddaJitterCorrect = 0x800000,
 
         /// <summary>
         /// Filename is double-byte unicode.
@@ -842,12 +834,11 @@ namespace nFMOD
         LoadSecondaryRam = 0x20000000,
 
         /// <summary>
-        /// For sounds that start virtual (due to being quiet or low importance),
-        /// instead of swapping back to audible,
-        /// and playing at the correct offset according to time,
-        /// this flag makes the sound play from the start.
+        /// For sounds that start virtual (due to being quiet or low importance), instead of swapping back to
+        /// audible, and playing at the correct offset according to time, this flag makes the sound play from
+        /// the start.
         /// </summary>
-        Virtual_PlayFromStart = 0x80000000
+        VirtualPlayFromStart = 0x80000000
     }
 
     /// <summary>
