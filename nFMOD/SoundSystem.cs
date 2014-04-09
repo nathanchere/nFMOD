@@ -8,8 +8,6 @@ namespace nFMOD
 {
     public class SoundSystem : Handle, ISpectrumWave
     {
-        // TODO: implement cleanup behaviour in dtor
-
         #region Externs
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_Create"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode Create(ref IntPtr system);
@@ -376,7 +374,7 @@ namespace nFMOD
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetChannelsPlaying"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetChannelsPlaying(IntPtr system, ref int channels);
-        
+
         [DllImport(Common.FMOD_DLL_NAME, CharSet = CharSet.Ansi, EntryPoint = "FMOD_System_CreateChannelGroup"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateChannelGroup(IntPtr system, string name, ref IntPtr channelgroup);
 
@@ -429,12 +427,11 @@ namespace nFMOD
             Errors.ThrowIfError(Create(ref result));
             SetHandle(result);
 
-            if (Version < Common.FMOD_DLL_MINIMUM_VERSION)
-{
+            if (Version < Common.FMOD_DLL_MINIMUM_VERSION) {
                 Release(handle);
                 SetHandleAsInvalid();
                 var message = string.Format("{0}.dll is vesrsion {1:X}. Minimum supported version is {2:X}.",
-                    Common.FMOD_DLL_NAME,                    
+                    Common.FMOD_DLL_NAME,
                     Version,
                     Common.FMOD_DLL_MINIMUM_VERSION
                     );
@@ -509,7 +506,7 @@ namespace nFMOD
         private ErrorCode HandleCallback(IntPtr systemraw, CallbackType type, IntPtr commanddata1, IntPtr commanddata2)
         {
             return ErrorCode.OK;
-        }       
+        }
         #endregion
 
         #region Properties wrapping non-managed code
@@ -539,8 +536,8 @@ namespace nFMOD
             {
                 Errors.ThrowIfError(SetNetworkTimeout(DangerousGetHandle(), value));
             }
-        }                
-        
+        }
+
         public uint Version
         {
             get
@@ -549,8 +546,8 @@ namespace nFMOD
                 Errors.ThrowIfError(GetVersion(DangerousGetHandle(), ref result));
                 return result;
             }
-        }        
-       
+        }
+
         public OutputType Output
         {
             get
@@ -707,9 +704,10 @@ namespace nFMOD
         public void PlayDsp(Dsp dsp, bool paused, Channel chn)
         {
             IntPtr channel = chn.DangerousGetHandle();
-            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel));            
-            
-            if (chn.DangerousGetHandle() != channel) throw new Exception("Channel handle got changed by Fmod."); //TODO: check: is this really needed?
+            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel));
+
+            if (chn.DangerousGetHandle() != channel)
+                throw new Exception("Channel handle got changed by Fmod."); //TODO: check: is this really needed?
         }
 
         public DspConnection AddDsp(Dsp dsp)
@@ -812,7 +810,7 @@ namespace nFMOD
         {
             Errors.ThrowIfError(GetDriverCaps(DangerousGetHandle(), Id, out caps, out minfrequency, out maxfrequency, out controlpanelspeakermode));
         }
-        
+
         // TODO: possibly refactor whole thing
         private OutputDriver GetOutputDriver(int Id)
         {
@@ -930,6 +928,6 @@ namespace nFMOD
             return new Reverb(result);
         }
 
-        #endregion                
+        #endregion
     }
 }

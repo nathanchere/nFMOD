@@ -55,7 +55,6 @@
     <Compile Include="Consolidated\Enums.cs" />
     <Compile Include="Consolidated\Structs.cs" />
     <Compile Include="FmodException.cs" />
-    <Compile Include="Consolidated\Callbacks.cs" />
     <Compile Include="Handle.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="Errors.cs" />

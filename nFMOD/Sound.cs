@@ -150,10 +150,6 @@ namespace nFMOD
 		private static extern ErrorCode GetMemoryInfo (IntPtr sound, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
         #endregion       
 
-        public delegate ErrorCode NonBlockDelegate (IntPtr soundraw, ErrorCode result);
-	    public delegate ErrorCode PCMReadDelegate (IntPtr soundraw, IntPtr data, uint datalen);
-	    public delegate ErrorCode PCMSetposDelegate (IntPtr soundraw, int subsound, uint position, TimeUnit postype);
-
 		private Sound() { }
 
 		internal Sound (IntPtr hnd)

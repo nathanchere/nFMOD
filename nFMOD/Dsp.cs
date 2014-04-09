@@ -96,20 +96,6 @@ namespace nFMOD
         private static extern ErrorCode GetMemoryInfo(IntPtr dsp, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
         #endregion
 
-        #region Delegates
-        public delegate ErrorCode DspDelegate(ref DspState dsp_state);
-
-        public delegate ErrorCode ReadDelegate(ref DspState dsp_state, IntPtr inbuffer, IntPtr outbuffer, uint length, int inchannels, int outchannels);
-
-        public delegate ErrorCode SetPositionDelegate(ref DspState dsp_state, uint seeklen);
-
-        public delegate ErrorCode SetParamDelegate(ref DspState dsp_state, int index, float val);
-
-        public delegate ErrorCode GetParamDelegate(ref DspState dsp_state, int index, ref float val, StringBuilder valuestr);
-
-        public delegate ErrorCode DialogDelegate(ref DspState dsp_state, IntPtr hwnd, bool show);
-        #endregion
-
         internal Dsp(IntPtr hnd)
         {
             SetHandle(hnd);
