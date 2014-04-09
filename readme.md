@@ -71,6 +71,7 @@ How I approach my public projects is explained on [my github home page](http://n
 * thorough x64 support
 * code for declared but not implemented extern methods
 * implement appropriate events
+* proper documentation - at the very least, map differences and guide on porting C/C++ code to nFMOD
 
 ## Credits / thanks
 
