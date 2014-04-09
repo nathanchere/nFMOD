@@ -1079,8 +1079,7 @@ namespace nFMOD
         /// <summary>
         /// Xbox360 XMA
         /// </summary>
-        [Obsolete("Xbox360 only")]
-        Xma,
+        [Obsolete("Xbox360 only")] Xma,
 
         /// <summary>
         /// PlayStation 2 / PlayStation Portable adpcm VAG format
@@ -1091,7 +1090,7 @@ namespace nFMOD
         /// <summary>
         /// iPhone hardware decoder, supports AAC, ALAC and MP3
         /// </summary>
-        [Obsolete(" only")]
+        [Obsolete("iPhone only")]
         AudioQueue,
 
         /// <summary>
@@ -1100,7 +1099,6 @@ namespace nFMOD
         [Obsolete(" only")]
         Xwma,
     }
-
     #endregion
 
     #region Speaker
@@ -1168,7 +1166,7 @@ namespace nFMOD
         /// Multichannel sounds default to all of their sound channels being played on each speaker in order of input.  
         /// Mix behaviour for multichannel sounds can be set with Channel::setSpeakerLevels.
         /// Channel::setSpeakerMix works but side left / side right are ignored.
-        _5Point1,
+        Surround51,
 
         /// <summary>
         /// Arrangements that have a left/right/center/rear left/rear right/side left/side right and a subwoofer speaker.
@@ -1179,12 +1177,12 @@ namespace nFMOD
         /// Mix behaviour for multichannel sounds can be set with Channel::setSpeakerLevels.
         /// Channel::setSpeakerMix works and every parameter is used to set the balance of a sound in any speaker.
         /// </summary>
-        _7Point1,
+        Surround71,
 
         /// <summary>
         /// This mode is for mono, stereo, 5.1 and 7.1 speaker arrangements, as it is backwards and forwards compatible with stereo,
         /// but to get a surround effect a Dolby Prologic or Prologic 2 hardware decoder / amplifier is needed.
-        /// Pan behaviour is the same as FMOD_SPEAKERMODE_5POINT1.
+        /// Pan behaviour is the same as Surrround51.
         /// If this function is called the numoutputchannels setting in System::setSoftwareFormat is overwritten.
         /// For 3D sounds, panning is determined at runtime by the 3D subsystem based on the speaker mode to determine
         /// which speaker the sound should be placed in.
@@ -1589,112 +1587,112 @@ namespace nFMOD
         /// <summary>
         /// Neither NTSCSI nor ASPI could be initialised.
         /// </summary>
-        CDDA_Drivers,
+        CddaDrivers,
 
         /// <summary>
         /// An error occurred while initialising the CDDA subsystem.
         /// </summary>
-        CDDA_Init,
+        CddaInit,
 
         /// <summary>
         /// Couldn't find the specified device.
         /// </summary>
-        CDDA_InvalidDevice,
+        CddaInvalidDevice,
 
         /// <summary>
         /// No audio tracks on the specified disc.
         /// </summary>
-        CDDA_NoAudio,
+        CddaNoAudio,
 
         /// <summary>
         /// No CD/DVD devices were found.
         /// </summary>
-        CDDA_NoDevices,
+        CddaNoDevices,
 
         /// <summary>
         /// No disc present in the specified drive.
         /// </summary>
-        CDDA_NoDisc,
+        CddaNoDisc,
 
         /// <summary>
         /// A CDDA read error occurred.
         /// </summary>
-        CDDA_Read,
+        CddaRead,
 
         /// <summary>
         /// Error trying to allocate a channel.
         /// </summary>
-        Channel_Alloc,
+        ChannelAllocate,
 
         /// <summary>
         /// The specified channel has been reused to play another sound.
         /// </summary>
-        Channel_Stolen,
+        ChannelStolen,
 
         /// <summary>
         /// A Win32 COM related error occured. COM failed to initialize or a QueryInterface failed meaning a Windows codec or driver was not installed properly.
         /// </summary>
-        COM,
+        Win32Com,
 
         /// <summary>
         /// DMA Failure.  See debug output for more information.
         /// </summary>
-        DMA,
+        Dma,
 
         /// <summary>
         /// DSP connection error.  DspConnection possibly caused a cyclic dependancy.
         /// </summary>
-        DSP_Connection,
+        DspConnection,
 
         /// <summary>
         /// DSP Format error.  A DSP unit may have attempted to connect to this network with the wrong format.
         /// </summary>
-        DSP_Format,
+        DspFormat,
 
         /// <summary>
         /// DSP connection error.  Couldn't find the DSP unit specified.
         /// </summary>
-        DSP_NotFound,
+        DspNotFound,
 
         /// <summary>
         /// DSP error.  Cannot perform this operation while the network is in the middle of running.  This will most likely happen if a connection or disconnection is attempted in a DSP callback.
         /// </summary>
-        DSP_Running,
+        DspRunning,
 
         /// <summary>
         /// DSP connection error.  The unit being connected to or disconnected should only have 1 input or output.
         /// </summary>
-        DSP_TooManyConnections,
+        DspTooManyConnections,
 
         /// <summary>
         /// Error loading file.
         /// </summary>
-        File_Bad,
+        FileBad,
 
         /// <summary>
         /// Couldn't perform seek operation.  This is a limitation of the medium (ie netstreams) or the file format.
         /// </summary>
-        File_CouldNotSeek,
+        FileCouldNotSeek,
 
         /// <summary>
         /// Media was ejected while reading.
         /// </summary>
-        File_DiskEjected,
+        FileMediaEjected,
 
         /// <summary>
         /// End of file unexpectedly reached while trying to read essential data (truncated data?).
         /// </summary>
-        File_EOF,
+        FileEnd,
 
         /// <summary>
         /// File not found.
         /// </summary>
-        File_NotFound,
+        FileNotFound,
 
         /// <summary>
         /// Unwanted file access occured.
         /// </summary>
-        File_Unwanted,
+        FileUnwantedAccess,
 
         /// <summary>
         /// Unsupported file or audio format.
@@ -1704,27 +1702,27 @@ namespace nFMOD
         /// <summary>
         /// A HTTP error occurred. This is a catch-all for HTTP errors not listed elsewhere.
         /// </summary>
-        HTTP,
+        HttpError,
 
         /// <summary>
         /// The specified resource requires authentication or is forbidden.
         /// </summary>
-        HTTP_Access,
+        HttpAccess,
 
         /// <summary>
         /// Proxy authentication is required to access the specified resource.
         /// </summary>
-        HTTP_ProxyAuth,
+        HttpProxyAuth,
 
         /// <summary>
         /// A HTTP server error occurred.
         /// </summary>
-        HTTP_ServerError,
+        HttpServerError,
 
         /// <summary>
         /// The HTTP request timed out.
         /// </summary>
-        HTTP_Timeout,
+        HttpTimeout,
 
         /// <summary>
         /// FMOD was not initialized correctly to support this function.
@@ -1782,9 +1780,10 @@ namespace nFMOD
         InvalidVector,
 
         /// <summary>
-        /// PS2 only.  fmodex.irx failed to initialize.  This is most likely because you forgot to load it.
+        /// fmodex.irx failed to initialize.  This is most likely because you forgot to load it.
         /// </summary>
-        IRX,
+        [Obsolete("PS2 only")]
+        Irx,
 
         /// <summary>
         /// Reached maximum audible playback count for this sound's soundgroup.
@@ -1799,27 +1798,28 @@ namespace nFMOD
         /// <summary>
         /// Can't use FMOD_OPENMEMORY_POINT on non PCM source data or non mp3/xma/adpcm data if FMOD_CREATECOMPRESSEDSAMPLE was used.
         /// </summary>
-        Memory_CantPoint,
+        MemoryCantPoint,
 
         /// <summary>
-        /// PS2 only.  Not enough memory or resources on PlayStation 2 IOP ram.
+        ///Not enough memory or resources on PlayStation 2 IOP ram.
         /// </summary>
+        [Obsolete("PS2 only")]
         Memory_IOP,
 
         /// <summary>
         /// Not enough memory or resources on console sound ram.
         /// </summary>
-        Memory_SRAM,
+        MemorySram,
 
         /// <summary>
         /// Tried to call a command on a 3d sound when the command was meant for 2d sound.
         /// </summary>
-        Needs2D,
+        Needs2d,
 
         /// <summary>
         /// Tried to call a command on a 2d sound when the command was meant for 3d sound.
         /// </summary>
-        Needs3D,
+        Needs3d,
 
         /// <summary>
         /// Tried to use a feature that requires hardware support.  (ie trying to play a VAG compressed sound in software on PS2).
@@ -1834,22 +1834,22 @@ namespace nFMOD
         /// <summary>
         /// Couldn't connect to the specified host.
         /// </summary>
-        Net_Connect,
+        NetConnect,
 
         /// <summary>
         /// A socket error occurred.  This is a catch-all for socket-related errors not listed elsewhere.
         /// </summary>
-        Net_SocketError,
+        NetSocketError,
 
         /// <summary>
         /// The specified URL couldn't be resolved.
         /// </summary>
-        Net_Url,
+        NetUrl,
 
         /// <summary>
         /// Operation on a non-blocking socket could not complete immediately.
         /// </summary>
-        Net_WouldBlock,
+        NetWouldBlock,
 
         /// <summary>
         /// Operation could not be performed because specified sound is not ready.
@@ -1859,42 +1859,42 @@ namespace nFMOD
         /// <summary>
         /// Error initializing output device, but more specifically, the output device is already in use and cannot be reused.
         /// </summary>
-        Output_Allocated,
+        OutputAllocated,
 
         /// <summary>
         /// Error creating hardware sound buffer.
         /// </summary>
-        Output_CreateBuffer,
+        OutputCreateBuffer,
 
         /// <summary>
         /// A call to a standard soundcard driver failed, which could possibly mean a bug in the driver or resources were missing or exhausted.
         /// </summary>
-        Output_DriverCall,
+        OutputDriverCall,
 
         /// <summary>
         /// Error enumerating the available driver list. List may be inconsistent due to a recent device addition or removal.
         /// </summary>
-        Output_Enumeration,
+        OutputEnumeration,
 
         /// <summary>
         /// Soundcard does not support the minimum features needed for this soundsystem (16bit stereo output).
         /// </summary>
-        Output_Format,
+        OutputFormat,
 
         /// <summary>
         /// Error initializing output device.
         /// </summary>
-        Output_Init,
+        OutputInit,
 
         /// <summary>
         /// FMOD_HARDWARE was specified but the sound card does not have the resources nescessary to play it.
         /// </summary>
-        Output_NoHardware,
+        OutputNoHardware,
 
         /// <summary>
         /// Attempted to create a software sound but no software channels were specified in System::init.
         /// </summary>
-        Output_NoSoftware,
+        OutputNoSoftware,
 
         /// <summary>
         /// Panning only works with mono or stereo sound sources.
@@ -1909,17 +1909,17 @@ namespace nFMOD
         /// <summary>
         /// The number of allowed instances of a plugin has been exceeded.
         /// </summary>
-        Plugin_Instances,
+        PluginInstances,
 
         /// <summary>
         /// A requested output dsp unit type or codec was not available.
         /// </summary>
-        Plugin_Missing,
+        PluginMissing,
 
         /// <summary>
         /// A resource that the plugin requires cannot be found. (ie the DLS file for MIDI playback)
         /// </summary>
-        Plugin_Resource,
+        PluginResource,
 
         /// <summary>
         /// The specified sound is still in use by the event system,
@@ -1941,23 +1941,23 @@ namespace nFMOD
         /// <summary>
         /// Specified Instance in FMOD_REVERB_PROPERTIES couldn't be set. Most likely because another application has locked the EAX4 FX slot.
         /// </summary>
-        Reverb_Instance,
+        ReverbInstance,
 
         /// <summary>
         /// This subsound is already being used by another sound, you cannot have more than one parent to a sound.  Null out the other parent's entry first.
         /// </summary>
-        SubSound_Allocated,
+        SubSoundAllocated,
 
         /// <summary>
         /// Shared subsounds cannot be replaced or moved from their parent stream, such as when the parent stream is an FSB file.
         /// </summary>
-        SubSound_CantMove,
+        SubSoundCantMove,
 
         /// <summary>
         /// The subsound's mode bits do not match with the parent sound's mode bits.
         /// See documentation for function that it was called with.
         /// </summary>
-        SubSound_Mode,
+        SubSoundMode,
 
         /// <summary>
         /// The error occured because the sound referenced contains subsounds.
@@ -2005,68 +2005,68 @@ namespace nFMOD
         /// <summary>
         /// An Event failed to be retrieved, most likely due to 'just fail' being specified as the max playbacks behavior.
         /// </summary>
-        Event_Failed,
+        EventFailed,
 
         /// <summary>
         /// Can't execute this command on an EVENT_INFOONLY event.
         /// </summary>
-        Event_InfoOnly,
+        EventInfoOnly,
 
         /// <summary>
         /// An error occured that wasn't supposed to.  See debug log for reason.
         /// </summary>
-        Event_Internal,
+        EventInternal,
 
         /// <summary>
         /// Event failed because 'Max streams' was hit when FMOD_INIT_FAIL_ON_MAXSTREAMS was specified.
         /// </summary>
-        Event_MaxStreams,
+        EventMaxStreams,
 
         /// <summary>
         /// FSB mis-matches the FEV it was compiled with.
         /// </summary>
-        Event_Mismatch,
+        EventMismatch,
 
         /// <summary>
         /// A category with the same name already exists.
         /// </summary>
-        Event_NameConflict,
+        EventNameConflict,
 
         /// <summary>
         /// The requested event, event group, event category or event property could not be found.
         /// </summary>
-        Event_NotFound,
+        EventNotFound,
 
         /// <summary>
         /// Tried to call a function on a complex event that's only supported by simple events.
         /// </summary>
-        Event_NeedsSimple,
+        EventNeedsSimple,
 
         /// <summary>
         /// An event with the same GUID already exists.
         /// </summary>
-        Event_GuidConflict,
+        EventGuidConflict,
 
         /// <summary>
         /// The specified project has already been loaded.
         /// Having multiple copies of the same project loaded simultaneously is forbidden.
         /// </summary>
-        Event_AlreadyLoaded,
+        EventAlreadyLoaded,
 
         /// <summary>
         /// Music system is not initialized probably because no music data is loaded.
         /// </summary>
-        Music_Uninitialized,
+        MusicUninitialized,
 
         /// <summary>
         /// The requested music entity could not be found.
         /// </summary>
-        Music_NotFound,
+        MusicNotFound,
 
         /// <summary>
         /// The music callback is required, but it has not been set.
         /// </summary>
-        Music_NoCallback,
+        MusicNoCallback,
 
     }
 
