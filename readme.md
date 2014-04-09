@@ -23,7 +23,7 @@ How I approach my public projects is explained on [my github home page](http://n
 ## Release history
 
 #### vNext
-* ?
+* cleanup Debug class (for debug builds of fmodex.dll only)
 
 #### v0.4 (2014-04-09)
 * massive code clean-up and consolidation of class heirarchy
