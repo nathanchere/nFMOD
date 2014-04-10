@@ -309,58 +309,20 @@ namespace nFMOD
             }
         }
 
+        public DelaySettings Delay
+        {
+            get // TODO: Errors.ThrowIfError(GetDelay(DangerousGetHandle(), type, hi, lo));
+            {
+                throw new NotImplementedException();                
+            }
 
-        //public RESULT stop                  ()
-        //{
-        //    return FMOD_Channel_Stop(channelraw);
-        //}
-        //public RESULT setPaused             (bool paused)
-        //{
-        //    return FMOD_Channel_SetPaused(channelraw, (paused ? 1 : 0));
-        //}
-        //public RESULT getPaused             (ref bool paused)
-        //{
-        //    RESULT result;
-        //    int p = 0;
+            set
+            {
+                Errors.ThrowIfError(SetDelay(DangerousGetHandle(), value.Type, value.High, value.Low));
+            }
+        }
 
-        //    result = FMOD_Channel_GetPaused(channelraw, ref p);
 
-        //    paused = (p != 0);
-
-        //    return result;
-        //}
-        //public RESULT setVolume             (float volume)
-        //{
-        //    return FMOD_Channel_SetVolume(channelraw, volume);
-        //}
-        //public RESULT getVolume             (ref float volume)
-        //{
-        //    return FMOD_Channel_GetVolume(channelraw, ref volume);
-        //}
-        //public RESULT setFrequency          (float frequency)
-        //{
-        //    return FMOD_Channel_SetFrequency(channelraw, frequency);
-        //}
-        //public RESULT getFrequency          (ref float frequency)
-        //{
-        //    return FMOD_Channel_GetFrequency(channelraw, ref frequency);
-        //}
-        //public RESULT setPan                (float pan)
-        //{
-        //    return FMOD_Channel_SetPan(channelraw, pan);
-        //}
-        //public RESULT getPan                (ref float pan)
-        //{
-        //    return FMOD_Channel_GetPan(channelraw, ref pan);
-        //}
-        //public RESULT setDelay              (DELAYTYPE delaytype, uint delayhi, uint delaylo)
-        //{
-        //    return FMOD_Channel_SetDelay(channelraw, delaytype, delayhi, delaylo);
-        //}
-        //public RESULT getDelay              (DELAYTYPE delaytype, ref uint delayhi, ref uint delaylo)
-        //{
-        //    return FMOD_Channel_GetDelay(channelraw, delaytype, ref delayhi, ref delaylo);
-        //}
         //public RESULT setSpeakerMix         (float frontleft, float frontright, float center, float lfe, float backleft, float backright, float sideleft, float sideright)
         //{
         //    return FMOD_Channel_SetSpeakerMix(channelraw, frontleft, frontright, center, lfe, backleft, backright, sideleft, sideright);

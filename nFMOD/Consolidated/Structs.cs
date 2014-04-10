@@ -5,6 +5,20 @@ using System.Runtime.InteropServices;
 // Members marked with [out] mean FMOD sets the value to be used after the function exits.
 namespace nFMOD
 {
+    #region Non-API
+
+    /// <summary>
+    /// For Channel::GetDelay / ::SetDelay
+    /// </summary>
+    public struct DelaySettings
+    {
+        public DelayType Type { get; set; }
+        public uint High { get; set; } // TODO: explain this
+        public uint Low { get; set; } // TODO: explain this
+    }
+
+    #endregion
+
     /// <summary>
     ///  Settings for advanced features like configuring memory and cpu usage for the
     /// FMOD_CREATECOMPRESSEDSAMPLE feature.     
