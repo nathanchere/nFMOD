@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace nFMOD
 {
-	internal static class Errors
-	{
+    internal static class Errors
+    {
         private static readonly Dictionary<ErrorCode, Type> exceptionTypes;
-	    
+
         static Errors()
-	    {
-	        exceptionTypes = new Dictionary<ErrorCode, Type>();
+        {
+            exceptionTypes = new Dictionary<ErrorCode, Type>();
             exceptionTypes[ErrorCode.AlreadyLocked] = typeof(FmodAlreadyLockedException);
             exceptionTypes[ErrorCode.BadCommand] = typeof(FmodBadCommandException);
             exceptionTypes[ErrorCode.CddaDrivers] = typeof(FmodCddaDriversException);
@@ -49,7 +50,7 @@ namespace nFMOD
             exceptionTypes[ErrorCode.HttpAccess] = typeof(FmodHttpAccessException);
             exceptionTypes[ErrorCode.HttpProxyAuth] = typeof(FmodHttpProxyAuthException);
             exceptionTypes[ErrorCode.HttpServerError] = typeof(FmodHttpServerErrorException);
-            exceptionTypes[ErrorCode.HttpTimeout] = typeof(FmodHttpTimeoutException);            
+            exceptionTypes[ErrorCode.HttpTimeout] = typeof(FmodHttpTimeoutException);
             exceptionTypes[ErrorCode.Initialization] = typeof(FmodInitializationException);
             exceptionTypes[ErrorCode.Initialized] = typeof(FmodInitializedException);
             exceptionTypes[ErrorCode.Internal] = typeof(FmodInternalException);
@@ -63,7 +64,7 @@ namespace nFMOD
             exceptionTypes[ErrorCode.InvalidVector] = typeof(FmodInvalidVectorException);
             exceptionTypes[ErrorCode.MaxAudible] = typeof(FmodMaxAudibleException);
             exceptionTypes[ErrorCode.Memory] = typeof(FmodMemoryException);
-            exceptionTypes[ErrorCode.MemoryCantPoint] = typeof(FmodMemoryCantPointException);            
+            exceptionTypes[ErrorCode.MemoryCantPoint] = typeof(FmodMemoryCantPointException);
             exceptionTypes[ErrorCode.MemorySram] = typeof(FmodMemorySramException);
             exceptionTypes[ErrorCode.MusicNoCallback] = typeof(FmodMusicNoCallbackException);
             exceptionTypes[ErrorCode.MusicNotFound] = typeof(FmodMusicNotFoundException);
@@ -105,7 +106,7 @@ namespace nFMOD
             exceptionTypes[ErrorCode.Unsupported] = typeof(FmodUnsupportedException);
             exceptionTypes[ErrorCode.Update] = typeof(FmodUpdateException);
             exceptionTypes[ErrorCode.Version] = typeof(FmodVersionException);
-            
+
             /*
              * // Only valid for Playstation 2: 
              * exceptionTypes[ErrorCode.IRX] = typeof(FmodIrxException);
@@ -113,12 +114,18 @@ namespace nFMOD
              */
         }
 
-		public static void ThrowIfError(ErrorCode errorCode)
-		{
-			if(errorCode == ErrorCode.OK) return;
+        public static void ThrowIfError(ErrorCode errorCode)
+        {
+            if (errorCode == ErrorCode.OK)
+                return;
             var exceptionType = exceptionTypes[errorCode] ?? typeof(FmodException);
+
+
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
             throw (FmodException)Activator.CreateInstance(exceptionType);
-		}
-		
-	}
+        }
+
+    }
 }

@@ -307,7 +307,7 @@ namespace nFMOD
                 }
                 catch (Exception ex)
                 {
-                    if(Debugger.IsAttached) Debugger.Break();
+                    return new SoundSystem();
                 }
                 return new SoundSystem(result);
             }
