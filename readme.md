@@ -9,6 +9,26 @@ At this point in time nFMOD focuses solely on Windows. While Mono-based cross pl
 
 [![Send me a tweet](http://nathanchere.github.io/twitter_tweet.png)](https://twitter.com/intent/tweet?screen_name=nathanchere "Send me a tweet") [![Follow me](http://nathanchere.github.io/twitter_follow.png)](https://twitter.com/intent/user?screen_name=nathanchere "Follow me")
 
+## Documentation
+
+nFMOD is still under heavy development and likely to change frequently and significantly enough to make documentation a fool's endeavour at this point. Planned to co-incide with the 1.0 release are 'tutorial' articles and sample projects.
+
+A brief example of how easy it is to start adding sound to your application with nFMOD:
+
+```C#
+using (var fmod = new FmodSystem())
+{
+    fmod.Init();
+    using (var audio = fmod.CreateSound("testfile.mp3"))
+    {
+        fmod.PlaySound(audio);
+        Console.WriteLine("nFMOD test\nPlaying doowackadoo; press any key to exit");
+        Console.ReadKey();
+    }
+    fmod.CloseSystem();
+}
+```
+
 ## Status
 
 Branch | Status | Download | Description
