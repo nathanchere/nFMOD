@@ -31,15 +31,16 @@ namespace nFMOD.Demo.SpectrumAnalysis
                 || channel == null || !channel.IsPlaying
                 )
                 return;
+           
+            int spectrumSize = (int)numSpectrumDetail.Value;
+            int waveSize = (int)numWaveDetail.Value;
 
-            const int SPECTRUMSIZE = 512;
-            const int WAVEDATASIZE = 256;
-            var spectrum = new float[SPECTRUMSIZE];
-            var wavedata = new float[WAVEDATASIZE];
+            var spectrum = new float[spectrumSize];
+            var wavedata = new float[waveSize];
 
             var result = new VisData();
-            fmod.GetWaveData(wavedata, WAVEDATASIZE, 0);
-            fmod.GetSpectrum(spectrum, SPECTRUMSIZE, 0, FFTWindow.Max);
+            fmod.GetWaveData(wavedata, waveSize, 0);
+            fmod.GetSpectrum(spectrum, spectrumSize, 0, FFTWindow.Max);
             result.WaveData = wavedata.ToList();
             result.SpectrumData = spectrum.ToList();
 
