@@ -300,22 +300,11 @@ namespace nFMOD
             get
             {
                 IntPtr result = IntPtr.Zero;
-                Errors.ThrowIfError(GetSystemObject(handle, ref result));
+                try
+                {
+                    Errors.ThrowIfError(GetSystemObject(handle, ref result));
+                }catch(Fmod
                 return new SoundSystem(result);
-
-                ////TODO: SoundSystem.SetRaw(result);
-                //if (system == null)
-                //{
-                //    systemnew = new System();
-                //    systemnew.setRaw(systemraw);
-                //    system = systemnew;
-                //}
-                //else
-                //{
-                //    system.setRaw(systemraw);
-                //}
-
-                return new SoundSystem(); //TODO: this is wrong
             }
         }
 
