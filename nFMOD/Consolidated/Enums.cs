@@ -478,7 +478,7 @@ namespace nFMOD
     /// <summary>
     /// List of interpolation types that the FMOD software mixer supports.
     /// </summary>
-    public enum Resampler
+    public enum DspResampler
     {
         /// <summary>
         /// High frequency aliasing hiss will be audible depending on the sample rate of the sound.

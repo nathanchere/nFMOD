@@ -247,7 +247,7 @@ namespace nFMOD
         private static extern ErrorCode GetSoftwareChannels(IntPtr system, ref int numsoftwarechannels);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetSoftwareFormat(IntPtr system, ref int samplerate, ref SoundFormat format, ref int numoutputchannels, ref int maxinputchannels, ref Resampler resamplemethod, ref int bits);
+        private static extern ErrorCode GetSoftwareFormat(IntPtr system, ref int samplerate, ref SoundFormat format, ref int numoutputchannels, ref int maxinputchannels, ref DspResampler resamplemethod, ref int bits);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_GetSoundRAM"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetSoundRAM(IntPtr system, ref int currentalloced, ref int maxalloced, ref int total);
@@ -388,7 +388,7 @@ namespace nFMOD
         private static extern ErrorCode SetSoftwareChannels(IntPtr system, int numsoftwarechannels);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetSoftwareFormat"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetSoftwareFormat(IntPtr system, int samplerate, SoundFormat format, int numoutputchannels, int maxinputchannels, Resampler resamplemethod);
+        private static extern ErrorCode SetSoftwareFormat(IntPtr system, int samplerate, SoundFormat format, int numoutputchannels, int maxinputchannels, DspResampler resamplemethod);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetSpeakerMode"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetSpeakerMode(IntPtr system, SpeakerMode speakermode);
@@ -914,6 +914,28 @@ namespace nFMOD
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateReverb(DangerousGetHandle(), ref result));
             return new Reverb(result);
+        }
+
+        public SoftwareFormat GetSoftwareFormat()
+        {
+            int sampleRate=0,outputChannels=0,inputChannels=0,bits=0;
+            var soundFormat = SoundFormat.None;
+            var resampler = DspResampler.NoInterpolation;            
+
+            Errors.ThrowIfError(GetSoftwareFormat(DangerousGetHandle(),
+                ref sampleRate, ref soundFormat,
+                ref outputChannels, ref inputChannels,
+                ref resampler, ref bits));
+
+            return new SoftwareFormat{
+                SampleRate = sampleRate,
+                OutputChannelCount = outputChannels,
+                MaxInputChannels = inputChannels,
+                ResampleMethod = resampler,
+                Bits = bits,
+                SoundFormat = soundFormat,
+            };
+
         }
 
         #endregion

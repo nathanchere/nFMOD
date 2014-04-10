@@ -17,6 +17,18 @@ namespace nFMOD
         public uint Low { get; set; } // TODO: explain this
     }
 
+    /// <summary>
+    /// For FmodSystem::GetSoftwareFormat
+    /// </summary>
+    public struct SoftwareFormat
+    {
+        public int SampleRate { get; set; }
+        public SoundFormat SoundFormat { get; set; }
+        public int OutputChannelCount { get; set; }
+        public int MaxInputChannels { get; set; }
+        public DspResampler ResampleMethod { get; set; }
+        public int Bits { get; set; }
+    }
     #endregion
 
     /// <summary>
