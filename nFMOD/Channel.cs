@@ -120,10 +120,10 @@ namespace nFMOD
         private static extern ErrorCode GetWaveData(IntPtr channel, [MarshalAs(UnmanagedType.LPArray)] float[] wavearray, int numvalues, int channeloffset);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_IsPlaying"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode IsPlaying_External(IntPtr channel, ref bool isplaying);
+        private static extern ErrorCode IsChannelPlaying(IntPtr channel, ref bool isplaying);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_IsVirtual"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode IsVirtual(IntPtr channel, ref int isvirtual);
+        private static extern ErrorCode IsChannelVirtual(IntPtr channel, ref int isvirtual);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_Set3DAttributes"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode Set3DAttributes(IntPtr channel, ref Vector3 pos, ref Vector3 vel);
@@ -284,9 +284,9 @@ namespace nFMOD
         {
             get
             {
-                bool Val = false;
-                Errors.ThrowIfError(GetMute(DangerousGetHandle(), ref Val));
-                return Val;
+                bool value = false;
+                Errors.ThrowIfError(GetMute(DangerousGetHandle(), ref value));
+                return value;
             }
 
             set
@@ -303,7 +303,7 @@ namespace nFMOD
         {
             get
             {
-                IntPtr result = IntPtr.Zero;                
+                IntPtr result = IntPtr.Zero;
                 Errors.ThrowIfError(GetSystemObject(handle, ref result));
                 return new FmodSystem(result);
             }
@@ -313,7 +313,7 @@ namespace nFMOD
         {
             get // TODO: Errors.ThrowIfError(GetDelay(DangerousGetHandle(), type, hi, lo));
             {
-                throw new NotImplementedException();                
+                throw new NotImplementedException();
             }
 
             set
@@ -322,130 +322,85 @@ namespace nFMOD
             }
         }
 
-
-        //public RESULT setSpeakerMix         (float frontleft, float frontright, float center, float lfe, float backleft, float backright, float sideleft, float sideright)
+        //public TODO SpeakerMix
         //{
-        //    return FMOD_Channel_SetSpeakerMix(channelraw, frontleft, frontright, center, lfe, backleft, backright, sideleft, sideright);
-        //}
-        //public RESULT getSpeakerMix         (ref float frontleft, ref float frontright, ref float center, ref float lfe, ref float backleft, ref float backright, ref float sideleft, ref float sideright)
-        //{
-        //    return FMOD_Channel_GetSpeakerMix(channelraw, ref frontleft, ref frontright, ref center, ref lfe, ref backleft, ref backright, ref sideleft, ref sideright);
-        //}
-        //public RESULT setSpeakerLevels      (SPEAKER speaker, float[] levels, int numlevels)
-        //{
-        //    return FMOD_Channel_SetSpeakerLevels(channelraw, speaker, levels, numlevels);
-        //}
-        //public RESULT getSpeakerLevels      (SPEAKER speaker, float[] levels, int numlevels)
-        //{
-        //    return FMOD_Channel_GetSpeakerLevels(channelraw, speaker, levels, numlevels);
-        //}
-        //public RESULT setInputChannelMix    (float[] levels, int numlevels)
-        //{
-        //    return FMOD_Channel_SetInputChannelMix(channelraw, levels, numlevels);
-        //}
-        //public RESULT getInputChannelMix    (float[] levels, int numlevels)
-        //{
-        //    return FMOD_Channel_GetInputChannelMix(channelraw, levels, numlevels);
-        //}
-        //public RESULT setMute               (bool mute)
-        //{
-        //    return FMOD_Channel_SetMute(channelraw, (mute ? 1 : 0));
-        //}
-        //public RESULT getMute               (ref bool mute)
-        //{
-        //    RESULT result;
-        //    int m = 0;
-
-        //    result = FMOD_Channel_GetMute(channelraw, ref m);
-
-        //    mute = (m != 0);
-
-        //    return result;
-        //}
-        //public RESULT setPriority           (int priority)
-        //{
-        //    return FMOD_Channel_SetPriority(channelraw, priority);
-        //}
-        //public RESULT getPriority           (ref int priority)
-        //{
-        //    return FMOD_Channel_GetPriority(channelraw, ref priority);
-        //}
-        //public RESULT setPosition           (uint position, TIMEUNIT postype)
-        //{
-        //    return FMOD_Channel_SetPosition(channelraw, position, postype);
-        //}
-        //public RESULT getPosition           (ref uint position, TIMEUNIT postype)
-        //{
-        //    return FMOD_Channel_GetPosition(channelraw, ref position, postype);
-        //}
-        
-        //public RESULT setLowPassGain           (float gain)
-        //{
-        //    return FMOD_Channel_SetLowPassGain(channelraw, gain);
-        //}
-        //public RESULT getLowPassGain           (ref float gain)
-        //{
-        //    return FMOD_Channel_GetLowPassGain(channelraw, ref gain);
-        //}
-        
-        //public RESULT setReverbProperties   (ref REVERB_CHANNELPROPERTIES prop)
-        //{
-        //    return FMOD_Channel_SetReverbProperties(channelraw, ref prop);
-        //}
-        //public RESULT getReverbProperties   (ref REVERB_CHANNELPROPERTIES prop)
-        //{
-        //    return FMOD_Channel_GetReverbProperties(channelraw, ref prop);
-        //}
-        //public RESULT setChannelGroup       (ChannelGroup channelgroup)
-        //{
-        //    return FMOD_Channel_SetChannelGroup(channelraw, channelgroup.getRaw());
-        //}
-        //public RESULT getChannelGroup        (ref ChannelGroup channelgroup)
-        //{
-        //    RESULT result = RESULT.OK;
-        //    IntPtr channelgroupraw = new IntPtr();
-        //    ChannelGroup    channelgroupnew = null;
-
-        //    try
-        //    {
-        //        result = FMOD_Channel_GetChannelGroup(channelraw, ref channelgroupraw);
-        //    }
-        //    catch
-        //    {
-        //        result = RESULT.ERR_INVALID_PARAM;
-        //    }
-        //    if (result != RESULT.OK)
-        //    {
-        //        return result;
-        //    }
-
-        //    if (channelgroup == null)
-        //    {
-        //        channelgroupnew = new ChannelGroup();
-        //        channelgroupnew.setRaw(channelgroupraw);
-        //        channelgroup = channelgroupnew;
-        //    }
-        //    else
-        //    {
-        //        channelgroup.setRaw(channelgroupraw);
-        //    }
-                             
-        //    return result; 
+        //    get: GetSpeakerMix(channelraw, ref frontleft, ref frontright, ref center, ref lfe, ref backleft, ref backright, ref sideleft, ref sideright);
+        //    set: SetSpeakerMix(channelraw, frontleft, frontright, center, lfe, backleft, backright, sideleft, sideright);
         //}
 
-        //public RESULT setCallback           (CHANNEL_CALLBACK callback)
+        //public TODO SpeakerLevels
         //{
-        //    return FMOD_Channel_SetCallback(channelraw, callback);
+        //    GetSpeakerLevels(channelraw, speaker, levels, numlevels);
+        //    SetSpeakerLevels(channelraw, speaker, levels, numlevels);
         //}
 
-
-        //public RESULT set3DAttributes       (ref VECTOR pos, ref VECTOR vel)
-        //{
-        //    return FMOD_Channel_Set3DAttributes(channelraw, ref pos, ref vel);
+        //public TODO InputChannelMix {
+        //    SetInputChannelMix(channelraw, levels, numlevels);
+        //    GetInputChannelMix(channelraw, levels, numlevels);
         //}
-        //public RESULT get3DAttributes       (ref VECTOR pos, ref VECTOR vel)
-        //{
-        //    return FMOD_Channel_Get3DAttributes(channelraw, ref pos, ref vel);
+
+        //public TODO Priority { 
+        //    GetPriority(channelraw, ref priority);
+        //    SetPriority(channelraw, priority);
+        //}
+
+        //public TODO Position { 
+        //    SetPosition(channelraw, position, postype);
+        //    GetPosition(channelraw, ref position, postype);
+        //}
+
+        public float LowPassGain
+        {
+            get
+            {
+                float result = 0.0f;
+                Errors.ThrowIfError(GetLowPassGain(DangerousGetHandle(), ref result));
+                return result;
+            }
+
+            set
+            {
+                Errors.ThrowIfError(SetLowPassGain(DangerousGetHandle(), value));
+            }
+        }
+
+        public ChannelGroup ChannelGroup
+        {
+            get
+            {
+                IntPtr handle = IntPtr.Zero;
+                Errors.ThrowIfError(GetChannelGroup(DangerousGetHandle(), ref handle));
+                return new ChannelGroup(handle);
+            }
+            set
+            {
+                SetChannelGroup(DangerousGetHandle(), value.DangerousGetHandle());
+            }
+        }
+
+        public ReverbChannelProperties ReverbProperties
+        {
+            get
+            {
+                var result = new ReverbChannelProperties();
+                Errors.ThrowIfError(GetReverbProperties(DangerousGetHandle(), ref result));
+                return result;
+            }
+            set
+            {
+                Errors.ThrowIfError(SetReverbProperties(DangerousGetHandle(), ref value));
+            }
+        }
+
+        public void SetCallback(ChannelCallbackType callback)
+        {
+            Errors.ThrowIfError(SetCallback(DangerousGetHandle(), callback));
+        }        
+
+        #region 3D stuff
+        //public todo SurroundAttributes { 
+        //    Set3DAttributes(channelraw, ref pos, ref vel);
+        //    Get3DAttributes       (ref VECTOR pos, ref VECTOR vel)
         //}
         //public RESULT set3DMinMaxDistance   (float mindistance, float maxdistance)
         //{
@@ -511,65 +466,29 @@ namespace nFMOD
         //{
         //    return FMOD_Channel_Get3DDopplerLevel(channelraw, ref level);
         //}
+        #endregion
 
-        //public RESULT isPlaying             (ref bool isplaying)
-        //{
-        //    RESULT result;
-        //    int p = 0;
+        public float Audibility
+        {
+            get
+            {
+                float value = 0f;
+                Errors.ThrowIfError(GetAudibility(DangerousGetHandle(), ref value));
+                return value;
+            }            
+        }
 
-        //    result = FMOD_Channel_IsPlaying(channelraw, ref p);
+        public Sound CurrentSound 
+        {
+            get
+            {
+                IntPtr result = IntPtr.Zero;
+                Errors.ThrowIfError(GetCurrentSound(DangerousGetHandle(), ref result));
+                return new Sound(result);
+            }         
+        }
 
-        //    isplaying = (p != 0);
-
-        //    return result;
-        //}
-        //public RESULT isVirtual             (ref bool isvirtual)
-        //{
-        //    RESULT result;
-        //    int v = 0;
-
-        //    result = FMOD_Channel_IsVirtual(channelraw, ref v);
-
-        //    isvirtual = (v != 0);
-
-        //    return result;
-        //}
-        //public RESULT getAudibility         (ref float audibility)
-        //{
-        //    return FMOD_Channel_GetAudibility(channelraw, ref audibility);
-        //}
-        //public RESULT getCurrentSound       (ref Sound sound)
-        //{
-        //    RESULT result      = RESULT.OK;
-        //    IntPtr soundraw    = new IntPtr();
-        //    Sound  soundnew    = null;
-
-        //    try
-        //    {
-        //        result = FMOD_Channel_GetCurrentSound(channelraw, ref soundraw);
-        //    }
-        //    catch
-        //    {
-        //        result = RESULT.ERR_INVALID_PARAM;
-        //    }
-        //    if (result != RESULT.OK)
-        //    {
-        //        return result;
-        //    }
-
-        //    if (sound == null)
-        //    {
-        //        soundnew = new Sound();
-        //        soundnew.setRaw(soundraw);
-        //        sound = soundnew;
-        //    }
-        //    else
-        //    {
-        //        sound.setRaw(soundraw);
-        //    }
-
-        //    return result;  
-        //}
+        
         //public RESULT getSpectrum           (float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype)
         //{
         //    return FMOD_Channel_GetSpectrum(channelraw, spectrumarray, numvalues, channeloffset, windowtype);
@@ -640,8 +559,8 @@ namespace nFMOD
 
         //    return result;
         //}
-         
-            
+
+
         //public RESULT setMode               (MODE mode)
         //{
         //    return FMOD_Channel_SetMode(channelraw, mode);
@@ -714,14 +633,25 @@ namespace nFMOD
             get
             {
                 bool result = false;
-                Errors.ThrowIfError(IsPlaying_External(DangerousGetHandle(), ref result));
+                Errors.ThrowIfError(IsChannelPlaying(DangerousGetHandle(), ref result));
                 return result;
+            }
+        }
+
+        public bool IsVirtual
+        {
+            get
+            {
+                int result = 0;
+                Errors.ThrowIfError(IsChannelVirtual(DangerousGetHandle(), ref result));
+                return result > 0;
             }
         }
 
         protected override bool ReleaseHandle()
         {
-            if (IsInvalid) return true;
+            if (IsInvalid)
+                return true;
 
             Stop(handle);
             //Release (this.handle); //TODO find if Channel need to be released before closing.
