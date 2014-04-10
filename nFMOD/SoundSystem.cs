@@ -421,6 +421,7 @@ namespace nFMOD
         private static extern ErrorCode UpdateFinished(IntPtr system);
         #endregion
 
+        #region ctor etc
         public SoundSystem() : this(IntPtr.Zero) { }
 
         internal SoundSystem(IntPtr newHandle)
@@ -470,6 +471,7 @@ namespace nFMOD
         {
             CloseSystem(DangerousGetHandle());
         }
+        #endregion
 
         #region Events
         /// <summary>
