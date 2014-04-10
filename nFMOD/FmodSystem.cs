@@ -912,20 +912,7 @@ namespace nFMOD
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(PlaySound(DangerousGetHandle(), ChannelIndex.Free, snd.DangerousGetHandle(), paused, ref result));
             return new Channel(result);
-        }
-
-        private void PlaySound(Sound snd, bool paused, Channel chn)
-        {
-            //TODO FIXME The handle is changed most of the time on some system.
-            //Only use the other metods to be safe.
-
-            IntPtr channel = chn.DangerousGetHandle();
-            Errors.ThrowIfError(PlaySound(DangerousGetHandle(), ChannelIndex.Reuse, snd.DangerousGetHandle(), paused, ref channel));
-            //This can't really happend.
-            //Check just in case...
-            if (chn.DangerousGetHandle() == channel)
-                throw new Exception("Channel handle got changed by Fmod.");
-        }
+        }        
 
         public Reverb CreateReverb()
         {
