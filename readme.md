@@ -69,6 +69,7 @@ How I approach my public projects is explained on [my github home page](http://n
 #### vTODO (one day)
 
 * go through and fix anything TODO
+* change methods like FmodSystem::GetWaveData to get rid of ref/out params
 * get rid of most of the out and ref parameters
 * Nuget distribution: better handle fmodex.dll deployment
 * Go through and update comments from before v0.2 refactor which still

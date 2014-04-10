@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -8,6 +9,7 @@ namespace nFMOD.Demo.SpectrumAnalysis
     {
         private const string MP3_PATH = @"test.mp3";
         private FmodSystem fmod;
+        private Sound sound;
         private Channel channel;
 
         public frmMain()
@@ -25,10 +27,8 @@ namespace nFMOD.Demo.SpectrumAnalysis
 
         private void Render()
         {
-            if (fmod == null
-                || fmod.IsInvalid
-                || channel == null
-                || !channel.IsPlaying
+            if (fmod == null || fmod.IsInvalid
+                || channel == null || !channel.IsPlaying
                 )
                 return;
 
@@ -37,12 +37,11 @@ namespace nFMOD.Demo.SpectrumAnalysis
             var spectrum = new float[SPECTRUMSIZE];
             var wavedata = new float[WAVEDATASIZE];
 
-            var fmodFormat = fmod.GetSoftwareFormat();
-
             var result = new VisData();
-            for (int i = 0; i < fmodFormat.OutputChannelCount; ++i) {
-                fmod.GetWaveData(wavedata, WAVEDATASIZE, i);
-            }
+            fmod.GetWaveData(wavedata, WAVEDATASIZE, 0);
+            fmod.GetSpectrum(spectrum, SPECTRUMSIZE, 0, FFTWindow.Max);
+            result.WaveData = wavedata.ToList();
+            result.SpectrumData = spectrum.ToList();
 
             picVisualisation.UpdateData(result);
         }
@@ -51,13 +50,23 @@ namespace nFMOD.Demo.SpectrumAnalysis
         {
             if (channel != null && channel.IsPlaying)
                 return;
-            var sound = fmod.CreateSound(MP3_PATH);
+            sound = fmod.CreateSound(MP3_PATH);
             channel = fmod.PlaySound(sound);
         }
 
         private void btnPause(object sender, EventArgs e)
         {
             channel.Paused = !channel.Paused;
+        }
+
+        ~frmMain()
+        {
+            if (channel != null)
+                channel.Close();
+            if (sound != null)
+                sound.Close();
+            if (fmod != null)
+                fmod.Close();
         }
     }
 }

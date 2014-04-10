@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace nFMOD
@@ -16,6 +17,7 @@ namespace nFMOD
         {
             get
             {
+                if(handle == IntPtr.Zero || (int)handle == -1) Debugger.Break();
                 return (handle == IntPtr.Zero || (int)handle == -1);
             }
         }
