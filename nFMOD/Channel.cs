@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
 
@@ -303,7 +304,11 @@ namespace nFMOD
                 try
                 {
                     Errors.ThrowIfError(GetSystemObject(handle, ref result));
-                }catch(Fmod
+                }
+                catch (Exception ex)
+                {
+                    if(Debugger.IsAttached) Debugger.Break();
+                }
                 return new SoundSystem(result);
             }
         }
