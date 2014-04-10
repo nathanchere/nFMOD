@@ -27,7 +27,15 @@ How I approach my public projects is explained on [my github home page](http://n
 * Go through the TODO list
 * Sort all extern aliases
 * Add internal ctors for main classes to take existing instance handle
+* More sample code
+
+#### v0.5 (2014-04-10)
+* Enum cleanup
+* Sort all extern aliases
+* Add internal ctors for main classes to take existing instance handle
 * Add nFMOD.Spikes project for answering some of the unknowns not covered by FMOD API documenation
+* Spectrum analysis sample project
+* More Channel and FmodSystem functionality exposed externally
 
 #### v0.4.2 (2014-04-09)
 * Add cleanup of DSP, ChannelGroup, Debug code which was missed in v0.4 release
