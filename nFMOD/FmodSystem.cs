@@ -902,12 +902,7 @@ namespace nFMOD
             return new Sound(SoundHandle);
         }
 
-        public Channel PlaySound(Sound snd)
-        {
-            return PlaySound(snd, false);
-        }
-
-        public Channel PlaySound(Sound snd, bool paused)
+        public Channel PlaySound(Sound snd, bool paused = false)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(PlaySound(DangerousGetHandle(), ChannelIndex.Free, snd.DangerousGetHandle(), paused, ref result));
