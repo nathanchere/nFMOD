@@ -487,7 +487,6 @@ namespace nFMOD
                 return new Sound(result);
             }         
         }
-
         
         //public RESULT getSpectrum           (float[] spectrumarray, int numvalues, int channeloffset, DSP_FFT_WINDOW windowtype)
         //{
