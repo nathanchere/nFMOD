@@ -54,7 +54,7 @@ namespace nFMOD.Demo.SpectrumAnalysis
                     max,maxX,maxY,maxR,maxG,maxB);
 
                 var brush = new SolidBrush(Color.FromArgb((int)R,(int)G,(int)B));
-                g.FillEllipse(brush, (int)x, (int)y, 5, (int)(2 + value*2) * 7);
+                g.FillEllipse(brush, x, y, 5, (2 + value*2) * 7);
             }
         }
 
