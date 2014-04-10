@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Spikes", "Spikes", "{E0C510
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Spikes", "nFMOD.Spikes\nFMOD.Spikes.csproj", "{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.SpectrumAnalysis", "nFMOD.Demo.SpectrumAnalysis\nFMOD.Demo.SpectrumAnalysis.csproj", "{5071B2EE-2AEF-4391-8734-A8CEA39014E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,12 +60,23 @@ Global
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}.Release|x86.ActiveCfg = Release|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E1C91BDC-C190-4A01-BC2B-168D701475A8} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
+		{5071B2EE-2AEF-4391-8734-A8CEA39014E8} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6} = {E0C510FA-D022-4E4C-A169-17B1EB7BACB7}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
