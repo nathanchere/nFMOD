@@ -218,10 +218,6 @@ namespace nFMOD
 
         public delegate ErrorCode ChannelDelegate(IntPtr channelraw, ChannelCallbackType type, IntPtr commanddata1, IntPtr commanddata2);
 
-        private Channel()
-        {
-        }
-
         internal Channel(IntPtr hnd)
         {
             SetHandle(hnd);
