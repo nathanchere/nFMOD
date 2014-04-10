@@ -16,6 +16,12 @@ namespace nFMOD.Spikes
             fmod.Init();
             var dsp = fmod.CreateDspByType(DspType.Oscillator);
             var channel = fmod.PlayDsp(dsp);
+
+            var fmod2 = channel.SoundSystem;
+
+            fmod.CloseSystem();
+            
+            
         }
     }
 }
