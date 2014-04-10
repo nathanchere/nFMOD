@@ -7,35 +7,35 @@ namespace nFMOD
     public partial class Reverb : Handle
     {
         #region Externs
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetProperties(IntPtr reverb, ref ReverbProperties properties);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetProperties(IntPtr reverb, ref ReverbProperties properties);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode Set3DAttributes(IntPtr reverb, ref Vector3 position, float mindistance, float maxdistance);
-
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode Get3DAttributes(IntPtr reverb, ref Vector3 position, ref float mindistance, ref float maxdistance);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetActive(IntPtr reverb, int active);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetActive(IntPtr reverb, ref int active);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetUserData(IntPtr reverb, IntPtr userdata);
+        private static extern ErrorCode GetMemoryInfo(IntPtr reverb, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_GetProperties"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode GetProperties(IntPtr reverb, ref ReverbProperties properties);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode GetUserData(IntPtr reverb, ref IntPtr userdata);
 
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode GetMemoryInfo(IntPtr reverb, uint memorybits, uint event_memorybits, ref uint memoryused, ref MemoryUsageDetails memoryused_details);
-
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_Release"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode Release(IntPtr reverb);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode Set3DAttributes(IntPtr reverb, ref Vector3 position, float mindistance, float maxdistance);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode SetActive(IntPtr reverb, int active);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Reverb_SetProperties"), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode SetProperties(IntPtr reverb, ref ReverbProperties properties);
+
+        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = ""), SuppressUnmanagedCodeSecurity]
+        private static extern ErrorCode SetUserData(IntPtr reverb, IntPtr userdata);
         #endregion
 
         private Reverb()
@@ -324,7 +324,7 @@ namespace nFMOD
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
-                ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
+                        ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
             public static readonly ReverbProperties Arena = new ReverbProperties {
@@ -559,7 +559,7 @@ namespace nFMOD
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
-                ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
+                        ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
             public static readonly ReverbProperties Quarry = new ReverbProperties {
@@ -638,7 +638,7 @@ namespace nFMOD
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
-                ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
+                        ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
             public static readonly ReverbProperties SewerPipe = new ReverbProperties {
@@ -717,7 +717,7 @@ namespace nFMOD
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
-                ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
+                        ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
             public static readonly ReverbProperties Dizzy = new ReverbProperties {
@@ -744,7 +744,7 @@ namespace nFMOD
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
-                ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
+                        ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
 
             public static readonly ReverbProperties Psychotic = new ReverbProperties {
@@ -771,7 +771,7 @@ namespace nFMOD
                 LowFrequencyReference = 250.0f,
                 RoomRolloffFactor = 0.0f,
                 Flags = ReverbFlags.DecayTimeScale | ReverbFlags.ReflectionsScale |
-                ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
+                        ReverbFlags.ReflectionsDelayScale | ReverbFlags.ReverbScale | ReverbFlags.ReverbDelayScale
             };
         }
         #endregion

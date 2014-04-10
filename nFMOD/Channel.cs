@@ -7,7 +7,6 @@ namespace nFMOD
     public class Channel : Handle, ISpectrumWave
     {
         #region Externs
-
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_Channel_AddDSP"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode AddDSP(IntPtr channel, IntPtr dsp, ref IntPtr connection);
 
