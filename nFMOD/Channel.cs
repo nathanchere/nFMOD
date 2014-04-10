@@ -301,6 +301,7 @@ namespace nFMOD
             {
                 IntPtr result = IntPtr.Zero;
                 Errors.ThrowIfError(GetSystemObject(handle, ref result));
+                return new SoundSystem();
 
                 ////TODO: SoundSystem.SetRaw(result);
                 //if (system == null)

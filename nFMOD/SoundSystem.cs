@@ -421,28 +421,33 @@ namespace nFMOD
         private static extern ErrorCode UpdateFinished(IntPtr system);
         #endregion
 
-        public SoundSystem()
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(Create(ref result));
-            SetHandle(result);
+        public SoundSystem() : this(IntPtr.Zero) { }
 
-            if (Version < Common.FMOD_DLL_MINIMUM_VERSION) {
-                Release(handle);
-                SetHandleAsInvalid();
-                var message = string.Format("{0}.dll is vesrsion {1:X}. Minimum supported version is {2:X}.",
-                    Common.FMOD_DLL_NAME,
-                    Version,
-                    Common.FMOD_DLL_MINIMUM_VERSION
-                    );
-                throw new NotSupportedException(message);
-            }
+        internal SoundSystem(IntPtr newHandle)
+        {
+            if(newHandle == IntPtr.Zero) Errors.ThrowIfError(Create(ref newHandle));
+            SetHandle(newHandle);
+
+            CheckMinimumVersion();
         }
 
+        private void CheckMinimumVersion()
+        {
+            if (Version >= Common.FMOD_DLL_MINIMUM_VERSION) return;
+            
+            Release(handle); // TODO: just use ReleaseHandle?
+            SetHandleAsInvalid(); // TODO: possibly redundant?
+            var message = string.Format("{0}.dll is vesrsion {1:X}. Minimum supported version is {2:X}.",
+                Common.FMOD_DLL_NAME,
+                Version,
+                Common.FMOD_DLL_MINIMUM_VERSION
+                );
+            throw new NotSupportedException(message);           
+        }
+        
         protected override bool ReleaseHandle()
         {
-            if (IsInvalid)
-                return true;
+            if (IsInvalid) return true;
 
             CloseSystem(handle);
             Release(handle);
