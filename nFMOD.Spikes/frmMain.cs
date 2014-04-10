@@ -13,6 +13,7 @@ namespace nFMOD.Spikes
         private void btnGetSystemObjectWhenNotInitialized_Click(object sender, EventArgs e)
         {
             var fmod = new SoundSystem();
+            fmod.Init();
             var dsp = fmod.CreateDspByType(DspType.Oscillator);
             var channel = fmod.PlayDsp(dsp);
         }
