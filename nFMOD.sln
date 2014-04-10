@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD", "nFMOD\nFMOD.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demos.FmodSharpExample", "Demos\nFMOD.Demos.FmodSharpExample\nFMOD.Demos.FmodSharpExample.csproj", "{E1C91BDC-C190-4A01-BC2B-168D701475A8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AE7F003D-2DD2-4E1D-B188-23CE6DD71B36}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
@@ -16,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Spikes", "Spikes", "{E0C510
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Spikes", "nFMOD.Spikes\nFMOD.Spikes.csproj", "{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.SpectrumAnalysis", "nFMOD.Demo.SpectrumAnalysis\nFMOD.Demo.SpectrumAnalysis.csproj", "{5071B2EE-2AEF-4391-8734-A8CEA39014E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.SpectrumAnalysis", "nFMOD.Demos\nFMOD.Demo.SpectrumAnalysis\nFMOD.Demo.SpectrumAnalysis.csproj", "{5071B2EE-2AEF-4391-8734-A8CEA39014E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,16 +38,6 @@ Global
 		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|Mixed Platforms.Build.0 = Release|x86
 		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.ActiveCfg = Release|x86
 		{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}.Release|x86.Build.0 = Release|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|x86.ActiveCfg = Debug|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Debug|x86.Build.0 = Debug|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|Any CPU.ActiveCfg = Release|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|Mixed Platforms.Build.0 = Release|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|x86.ActiveCfg = Release|x86
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8}.Release|x86.Build.0 = Release|x86
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -75,7 +63,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E1C91BDC-C190-4A01-BC2B-168D701475A8} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{5071B2EE-2AEF-4391-8734-A8CEA39014E8} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6} = {E0C510FA-D022-4E4C-A169-17B1EB7BACB7}
 	EndGlobalSection

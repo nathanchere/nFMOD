@@ -87,10 +87,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nFMOD\nFMOD.csproj">
+    <ProjectReference Include="..\..\nFMOD\nFMOD.csproj">
       <Project>{E0810E1A-EA20-4F0D-8D0F-5B72C3E64F6D}</Project>
       <Name>nFMOD</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Dependencies\test.mp3">
+      <Link>test.mp3</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
