@@ -69,7 +69,7 @@
     <Compile Include="Reverb.cs" />
     <Compile Include="Memory.cs" />
     <Compile Include="ISpectrumWave.cs" />
-    <Compile Include="SoundSystem.cs" />
+    <Compile Include="FmodSystem.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -135,7 +135,7 @@ namespace nFMOD
 	}
     #endregion
 
-    #region SoundSystem
+    #region FmodSystem
     /// <summary>
     /// These callback types are used with System::setCallback.
     /// </summary>
@@ -187,7 +187,7 @@ namespace nFMOD
 
     /// <summary>
     /// //Initialization flags.
-    /// Use them with <see cref="SoundSystem.Init"/> in the flags parameter to change various behaviour.
+    /// Use them with <see cref="FmodSystem.Init"/> in the flags parameter to change various behaviour.
     /// </summary>
     [Flags]
     public enum InitFlags
@@ -1879,7 +1879,7 @@ namespace nFMOD
         OutputEnumeration,
 
         /// <summary>
-        /// Soundcard does not support the minimum features needed for this soundsystem (16bit stereo output).
+        /// Soundcard does not support the minimum features needed for this FmodSystem (16bit stereo output).
         /// </summary>
         OutputFormat,
 

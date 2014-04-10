@@ -807,7 +807,7 @@ namespace nFMOD
         {
             get
             {
-                return "Soundcard does not support the minimum features needed for this soundsystem (16bit stereo output).";
+                return "Soundcard does not support the minimum features needed for this FmodSystem (16bit stereo output).";
             }
         }
     }

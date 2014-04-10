@@ -297,15 +297,15 @@ namespace nFMOD
 
         #region new
         /// <remarks>
-        /// Throws FmodTooManyChannelsException if SoundSystem handle is invalid
+        /// Throws FmodTooManyChannelsException if FmodSystem handle is invalid
         /// </remarks>>
-        public SoundSystem SoundSystem // TODO: internal?
+        public FmodSystem SystemInstance // TODO: internal?
         {
             get
             {
                 IntPtr result = IntPtr.Zero;                
                 Errors.ThrowIfError(GetSystemObject(handle, ref result));
-                return new SoundSystem(result);
+                return new FmodSystem(result);
             }
         }
 

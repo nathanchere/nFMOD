@@ -11,8 +11,8 @@ namespace nFMOD
     public delegate ErrorCode PCMSetposDelegate(IntPtr soundraw, int subsound, uint position, TimeUnit postype);
     #endregion
 
-    #region SoundSystem
-    public delegate void SystemDelegate(SoundSystem system);
+    #region FmodSystem
+    public delegate void SystemDelegate(FmodSystem system);
 
     public delegate ErrorCode File_OpenDelegate([MarshalAs(UnmanagedType.LPWStr)]string name, int unicode, ref uint filesize, ref IntPtr handle, ref IntPtr userdata);
     public delegate ErrorCode File_CloseDelegate(IntPtr handle, IntPtr userdata);

@@ -39,6 +39,7 @@ How I approach my public projects is explained on [my github home page](http://n
 
 ####v0.3 (2014-04-07)
 
+* Drop FmodSharp as base; replace with rewritten code with official FMOD SDK as reference
 * Basic x64 support ground work (largely untested)
 * add support for missing and new-since-4.32 functionality
 * restructure / consolidate class heirarchy

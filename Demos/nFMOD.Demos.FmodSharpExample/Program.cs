@@ -17,19 +17,19 @@ namespace nFMOD
 			Console.WriteLine ("Type: {0}", Debug.Type);
 			Console.WriteLine ("Display: {0}", Debug.Display);
 			
-            var SoundSystem = new SoundSystem();
+            var fmod = new FmodSystem();
 			
-            Console.WriteLine ("Default Output Type: {0}", SoundSystem.Output);
+            Console.WriteLine ("Default Output Type: {0}", fmod.Output);
 			
-            SoundSystem.Init();
+            fmod.Init();
 			
             Channel Chan = null;
 			
             //Create an oscillator DSP unit for the tone.
             Dsp Oscillator;
 			
-            Oscillator = SoundSystem.CreateDspByType(DspType.Oscillator);
-            Chan = SoundSystem.PlayDsp(Oscillator);
+            Oscillator = fmod.CreateDspByType(DspType.Oscillator);
+            Chan = fmod.PlayDsp(Oscillator);
 			
             Console.WriteLine("\nPress Enter to stop.\n");
             bool Quit = false;
@@ -73,8 +73,8 @@ namespace nFMOD
             }
             Oscillator.Dispose();
             Chan.Dispose();
-            SoundSystem.CloseSystem();
-            SoundSystem.Dispose();
+            fmod.CloseSystem();
+            fmod.Dispose();
 
             Console.Write("Press any key to exit...");
             Console.ReadKey(true);

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace nFMOD
 {
-    public class SoundSystem : Handle, ISpectrumWave
+    public class FmodSystem : Handle, ISpectrumWave
     {
         #region Externs
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_AddDSP"), SuppressUnmanagedCodeSecurity]
@@ -422,9 +422,9 @@ namespace nFMOD
         #endregion
 
         #region ctor etc
-        public SoundSystem() : this(IntPtr.Zero) { }
+        public FmodSystem() : this(IntPtr.Zero) { }
 
-        internal SoundSystem(IntPtr newHandle)
+        internal FmodSystem(IntPtr newHandle)
         {
             if(newHandle == IntPtr.Zero) Errors.ThrowIfError(Create(ref newHandle));
             SetHandle(newHandle);
