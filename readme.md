@@ -48,6 +48,7 @@ How I approach my public projects is explained on [my github home page](http://n
 * Sort all extern aliases
 * Add internal ctors for main classes to take existing instance handle
 * More sample code
+* Fix fmodex.dll extern declarations accidentally left public
 
 #### v0.5 (2014-04-10)
 * Enum cleanup
