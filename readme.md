@@ -48,6 +48,7 @@ How I approach my public projects is explained on [my github home page](http://n
 * Sort all extern aliases
 * Add internal ctors for main classes to take existing instance handle
 * More sample code
+* Fix CheckMinimumVersion bug causing crash instead of appropriate exception
 
 #### v0.5.1 (2014-04-14)
 * Fix fmodex.dll extern declarations accidentally left public
