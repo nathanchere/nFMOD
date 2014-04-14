@@ -433,16 +433,24 @@ namespace nFMOD
         }
 
         private void CheckMinimumVersion()
-        {
-            if (Version >= Common.FMOD_DLL_MINIMUM_VERSION) return;
-            
-            Release(handle); // TODO: just use ReleaseHandle?
-            SetHandleAsInvalid(); // TODO: possibly redundant?
-            var message = string.Format("{0}.dll is vesrsion {1:X}. Minimum supported version is {2:X}.",
+        {                        
+            try
+            {
+                if (Version >= Common.FMOD_DLL_MINIMUM_VERSION) return;
+            }
+            catch
+            { 
+                throw new NotSupportedException("Unable to determine FMOD version (is fmodex.dll missing or out of date?)");
+            }
+
+            var message = string.Format("{0}.dll is version {1:X}. Minimum supported version is {2:X}.",
                 Common.FMOD_DLL_NAME,
                 Version,
                 Common.FMOD_DLL_MINIMUM_VERSION
                 );
+
+            Release(handle);
+            SetHandleAsInvalid();            
             throw new NotSupportedException(message);           
         }
         

@@ -82,9 +82,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fmodex.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="fmodex.dll" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\nFMOD\nFMOD.csproj">
