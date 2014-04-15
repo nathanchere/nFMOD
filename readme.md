@@ -1,5 +1,5 @@
 # nFMOD
-###*A .NET wrapper for Firelight Studio's FMOD audio library.*
+###A .NET wrapper for Firelight Studio's FMOD audio library.
 
 The official FMOD SDK comes with some C# examples, however .Net is clearly not the primary audience for the library and the C# examples largely read like a direct port of classic C code. Compared to something like [nAudio](http://naudio.codeplex.com/), the code for interacting with FMOD in the official SDK samples feels very... unrefined.
 
