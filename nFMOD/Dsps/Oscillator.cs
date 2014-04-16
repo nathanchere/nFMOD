@@ -51,7 +51,7 @@ namespace nFMOD.Dsps
 
         public Waveform CycleWaveforms()
         {
-            WaveformType += 1 % (Enum.GetValues(typeof(Waveform)).Length - 1);
+            WaveformType = (Waveform)((int)(WaveformType + 1) % (Enum.GetValues(typeof(Waveform)).Length - 1));
             return WaveformType;
         }
 
