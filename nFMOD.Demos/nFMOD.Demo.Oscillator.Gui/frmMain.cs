@@ -78,7 +78,7 @@ namespace nFMOD.Demo
 
         private void btnCycle_Click(object sender, EventArgs e)
         {
-            oscillator.CycleWaveforms();
+            if (oscillator != null) oscillator.CycleWaveforms();
         }
     }
 }

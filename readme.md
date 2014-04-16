@@ -53,7 +53,8 @@ How I approach my public projects is explained on [my github home page](http://n
 * Relevant logic moved from FmodSystem to DSPs
 * DSPs now tied to a specific FmodSystem instance
 * DSP.Oscillator basic implementation
-* Oscillator demo project
+* Oscillator console demo
+* Oscillator and spectrum visualisation demo
 
 #### v0.5.1 (2014-04-14)
 * Fix fmodex.dll extern declarations accidentally left public
