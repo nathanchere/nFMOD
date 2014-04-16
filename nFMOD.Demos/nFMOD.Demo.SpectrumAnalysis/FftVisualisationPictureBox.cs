@@ -43,7 +43,7 @@ namespace nFMOD.Demo
 
                 float x = i * barWidth;
                 float y = (value*Height*0.5f);
-                float G = (128 + (value * 128));
+                float G = (127 + (value * 128));
                 float B = (int)(255 / Width * x);
                 float R = (int)(DateTime.Now.Millisecond * 0.15);
 
@@ -61,7 +61,7 @@ namespace nFMOD.Demo
 
                 float x = Width * i / _data.WaveData.Count;
                 float y = Height / 2 + (value*Height*0.5f);
-                float R = (128 + (value * 128));
+                float R = (127 + (value * 128));
                 float G = (int)(255 / Width * x);
                 float B = (int)(DateTime.Now.Millisecond * 0.15);                
                 float height = (1 - (float)Math.Pow(1-Math.Abs(value),5)) * 50;
