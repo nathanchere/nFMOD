@@ -409,6 +409,22 @@ namespace nFMOD
         private static extern ErrorCode UpdateFinished(IntPtr system);
         #endregion
 
+        #region Managed resources
+        private Dictionary<IntPtr,Dsp> _dsps;
+
+        private void CleanupResources()
+        {
+            foreach (var dsp in _dsps.Values)
+            {
+                if (dsp != null && !dsp.IsInvalid)
+                {
+                    if(!dsp.IsClosed) dsp.Close();
+                    dsp.Remove();
+                }
+            }
+        }
+        #endregion
+
         #region ctor etc
         public FmodSystem() : this(IntPtr.Zero) { }
 
@@ -416,8 +432,9 @@ namespace nFMOD
         {
             if(newHandle == IntPtr.Zero) Errors.ThrowIfError(Create(ref newHandle));
             SetHandle(newHandle);
-
             CheckMinimumVersion();
+
+            _dsps = new Dictionary<IntPtr, Dsp>();
         }
 
         private void CheckMinimumVersion()
@@ -446,12 +463,14 @@ namespace nFMOD
         {
             if (IsInvalid) return true;
 
+            CleanupResources();
+
             CloseSystem(handle);
             Release(handle);
             SetHandleAsInvalid();
 
             return true;
-        }
+        }        
 
         public void Init(int Maxchannels = 32, InitFlags Flags = InitFlags.Normal | InitFlags.RightHanded3D)
         {
@@ -683,9 +702,10 @@ namespace nFMOD
 
         #region Methods - DSP        
         public Dsp CreateDsp(DspType type)
-        {
-            // TODO: track all DSPs created per FmodSystem instance to ensure safe release/unload
-            return Dsp.GetInstance(this, type);
+        {            
+            var result = Dsp.GetInstance(this, type);
+            _dsps.Add(result.DangerousGetHandle(), result);
+            return result;
         }        
 
         public DspConnection AddDsp(Dsp dsp)
