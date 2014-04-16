@@ -7,7 +7,7 @@
     <ProjectGuid>{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>nFMOD.Demo.Oscillator</RootNamespace>
+    <RootNamespace>nFMOD.Demo</RootNamespace>
     <AssemblyName>nFMOD.Demo.Oscillator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -54,9 +54,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Dependencies\win32\fmodex.dll">
+    <None Include="..\..\Dependencies\win32\fmodex.dll">
       <Link>fmodex.dll</Link>
-    </Content>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

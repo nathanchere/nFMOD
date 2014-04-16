@@ -54,7 +54,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Dependencies\win32\fmodex.dll">
+    <None Include="..\..\Dependencies\win32\fmodex.dll">
       <Link>fmodex.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

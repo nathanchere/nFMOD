@@ -16,7 +16,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Spikes", "nFMOD.Spike
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.SpectrumAnalysis", "nFMOD.Demos\nFMOD.Demo.SpectrumAnalysis\nFMOD.Demo.SpectrumAnalysis.csproj", "{5071B2EE-2AEF-4391-8734-A8CEA39014E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.Oscillator", "nFMOD.Demo.Oscillator\nFMOD.Demo.Oscillator.csproj", "{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.Oscillator", "nFMOD.Demos\nFMOD.Demo.Oscillator\nFMOD.Demo.Oscillator.csproj", "{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.Oscillator.Gui", "nFMOD.Demos\nFMOD.Demo.Oscillator.Gui\nFMOD.Demo.Oscillator.Gui.csproj", "{37E23D55-C467-45AA-B562-AA884D52D3BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,16 @@ Global
 		{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4}.Release|x86.ActiveCfg = Release|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +89,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5071B2EE-2AEF-4391-8734-A8CEA39014E8} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
+		{37E23D55-C467-45AA-B562-AA884D52D3BA} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6} = {E0C510FA-D022-4E4C-A169-17B1EB7BACB7}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
