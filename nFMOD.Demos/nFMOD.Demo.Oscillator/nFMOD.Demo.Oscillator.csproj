@@ -48,16 +48,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\nFMOD\nFMOD.csproj">
+    <ProjectReference Include="..\..\nFMOD\nFMOD.csproj">
       <Project>{e0810e1a-ea20-4f0d-8d0f-5b72c3e64f6d}</Project>
       <Name>nFMOD</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Dependencies\win32\fmodex.dll">
+    <Content Include="..\..\Dependencies\win32\fmodex.dll">
       <Link>fmodex.dll</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
