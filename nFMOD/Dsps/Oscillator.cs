@@ -43,28 +43,29 @@ namespace nFMOD.Dsps
         {
         }
 
-        private float _rate = 220f;
+        private float _frequency = 220f;
         private Waveform _waveform = Waveform.Sine;
 
-        public void CycleWaveforms()
+        public Waveform CycleWaveforms()
         {
-            WaveformType+=1;
+            WaveformType+=1 % (Enum.GetValues(typeof(Waveform)).Length-1);
+            return WaveformType;
         }
 
         /// <summary>
         /// Oscillation rate (in hz) from 1.0 to 220000
         /// Default: 220.0
         /// </summary>
-        public float Rate
+        public float Frequency
         {
             get
             {
-                return _rate;
+                return _frequency;
             }
             set
             {
                 SetParameter(DangerousGetHandle(), (int)Parameter.Rate, value);
-                _rate = value;
+                _frequency = value;
             }
         }
 

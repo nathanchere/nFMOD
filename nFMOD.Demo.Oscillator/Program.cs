@@ -20,29 +20,38 @@ namespace nFMOD.Demo
             };
 
             using (var fmod = new FmodSystem()) {
-                fmod.Init();
+                fmod.Init();                
                 using (var oscillator = (Oscillator)fmod.CreateDsp(DspType.Oscillator))
                 {
                     oscillator.Play();
 
-                    Console.WriteLine("nFMOD test\nGenerating sine wave; Ctrl+C to quit");
+                    while (!quit.WaitOne(0))
+                    {
+                        Console.SetCursorPosition(0,0);
+                        var prompt = string.Format(
+                            "nFMOD test: DSP (Oscillator)\n" + 
+                            "----------------------------\n\n" + 
+                            "Generating {0} wave; frequency: {1:0}hz\n" + 
+                            "Left/Right to change frequency, Ctrl+C to quit",
+                            oscillator.WaveformType, oscillator.Frequency);
+                        Console.WriteLine(prompt);
 
-                    while (!quit.WaitOne(0)) {
-                        switch (Console.ReadKey().Key) {
+                        switch (Console.ReadKey().Key)
+                        {
                             case ConsoleKey.Escape:
                                 quit.Set();
                                 break;
 
                             case ConsoleKey.LeftArrow:
-                                oscillator.Rate -= 0.1f;
+                                oscillator.Frequency -= 10f;
                                 break;
 
                             case ConsoleKey.RightArrow:
+                                oscillator.Frequency += 10f;
                                 break;
 
                             case ConsoleKey.Spacebar:
-                                //dsp.setParameter((int)FMOD.DSP_OSCILLATOR.TYPE, 0);
-                                //channel.setPaused(false);
+                                oscillator.CycleWaveforms();
                                 break;
                         }
 
