@@ -2,14 +2,14 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using nFMOD.Dsps;
 
 namespace nFMOD.Demo
 {
     public partial class frmMain : Form
     {
-        private const string MP3_PATH = @"test.mp3";
         private FmodSystem fmod;
-        private Sound sound;
+        private Dsps.Oscillator oscillator;
         private Channel channel;
 
         public frmMain()
@@ -49,10 +49,9 @@ namespace nFMOD.Demo
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            if (channel != null && channel.IsPlaying)
-                return;
-            sound = fmod.CreateSound(MP3_PATH);
-            channel = fmod.PlaySound(sound);
+            if (channel != null && channel.IsPlaying) return;
+            oscillator = (Oscillator) fmod.CreateDsp(DspType.Oscillator);
+            channel = oscillator.Play();
         }
 
         private void btnPause(object sender, EventArgs e)
@@ -64,8 +63,8 @@ namespace nFMOD.Demo
         {
             if (channel != null)
                 channel.Close();
-            if (sound != null)
-                sound.Close();
+            if (oscillator != null)
+                oscillator.Close();
             if (fmod != null)
                 fmod.Close();
         }
@@ -73,6 +72,16 @@ namespace nFMOD.Demo
         private void frmMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void oscInput_VolumeChanged(object sender, OscillatorInput.ValueChangedEventArgs e)
+        {
+            channel.Volume = e.Value;
+        }
+
+        private void oscInput_FrequencyChanged(object sender, OscillatorInput.ValueChangedEventArgs e)
+        {
+            oscillator.Frequency = e.Value;
         }
     }
 }

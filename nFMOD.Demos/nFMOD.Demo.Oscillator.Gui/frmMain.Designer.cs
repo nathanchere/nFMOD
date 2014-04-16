@@ -35,7 +35,7 @@ namespace nFMOD.Demo
             this.numSpectrumDetail = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.oscInput = new OscillatorInput();
+            this.oscInput = new nFMOD.Demo.OscillatorInput();
             this.btnCycle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picVisualisation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWaveDetail)).BeginInit();
@@ -123,11 +123,14 @@ namespace nFMOD.Demo
             // 
             // oscInput
             // 
+            this.oscInput.Image = ((System.Drawing.Image)(resources.GetObject("oscInput.Image")));
             this.oscInput.Location = new System.Drawing.Point(5, 3);
             this.oscInput.Name = "oscInput";
             this.oscInput.Size = new System.Drawing.Size(284, 269);
             this.oscInput.TabIndex = 7;
             this.oscInput.TabStop = false;
+            this.oscInput.VolumeChanged += new System.EventHandler<nFMOD.Demo.OscillatorInput.ValueChangedEventArgs>(this.oscInput_VolumeChanged);
+            this.oscInput.FrequencyChanged += new System.EventHandler<nFMOD.Demo.OscillatorInput.ValueChangedEventArgs>(this.oscInput_FrequencyChanged);
             // 
             // btnCycle
             // 
