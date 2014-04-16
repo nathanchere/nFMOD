@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace nFMOD.Demo
+namespace nFMOD.Demo.SpectrumAnalysis
 {
     public partial class frmMain : Form
     {

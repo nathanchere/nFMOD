@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace nFMOD.Demo.SpectrumAnalysis
+namespace nFMOD.Demo
 {
     public class FftVisualisationPictureBox : PictureBox
     {
@@ -60,7 +60,7 @@ namespace nFMOD.Demo.SpectrumAnalysis
             }
         }
 
-        internal void UpdateData(VisData result)
+        public void UpdateData(VisData result)
         {
             _data = result;
             Refresh();

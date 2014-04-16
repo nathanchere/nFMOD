@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace nFMOD.Demo.SpectrumAnalysis
+namespace nFMOD.Demo
 {
     public class VisData
     {
