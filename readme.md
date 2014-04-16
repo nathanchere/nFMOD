@@ -48,7 +48,7 @@ How I approach my public projects is explained on [my github home page](http://n
 * More sample code 
 * FmodSYstem to track and manage additional resources (eg Channel)
 
-#### v0.6 (2014-04-??)
+#### v0.6 (2014-04-16)
 * Fix CheckMinimumVersion bug causing crash instead of appropriate exception
 * FmodSystem DSP methods deprecated in favour of strongly typed DSPs
 * Relevant logic moved from FmodSystem to DSPs
