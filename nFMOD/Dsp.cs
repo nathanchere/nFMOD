@@ -1,11 +1,13 @@
 using System;
+using System.ComponentModel.Design.Serialization;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
+using nFMOD.Dsps;
 
 namespace nFMOD
 {
-    public class Dsp : Handle
+    public abstract class Dsp : Handle
     {
         #region Externs
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_DSP_AddInput"), SuppressUnmanagedCodeSecurity]
@@ -121,6 +123,17 @@ namespace nFMOD
         public void Reset()
         {
             Errors.ThrowIfError(Reset_External(DangerousGetHandle()));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static Dsp GetInstance(DspType type, IntPtr handle)
+        {
+            if(type == DspType.Oscillator) return new Oscillator(handle);
+
+            // TODO: implement other types
+            throw new NotSupportedException("DSP type " + type + " not currently supported by nFMOD");
         }
     }
 }

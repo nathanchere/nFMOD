@@ -55,6 +55,7 @@
     <Compile Include="Consolidated\Delegates.cs" />
     <Compile Include="Consolidated\Enums.cs" />
     <Compile Include="Consolidated\Structs.cs" />
+    <Compile Include="Dsps\Oscillator.cs" />
     <Compile Include="FmodException.cs" />
     <Compile Include="Handle.cs" />
     <Compile Include="Sound.cs" />

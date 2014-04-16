@@ -694,18 +694,21 @@ namespace nFMOD
         #region Methods
 
         #region Methods - DSP
+        [Obsolete("Use CreateDspByType() instead")]
         public Dsp CreateDSP(ref DSPDescription description)
         {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
-            return new Dsp(result);
+            throw new NotImplementedException("Generic DSP creation not supported in nFMOD; use CreateDspByType() instead");
+            //// TODO: update this, possibly have GenericDSP implementation?
+            //IntPtr result = IntPtr.Zero;
+            //Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
+            //return new Dsp(result);
         }
 
         public Dsp CreateDspByType(DspType type)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateDspByType(DangerousGetHandle(), type, ref result));
-            return new Dsp(result);
+            return Dsp.GetInstance(type,result);
         }
 
         public Channel PlayDsp(Dsp dsp, bool paused = false)
