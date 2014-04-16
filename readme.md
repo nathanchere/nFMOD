@@ -43,12 +43,17 @@ How I approach my public projects is explained on [my github home page](http://n
 ## Release history
 
 #### vNext
-* Enum cleanup
 * Go through the TODO list
-* Sort all extern aliases
 * Add internal ctors for main classes to take existing instance handle
 * More sample code
+
+#### v0.6 (2014-04-??)
 * Fix CheckMinimumVersion bug causing crash instead of appropriate exception
+* FmodSystem DSP methods deprecated in favour of strongly typed DSPs
+* Relevant logic moved from FmodSystem to DSPs
+* DSPs now tied to a specific FmodSystem instance
+* DSP.Oscillator basic implementation
+* Oscillator demo project
 
 #### v0.5.1 (2014-04-14)
 * Fix fmodex.dll extern declarations accidentally left public
