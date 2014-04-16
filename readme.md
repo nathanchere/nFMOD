@@ -45,13 +45,15 @@ How I approach my public projects is explained on [my github home page](http://n
 #### vNext
 * Go through the TODO list
 * Add internal ctors for main classes to take existing instance handle
-* More sample code
+* More sample code 
+* FmodSYstem to track and manage additional resources (eg Channel)
 
 #### v0.6 (2014-04-??)
 * Fix CheckMinimumVersion bug causing crash instead of appropriate exception
 * FmodSystem DSP methods deprecated in favour of strongly typed DSPs
 * Relevant logic moved from FmodSystem to DSPs
 * DSPs now tied to a specific FmodSystem instance
+* FmodSystem.ReleaseHandle() now handles cleanup of relevant dependant resources
 * DSP.Oscillator basic implementation
 * Oscillator console demo
 * Oscillator and spectrum visualisation demo
