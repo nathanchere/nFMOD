@@ -1,4 +1,4 @@
-﻿namespace nFMOD.Demo.SpectrumAnalysis
+﻿namespace nFMOD.Demo
 {
     partial class frmMain
     {

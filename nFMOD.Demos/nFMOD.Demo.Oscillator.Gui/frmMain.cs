@@ -3,7 +3,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace nFMOD.Demo.SpectrumAnalysis
+namespace nFMOD.Demo
 {
     public partial class frmMain : Form
     {
