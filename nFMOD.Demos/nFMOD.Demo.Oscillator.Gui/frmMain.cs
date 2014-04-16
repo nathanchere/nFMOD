@@ -61,8 +61,8 @@ namespace nFMOD.Demo
 
         ~frmMain()
         {
-            if (channel != null) channel.Close();
             if (oscillator != null) oscillator.Close();
+            if (channel != null) channel.Close();            
             if (fmod != null) fmod.Close();
         }
 
@@ -79,6 +79,6 @@ namespace nFMOD.Demo
         private void btnCycle_Click(object sender, EventArgs e)
         {
             if (oscillator != null) oscillator.CycleWaveforms();
-        }
+        }        
     }
 }
