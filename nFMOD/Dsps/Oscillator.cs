@@ -6,6 +6,9 @@ namespace nFMOD.Dsps
 {
     public class Oscillator : Dsp
     {
+        public const float MAX_FREQUENCY = 22000f;
+        public const float MIN_FREQUENCY = 1f;
+
         private enum Parameter
         {
             /// <summary>
@@ -48,7 +51,7 @@ namespace nFMOD.Dsps
 
         public Waveform CycleWaveforms()
         {
-            WaveformType+=1 % (Enum.GetValues(typeof(Waveform)).Length-1);
+            WaveformType += 1 % (Enum.GetValues(typeof(Waveform)).Length - 1);
             return WaveformType;
         }
 
@@ -64,6 +67,7 @@ namespace nFMOD.Dsps
             }
             set
             {
+                value = Math.Max(Math.Min(value, MAX_FREQUENCY), MIN_FREQUENCY);
                 SetParameter(DangerousGetHandle(), (int)Parameter.Rate, value);
                 _frequency = value;
             }

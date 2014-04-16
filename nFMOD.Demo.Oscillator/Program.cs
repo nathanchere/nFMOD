@@ -55,6 +55,14 @@ namespace nFMOD.Demo
                     oscillator.Frequency += 10f;
                     break;
 
+                    case ConsoleKey.UpArrow:
+                    oscillator.Frequency += 100f;
+                    break;
+
+                case ConsoleKey.DownArrow:
+                    oscillator.Frequency -= 100f;
+                    break;
+
                 case ConsoleKey.Spacebar:
                     oscillator.CycleWaveforms();
                     break;
@@ -68,7 +76,9 @@ namespace nFMOD.Demo
                 "nFMOD test: DSP (Oscillator)\n" +
                 "----------------------------\n\n" +
                 "Generating {0} wave; frequency: {1:0}hz                 \n" +
-                "Left/Right to change frequency, Ctrl+C to quit",
+                "Left/Right to change frequency in 10hz increments,\n"+
+                "Up/Down to change frequency in 100hz increments,\n"+
+                "Ctrl+C to quit",
                 oscillator.WaveformType, oscillator.Frequency);
             Console.WriteLine(prompt);
         }
