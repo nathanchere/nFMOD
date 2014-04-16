@@ -46,6 +46,11 @@ namespace nFMOD.Dsps
         private float _rate = 220f;
         private WaveformType _waveformType = WaveformType.Sine;
 
+        public void CycleWaveforms()
+        {
+            Waveform+=1;
+        }
+
         /// <summary>
         /// Oscillation rate (in hz) from 1.0 to 220000
         /// Default: 220.0
