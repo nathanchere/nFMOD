@@ -11,7 +11,7 @@ At this point in time nFMOD focuses solely on Windows. While Mono-based cross pl
 
 ## Documentation
 
-nFMOD is still under heavy development and likely to change frequently and significantly enough to make documentation a fool's endeavour at this point. Planned to co-incide with the 1.0 release are 'tutorial' articles and sample projects.
+nFMOD is still under heavy development and likely to change frequently and significantly enough to make comprehensive documentation a fool's endeavour at this point. 
 
 A brief example of how easy it is to start adding sound to your application with nFMOD:
 
@@ -28,6 +28,10 @@ using (var fmod = new FmodSystem())
     fmod.CloseSystem();
 }
 ```
+
+Tutorials and sample projects are planned to co-incide with the 1.0 release. There are already a few example projects included, the most interesting one for now is *nFMOD.Demo.Oscillator.GUI* which demonstrates FMOD's DSP system for sound generation as well as how to stream live audio data for visualisation:
+
+![nFMOD demo screenshot](http://nathanchere.github.io/nfmod_oscgui.gif)
 
 ## Status
 
