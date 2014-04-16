@@ -29,30 +29,19 @@ namespace nFMOD.Demo
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.picVisualisation = new nFMOD.Demo.FftVisualisationPictureBox();
             this.btnPlay = new System.Windows.Forms.Button();
             this.numWaveDetail = new System.Windows.Forms.NumericUpDown();
             this.numSpectrumDetail = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.oscInput = new nFMOD.Demo.OscillatorInput();
             this.btnCycle = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.picVisualisation)).BeginInit();
+            this.oscInput = new nFMOD.Demo.OscillatorInput();
+            this.picVisualisation = new nFMOD.Demo.FftVisualisationPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.numWaveDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSpectrumDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oscInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVisualisation)).BeginInit();
             this.SuspendLayout();
-            // 
-            // picVisualisation
-            // 
-            this.picVisualisation.BackColor = System.Drawing.Color.Black;
-            this.picVisualisation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picVisualisation.Image = ((System.Drawing.Image)(resources.GetObject("picVisualisation.Image")));
-            this.picVisualisation.Location = new System.Drawing.Point(295, 0);
-            this.picVisualisation.Name = "picVisualisation";
-            this.picVisualisation.Size = new System.Drawing.Size(358, 221);
-            this.picVisualisation.TabIndex = 0;
-            this.picVisualisation.TabStop = false;
             // 
             // btnPlay
             // 
@@ -121,6 +110,17 @@ namespace nFMOD.Demo
             this.label2.TabIndex = 6;
             this.label2.Text = "Wave resolution";
             // 
+            // btnCycle
+            // 
+            this.btnCycle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCycle.Location = new System.Drawing.Point(397, 228);
+            this.btnCycle.Name = "btnCycle";
+            this.btnCycle.Size = new System.Drawing.Size(100, 41);
+            this.btnCycle.TabIndex = 8;
+            this.btnCycle.Text = "Cycle Waveform";
+            this.btnCycle.UseVisualStyleBackColor = true;
+            this.btnCycle.Click += new System.EventHandler(this.btnCycle_Click);
+            // 
             // oscInput
             // 
             this.oscInput.Image = ((System.Drawing.Image)(resources.GetObject("oscInput.Image")));
@@ -132,16 +132,16 @@ namespace nFMOD.Demo
             this.oscInput.VolumeChanged += new System.EventHandler<nFMOD.Demo.OscillatorInput.ValueChangedEventArgs>(this.oscInput_VolumeChanged);
             this.oscInput.FrequencyChanged += new System.EventHandler<nFMOD.Demo.OscillatorInput.ValueChangedEventArgs>(this.oscInput_FrequencyChanged);
             // 
-            // btnCycle
+            // picVisualisation
             // 
-            this.btnCycle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCycle.Location = new System.Drawing.Point(397, 228);
-            this.btnCycle.Name = "btnCycle";
-            this.btnCycle.Size = new System.Drawing.Size(100, 41);
-            this.btnCycle.TabIndex = 8;
-            this.btnCycle.Text = "Cycle Waveform";
-            this.btnCycle.UseVisualStyleBackColor = true;
-            this.btnCycle.Click += new System.EventHandler(this.btnCycle_Click);
+            this.picVisualisation.BackColor = System.Drawing.Color.Black;
+            this.picVisualisation.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picVisualisation.Image = ((System.Drawing.Image)(resources.GetObject("picVisualisation.Image")));
+            this.picVisualisation.Location = new System.Drawing.Point(295, 0);
+            this.picVisualisation.Name = "picVisualisation";
+            this.picVisualisation.Size = new System.Drawing.Size(358, 221);
+            this.picVisualisation.TabIndex = 0;
+            this.picVisualisation.TabStop = false;
             // 
             // frmMain
             // 
@@ -161,11 +161,11 @@ namespace nFMOD.Demo
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "nFMOD Demo: Spectrum Analysis";
-            ((System.ComponentModel.ISupportInitialize)(this.picVisualisation)).EndInit();
+            this.Text = "nFMOD Demo: Oscillator (GUI)";
             ((System.ComponentModel.ISupportInitialize)(this.numWaveDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSpectrumDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oscInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picVisualisation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
