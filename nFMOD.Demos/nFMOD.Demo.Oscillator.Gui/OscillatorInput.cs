@@ -11,11 +11,23 @@ namespace nFMOD.Demo
         private float _volume = 0.5f;
         private Font _font;
 
+        public class ValueChangedEventArgs : EventArgs
+        {
+            public ValueChangedEventArgs(float value)
+            {
+                Value = value;
+            }
+            public float Value { get; private set; }
+        }
+
+        public event EventHandler<ValueChangedEventArgs> VolumeChanged;
+        public event EventHandler<ValueChangedEventArgs> FrequencyChanged;
+
         public OscillatorInput()
         {
             DoubleBuffered = true;
             Image = new Bitmap(Width, Height);
-            _font = new Font("Arial", 12);
+            _font = new Font("Lucida Console", 10);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -34,13 +46,12 @@ namespace nFMOD.Demo
             var brush = new SolidBrush(Color.FromArgb(160, 255, 0));
             var point = GetPoint();
             g.FillEllipse(brush, point.X,point.Y,10,10);
+            
+            g.DrawString(string.Format("Frequency: {0,7:####0.0}hz",_frequency),
+                _font, Brushes.BlueViolet, 5f,5f);
 
-            //g.DrawString(string.Format("{0:00000.00",_frequency), 
-            //    new Font("Arial", 12), Brushes.BlueViolet, 5f,5f);
-            g.DrawString(string.Format("{0:00000.00}",_frequency),
-                _font,
-                Brushes.BlueViolet, 5f,5f)
-                ;
+            g.DrawString(string.Format("Volume: {0:0.00}",_volume),
+                _font, Brushes.BlueViolet, 5f,20f);
 
             //Invalidate();
         }
@@ -63,10 +74,21 @@ namespace nFMOD.Demo
 
             var newFrequency = e.X / (float)Width * 22000f;
             var newVolume = 1 - (1 / (float)Height * e.Y);
-            //TODO: raise event
+            
+            if (Math.Abs(newFrequency - _frequency) > 0.1f)
+            {
+                if(FrequencyChanged != null) FrequencyChanged(this, 
+                    new ValueChangedEventArgs(newFrequency));
+                _frequency = newFrequency;
+            }
+            
+            if (Math.Abs(newVolume - _volume) > 0.1f)
+            {
+                if(VolumeChanged != null) VolumeChanged(this, 
+                    new ValueChangedEventArgs(newVolume));
+                _volume = newVolume;
+            }
 
-            _frequency = newFrequency;
-            _volume = newVolume;
             Refresh();
         }
     }
