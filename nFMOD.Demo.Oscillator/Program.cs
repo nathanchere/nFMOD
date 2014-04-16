@@ -66,7 +66,7 @@ namespace nFMOD.Demo
             var prompt = string.Format(
                 "nFMOD test: DSP (Oscillator)\n" +
                 "----------------------------\n\n" +
-                "Generating {0} wave; frequency: {1:0}hz\n" +
+                "Generating {0} wave; frequency: {1:0}hz                 \n" +
                 "Left/Right to change frequency, Ctrl+C to quit",
                 oscillator.WaveformType, oscillator.Frequency);
             Console.WriteLine(prompt);
