@@ -68,12 +68,12 @@ namespace nFMOD.Demo
 
         private void oscInput_VolumeChanged(object sender, OscillatorInput.ValueChangedEventArgs e)
         {
-            channel.Volume = e.Value;
+            if (channel != null) channel.Volume = e.Value;
         }
 
         private void oscInput_FrequencyChanged(object sender, OscillatorInput.ValueChangedEventArgs e)
         {
-            oscillator.Frequency = e.Value;
+            if (oscillator != null) oscillator.Frequency = e.Value;
         }
 
         private void btnCycle_Click(object sender, EventArgs e)
