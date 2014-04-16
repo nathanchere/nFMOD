@@ -10,6 +10,7 @@ namespace nFMOD.Demo
         private float _frequency = 220f;
         private float _volume = 0.5f;
         private Font _font;
+        private Point _lastPosition;
 
         public class ValueChangedEventArgs : EventArgs
         {
@@ -52,16 +53,18 @@ namespace nFMOD.Demo
 
             g.DrawString(string.Format("Volume: {0:0.00}",_volume),
                 _font, Brushes.BlueViolet, 5f,20f);
-
-            //Invalidate();
         }
 
         private Point GetPoint()
         {
-            var result = Point.Empty;
-            result.X = (int)(Width / 22000f * _frequency);
-            result.Y = (int)(Height - (Height  * _volume));
-            return result;
+            return _lastPosition;
+
+            //// TODO: would probably be better to do this; need to work out
+            ////   to undo an unknown value logarithm
+            //var result = Point.Empty;
+            //result.X = (int)(Width / 22000f * _frequency);            
+            //result.Y = (int)(Height - (Height  * _volume));
+            //return result;
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -71,23 +74,22 @@ namespace nFMOD.Demo
                 base.OnMouseMove(e);
                 return;
             }
+            _lastPosition = e.Location;
 
             var newFrequency = e.X / (float)Width * 22000f;
-            newFrequency = (float) (newFrequency / (Math.Log(Width,16) * Math.Log(e.X,16)));
+            newFrequency = (float) (newFrequency * Math.Pow(Math.Log(e.X,1024),6));
 
             var newVolume = 1 - (1 / (float)Height * e.Y);            
             
             if (Math.Abs(newFrequency - _frequency) > 0.1f)
             {
-                if(FrequencyChanged != null) FrequencyChanged(this, 
-                    new ValueChangedEventArgs(newFrequency));
+                if(FrequencyChanged != null) FrequencyChanged(this, new ValueChangedEventArgs(newFrequency));
                 _frequency = newFrequency;
             }
             
-            if (Math.Abs(newVolume - _volume) > 0.1f)
+            if (Math.Abs(newVolume - _volume) > 0.001f)
             {
-                if(VolumeChanged != null) VolumeChanged(this, 
-                    new ValueChangedEventArgs(newVolume));
+                if(VolumeChanged != null) VolumeChanged(this, new ValueChangedEventArgs(newVolume));
                 _volume = newVolume;
             }
 
