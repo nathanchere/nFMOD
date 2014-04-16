@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using nFMOD.Dsps;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace nFMOD.Demo.Oscillator
+namespace nFMOD.Demo
 {
     class Program
     {
@@ -20,26 +21,25 @@ namespace nFMOD.Demo.Oscillator
 
             using (var fmod = new FmodSystem()) {
                 fmod.Init();
-                using (var oscillator = fmod.CreateDsp(DspType.Oscillator)) {
+                using (var oscillator = (Oscillator)fmod.CreateDsp(DspType.Oscillator))
+                {
                     oscillator.Play();
 
                     Console.WriteLine("nFMOD test\nGenerating sine wave; Ctrl+C to quit");
 
-                    while (!quit.WaitOne(0))
-                    {
-                        switch (Console.ReadKey().Key)
-                        {
+                    while (!quit.WaitOne(0)) {
+                        switch (Console.ReadKey().Key) {
                             case ConsoleKey.Escape:
                                 quit.Set();
                                 break;
-                            
+
                             case ConsoleKey.LeftArrow:
-                                Oscillator.Rate -= 0.1f;                                
+                                oscillator.Rate -= 0.1f;
                                 break;
 
-                            case ConsoleKey.RightArrow:                                
+                            case ConsoleKey.RightArrow:
                                 break;
-                                                        
+
                             case ConsoleKey.Spacebar:
                                 //dsp.setParameter((int)FMOD.DSP_OSCILLATOR.TYPE, 0);
                                 //channel.setPaused(false);
