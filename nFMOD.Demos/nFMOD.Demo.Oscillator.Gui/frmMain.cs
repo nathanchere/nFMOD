@@ -61,17 +61,9 @@ namespace nFMOD.Demo
 
         ~frmMain()
         {
-            if (channel != null)
-                channel.Close();
-            if (oscillator != null)
-                oscillator.Close();
-            if (fmod != null)
-                fmod.Close();
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-
+            if (channel != null) channel.Close();
+            if (oscillator != null) oscillator.Close();
+            if (fmod != null) fmod.Close();
         }
 
         private void oscInput_VolumeChanged(object sender, OscillatorInput.ValueChangedEventArgs e)
@@ -82,6 +74,11 @@ namespace nFMOD.Demo
         private void oscInput_FrequencyChanged(object sender, OscillatorInput.ValueChangedEventArgs e)
         {
             oscillator.Frequency = e.Value;
+        }
+
+        private void btnCycle_Click(object sender, EventArgs e)
+        {
+            oscillator.CycleWaveforms();
         }
     }
 }

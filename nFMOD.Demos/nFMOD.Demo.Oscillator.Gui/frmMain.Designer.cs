@@ -141,6 +141,7 @@ namespace nFMOD.Demo
             this.btnCycle.TabIndex = 8;
             this.btnCycle.Text = "Cycle Waveform";
             this.btnCycle.UseVisualStyleBackColor = true;
+            this.btnCycle.Click += new System.EventHandler(this.btnCycle_Click);
             // 
             // frmMain
             // 
@@ -161,7 +162,6 @@ namespace nFMOD.Demo
             this.MinimizeBox = false;
             this.Name = "frmMain";
             this.Text = "nFMOD Demo: Spectrum Analysis";
-            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picVisualisation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numWaveDetail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSpectrumDetail)).EndInit();
