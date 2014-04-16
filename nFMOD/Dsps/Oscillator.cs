@@ -28,7 +28,7 @@ namespace nFMOD.Dsps
             Rate,
         }
 
-        public enum WaveformType
+        public enum Waveform
         {
             Sine,
             Square,
@@ -44,11 +44,11 @@ namespace nFMOD.Dsps
         }
 
         private float _rate = 220f;
-        private WaveformType _waveformType = WaveformType.Sine;
+        private Waveform _waveform = Waveform.Sine;
 
         public void CycleWaveforms()
         {
-            Waveform+=1;
+            WaveformType+=1;
         }
 
         /// <summary>
@@ -68,16 +68,16 @@ namespace nFMOD.Dsps
             }
         }
 
-        public WaveformType Waveform
+        public Waveform WaveformType
         {
             get
             {
-                return _waveformType;
+                return _waveform;
             }
             set
             {
                 SetParameter(DangerousGetHandle(), (int)Parameter.Type, (int)value);
-                _waveformType = value;
+                _waveform = value;
             }
         }
     }
