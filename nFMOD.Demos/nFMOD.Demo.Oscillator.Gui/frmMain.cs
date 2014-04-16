@@ -32,7 +32,7 @@ namespace nFMOD.Demo
                 )
                 return;
            
-            int spectrumSize = (int)numSpectrumDetail.Value;
+            int spectrumSize = (int) Math.Pow(2,(int)numSpectrumDetail.Value);
             int waveSize = (int)numWaveDetail.Value;
 
             var spectrum = new float[spectrumSize];

@@ -96,7 +96,7 @@ namespace nFMOD.Demo
             this.numSpectrumDetail.Size = new System.Drawing.Size(59, 20);
             this.numSpectrumDetail.TabIndex = 4;
             this.numSpectrumDetail.Value = new decimal(new int[] {
-            512,
+            8,
             0,
             0,
             0});
