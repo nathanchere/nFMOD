@@ -73,7 +73,9 @@ namespace nFMOD.Demo
             }
 
             var newFrequency = e.X / (float)Width * 22000f;
-            var newVolume = 1 - (1 / (float)Height * e.Y);
+            newFrequency = (float) (newFrequency / (Math.Log(Width,16) * Math.Log(e.X,16)));
+
+            var newVolume = 1 - (1 / (float)Height * e.Y);            
             
             if (Math.Abs(newFrequency - _frequency) > 0.1f)
             {

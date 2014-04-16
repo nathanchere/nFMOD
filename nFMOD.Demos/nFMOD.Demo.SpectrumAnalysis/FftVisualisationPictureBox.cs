@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace nFMOD.Demo
@@ -27,19 +28,28 @@ namespace nFMOD.Demo
 
         private void DrawSpectrum(Graphics g)
         {
-            float barWidth = Width / _data.WaveData.Count;
+            const int offset = 20;            
+
+            _data.SpectrumData = _data.SpectrumData
+                .Select(f=>1 - Math.Pow(1-f,3))
+                .Select(f=>(float)f)
+                //.Where(f=>f > 0.1)
+                .ToList();
+
+            float barWidth = Math.Max((Width / _data.SpectrumData.Count),2);
             for (int i = 0; i < _data.SpectrumData.Count; i++)
             {                
                 var value = Math.Abs(_data.SpectrumData[i]); // value should always be between 0 : 1.0
 
                 float x = i * barWidth;
                 float y = (value*Height*0.5f);
-                float R = (128 + (value * 128));
-                float G = (int)(255 / Width * x);
-                float B = (int)(DateTime.Now.Millisecond * 0.15);
+                float G = (128 + (value * 128));
+                float B = (int)(255 / Width * x);
+                float R = (int)(DateTime.Now.Millisecond * 0.15);
 
                 var brush = new SolidBrush(Color.FromArgb((int)R,(int)G,(int)B));
-                g.FillRectangle(brush, x, 200, barWidth, y);
+                g.FillRectangle(brush, x, Height / 2 + offset, barWidth, y);
+                g.FillRectangle(brush, x, Height / 2 - offset - y, barWidth, y);
             }            
         }
 
