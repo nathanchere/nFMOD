@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using nFMOD.Dsps;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace nFMOD.Demo
 {
     class Program
     {
+        private static void Main(string[] args)
+        {
+            (new Program()).Run();
+        }
+
         Oscillator oscillator;
 
-        static void Main(string[] args)
+        void Run()
         {
             var quit = new ManualResetEvent(false);
             Console.CancelKeyPress += (s, a) => {
@@ -23,14 +24,14 @@ namespace nFMOD.Demo
             using (var fmod = new FmodSystem())
             {
                 fmod.Init();                
-                using (var oscillator = (Oscillator)fmod.CreateDsp(DspType.Oscillator))
+                using (oscillator = (Oscillator)fmod.CreateDsp(DspType.Oscillator))
                 {
                     oscillator.Play();
 
                     while (!quit.WaitOne(0))
                     {
-                        ShowPrompt(oscillator);
-                        ProcessInput(quit, oscillator);
+                        ShowPrompt();
+                        ProcessInput(quit);
                         Thread.Sleep(1);
                     }
                 }
@@ -38,7 +39,7 @@ namespace nFMOD.Demo
             }
         }
 
-        private static void ProcessInput(ManualResetEvent quit, Oscillator oscillator)
+        void ProcessInput(ManualResetEvent quit)
         {
             switch (Console.ReadKey().Key)
             {
@@ -60,7 +61,7 @@ namespace nFMOD.Demo
             }
         }
 
-        private static void ShowPrompt(Oscillator oscillator)
+        private void ShowPrompt()
         {
             Console.SetCursorPosition(0, 0);
             var prompt = string.Format(
