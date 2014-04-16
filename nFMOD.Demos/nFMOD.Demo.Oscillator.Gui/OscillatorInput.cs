@@ -62,10 +62,11 @@ namespace nFMOD.Demo
             }
 
             var newFrequency = e.X / (float)Width * 22000f;
-
+            var newVolume = 1 - (1 / (float)Height * e.Y);
             //TODO: raise event
 
             _frequency = newFrequency;
+            _volume = newVolume;
             Refresh();
         }
     }
