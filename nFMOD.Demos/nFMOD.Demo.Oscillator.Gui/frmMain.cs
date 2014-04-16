@@ -69,5 +69,10 @@ namespace nFMOD.Demo
             if (fmod != null)
                 fmod.Close();
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
