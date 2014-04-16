@@ -8,6 +8,7 @@ namespace nFMOD.Dsps
     {
         public const float MAX_FREQUENCY = 22000f;
         public const float MIN_FREQUENCY = 1f;
+        private readonly int MAX_WAVEFORM_TYPES = Enum.GetValues(typeof(Waveform)).Length;
 
         private enum Parameter
         {
@@ -51,7 +52,7 @@ namespace nFMOD.Dsps
 
         public Waveform CycleWaveforms()
         {
-            WaveformType = (Waveform)((int)(WaveformType + 1) % (Enum.GetValues(typeof(Waveform)).Length - 1));
+            WaveformType = (Waveform)((int)(WaveformType + 1) % MAX_WAVEFORM_TYPES);
             return WaveformType;
         }
 

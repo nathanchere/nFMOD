@@ -22,8 +22,9 @@ namespace nFMOD.Demo
             if (_data == null)
                 return;
 
-            DrawWave(e.Graphics);
             DrawSpectrum(e.Graphics);
+            DrawWaveBackground(e.Graphics);
+            DrawWave(e.Graphics);            
         }
 
         private void DrawSpectrum(Graphics g)
@@ -35,6 +36,8 @@ namespace nFMOD.Demo
                 .Select(f=>(float)f)
                 //.Where(f=>f > 0.1)
                 .ToList();
+
+            if(!_data.SpectrumData.Any()) return;
 
             float barWidth = Math.Max((Width / _data.SpectrumData.Count),2);
             for (int i = 0; i < _data.SpectrumData.Count; i++)
@@ -53,6 +56,24 @@ namespace nFMOD.Demo
             }            
         }
 
+        private void DrawWaveBackground(Graphics g)
+        {
+            for (int i = 0; i < _data.WaveData.Count; i++)
+            {                
+                var value = _data.WaveData[i]; // value should always be between ±1.0
+
+                float x = Width * i / _data.WaveData.Count;
+                float y = Height / 2 + (value*Height*0.5f);
+                float B = (127 + (value * 128));
+                float G = (int)(255 / Width * x);
+                float R = (int)(DateTime.Now.Millisecond * 0.15);                
+                float height = (1 - (float)Math.Pow(1-Math.Abs(value),5)) * 50;
+
+                var brush = new SolidBrush(Color.FromArgb(32, (int)R,(int)G,(int)B));
+                g.FillEllipse(brush, x - 2.5f, y - height * 0.5f, 5, height);
+            }
+        }
+
         private void DrawWave(Graphics g)
         {
             for (int i = 0; i < _data.WaveData.Count; i++)
@@ -63,11 +84,10 @@ namespace nFMOD.Demo
                 float y = Height / 2 + (value*Height*0.5f);
                 float R = (127 + (value * 128));
                 float G = (int)(255 / Width * x);
-                float B = (int)(DateTime.Now.Millisecond * 0.15);                
-                float height = (1 - (float)Math.Pow(1-Math.Abs(value),5)) * 50;
+                float B = (int)(DateTime.Now.Millisecond * 0.15);
 
                 var brush = new SolidBrush(Color.FromArgb((int)R,(int)G,(int)B));
-                g.FillEllipse(brush, x - 2.5f, y - height * 0.5f, 5, height);
+                g.FillEllipse(brush, x, y, 5, (2 + value*2) * 7);
             }
         }
 
