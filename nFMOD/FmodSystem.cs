@@ -46,13 +46,7 @@ namespace nFMOD
         private static extern ErrorCode CreateDSPByPlugin(IntPtr system, uint handle, ref IntPtr dsp);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByPlugin"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateDSPByPlugin(IntPtr system, int Handle, ref int Dsp);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateDSPByType(IntPtr system, DspType dsptype, ref int Dsp);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateDSPByType"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode CreateDspByType(IntPtr system, DspType type, ref IntPtr dsp);
+        private static extern ErrorCode CreateDSPByPlugin(IntPtr system, int Handle, ref int Dsp);        
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_CreateGeometry"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode CreateGeometry(IntPtr system, int maxpolygons, int maxvertices, ref IntPtr geometry);
@@ -296,12 +290,6 @@ namespace nFMOD
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_LockDSP"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode LockDSP(IntPtr system);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode PlayDSP(IntPtr system, ChannelIndex channelid, int Dsp, int paused, ref int channel);
-
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlayDSP"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode PlayDsp(IntPtr system, ChannelIndex channelid, IntPtr dsp, bool paused, ref IntPtr channel);
 
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_PlaySound"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode PlaySound(IntPtr system, ChannelIndex channelid, IntPtr Sound, bool paused, ref IntPtr channel);
@@ -693,39 +681,12 @@ namespace nFMOD
 
         #region Methods
 
-        #region Methods - DSP
-        [Obsolete("Use CreateDspByType() instead")]
-        public Dsp CreateDSP(ref DSPDescription description)
+        #region Methods - DSP        
+        public Dsp CreateDsp(DspType type)
         {
-            throw new NotImplementedException("Generic DSP creation not supported in nFMOD; use CreateDspByType() instead");
-            //// TODO: update this, possibly have GenericDSP implementation?
-            //IntPtr result = IntPtr.Zero;
-            //Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
-            //return new Dsp(result);
-        }
-
-        public Dsp CreateDspByType(DspType type)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateDspByType(DangerousGetHandle(), type, ref result));
-            return Dsp.GetInstance(type,result);
-        }
-
-        public Channel PlayDsp(Dsp dsp, bool paused = false)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Free, dsp.DangerousGetHandle(), paused, ref result));
-            return new Channel(result);
-        }
-
-        public void PlayDsp(Dsp dsp, bool paused, Channel chn)
-        {
-            IntPtr channel = chn.DangerousGetHandle();
-            Errors.ThrowIfError(PlayDsp(DangerousGetHandle(), ChannelIndex.Reuse, dsp.DangerousGetHandle(), paused, ref channel));
-
-            if (chn.DangerousGetHandle() != channel)
-                throw new Exception("Channel handle got changed by Fmod."); //TODO: check: is this really needed?
-        }
+            // TODO: track all DSPs created per FmodSystem instance to ensure safe release/unload
+            return Dsp.GetInstance(this, type);
+        }        
 
         public DspConnection AddDsp(Dsp dsp)
         {
@@ -948,7 +909,28 @@ namespace nFMOD
             };
 
         }
+        #endregion
 
+        #region Obsolete
+        [Obsolete("Use CreateDsp(Type) instead")]
+        public Dsp CreateDSP(ref DSPDescription description)
+        {
+            throw new NotImplementedException("Generic DSP creation not supported in nFMOD; use CreateDsp(T) instead");
+            //// TODO: update this, possibly have GenericDSP implementation?
+            //IntPtr result = IntPtr.Zero;
+            //Errors.ThrowIfError(CreateDSP(DangerousGetHandle(), ref description, ref result));
+            //return new Dsp(result);
+        }
+        [Obsolete("Use DSP.Play() instead")]
+        public Channel PlayDsp(Dsp dsp, bool paused = false)
+        {
+            throw new NotImplementedException("Use DSP.Play() instead");
+        }
+        [Obsolete("Use DSP.Play() instead")]
+        public void PlayDsp(Dsp dsp, bool paused, Channel chn)
+        {
+            throw new NotImplementedException("Use DSP.Play() instead");
+        }
         #endregion
     }
 }
