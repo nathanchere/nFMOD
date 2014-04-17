@@ -49,6 +49,7 @@ How I approach my public projects is explained on [my github home page](http://n
 #### vNext
 * Sound resources now managed by specific FmodInstance
 * FmodSystem.CreateSound() overload to accept UnmanagedResourceStream for easier loading of sounds from project resources
+* Minimum .Net Framework version changed from 2.0 => 4.0 for UnmanagedMemoryStream support
 
 * Go through the TODO list
 * Add internal ctors for main classes to take existing instance handle

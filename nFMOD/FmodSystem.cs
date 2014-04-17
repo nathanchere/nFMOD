@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
@@ -861,12 +862,14 @@ namespace nFMOD
             return new Sound(result);
         }
 
-        public Sound CreateSound(string path)
+        public Sound CreateSound(UnmanagedMemoryStream data, SoundMode mode = SoundMode.Default)
         {
-            return CreateSound(path, SoundMode.Default);
+            var stream = new MemoryStream();
+            data.CopyTo(stream);
+            return CreateSound(stream.ToArray(), mode);
         }
 
-        public Sound CreateSound(string path, SoundMode mode)
+        public Sound CreateSound(string path, SoundMode mode = SoundMode.Default)
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, 0, ref result));

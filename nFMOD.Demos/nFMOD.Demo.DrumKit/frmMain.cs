@@ -19,8 +19,7 @@ namespace nFMOD.Demo
             _fmod.Init();
 
             _drums = new Dictionary<DrumType, Sound>();
-            UnmanagedMemoryStream x = Properties.Resources.snare;
-            _drums[DrumType.Snare] = _fmod.CreateSound();
+            _drums[DrumType.Snare] = _fmod.CreateSound(Properties.Resources.snare);
         }
 
         protected override void Dispose(bool disposing)
