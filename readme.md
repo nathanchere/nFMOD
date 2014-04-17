@@ -127,3 +127,4 @@ How I approach my public projects is explained on [my github home page](http://n
 
 * [Firelight Studios](http://firelightstudios.net/): for the underlying [FMOD](http://www.fmod.org/) library which is the real star of the show, and generously making FMOD freely available for non-commercial projects
 * [Marc-Andre Ferland](https://github.com/madrang): for the [FmodSharp](https://gitorious.org/fmodsharp) project which demonstrates how to use FMOD with .Net for non-Windows platforms.
+* [Carbon Monoxide Music](http://ccmixter.org/people/CarbonMonoxideMusic): audio samples used in the RhythmGame demo
