@@ -449,6 +449,7 @@ namespace nFMOD
             CheckMinimumVersion();
 
             _dsps = new Dictionary<IntPtr, Dsp>();
+            _sounds = new Dictionary<IntPtr, Sound>();
         }
 
         private void CheckMinimumVersion()
@@ -722,7 +723,7 @@ namespace nFMOD
             return result;
         }        
 
-        public DspConnection AddDsp(Dsp dsp)
+        public DspConnection AddDsp(Dsp dsp) // TODO: seems wrong; investigate
         {
             IntPtr result = IntPtr.Zero;
             Errors.ThrowIfError(AddDSP(DangerousGetHandle(), dsp.DangerousGetHandle(), ref result));
@@ -737,6 +738,87 @@ namespace nFMOD
         public void UnlockDSP()
         {
             Errors.ThrowIfError(UnlockDSP(DangerousGetHandle()));
+        }
+        #endregion
+
+        #region Methods - Sound
+        public Sound CreateStream(string path, SoundMode mode)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, 0, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
+        }
+
+        public Sound CreateStream(string path, SoundMode mode, SoundInfo exinfo)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
+        }
+
+        public Sound CreateStream(byte[] data, SoundMode mode)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, 0, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
+        }
+
+        public Sound CreateStream(byte[] data, SoundMode mode, SoundInfo exinfo)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
+        }
+
+        public Sound CreateSound(UnmanagedMemoryStream data, SoundMode mode = SoundMode.Default)
+        {
+            var stream = new MemoryStream();
+            data.CopyTo(stream);
+            return CreateSound(stream.ToArray(), mode);
+        }
+
+        public Sound CreateSound(string path, SoundMode mode = SoundMode.Default)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, 0, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
+        }
+
+        public Sound CreateSound(string path, SoundMode mode, SoundInfo exinfo)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, ref exinfo, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
+        }
+
+        public Sound CreateSound(byte[] data, SoundMode mode = SoundMode.Default)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, 0, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
+        }
+
+        public Sound CreateSound(byte[] data, SoundMode mode, SoundInfo exinfo)
+        {
+            IntPtr resultHandle = IntPtr.Zero;
+            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, ref exinfo, ref resultHandle));
+            var result = new Sound(resultHandle);
+            _sounds.Add(resultHandle, result);
+            return result;
         }
         #endregion
 
@@ -846,70 +928,7 @@ namespace nFMOD
                 SpeakerMode = controlpanelspeakermode
             };
         }
-
-        public Sound CreateStream(string path, SoundMode mode)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, 0, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateStream(string path, SoundMode mode, SoundInfo exinfo)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), path, mode, ref exinfo, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateStream(byte[] data, SoundMode mode)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, 0, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateStream(byte[] data, SoundMode mode, SoundInfo exinfo)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateStream(DangerousGetHandle(), data, mode, ref exinfo, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateSound(UnmanagedMemoryStream data, SoundMode mode = SoundMode.Default)
-        {
-            var stream = new MemoryStream();
-            data.CopyTo(stream);
-            return CreateSound(stream.ToArray(), mode);
-        }
-
-        public Sound CreateSound(string path, SoundMode mode = SoundMode.Default)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, 0, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateSound(string path, SoundMode mode, SoundInfo exinfo)
-        {
-            IntPtr result = IntPtr.Zero;
-            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), path, mode, ref exinfo, ref result));
-            return new Sound(result);
-        }
-
-        public Sound CreateSound(byte[] data, SoundMode mode = SoundMode.Default)
-        {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, 0, ref SoundHandle));
-            return new Sound(SoundHandle);
-        }
-
-        public Sound CreateSound(byte[] data, SoundMode mode, SoundInfo exinfo)
-        {
-            IntPtr SoundHandle = IntPtr.Zero;
-            Errors.ThrowIfError(CreateSound(DangerousGetHandle(), data, mode, ref exinfo, ref SoundHandle));
-            return new Sound(SoundHandle);
-        }
-
+        
         public Channel PlaySound(Sound snd, bool paused = false)
         {
             IntPtr result = IntPtr.Zero;
