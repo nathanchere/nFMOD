@@ -43,9 +43,23 @@ namespace nFMOD.Demo
         }
         #endregion
 
+        private void PlayDrum(DrumType drumType)
+        {
+            _fmod.PlaySound(_drums[drumType]);
+        }
+
         private void btnSnare_Click(object sender, EventArgs e)
         {
             _fmod.PlaySound(_drums[DrumType.Snare]);
+        }
+
+        private void frmMain_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Z) PlayDrum(DrumType.HithatClosed);
+            if (e.KeyCode == Keys.X) PlayDrum(DrumType.Snare);
+            if (e.KeyCode == Keys.B) PlayDrum(DrumType.TomMid);
+            if (e.KeyCode == Keys.N) PlayDrum(DrumType.TomLow);
+            if (e.KeyCode == Keys.M) PlayDrum(DrumType.CymbalCrash);
         }
     }
 }
