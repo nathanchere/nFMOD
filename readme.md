@@ -47,6 +47,9 @@ How I approach my public projects is explained on [my github home page](http://n
 ## Release history
 
 #### vNext
+* Sound resources now managed by specific FmodInstance
+* FmodSystem.CreateSound() overload to accept UnmanagedResourceStream for easier loading of sounds from project resources
+
 * Go through the TODO list
 * Add internal ctors for main classes to take existing instance handle
 * More sample code 
