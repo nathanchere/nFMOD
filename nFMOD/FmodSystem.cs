@@ -411,7 +411,8 @@ namespace nFMOD
         #endregion
 
         #region Managed resources
-        private Dictionary<IntPtr,Dsp> _dsps;
+        private Dictionary<IntPtr, Dsp> _dsps;
+        private Dictionary<IntPtr, Sound> _sounds;
 
         private void CleanupResources()
         {
@@ -421,8 +422,20 @@ namespace nFMOD
                 {
                     if(!dsp.IsClosed) dsp.Close();
                     dsp.Remove();
+                    dsp.Dispose();
                 }
             }
+            _dsps.Clear();
+
+            foreach (var sound in _sounds.Values)
+            {
+                if (sound != null && !sound.IsInvalid)
+                {
+                    if (!sound.IsClosed) sound.Close();
+                    sound.Dispose();
+                }
+            }
+            _sounds.Clear();
         }
         #endregion
 
