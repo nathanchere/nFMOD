@@ -117,35 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cym_crash" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cym_crash.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cym_hatclosed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cym_hatclosed.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cym_hatmid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cym_hatmid.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cym_hatopen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cym_hatopen.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cym_ride" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cym_ride.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="kick" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="snare" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\snare.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tom_floor" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tom_floor.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tom_low" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tom_low.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tom_mid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tom_mid.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
 </root>

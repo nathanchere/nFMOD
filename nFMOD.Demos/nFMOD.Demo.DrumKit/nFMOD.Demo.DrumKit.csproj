@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -87,40 +86,52 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\cym_crash.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cym_hatclosed.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cym_hatmid.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cym_hatopen.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\cym_ride.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\kick.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\snare.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tom_floor.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tom_low.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\tom_mid.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\nFMOD\nFMOD.csproj">
       <Project>{e0810e1a-ea20-4f0d-8d0f-5b72c3e64f6d}</Project>
       <Name>nFMOD</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\Dependencies\drums\cym_crash.wav">
+      <Link>data\cym_crash.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\cym_hatclosed.wav">
+      <Link>data\cym_hatclosed.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\cym_hatmid.wav">
+      <Link>data\cym_hatmid.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\cym_hatopen.wav">
+      <Link>data\cym_hatopen.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\cym_ride.wav">
+      <Link>data\cym_ride.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\kick.wav">
+      <Link>data\kick.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\snare.wav">
+      <Link>data\snare.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\tom_floor.wav">
+      <Link>data\tom_floor.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\tom_low.wav">
+      <Link>data\tom_low.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\Dependencies\drums\tom_mid.wav">
+      <Link>data\tom_mid.wav</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

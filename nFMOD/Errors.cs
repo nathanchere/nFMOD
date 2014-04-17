@@ -54,7 +54,7 @@ namespace nFMOD
             exceptionTypes[ErrorCode.Initialization] = typeof(FmodInitializationException);
             exceptionTypes[ErrorCode.Initialized] = typeof(FmodInitializedException);
             exceptionTypes[ErrorCode.Internal] = typeof(FmodInternalException);
-            exceptionTypes[ErrorCode.InvalidAddress] = typeof(FmodInvalidAddressException);
+            exceptionTypes[ ErrorCode.InvalidAddress] = typeof(FmodInvalidAddressException);
             exceptionTypes[ErrorCode.InvalidFloat] = typeof(FmodInvalidFloatException);
             exceptionTypes[ErrorCode.InvalidHandle] = typeof(FmodInvalidHandleException);
             exceptionTypes[ErrorCode.InvalidParam] = typeof(FmodInvalidParameterException);

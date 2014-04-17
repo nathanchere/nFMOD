@@ -18,11 +18,11 @@
         {
             this.btnHihatOpen = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnHihatClosed = new System.Windows.Forms.Button();
-            this.btnSnare = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnSnare = new System.Windows.Forms.Button();
+            this.btnHihatClosed = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,32 +48,14 @@
             this.panel1.Size = new System.Drawing.Size(426, 118);
             this.panel1.TabIndex = 1;
             // 
-            // btnHihatClosed
+            // button3
             // 
-            this.btnHihatClosed.Location = new System.Drawing.Point(14, 37);
-            this.btnHihatClosed.Name = "btnHihatClosed";
-            this.btnHihatClosed.Size = new System.Drawing.Size(71, 35);
-            this.btnHihatClosed.TabIndex = 1;
-            this.btnHihatClosed.Text = "HH (Closed)";
-            this.btnHihatClosed.UseVisualStyleBackColor = true;
-            // 
-            // btnSnare
-            // 
-            this.btnSnare.Location = new System.Drawing.Point(103, 68);
-            this.btnSnare.Name = "btnSnare";
-            this.btnSnare.Size = new System.Drawing.Size(71, 35);
-            this.btnSnare.TabIndex = 2;
-            this.btnSnare.Text = "Snare";
-            this.btnSnare.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(213, 80);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 35);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Kick";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(259, 37);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(71, 35);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Tom (Low)";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -84,14 +66,33 @@
             this.button2.Text = "Tom (Mid)";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button1
             // 
-            this.button3.Location = new System.Drawing.Point(259, 37);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(71, 35);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Tom (Low)";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(213, 80);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(71, 35);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Kick";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnSnare
+            // 
+            this.btnSnare.Location = new System.Drawing.Point(103, 68);
+            this.btnSnare.Name = "btnSnare";
+            this.btnSnare.Size = new System.Drawing.Size(71, 35);
+            this.btnSnare.TabIndex = 2;
+            this.btnSnare.Text = "Snare";
+            this.btnSnare.UseVisualStyleBackColor = true;
+            this.btnSnare.Click += new System.EventHandler(this.btnSnare_Click);
+            // 
+            // btnHihatClosed
+            // 
+            this.btnHihatClosed.Location = new System.Drawing.Point(14, 37);
+            this.btnHihatClosed.Name = "btnHihatClosed";
+            this.btnHihatClosed.Size = new System.Drawing.Size(71, 35);
+            this.btnHihatClosed.TabIndex = 1;
+            this.btnHihatClosed.Text = "HH (Closed)";
+            this.btnHihatClosed.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
