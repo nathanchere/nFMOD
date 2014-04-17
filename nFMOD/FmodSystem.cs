@@ -328,9 +328,6 @@ namespace nFMOD
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetDSPBufferSize(IntPtr system, uint bufferlength, int numbuffers);
 
-        [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetDSPBufferSize"), SuppressUnmanagedCodeSecurity]
-        private static extern ErrorCode SetDSPBufferSize(IntPtr system, int Bufferlength, int Numbuffers);
-
         [DllImport(Common.FMOD_DLL_NAME, EntryPoint = "FMOD_System_SetDriver"), SuppressUnmanagedCodeSecurity]
         private static extern ErrorCode SetDriver(IntPtr system, int driver);
 
