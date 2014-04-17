@@ -710,9 +710,16 @@ namespace nFMOD
         }
         #endregion
 
+        #region Setup / init
+        public void SetDspBufferSize(uint bufferLength, int numBuffers)
+        {
+            SetDSPBufferSize(DangerousGetHandle(), bufferLength, numBuffers);
+        }
+        #endregion
+
         #region Methods
 
-        #region Methods - DSP        
+        #region Methods - DSP
         public Dsp CreateDsp(DspType type)
         {            
             var result = Dsp.GetInstance(this, type);

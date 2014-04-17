@@ -17,6 +17,7 @@ namespace nFMOD.Demo
             InitializeComponent();
             _fmod = new FmodSystem();
             _fmod.Init(32, InitFlags.SoftwareHRTF);
+            _fmod.SetDspBufferSize(256,2);
 
             _drums = new Dictionary<DrumType, Sound>();
             const SoundMode flags = SoundMode.NonBlocking | SoundMode.SoftwareProcessing;
