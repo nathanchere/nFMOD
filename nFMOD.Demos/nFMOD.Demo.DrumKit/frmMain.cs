@@ -1,33 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace nFMOD.Demo
 {
-    public enum DrumType
-    {
-        Kick,
-        Snare,
-        HihatOpen,
-        HihatMid,
-        HithatClosed,
-        TomMid,
-        TomLow,
-        TomFloor,
-        CymbalCrash,
-        CymbalRide,
-    }
-
     public partial class frmMain : Form
     {
-        FmodSystem fmod;
-        
+        FmodSystem _fmod;
+        Dictionary<DrumType, Sound> _drums;
+
 
         #region ctor etc
         public frmMain()
         {
             InitializeComponent();
-            fmod = new FmodSystem();
-            fmod.Init();
+            _fmod = new FmodSystem();
+            _fmod.Init();
+
+            _drums = new Dictionary<DrumType, Sound>();
+            UnmanagedMemoryStream x = Properties.Resources.snare;
+            _drums[DrumType.Snare] = _fmod.CreateSound();
         }
 
         protected override void Dispose(bool disposing)
@@ -35,8 +28,8 @@ namespace nFMOD.Demo
             if (disposing && (components != null))
             {
                 components.Dispose();
-                if(!fmod.IsClosed) fmod.Close();
-                fmod.Dispose();
+                if (!_fmod.IsClosed) _fmod.Close();
+                _fmod.Dispose();
             }
             base.Dispose(disposing);
         }

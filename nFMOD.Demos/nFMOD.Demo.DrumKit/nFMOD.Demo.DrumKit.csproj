@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nFMOD">
-      <HintPath>..\..\packages\nFMOD.0.6\lib\net20\nFMOD.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrumType.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,7 +67,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -84,9 +81,46 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Dependencies\win32\fmodex.dll">
+    <None Include="..\..\Dependencies\win32\fmodex.dll">
       <Link>fmodex.dll</Link>
-    </Content>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cym_crash.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cym_hatclosed.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cym_hatmid.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cym_hatopen.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cym_ride.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\snare.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tom_floor.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tom_low.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tom_mid.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\nFMOD\nFMOD.csproj">
+      <Project>{e0810e1a-ea20-4f0d-8d0f-5b72c3e64f6d}</Project>
+      <Name>nFMOD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
