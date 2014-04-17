@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.Oscillator", "nF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.Oscillator.Gui", "nFMOD.Demos\nFMOD.Demo.Oscillator.Gui\nFMOD.Demo.Oscillator.Gui.csproj", "{37E23D55-C467-45AA-B562-AA884D52D3BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nFMOD.Demo.DrumKit", "nFMOD.Demos\nFMOD.Demo.DrumKit\nFMOD.Demo.DrumKit.csproj", "{6198E841-3D41-4DA2-87A5-617039BBB382}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +88,16 @@ Global
 		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{37E23D55-C467-45AA-B562-AA884D52D3BA}.Release|x86.ActiveCfg = Release|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6198E841-3D41-4DA2-87A5-617039BBB382}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +106,7 @@ Global
 		{5071B2EE-2AEF-4391-8734-A8CEA39014E8} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{F554CE71-D950-4EAB-8C8E-FAA5ABF4F4D4} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{37E23D55-C467-45AA-B562-AA884D52D3BA} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
+		{6198E841-3D41-4DA2-87A5-617039BBB382} = {CC5DB96F-CAE6-4CA7-A7B0-F66304495D35}
 		{6C87F095-87D3-49EC-8CEB-E26B17B02BC6} = {E0C510FA-D022-4E4C-A169-17B1EB7BACB7}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
