@@ -32,8 +32,33 @@ CONDITIONS/LIMITATIONS:
 
 For other license see http://www.fmod.org/index.php/sales
 
+
 =============================
-NFMOD LICENSE
+NFMOD LICENSE (SOURCE CODE)
 =============================
 
-Do whatever you like with this, subject only to the limitations of the above licenses and the relevant laws in your particular jurisdiction.
+Source code is free to do whatever you like with this, subject only to the
+limitations of the above licenses and the relevant laws in your particular
+jurisdiction.
+
+
+=============================
+NFMOD LICENSE (AUDIO SAMPLES)
+=============================
+
+"Doo Wacka Doo" is a public domain recording from the 1920s (1910s?).
+
+Drum kit samples by Carbon Monoxide Music and are licensed under Creative
+Commons CC0.
+
+Any other audio files are provided for the sole purpose of demonstrating nFMOD
+functionality. No license is granted for their use or redistribution unless
+explicitly mentioned above.
+
+
+=============================
+LICENSE EXTERNAL REFERENCES
+=============================
+
+Creative Commons CC0:
+http://creativecommons.org/publicdomain/zero/1.0/
